@@ -10,9 +10,16 @@ using System.Windows.Forms;
 
 namespace Projeto_Valquiria
 {
-    public partial class Pedidos : Form
+    public partial class FrmPedidos : Form
     {
-        public Pedidos()
+
+        private panelConteudo home;
+        public FrmPedidos (panelConteudo telaHome)
+        {
+            InitializeComponent ();
+            home=telaHome;
+        }
+        public FrmPedidos()
         {
             InitializeComponent();
         }
@@ -24,7 +31,7 @@ namespace Projeto_Valquiria
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Home tela = new Home();
+            panelConteudo tela = new panelConteudo();
             tela.ShowDialog();
         }
 
@@ -35,7 +42,7 @@ namespace Projeto_Valquiria
 
         private void btnCadastroCliente_Click(object sender, EventArgs e)
         {
-            Clientes tela = new Clientes();
+            FrmClientes tela = new FrmClientes();
             tela.ShowDialog();
         }
 
@@ -52,6 +59,12 @@ namespace Projeto_Valquiria
         private void lblTotal_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            
+            this.Close();
         }
     }
 }

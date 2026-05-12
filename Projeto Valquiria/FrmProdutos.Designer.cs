@@ -1,6 +1,6 @@
 ﻿namespace Projeto_Valquiria
 {
-    partial class Produtos
+    partial class FrmProdutos
     {
         /// <summary>
         /// Required designer variable.

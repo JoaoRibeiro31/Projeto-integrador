@@ -1,6 +1,6 @@
 ﻿namespace Projeto_Valquiria
 {
-    partial class Pedidos
+    partial class FrmPedidos
     {
         /// <summary>
         /// Required designer variable.
@@ -47,17 +47,19 @@
             // 
             cbxClientes.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbxClientes.FormattingEnabled = true;
-            cbxClientes.Location = new Point(753, 287);
+            cbxClientes.Location = new Point(861, 383);
+            cbxClientes.Margin = new Padding(3, 4, 3, 4);
             cbxClientes.Name = "cbxClientes";
-            cbxClientes.Size = new Size(479, 29);
+            cbxClientes.Size = new Size(547, 36);
             cbxClientes.TabIndex = 0;
             cbxClientes.Text = "Clientes";
             // 
             // btnCadastroCliente
             // 
-            btnCadastroCliente.Location = new Point(753, 332);
+            btnCadastroCliente.Location = new Point(861, 443);
+            btnCadastroCliente.Margin = new Padding(3, 4, 3, 4);
             btnCadastroCliente.Name = "btnCadastroCliente";
-            btnCadastroCliente.Size = new Size(479, 57);
+            btnCadastroCliente.Size = new Size(547, 53);
             btnCadastroCliente.TabIndex = 1;
             btnCadastroCliente.Text = "Cadastrar Cliente";
             btnCadastroCliente.UseVisualStyleBackColor = true;
@@ -66,18 +68,20 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(753, 425);
+            comboBox1.Location = new Point(861, 567);
+            comboBox1.Margin = new Padding(3, 4, 3, 4);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(205, 23);
+            comboBox1.Size = new Size(234, 28);
             comboBox1.TabIndex = 2;
             comboBox1.Text = "Produtos";
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // txtQuantidadePedido
             // 
-            txtQuantidadePedido.Location = new Point(1148, 425);
+            txtQuantidadePedido.Location = new Point(1312, 567);
+            txtQuantidadePedido.Margin = new Padding(3, 4, 3, 4);
             txtQuantidadePedido.Name = "txtQuantidadePedido";
-            txtQuantidadePedido.Size = new Size(64, 23);
+            txtQuantidadePedido.Size = new Size(73, 27);
             txtQuantidadePedido.TabIndex = 3;
             // 
             // label1
@@ -85,18 +89,19 @@
             label1.BackColor = Color.White;
             label1.FlatStyle = FlatStyle.System;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(1065, 428);
+            label1.Location = new Point(1217, 571);
             label1.Name = "label1";
-            label1.Size = new Size(77, 20);
+            label1.Size = new Size(88, 27);
             label1.TabIndex = 4;
             label1.Text = "Quantidade:";
             // 
             // textBox1
             // 
             textBox1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(753, 478);
+            textBox1.Location = new Point(861, 637);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(187, 35);
+            textBox1.Size = new Size(213, 42);
             textBox1.TabIndex = 5;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
@@ -104,9 +109,9 @@
             // 
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(753, 531);
+            label2.Location = new Point(861, 708);
             label2.Name = "label2";
-            label2.Size = new Size(187, 27);
+            label2.Size = new Size(214, 36);
             label2.TabIndex = 6;
             label2.Text = "Valor total / Valor pago";
             // 
@@ -114,38 +119,41 @@
             // 
             lblValores.BackColor = Color.White;
             lblValores.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblValores.Location = new Point(1045, 478);
+            lblValores.Location = new Point(1194, 637);
             lblValores.Name = "lblValores";
-            lblValores.Size = new Size(187, 35);
+            lblValores.Size = new Size(214, 47);
             lblValores.TabIndex = 7;
             // 
             // lblTotal
             // 
             lblTotal.BackColor = Color.White;
             lblTotal.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTotal.Location = new Point(951, 587);
+            lblTotal.Location = new Point(1087, 783);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(92, 26);
+            lblTotal.Size = new Size(105, 35);
             lblTotal.TabIndex = 8;
             lblTotal.Click += lblTotal_Click;
             // 
             // btnCadastrarPedido
             // 
-            btnCadastrarPedido.Location = new Point(836, 635);
+            btnCadastrarPedido.Location = new Point(955, 847);
+            btnCadastrarPedido.Margin = new Padding(3, 4, 3, 4);
             btnCadastrarPedido.Name = "btnCadastrarPedido";
-            btnCadastrarPedido.Size = new Size(327, 44);
+            btnCadastrarPedido.Size = new Size(374, 59);
             btnCadastrarPedido.TabIndex = 9;
             btnCadastrarPedido.Text = "Cadastrar Pedido";
             btnCadastrarPedido.UseVisualStyleBackColor = true;
             // 
             // btnVoltar
             // 
-            btnVoltar.Location = new Point(1395, 176);
+            btnVoltar.Location = new Point(1594, 235);
+            btnVoltar.Margin = new Padding(3, 4, 3, 4);
             btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(135, 70);
+            btnVoltar.Size = new Size(154, 93);
             btnVoltar.TabIndex = 10;
             btnVoltar.Text = "Voltar";
             btnVoltar.UseVisualStyleBackColor = true;
+            btnVoltar.Click += btnVoltar_Click;
             // 
             // a
             // 
@@ -153,9 +161,9 @@
             a.BackColor = Color.White;
             a.BorderStyle = BorderStyle.FixedSingle;
             a.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            a.Location = new Point(817, 209);
+            a.Location = new Point(861, 267);
             a.Name = "a";
-            a.Size = new Size(361, 46);
+            a.Size = new Size(547, 61);
             a.TabIndex = 11;
             a.Text = "Área de Cadastro de Pedidos";
             a.Click += label3_Click;
@@ -163,18 +171,18 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(984, 488);
+            label3.Location = new Point(1125, 651);
             label3.Name = "label3";
-            label3.Size = new Size(15, 15);
+            label3.Size = new Size(19, 20);
             label3.TabIndex = 12;
             label3.Text = "=";
             // 
             // Pedidos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(52, 174, 250);
-            ClientSize = new Size(1623, 985);
+            ClientSize = new Size(1855, 1055);
             Controls.Add(label3);
             Controls.Add(a);
             Controls.Add(btnVoltar);
@@ -188,6 +196,7 @@
             Controls.Add(comboBox1);
             Controls.Add(btnCadastroCliente);
             Controls.Add(cbxClientes);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Pedidos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pedidos";

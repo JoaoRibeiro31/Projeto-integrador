@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Projeto_Valquiria
 {
-    public partial class Clientes : Form
+    public partial class FrmClientes : Form
     {
-        public Clientes()
+        public FrmClientes()
         {
             InitializeComponent();
         }
