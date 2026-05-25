@@ -44,19 +44,17 @@
             panelMenu.BackColor = Color.White;
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
-            panelMenu.Margin = new Padding(3, 4, 3, 4);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(312, 1055);
+            panelMenu.Size = new Size(273, 791);
             panelMenu.TabIndex = 0;
             panelMenu.TabStop = false;
             // 
             // btnPedidos
             // 
             btnPedidos.BackColor = Color.FromArgb(247, 157, 189);
-            btnPedidos.Location = new Point(25, 37);
-            btnPedidos.Margin = new Padding(3, 4, 3, 4);
+            btnPedidos.Location = new Point(22, 28);
             btnPedidos.Name = "btnPedidos";
-            btnPedidos.Size = new Size(261, 168);
+            btnPedidos.Size = new Size(228, 126);
             btnPedidos.TabIndex = 0;
             btnPedidos.Text = "Pedidos";
             btnPedidos.UseVisualStyleBackColor = false;
@@ -65,10 +63,9 @@
             // btnDados
             // 
             btnDados.BackColor = Color.FromArgb(247, 157, 189);
-            btnDados.Location = new Point(25, 559);
-            btnDados.Margin = new Padding(3, 4, 3, 4);
+            btnDados.Location = new Point(22, 419);
             btnDados.Name = "btnDados";
-            btnDados.Size = new Size(261, 168);
+            btnDados.Size = new Size(228, 126);
             btnDados.TabIndex = 2;
             btnDados.Text = "Dados";
             btnDados.UseVisualStyleBackColor = false;
@@ -76,10 +73,9 @@
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Location = new Point(977, 121);
-            txtPesquisar.Margin = new Padding(3, 4, 3, 4);
+            txtPesquisar.Location = new Point(855, 91);
             txtPesquisar.Name = "txtPesquisar";
-            txtPesquisar.Size = new Size(597, 27);
+            txtPesquisar.Size = new Size(523, 23);
             txtPesquisar.TabIndex = 6;
             // 
             // lblPesquisar
@@ -88,9 +84,9 @@
             lblPesquisar.BackColor = Color.White;
             lblPesquisar.BorderStyle = BorderStyle.FixedSingle;
             lblPesquisar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPesquisar.Location = new Point(894, 123);
+            lblPesquisar.Location = new Point(782, 92);
             lblPesquisar.Name = "lblPesquisar";
-            lblPesquisar.Size = new Size(87, 25);
+            lblPesquisar.Size = new Size(69, 19);
             lblPesquisar.TabIndex = 4;
             lblPesquisar.Text = "Pesquisar:";
             // 
@@ -99,21 +95,19 @@
             dgvPedidos.AllowUserToOrderColumns = true;
             dgvPedidos.BackgroundColor = Color.FromArgb(217, 217, 217);
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPedidos.Location = new Point(631, 213);
-            dgvPedidos.Margin = new Padding(3, 4, 3, 4);
+            dgvPedidos.Location = new Point(558, 161);
             dgvPedidos.Name = "dgvPedidos";
             dgvPedidos.ReadOnly = true;
             dgvPedidos.RowHeadersWidth = 51;
-            dgvPedidos.Size = new Size(1262, 956);
+            dgvPedidos.Size = new Size(1104, 717);
             dgvPedidos.TabIndex = 5;
             // 
             // btnProdutos
             // 
             btnProdutos.BackColor = Color.FromArgb(247, 157, 189);
-            btnProdutos.Location = new Point(25, 284);
-            btnProdutos.Margin = new Padding(3, 4, 3, 4);
+            btnProdutos.Location = new Point(22, 211);
             btnProdutos.Name = "btnProdutos";
-            btnProdutos.Size = new Size(261, 168);
+            btnProdutos.Size = new Size(228, 126);
             btnProdutos.TabIndex = 7;
             btnProdutos.Text = "Produtos";
             btnProdutos.UseVisualStyleBackColor = false;
@@ -121,10 +115,10 @@
             // 
             // panelConteudo
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(52, 174, 250);
-            ClientSize = new Size(1627, 1055);
+            ClientSize = new Size(1424, 791);
             Controls.Add(btnProdutos);
             Controls.Add(dgvPedidos);
             Controls.Add(lblPesquisar);
@@ -132,7 +126,6 @@
             Controls.Add(btnDados);
             Controls.Add(btnPedidos);
             Controls.Add(panelMenu);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "panelConteudo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Home";
