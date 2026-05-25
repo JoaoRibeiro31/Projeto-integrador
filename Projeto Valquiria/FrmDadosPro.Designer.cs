@@ -39,6 +39,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(1116, 596);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // FrmDadosPro
             // 
