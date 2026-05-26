@@ -117,11 +117,11 @@
             btnCadastroProduto.Text = "Cadastrar Produto";
             btnCadastroProduto.UseVisualStyleBackColor = true;
             // 
-            // Produtos
+            // FrmProdutos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(52, 174, 250);
+            BackColor = Color.FromArgb(205, 226, 176);
             ClientSize = new Size(1424, 985);
             Controls.Add(btnCadastroProduto);
             Controls.Add(txtQuantidade);
@@ -131,7 +131,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnVoltar);
-            Name = "Produtos";
+            Name = "FrmProdutos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Produtos";
             WindowState = FormWindowState.Maximized;
