@@ -93,6 +93,7 @@
             // dgvPedidos
             // 
             dgvPedidos.AllowUserToOrderColumns = true;
+            dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPedidos.BackgroundColor = Color.FromArgb(217, 217, 217);
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPedidos.Location = new Point(558, 161);

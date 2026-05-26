@@ -33,13 +33,19 @@
             txtContatos = new TextBox();
             btnCliente = new Button();
             btnVoltar = new Button();
+            label2 = new Label();
+            label3 = new Label();
+            panel1 = new Panel();
+            dataGridView1 = new DataGridView();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.BackColor = Color.White;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(833, 122);
+            label1.Location = new Point(546, 41);
             label1.Name = "label1";
             label1.Size = new Size(361, 50);
             label1.TabIndex = 0;
@@ -48,52 +54,97 @@
             // 
             // txtNomeCliente
             // 
-            txtNomeCliente.Location = new Point(793, 227);
+            txtNomeCliente.Location = new Point(76, 11);
             txtNomeCliente.Name = "txtNomeCliente";
-            txtNomeCliente.Size = new Size(435, 23);
+            txtNomeCliente.Size = new Size(661, 23);
             txtNomeCliente.TabIndex = 1;
             // 
             // txtContatos
             // 
-            txtContatos.Location = new Point(793, 278);
+            txtContatos.Location = new Point(76, 62);
             txtContatos.Name = "txtContatos";
-            txtContatos.Size = new Size(435, 23);
+            txtContatos.Size = new Size(535, 23);
             txtContatos.TabIndex = 1;
             // 
             // btnCliente
             // 
-            btnCliente.Location = new Point(782, 368);
+            btnCliente.Location = new Point(631, 69);
             btnCliente.Name = "btnCliente";
-            btnCliente.Size = new Size(198, 53);
+            btnCliente.Size = new Size(114, 23);
             btnCliente.TabIndex = 2;
             btnCliente.Text = "Cadastrar Cliente";
             btnCliente.UseVisualStyleBackColor = true;
             // 
             // btnVoltar
             // 
-            btnVoltar.Location = new Point(1321, 112);
+            btnVoltar.Location = new Point(33, 21);
             btnVoltar.Name = "btnVoltar";
             btnVoltar.Size = new Size(135, 70);
             btnVoltar.TabIndex = 3;
             btnVoltar.Text = "Voltar";
             btnVoltar.UseVisualStyleBackColor = true;
+            btnVoltar.Click += btnVoltar_Click;
             // 
-            // Clientes
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.White;
+            label2.Location = new Point(48, 536);
+            label2.Name = "label2";
+            label2.Size = new Size(43, 15);
+            label2.TabIndex = 4;
+            label2.Text = "Nome:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.White;
+            label3.Location = new Point(38, 591);
+            label3.Name = "label3";
+            label3.Size = new Size(53, 15);
+            label3.TabIndex = 5;
+            label3.Text = "Contato:";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnCliente);
+            panel1.Controls.Add(txtNomeCliente);
+            panel1.Controls.Add(txtContatos);
+            panel1.Location = new Point(21, 522);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(760, 110);
+            panel1.TabIndex = 6;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(97, 125);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(1237, 358);
+            dataGridView1.TabIndex = 7;
+            // 
+            // FrmClientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 226, 100);
             ClientSize = new Size(1505, 985);
+            Controls.Add(dataGridView1);
+            Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(btnVoltar);
-            Controls.Add(btnCliente);
-            Controls.Add(txtContatos);
-            Controls.Add(txtNomeCliente);
             Controls.Add(label1);
-            Name = "Clientes";
+            Controls.Add(panel1);
+            Name = "FrmClientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clientes";
             WindowState = FormWindowState.Maximized;
             Load += Clientes_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -105,5 +156,9 @@
         private TextBox txtContatos;
         private Button btnCliente;
         private Button btnVoltar;
+        private Label label2;
+        private Label label3;
+        private Panel panel1;
+        private DataGridView dataGridView1;
     }
 }

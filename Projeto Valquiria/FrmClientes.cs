@@ -26,5 +26,12 @@ namespace Projeto_Valquiria
         {
 
         }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            FrmPedidos tela = new FrmPedidos();
+            tela.ShowDialog();
+            this.Close();
+        }
     }
 }
