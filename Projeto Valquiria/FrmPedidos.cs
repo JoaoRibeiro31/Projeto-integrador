@@ -14,10 +14,10 @@ namespace Projeto_Valquiria
     {
 
         private panelConteudo home;
-        public FrmPedidos (panelConteudo telaHome)
+        public FrmPedidos(panelConteudo telaHome)
         {
-            InitializeComponent ();
-            home=telaHome;
+            InitializeComponent();
+            home = telaHome;
         }
         public FrmPedidos()
         {
@@ -63,8 +63,13 @@ namespace Projeto_Valquiria
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            
+
             this.Close();
+        }
+
+        private void cbxClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
