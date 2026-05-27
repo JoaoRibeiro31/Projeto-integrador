@@ -51,7 +51,6 @@
             cbxClientes.Name = "cbxClientes";
             cbxClientes.Size = new Size(479, 29);
             cbxClientes.TabIndex = 0;
-            cbxClientes.Text = "Clientes";
             cbxClientes.SelectedIndexChanged += cbxClientes_SelectedIndexChanged;
             // 
             // btnCadastroCliente
