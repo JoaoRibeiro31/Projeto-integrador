@@ -57,7 +57,7 @@
             // 
             label1.BackColor = Color.White;
             label1.Font = new Font("Segoe UI", 10F);
-            label1.Location = new Point(155, 848);
+            label1.Location = new Point(296, 832);
             label1.Name = "label1";
             label1.Size = new Size(124, 25);
             label1.TabIndex = 1;
@@ -68,7 +68,7 @@
             txtNome.BorderStyle = BorderStyle.FixedSingle;
             txtNome.Cursor = Cursors.IBeam;
             txtNome.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNome.Location = new Point(306, 848);
+            txtNome.Location = new Point(447, 832);
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(854, 25);
             txtNome.TabIndex = 2;
@@ -77,7 +77,7 @@
             // 
             label2.BackColor = Color.White;
             label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(168, 881);
+            label2.Location = new Point(309, 865);
             label2.Name = "label2";
             label2.Size = new Size(111, 22);
             label2.TabIndex = 1;
@@ -88,7 +88,7 @@
             txtValor.BorderStyle = BorderStyle.FixedSingle;
             txtValor.Cursor = Cursors.IBeam;
             txtValor.Font = new Font("Segoe UI", 10F);
-            txtValor.Location = new Point(306, 879);
+            txtValor.Location = new Point(447, 863);
             txtValor.Name = "txtValor";
             txtValor.Size = new Size(854, 25);
             txtValor.TabIndex = 2;
@@ -97,7 +97,7 @@
             // 
             label3.BackColor = Color.White;
             label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(138, 910);
+            label3.Location = new Point(279, 894);
             label3.Name = "label3";
             label3.Size = new Size(141, 23);
             label3.TabIndex = 1;
@@ -107,7 +107,7 @@
             // 
             txtQuantidade.BorderStyle = BorderStyle.FixedSingle;
             txtQuantidade.Cursor = Cursors.IBeam;
-            txtQuantidade.Location = new Point(306, 910);
+            txtQuantidade.Location = new Point(447, 894);
             txtQuantidade.Name = "txtQuantidade";
             txtQuantidade.Size = new Size(854, 23);
             txtQuantidade.TabIndex = 2;
@@ -125,7 +125,7 @@
             // 
             panel1.BackColor = Color.White;
             panel1.Controls.Add(btnCadastroProduto);
-            panel1.Location = new Point(123, 838);
+            panel1.Location = new Point(264, 822);
             panel1.Name = "panel1";
             panel1.Size = new Size(1179, 117);
             panel1.TabIndex = 4;
@@ -133,7 +133,7 @@
             // dgvDadosProdutos
             // 
             dgvDadosProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDadosProdutos.Location = new Point(138, 135);
+            dgvDadosProdutos.Location = new Point(276, 153);
             dgvDadosProdutos.Name = "dgvDadosProdutos";
             dgvDadosProdutos.Size = new Size(1159, 656);
             dgvDadosProdutos.TabIndex = 5;
@@ -143,7 +143,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(205, 226, 176);
-            ClientSize = new Size(1424, 985);
+            ClientSize = new Size(1474, 988);
             Controls.Add(dgvDadosProdutos);
             Controls.Add(txtQuantidade);
             Controls.Add(txtValor);
