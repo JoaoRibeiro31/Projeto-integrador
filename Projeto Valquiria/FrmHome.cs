@@ -38,11 +38,13 @@ namespace Projeto_Valquiria
             {
                 conn.Open();
 
-                string sql = @"SELECT
-                                nome          AS Clientes,
-                                saldo_devedor AS Pendencias,
-                                contato 
-                                FROM clientes";
+                string sql = @"select cl.nome               AS Nome,
+	                                  cl.contato            AS Contato,
+                                      SUM(p.valor_total)    AS Pendências
+                                      FROM pedidos p
+                                      INNER JOIN clientes cl ON p.cliente_id = cl.id
+                                      WHERE p.status_pagamento = 'Pendente'
+                                      group by cl.nome;";
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
 
@@ -73,6 +75,11 @@ namespace Projeto_Valquiria
             FrmProdutos tela = new FrmProdutos();
             tela.ShowDialog();
             this.Hide();
+        }
+
+        private void dgvPedidos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
