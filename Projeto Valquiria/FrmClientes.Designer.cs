@@ -29,122 +29,130 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            txtNomeCliente = new TextBox();
-            txtContatos = new TextBox();
+            txtNome = new TextBox();
+            txtContato = new TextBox();
             btnCliente = new Button();
             btnVoltar = new Button();
-            label2 = new Label();
-            label3 = new Label();
-            panel1 = new Panel();
-            dataGridView1 = new DataGridView();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            lblNome = new Label();
+            lblContato = new Label();
+            pnlCadastro = new Panel();
+            dvgTabela = new DataGridView();
+            pnlCadastro.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dvgTabela).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.BackColor = Color.White;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(546, 41);
+            label1.Location = new Point(624, 55);
             label1.Name = "label1";
-            label1.Size = new Size(361, 50);
+            label1.Size = new Size(413, 67);
             label1.TabIndex = 0;
             label1.Text = "Área de cadastro de pedidos";
-            label1.Click += label1_Click;
             // 
-            // txtNomeCliente
+            // txtNome
             // 
-            txtNomeCliente.Location = new Point(76, 11);
-            txtNomeCliente.Name = "txtNomeCliente";
-            txtNomeCliente.Size = new Size(661, 23);
-            txtNomeCliente.TabIndex = 1;
+            txtNome.Location = new Point(87, 15);
+            txtNome.Margin = new Padding(3, 4, 3, 4);
+            txtNome.Name = "txtNome";
+            txtNome.Size = new Size(755, 27);
+            txtNome.TabIndex = 1;
             // 
-            // txtContatos
+            // txtContato
             // 
-            txtContatos.Location = new Point(76, 62);
-            txtContatos.Name = "txtContatos";
-            txtContatos.Size = new Size(535, 23);
-            txtContatos.TabIndex = 1;
+            txtContato.Location = new Point(87, 83);
+            txtContato.Margin = new Padding(3, 4, 3, 4);
+            txtContato.Name = "txtContato";
+            txtContato.Size = new Size(611, 27);
+            txtContato.TabIndex = 1;
             // 
             // btnCliente
             // 
-            btnCliente.Location = new Point(631, 69);
+            btnCliente.Location = new Point(721, 92);
+            btnCliente.Margin = new Padding(3, 4, 3, 4);
             btnCliente.Name = "btnCliente";
-            btnCliente.Size = new Size(114, 23);
+            btnCliente.Size = new Size(130, 31);
             btnCliente.TabIndex = 2;
             btnCliente.Text = "Cadastrar Cliente";
             btnCliente.UseVisualStyleBackColor = true;
+            btnCliente.Click += btnCliente_Click;
             // 
             // btnVoltar
             // 
-            btnVoltar.Location = new Point(33, 21);
+            btnVoltar.Location = new Point(38, 28);
+            btnVoltar.Margin = new Padding(3, 4, 3, 4);
             btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(135, 70);
+            btnVoltar.Size = new Size(154, 93);
             btnVoltar.TabIndex = 3;
             btnVoltar.Text = "Voltar";
             btnVoltar.UseVisualStyleBackColor = true;
             btnVoltar.Click += btnVoltar_Click;
             // 
-            // label2
+            // lblNome
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.White;
-            label2.Location = new Point(48, 536);
-            label2.Name = "label2";
-            label2.Size = new Size(43, 15);
-            label2.TabIndex = 4;
-            label2.Text = "Nome:";
+            lblNome.AutoSize = true;
+            lblNome.BackColor = Color.White;
+            lblNome.Location = new Point(55, 715);
+            lblNome.Name = "lblNome";
+            lblNome.Size = new Size(53, 20);
+            lblNome.TabIndex = 4;
+            lblNome.Text = "Nome:";
             // 
-            // label3
+            // lblContato
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.White;
-            label3.Location = new Point(38, 591);
-            label3.Name = "label3";
-            label3.Size = new Size(53, 15);
-            label3.TabIndex = 5;
-            label3.Text = "Contato:";
+            lblContato.AutoSize = true;
+            lblContato.BackColor = Color.White;
+            lblContato.Location = new Point(43, 788);
+            lblContato.Name = "lblContato";
+            lblContato.Size = new Size(65, 20);
+            lblContato.TabIndex = 5;
+            lblContato.Text = "Contato:";
             // 
-            // panel1
+            // pnlCadastro
             // 
-            panel1.BackColor = Color.White;
-            panel1.Controls.Add(btnCliente);
-            panel1.Controls.Add(txtNomeCliente);
-            panel1.Controls.Add(txtContatos);
-            panel1.Location = new Point(21, 522);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(760, 110);
-            panel1.TabIndex = 6;
+            pnlCadastro.BackColor = Color.White;
+            pnlCadastro.Controls.Add(btnCliente);
+            pnlCadastro.Controls.Add(txtNome);
+            pnlCadastro.Controls.Add(txtContato);
+            pnlCadastro.Location = new Point(24, 696);
+            pnlCadastro.Margin = new Padding(3, 4, 3, 4);
+            pnlCadastro.Name = "pnlCadastro";
+            pnlCadastro.Size = new Size(869, 147);
+            pnlCadastro.TabIndex = 6;
             // 
-            // dataGridView1
+            // dvgTabela
             // 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(97, 125);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1237, 358);
-            dataGridView1.TabIndex = 7;
+            dvgTabela.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dvgTabela.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dvgTabela.Location = new Point(111, 169);
+            dvgTabela.Margin = new Padding(3, 4, 3, 4);
+            dvgTabela.Name = "dvgTabela";
+            dvgTabela.RowHeadersWidth = 51;
+            dvgTabela.Size = new Size(1414, 477);
+            dvgTabela.TabIndex = 7;
             // 
             // FrmClientes
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 226, 100);
-            ClientSize = new Size(1505, 985);
-            Controls.Add(dataGridView1);
-            Controls.Add(label3);
-            Controls.Add(label2);
+            ClientSize = new Size(1720, 1055);
+            Controls.Add(dvgTabela);
+            Controls.Add(lblContato);
+            Controls.Add(lblNome);
             Controls.Add(btnVoltar);
             Controls.Add(label1);
-            Controls.Add(panel1);
+            Controls.Add(pnlCadastro);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmClientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clientes";
             WindowState = FormWindowState.Maximized;
-            Load += Clientes_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += FrmClientes_Load;
+            pnlCadastro.ResumeLayout(false);
+            pnlCadastro.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dvgTabela).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -152,13 +160,13 @@
         #endregion
 
         private Label label1;
-        private TextBox txtNomeCliente;
-        private TextBox txtContatos;
+        private TextBox txtNome;
+        private TextBox txtContato;
         private Button btnCliente;
         private Button btnVoltar;
-        private Label label2;
-        private Label label3;
-        private Panel panel1;
-        private DataGridView dataGridView1;
+        private Label lblNome;
+        private Label lblContato;
+        private Panel pnlCadastro;
+        private DataGridView dvgTabela;
     }
 }

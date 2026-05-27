@@ -7,24 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Projeto_Valquiria
 {
     public partial class FrmClientes : Form
     {
+
+        MySqlConnection Conexao;
+        string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
+
         public FrmClientes()
         {
             InitializeComponent();
-        }
-
-        private void Clientes_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -32,6 +27,76 @@ namespace Projeto_Valquiria
             FrmPedidos tela = new FrmPedidos();
             tela.ShowDialog();
             this.Close();
+        }
+
+        public void CarregarDadosClientes()
+        {
+            MySqlConnection conn = new MySqlConnection(conexao);
+
+            try
+            {
+                conn.Open();
+
+                string sql = @"select nome               AS Nome,
+                                      contato            AS Contato,
+	                                  data_de_cadastro   AS Cadastro
+                                from clientes
+                                ORDER BY data_de_cadastro desc;";
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
+                DataTable tabela = new DataTable();
+
+                adapter.Fill(tabela);
+
+                dvgTabela.DataSource = tabela;
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro:" + erro.Message);
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void FrmClientes_Load(object sender, EventArgs e)
+        {
+            CarregarDadosClientes();
+        }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            MySqlConnection conn = new MySqlConnection(conexao);
+
+            try
+            {
+                conn.Open();
+
+                string sql = @"INSERT INTO clientes (nome, contato) 
+                                      VALUES  (@nome, @contato)";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@nome", txtNome.Text);
+                cmd.Parameters.AddWithValue("@contato", txtContato.Text);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro:" + erro.Message);
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+
+            CarregarDadosClientes();
+
         }
     }
 }

@@ -8,7 +8,10 @@ namespace Projeto_Valquiria
 {
     public partial class pnlConteudo : Form
     {
-        MySqlConnection Conexao; //Conexão (NÃO MEXA)
+        MySqlConnection Conexao;
+        string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
+
+        
 
         public pnlConteudo()
         {
@@ -16,33 +19,26 @@ namespace Projeto_Valquiria
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-            
-            
-            
+        { 
             
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-
-            string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";  //Conexão do Frm com o Banco local
-
             MySqlConnection conn = new MySqlConnection(conexao);
 
-            try //Thy catch para garantir que não vai dar merda
+            try 
             {
-                conn.Open(); //Abrindo o Banco
+                conn.Open();
 
-                string sql =
-                "SELECT COUNT(*) FROM login " +
-                "WHERE usuario=@usuario AND senha=@senha"; //Converdando com o Banco
+                string sql =@"SELECT COUNT(*) FROM login
+                              WHERE usuario=@usuario AND senha=@senha";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
                 cmd.Parameters.AddWithValue("@usuario", txtLogin.Text);
-                cmd.Parameters.AddWithValue("@senha", txtSenha.Text);    //Comparando as informações do banco com as do Fmd, se tiver certo, volta um valor >0
+                cmd.Parameters.AddWithValue("@senha", txtSenha.Text); 
 
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
 
@@ -59,7 +55,7 @@ namespace Projeto_Valquiria
                     MessageBox.Show("Usuário ou senha incorretos.");
                 }
 
-                conn.Close(); //Fechando o Banco
+                conn.Close();
             }
             catch (Exception erro)
             {

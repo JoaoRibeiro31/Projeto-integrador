@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using MySql.Data.MySqlClient;
 using System.Data;
 
@@ -18,17 +17,17 @@ namespace Projeto_Valquiria
 
         MySqlConnection Conexao;
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+            CarregarClientes();
+        }
+
         public panelConteudo()
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FrmPedidos tela = new FrmPedidos();
-            tela.ShowDialog();
-            this.Hide();
-        }
+      
 
         public void CarregarClientes()
         {
@@ -65,14 +64,18 @@ namespace Projeto_Valquiria
             }
         }
 
-        private void Home_Load(object sender, EventArgs e)
-        {
-            CarregarClientes();
-        }
+        
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             FrmProdutos tela = new FrmProdutos();
+            tela.ShowDialog();
+            this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrmPedidos tela = new FrmPedidos();
             tela.ShowDialog();
             this.Hide();
         }
