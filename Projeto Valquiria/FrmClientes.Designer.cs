@@ -44,43 +44,32 @@
             // label1
             // 
             label1.BackColor = Color.White;
-            label1.Font = new Font("Arial Narrow", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(546, 53);
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(624, 55);
+            label1.Location = new Point(546, 41);
             label1.Name = "label1";
-            label1.Size = new Size(361, 38);
-            label1.Size = new Size(413, 67);
+            label1.Size = new Size(361, 50);
             label1.TabIndex = 0;
-            label1.Text = "Área de cadastro de cliente";
-          
-            label1.Text = "Área de cadastro de pedidos";
+            label1.Text = "Área de cadastro de clientes";
             // 
             // txtNome
             // 
-    
-            txtNome.Location = new Point(87, 15);
-            txtNome.Margin = new Padding(3, 4, 3, 4);
+            txtNome.Location = new Point(76, 11);
             txtNome.Name = "txtNome";
-            txtNome.Size = new Size(755, 27);
+            txtNome.Size = new Size(661, 23);
             txtNome.TabIndex = 1;
             // 
             // txtContato
             // 
-
-            txtContato.Location = new Point(87, 83);
-            txtContato.Margin = new Padding(3, 4, 3, 4);
+            txtContato.Location = new Point(76, 62);
             txtContato.Name = "txtContato";
-            txtContato.Size = new Size(611, 27);
+            txtContato.Size = new Size(535, 23);
             txtContato.TabIndex = 1;
             // 
             // btnCliente
             // 
-            btnCliente.Location = new Point(925, 61);
-            btnCliente.Location = new Point(721, 92);
-            btnCliente.Margin = new Padding(3, 4, 3, 4);
+            btnCliente.Location = new Point(631, 69);
             btnCliente.Name = "btnCliente";
-            btnCliente.Size = new Size(130, 31);
+            btnCliente.Size = new Size(114, 23);
             btnCliente.TabIndex = 2;
             btnCliente.Text = "Cadastrar Cliente";
             btnCliente.UseVisualStyleBackColor = true;
@@ -88,10 +77,9 @@
             // 
             // btnVoltar
             // 
-            btnVoltar.Location = new Point(38, 28);
-            btnVoltar.Margin = new Padding(3, 4, 3, 4);
+            btnVoltar.Location = new Point(33, 21);
             btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(154, 93);
+            btnVoltar.Size = new Size(135, 70);
             btnVoltar.TabIndex = 3;
             btnVoltar.Text = "Voltar";
             btnVoltar.UseVisualStyleBackColor = true;
@@ -101,9 +89,9 @@
             // 
             lblNome.AutoSize = true;
             lblNome.BackColor = Color.White;
-            lblNome.Location = new Point(55, 715);
+            lblNome.Location = new Point(48, 536);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(53, 20);
+            lblNome.Size = new Size(43, 15);
             lblNome.TabIndex = 4;
             lblNome.Text = "Nome:";
             // 
@@ -111,49 +99,45 @@
             // 
             lblContato.AutoSize = true;
             lblContato.BackColor = Color.White;
-            lblContato.Location = new Point(43, 788);
+            lblContato.Location = new Point(38, 591);
             lblContato.Name = "lblContato";
-            lblContato.Size = new Size(65, 20);
+            lblContato.Size = new Size(53, 15);
             lblContato.TabIndex = 5;
             lblContato.Text = "Contato:";
             // 
             // pnlCadastro
             // 
-
             pnlCadastro.BackColor = Color.White;
             pnlCadastro.Controls.Add(btnCliente);
             pnlCadastro.Controls.Add(txtNome);
             pnlCadastro.Controls.Add(txtContato);
-            pnlCadastro.Location = new Point(24, 696);
-            pnlCadastro.Margin = new Padding(3, 4, 3, 4);
+            pnlCadastro.Location = new Point(21, 522);
             pnlCadastro.Name = "pnlCadastro";
-            pnlCadastro.Size = new Size(869, 147);
+            pnlCadastro.Size = new Size(760, 110);
             pnlCadastro.TabIndex = 6;
             // 
             // dvgTabela
             // 
             dvgTabela.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dvgTabela.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvgTabela.Location = new Point(111, 169);
-            dvgTabela.Margin = new Padding(3, 4, 3, 4);
+            dvgTabela.Location = new Point(97, 127);
             dvgTabela.Name = "dvgTabela";
             dvgTabela.RowHeadersWidth = 51;
-            dvgTabela.Size = new Size(1414, 477);
+            dvgTabela.Size = new Size(1237, 358);
             dvgTabela.TabIndex = 7;
             // 
             // FrmClientes
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 226, 100);
-            ClientSize = new Size(1720, 1055);
+            ClientSize = new Size(1505, 791);
             Controls.Add(dvgTabela);
             Controls.Add(lblContato);
             Controls.Add(lblNome);
             Controls.Add(btnVoltar);
             Controls.Add(label1);
             Controls.Add(pnlCadastro);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmClientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clientes";
