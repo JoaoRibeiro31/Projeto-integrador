@@ -44,23 +44,42 @@
             // label1
             // 
             label1.BackColor = Color.White;
+<<<<<<< HEAD
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.Location = new Point(624, 55);
             label1.Name = "label1";
             label1.Size = new Size(413, 67);
             label1.TabIndex = 0;
             label1.Text = "Área de cadastro de pedidos";
+=======
+            label1.Font = new Font("Arial Narrow", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(546, 53);
+            label1.Name = "label1";
+            label1.Size = new Size(361, 38);
+            label1.TabIndex = 0;
+            label1.Text = "Área de cadastro de cliente";
+            label1.Click += label1_Click;
+>>>>>>> 0d523edf703c869ea4cad117b07e93ed3d3ef108
             // 
             // txtNome
             // 
+<<<<<<< HEAD
             txtNome.Location = new Point(87, 15);
             txtNome.Margin = new Padding(3, 4, 3, 4);
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(755, 27);
             txtNome.TabIndex = 1;
+=======
+            txtNomeCliente.Location = new Point(76, 11);
+            txtNomeCliente.Name = "txtNomeCliente";
+            txtNomeCliente.PlaceholderText = "Digite o Nome do Cliente";
+            txtNomeCliente.Size = new Size(963, 23);
+            txtNomeCliente.TabIndex = 1;
+>>>>>>> 0d523edf703c869ea4cad117b07e93ed3d3ef108
             // 
             // txtContato
             // 
+<<<<<<< HEAD
             txtContato.Location = new Point(87, 83);
             txtContato.Margin = new Padding(3, 4, 3, 4);
             txtContato.Name = "txtContato";
@@ -71,6 +90,17 @@
             // 
             btnCliente.Location = new Point(721, 92);
             btnCliente.Margin = new Padding(3, 4, 3, 4);
+=======
+            txtContatos.Location = new Point(76, 62);
+            txtContatos.Name = "txtContatos";
+            txtContatos.PlaceholderText = "Digite o Contato do Cliente";
+            txtContatos.Size = new Size(843, 23);
+            txtContatos.TabIndex = 1;
+            // 
+            // btnCliente
+            // 
+            btnCliente.Location = new Point(925, 61);
+>>>>>>> 0d523edf703c869ea4cad117b07e93ed3d3ef108
             btnCliente.Name = "btnCliente";
             btnCliente.Size = new Size(130, 31);
             btnCliente.TabIndex = 2;
@@ -111,6 +141,7 @@
             // 
             // pnlCadastro
             // 
+<<<<<<< HEAD
             pnlCadastro.BackColor = Color.White;
             pnlCadastro.Controls.Add(btnCliente);
             pnlCadastro.Controls.Add(txtNome);
@@ -120,6 +151,16 @@
             pnlCadastro.Name = "pnlCadastro";
             pnlCadastro.Size = new Size(869, 147);
             pnlCadastro.TabIndex = 6;
+=======
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnCliente);
+            panel1.Controls.Add(txtNomeCliente);
+            panel1.Controls.Add(txtContatos);
+            panel1.Location = new Point(21, 522);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1068, 110);
+            panel1.TabIndex = 6;
+>>>>>>> 0d523edf703c869ea4cad117b07e93ed3d3ef108
             // 
             // dvgTabela
             // 
