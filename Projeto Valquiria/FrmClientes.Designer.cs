@@ -44,31 +44,33 @@
             // label1
             // 
             label1.BackColor = Color.White;
-            label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(546, 41);
+            label1.Font = new Font("Arial Narrow", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(546, 53);
             label1.Name = "label1";
-            label1.Size = new Size(361, 50);
+            label1.Size = new Size(361, 38);
             label1.TabIndex = 0;
-            label1.Text = "Área de cadastro de pedidos";
+            label1.Text = "Área de cadastro de cliente";
             label1.Click += label1_Click;
             // 
             // txtNomeCliente
             // 
             txtNomeCliente.Location = new Point(76, 11);
             txtNomeCliente.Name = "txtNomeCliente";
-            txtNomeCliente.Size = new Size(661, 23);
+            txtNomeCliente.PlaceholderText = "Digite o Nome do Cliente";
+            txtNomeCliente.Size = new Size(963, 23);
             txtNomeCliente.TabIndex = 1;
             // 
             // txtContatos
             // 
             txtContatos.Location = new Point(76, 62);
             txtContatos.Name = "txtContatos";
-            txtContatos.Size = new Size(535, 23);
+            txtContatos.PlaceholderText = "Digite o Contato do Cliente";
+            txtContatos.Size = new Size(843, 23);
             txtContatos.TabIndex = 1;
             // 
             // btnCliente
             // 
-            btnCliente.Location = new Point(631, 69);
+            btnCliente.Location = new Point(925, 61);
             btnCliente.Name = "btnCliente";
             btnCliente.Size = new Size(114, 23);
             btnCliente.TabIndex = 2;
@@ -113,7 +115,7 @@
             panel1.Controls.Add(txtContatos);
             panel1.Location = new Point(21, 522);
             panel1.Name = "panel1";
-            panel1.Size = new Size(760, 110);
+            panel1.Size = new Size(1068, 110);
             panel1.TabIndex = 6;
             // 
             // dataGridView1

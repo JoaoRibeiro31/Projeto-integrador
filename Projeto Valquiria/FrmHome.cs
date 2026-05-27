@@ -30,6 +30,7 @@ namespace Projeto_Valquiria
             this.Hide();
         }
 
+        DataTable tabela = new DataTable();
         public void CarregarClientes()
         {
             MySqlConnection conn = new MySqlConnection(conexao);
@@ -40,7 +41,7 @@ namespace Projeto_Valquiria
 
                 string sql = @"select cl.nome               AS Nome,
 	                                  cl.contato            AS Contato,
-                                      SUM(p.valor_total)    AS Pendências
+                                      SUM(p.valor_total)    AS Pendencias
                                       FROM pedidos p
                                       INNER JOIN clientes cl ON p.cliente_id = cl.id
                                       WHERE p.status_pagamento = 'Pendente'
@@ -48,7 +49,7 @@ namespace Projeto_Valquiria
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
 
-                DataTable tabela = new DataTable();
+                
 
                 adapter.Fill(tabela);
 
@@ -79,6 +80,17 @@ namespace Projeto_Valquiria
 
         private void dgvPedidos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+
+            string filtro = txtPesquisar.Text.Replace("'", "''");
+
+               tabela.DefaultView.RowFilter =
+                $"Nome LIKE '%{filtro}%' OR " +
+                $"Contato LIKE '%{filtro}%'";
 
         }
     }
