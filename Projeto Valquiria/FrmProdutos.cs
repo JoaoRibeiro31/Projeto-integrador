@@ -80,7 +80,7 @@ namespace Projeto_Valquiria
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
                 cmd.Parameters.AddWithValue("@nome", txtNome.Text);
-                cmd.Parameters.AddWithValue("@valor",decimal.Parse(txtValor.Text, new System.Globalization.CultureInfo("pt-BR")));
+                cmd.Parameters.AddWithValue("@valor", decimal.Parse(txtValor.Text, new System.Globalization.CultureInfo("pt-BR")));
 
 
                 cmd.ExecuteNonQuery();
@@ -97,6 +97,11 @@ namespace Projeto_Valquiria
             }
 
             CarregarDadosProdutos();
+
+        }
+
+        private void btnPedido_Click(object sender, EventArgs e)
+        {
 
         }
     }

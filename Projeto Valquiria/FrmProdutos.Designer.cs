@@ -145,10 +145,11 @@
             btnPedido.ForeColor = Color.White;
             btnPedido.Location = new Point(58, 223);
             btnPedido.Name = "btnPedido";
-            btnPedido.Size = new Size(135, 70);
+            btnPedido.Size = new Size(158, 47);
             btnPedido.TabIndex = 0;
             btnPedido.Text = "Pedidos";
             btnPedido.UseVisualStyleBackColor = false;
+            btnPedido.Click += btnPedido_Click;
             // 
             // btnProduto
             // 
@@ -157,7 +158,7 @@
             btnProduto.ForeColor = Color.White;
             btnProduto.Location = new Point(58, 299);
             btnProduto.Name = "btnProduto";
-            btnProduto.Size = new Size(135, 70);
+            btnProduto.Size = new Size(158, 47);
             btnProduto.TabIndex = 1;
             btnProduto.Text = "Produtos";
             btnProduto.UseVisualStyleBackColor = false;
@@ -168,7 +169,7 @@
             btnCadastroCliente.FlatStyle = FlatStyle.Flat;
             btnCadastroCliente.Location = new Point(58, 375);
             btnCadastroCliente.Name = "btnCadastroCliente";
-            btnCadastroCliente.Size = new Size(135, 70);
+            btnCadastroCliente.Size = new Size(158, 47);
             btnCadastroCliente.TabIndex = 2;
             btnCadastroCliente.Text = "Cliente";
             btnCadastroCliente.UseVisualStyleBackColor = false;
