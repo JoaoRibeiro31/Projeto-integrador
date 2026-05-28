@@ -37,10 +37,12 @@
             pnlCadastro = new Panel();
             dvgTabela = new DataGridView();
             panelMenu = new PictureBox();
-            btnVoltar = new Button();
+            btnHome = new Button();
             btnProduto = new Button();
-            btnDados = new Button();
+            btnClientes = new Button();
             btnPedido = new Button();
+            button1 = new Button();
+            button2 = new Button();
             pnlCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dvgTabela).BeginInit();
             ((System.ComponentModel.ISupportInitialize)panelMenu).BeginInit();
@@ -49,6 +51,8 @@
             // label1
             // 
             label1.BackColor = Color.White;
+            label1.BorderStyle = BorderStyle.FixedSingle;
+            label1.FlatStyle = FlatStyle.Flat;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.Location = new Point(642, 19);
             label1.Name = "label1";
@@ -84,7 +88,7 @@
             // 
             lblNome.AutoSize = true;
             lblNome.BackColor = Color.White;
-            lblNome.Location = new Point(419, 480);
+            lblNome.Location = new Point(433, 568);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(43, 15);
             lblNome.TabIndex = 4;
@@ -94,7 +98,7 @@
             // 
             lblContato.AutoSize = true;
             lblContato.BackColor = Color.White;
-            lblContato.Location = new Point(409, 535);
+            lblContato.Location = new Point(423, 623);
             lblContato.Name = "lblContato";
             lblContato.Size = new Size(53, 15);
             lblContato.TabIndex = 5;
@@ -106,7 +110,7 @@
             pnlCadastro.Controls.Add(btnCliente);
             pnlCadastro.Controls.Add(txtNome);
             pnlCadastro.Controls.Add(txtContato);
-            pnlCadastro.Location = new Point(392, 466);
+            pnlCadastro.Location = new Point(406, 554);
             pnlCadastro.Name = "pnlCadastro";
             pnlCadastro.Size = new Size(772, 110);
             pnlCadastro.TabIndex = 6;
@@ -118,7 +122,7 @@
             dvgTabela.Location = new Point(392, 87);
             dvgTabela.Name = "dvgTabela";
             dvgTabela.RowHeadersWidth = 51;
-            dvgTabela.Size = new Size(901, 358);
+            dvgTabela.Size = new Size(917, 460);
             dvgTabela.TabIndex = 7;
             // 
             // panelMenu
@@ -131,16 +135,17 @@
             panelMenu.TabIndex = 8;
             panelMenu.TabStop = false;
             // 
-            // btnVoltar
+            // btnHome
             // 
-            btnVoltar.FlatStyle = FlatStyle.Popup;
-            btnVoltar.Location = new Point(61, 409);
-            btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(158, 47);
-            btnVoltar.TabIndex = 3;
-            btnVoltar.Text = "Voltar";
-            btnVoltar.UseVisualStyleBackColor = true;
-            btnVoltar.Click += btnVoltar_Click;
+            btnHome.FlatStyle = FlatStyle.Popup;
+            btnHome.ForeColor = Color.White;
+            btnHome.Location = new Point(12, 25);
+            btnHome.Name = "btnHome";
+            btnHome.Size = new Size(53, 56);
+            btnHome.TabIndex = 3;
+            btnHome.Text = "Home";
+            btnHome.UseVisualStyleBackColor = true;
+            btnHome.Click += btnVoltar_Click;
             // 
             // btnProduto
             // 
@@ -154,17 +159,17 @@
             btnProduto.Text = "Produtos";
             btnProduto.UseVisualStyleBackColor = false;
             // 
-            // btnDados
+            // btnClientes
             // 
-            btnDados.BackColor = Color.FromArgb(253, 208, 23);
-            btnDados.FlatStyle = FlatStyle.Popup;
-            btnDados.ForeColor = Color.White;
-            btnDados.Location = new Point(61, 356);
-            btnDados.Name = "btnDados";
-            btnDados.Size = new Size(158, 47);
-            btnDados.TabIndex = 10;
-            btnDados.Text = "Dados";
-            btnDados.UseVisualStyleBackColor = false;
+            btnClientes.BackColor = Color.FromArgb(253, 208, 23);
+            btnClientes.Cursor = Cursors.No;
+            btnClientes.ForeColor = Color.White;
+            btnClientes.Location = new Point(61, 356);
+            btnClientes.Name = "btnClientes";
+            btnClientes.Size = new Size(158, 47);
+            btnClientes.TabIndex = 10;
+            btnClientes.Text = "Cliente";
+            btnClientes.UseVisualStyleBackColor = false;
             // 
             // btnPedido
             // 
@@ -178,16 +183,44 @@
             btnPedido.Text = "Pedidos";
             btnPedido.UseVisualStyleBackColor = false;
             // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(164, 92, 218);
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(61, 250);
+            button1.Name = "button1";
+            button1.Size = new Size(158, 47);
+            button1.TabIndex = 9;
+            button1.Text = "Pedidos";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click_1;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.FromArgb(56, 206, 22);
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(61, 303);
+            button2.Name = "button2";
+            button2.Size = new Size(158, 47);
+            button2.TabIndex = 11;
+            button2.Text = "Produtos";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
             // FrmClientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 226, 100);
             ClientSize = new Size(1345, 694);
+            Controls.Add(button2);
             Controls.Add(btnProduto);
-            Controls.Add(btnDados);
+            Controls.Add(btnClientes);
+            Controls.Add(button1);
             Controls.Add(btnPedido);
-            Controls.Add(btnVoltar);
+            Controls.Add(btnHome);
             Controls.Add(dvgTabela);
             Controls.Add(lblContato);
             Controls.Add(lblNome);
@@ -218,9 +251,11 @@
         private Panel pnlCadastro;
         private DataGridView dvgTabela;
         private PictureBox panelMenu;
-        private Button btnVoltar;
+        private Button btnHome;
         private Button btnProduto;
-        private Button btnDados;
+        private Button btnClientes;
         private Button btnPedido;
+        private Button button1;
+        private Button button2;
     }
 }

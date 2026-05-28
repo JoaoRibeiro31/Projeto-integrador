@@ -23,6 +23,8 @@ namespace Projeto_Valquiria
             InitializeComponent();
         }
 
+        DataTable tabela = new DataTable();
+
         public void CarregarDadosProdutos()
         {
             MySqlConnection conn = new MySqlConnection(conexao);
@@ -37,7 +39,7 @@ namespace Projeto_Valquiria
                                 ORDER BY nome asc";
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
-                DataTable tabela = new DataTable();
+
 
                 adapter.Fill(tabela);
 
@@ -102,7 +104,36 @@ namespace Projeto_Valquiria
 
         private void btnPedido_Click(object sender, EventArgs e)
         {
+            FrmPedidos tela = new FrmPedidos();
+            tela.ShowDialog();
+            this.Close();
+        }
 
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnProduto_Click(object sender, EventArgs e)
+        {
+            FrmProdutos tela = new FrmProdutos();
+            tela.ShowDialog();
+            this.Close();
+        }
+
+        private void btnCadastroCliente_Click(object sender, EventArgs e)
+        {
+            FrmClientes tela = new FrmClientes();
+            tela.ShowDialog();
+            this.Close();
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = txtPesquisar.Text.Replace("'", "''");
+
+            tabela.DefaultView.RowFilter =
+             $"Nome LIKE '%{filtro}%'";
         }
     }
 }

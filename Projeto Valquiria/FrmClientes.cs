@@ -24,7 +24,7 @@ namespace Projeto_Valquiria
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            FrmPedidos tela = new FrmPedidos();
+            panelConteudo tela = new panelConteudo();
             tela.ShowDialog();
             this.Close();
         }
@@ -102,6 +102,20 @@ namespace Projeto_Valquiria
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            FrmPedidos tela = new FrmPedidos();
+            tela.ShowDialog();
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FrmProdutos tela = new FrmProdutos();
+            tela.ShowDialog();
+            this.Close();
         }
     }
 }

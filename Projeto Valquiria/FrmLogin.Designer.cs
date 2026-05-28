@@ -36,6 +36,7 @@
             lbnSenha = new Label();
             panel1 = new Panel();
             picLogo = new PictureBox();
+            button1 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             SuspendLayout();
@@ -44,10 +45,9 @@
             // 
             btnEntrar.AutoSize = true;
             btnEntrar.Cursor = Cursors.Hand;
-            btnEntrar.Location = new Point(1302, 644);
-            btnEntrar.Margin = new Padding(3, 4, 3, 4);
+            btnEntrar.Location = new Point(1139, 483);
             btnEntrar.Name = "btnEntrar";
-            btnEntrar.Size = new Size(201, 47);
+            btnEntrar.Size = new Size(176, 35);
             btnEntrar.TabIndex = 2;
             btnEntrar.Text = "Entrar";
             btnEntrar.UseVisualStyleBackColor = true;
@@ -57,19 +57,17 @@
             // 
             txtLogin.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtLogin.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtLogin.Location = new Point(802, 440);
-            txtLogin.Margin = new Padding(3, 4, 3, 4);
+            txtLogin.Location = new Point(702, 330);
             txtLogin.Name = "txtLogin";
-            txtLogin.Size = new Size(684, 29);
+            txtLogin.Size = new Size(599, 25);
             txtLogin.TabIndex = 0;
             // 
             // txtSenha
             // 
             txtSenha.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txtSenha.Location = new Point(802, 529);
-            txtSenha.Margin = new Padding(3, 4, 3, 4);
+            txtSenha.Location = new Point(702, 397);
             txtSenha.Name = "txtSenha";
-            txtSenha.Size = new Size(684, 27);
+            txtSenha.Size = new Size(599, 23);
             txtSenha.TabIndex = 1;
             txtSenha.UseSystemPasswordChar = true;
             // 
@@ -77,9 +75,9 @@
             // 
             lbnLogin.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lbnLogin.AutoSize = true;
-            lbnLogin.Location = new Point(737, 440);
+            lbnLogin.Location = new Point(645, 330);
             lbnLogin.Name = "lbnLogin";
-            lbnLogin.Size = new Size(49, 20);
+            lbnLogin.Size = new Size(40, 15);
             lbnLogin.TabIndex = 2;
             lbnLogin.Text = "Login:";
             // 
@@ -87,9 +85,9 @@
             // 
             lbnSenha.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lbnSenha.AutoSize = true;
-            lbnSenha.Location = new Point(737, 533);
+            lbnSenha.Location = new Point(645, 400);
             lbnSenha.Name = "lbnSenha";
-            lbnSenha.Size = new Size(52, 20);
+            lbnSenha.Size = new Size(42, 15);
             lbnSenha.TabIndex = 2;
             lbnSenha.Text = "Senha:";
             // 
@@ -99,10 +97,9 @@
             panel1.AutoSize = true;
             panel1.BackColor = Color.FromArgb(52, 174, 250);
             panel1.Controls.Add(picLogo);
-            panel1.Location = new Point(-6, -4);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(-5, -3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(648, 1329);
+            panel1.Size = new Size(567, 997);
             panel1.TabIndex = 3;
             // 
             // picLogo
@@ -110,26 +107,37 @@
             picLogo.Dock = DockStyle.Top;
             picLogo.Image = (Image)resources.GetObject("picLogo.Image");
             picLogo.Location = new Point(0, 0);
-            picLogo.Margin = new Padding(3, 4, 3, 4);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(648, 1325);
+            picLogo.Size = new Size(567, 994);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 0;
             picLogo.TabStop = false;
             // 
+            // button1
+            // 
+            button1.Cursor = Cursors.Hand;
+            button1.Location = new Point(702, 483);
+            button1.Name = "button1";
+            button1.Size = new Size(176, 35);
+            button1.TabIndex = 4;
+            button1.Text = "Esqueci a Senha";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // pnlConteudo
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AcceptButton = btnEntrar;
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(239, 209, 209);
-            ClientSize = new Size(1627, 1055);
+            ClientSize = new Size(1424, 791);
+            Controls.Add(button1);
             Controls.Add(panel1);
             Controls.Add(lbnSenha);
             Controls.Add(lbnLogin);
             Controls.Add(txtSenha);
             Controls.Add(txtLogin);
             Controls.Add(btnEntrar);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "pnlConteudo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
@@ -149,5 +157,6 @@
         private Label lbnSenha;
         private Panel panel1;
         private PictureBox picLogo;
+        private Button button1;
     }
 }

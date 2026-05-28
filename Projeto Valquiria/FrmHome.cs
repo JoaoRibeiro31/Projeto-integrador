@@ -27,7 +27,7 @@ namespace Projeto_Valquiria
         {
             InitializeComponent();
         }
-      
+
 
         DataTable tabela = new DataTable();
         public void CarregarClientes()
@@ -48,7 +48,7 @@ namespace Projeto_Valquiria
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
 
-                
+
 
                 adapter.Fill(tabela);
 
@@ -65,7 +65,7 @@ namespace Projeto_Valquiria
             }
         }
 
-        
+
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -91,10 +91,22 @@ namespace Projeto_Valquiria
 
             string filtro = txtPesquisar.Text.Replace("'", "''");
 
-               tabela.DefaultView.RowFilter =
-                $"Nome LIKE '%{filtro}%' OR " +
-                $"Contato LIKE '%{filtro}%'";
+            tabela.DefaultView.RowFilter =
+             $"Nome LIKE '%{filtro}%' OR " +
+             $"Contato LIKE '%{filtro}%'";
 
+        }
+
+        private void btnFecharApp_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            FrmClientes tela = new FrmClientes();
+            tela.ShowDialog();
+            this.Close();
         }
     }
 }

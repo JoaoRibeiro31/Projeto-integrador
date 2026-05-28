@@ -11,7 +11,7 @@ namespace Projeto_Valquiria
         MySqlConnection Conexao;
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
 
-        
+
 
         public pnlConteudo()
         {
@@ -19,8 +19,8 @@ namespace Projeto_Valquiria
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        { 
-            
+        {
+
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -28,17 +28,17 @@ namespace Projeto_Valquiria
         {
             MySqlConnection conn = new MySqlConnection(conexao);
 
-            try 
+            try
             {
                 conn.Open();
 
-                string sql =@"SELECT COUNT(*) FROM login
+                string sql = @"SELECT COUNT(*) FROM login
                               WHERE usuario=@usuario AND senha=@senha";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
                 cmd.Parameters.AddWithValue("@usuario", txtLogin.Text);
-                cmd.Parameters.AddWithValue("@senha", txtSenha.Text); 
+                cmd.Parameters.AddWithValue("@senha", txtSenha.Text);
 
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
 
@@ -63,5 +63,10 @@ namespace Projeto_Valquiria
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrmEsqueciSenha tela = new FrmEsqueciSenha();
+            tela.ShowDialog();
+        }
     }
 }
