@@ -45,7 +45,7 @@
             // 
             label1.BackColor = Color.White;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(546, 41);
+            label1.Location = new Point(801, 9);
             label1.Name = "label1";
             label1.Size = new Size(361, 50);
             label1.TabIndex = 0;
@@ -77,7 +77,7 @@
             // 
             // btnVoltar
             // 
-            btnVoltar.Location = new Point(33, 21);
+            btnVoltar.Location = new Point(1325, 15);
             btnVoltar.Name = "btnVoltar";
             btnVoltar.Size = new Size(135, 70);
             btnVoltar.TabIndex = 3;
@@ -89,7 +89,7 @@
             // 
             lblNome.AutoSize = true;
             lblNome.BackColor = Color.White;
-            lblNome.Location = new Point(48, 536);
+            lblNome.Location = new Point(619, 486);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(43, 15);
             lblNome.TabIndex = 4;
@@ -99,7 +99,7 @@
             // 
             lblContato.AutoSize = true;
             lblContato.BackColor = Color.White;
-            lblContato.Location = new Point(38, 591);
+            lblContato.Location = new Point(609, 541);
             lblContato.Name = "lblContato";
             lblContato.Size = new Size(53, 15);
             lblContato.TabIndex = 5;
@@ -111,19 +111,19 @@
             pnlCadastro.Controls.Add(btnCliente);
             pnlCadastro.Controls.Add(txtNome);
             pnlCadastro.Controls.Add(txtContato);
-            pnlCadastro.Location = new Point(21, 522);
+            pnlCadastro.Location = new Point(592, 472);
             pnlCadastro.Name = "pnlCadastro";
-            pnlCadastro.Size = new Size(760, 110);
+            pnlCadastro.Size = new Size(772, 110);
             pnlCadastro.TabIndex = 6;
             // 
             // dvgTabela
             // 
             dvgTabela.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dvgTabela.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvgTabela.Location = new Point(97, 127);
+            dvgTabela.Location = new Point(592, 91);
             dvgTabela.Name = "dvgTabela";
             dvgTabela.RowHeadersWidth = 51;
-            dvgTabela.Size = new Size(1237, 358);
+            dvgTabela.Size = new Size(901, 358);
             dvgTabela.TabIndex = 7;
             // 
             // FrmClientes
