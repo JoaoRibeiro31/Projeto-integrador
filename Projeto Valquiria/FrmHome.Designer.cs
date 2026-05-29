@@ -104,9 +104,9 @@
             btnFecharApp.BackColor = Color.FromArgb(159, 214, 242);
             btnFecharApp.BackgroundImage = (Image)resources.GetObject("btnFecharApp.BackgroundImage");
             btnFecharApp.FlatStyle = FlatStyle.Popup;
-            btnFecharApp.Location = new Point(76, 510);
+            btnFecharApp.Location = new Point(30, 585);
             btnFecharApp.Name = "btnFecharApp";
-            btnFecharApp.Size = new Size(94, 96);
+            btnFecharApp.Size = new Size(61, 61);
             btnFecharApp.TabIndex = 3;
             btnFecharApp.UseVisualStyleBackColor = false;
             btnFecharApp.Click += btnFecharApp_Click;
@@ -127,12 +127,14 @@
             // label1
             // 
             label1.BackColor = Color.WhiteSmoke;
+            label1.BorderStyle = BorderStyle.FixedSingle;
             label1.Enabled = false;
-            label1.Location = new Point(96, 622);
+            label1.Location = new Point(30, 649);
             label1.Name = "label1";
-            label1.Size = new Size(74, 19);
+            label1.Size = new Size(61, 19);
             label1.TabIndex = 7;
-            label1.Text = "Desligar App";
+            label1.Text = "Desligar";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panelConteudo
             // 

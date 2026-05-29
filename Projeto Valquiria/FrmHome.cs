@@ -99,7 +99,22 @@ namespace Projeto_Valquiria
 
         private void btnFecharApp_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+
+            if (ConfirmarSaida())
+            {
+                Application.Exit();
+            }
+        }
+
+        private bool ConfirmarSaida()
+        {
+            return MessageBox.Show(
+                "Deseja desligar o sistema?",
+                "Confirmação",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            ) == DialogResult.Yes;
+
         }
 
         private void btnCliente_Click(object sender, EventArgs e)

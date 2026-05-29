@@ -39,6 +39,7 @@
             // 
             // btnEntrar
             // 
+            btnEntrar.Anchor = AnchorStyles.None;
             btnEntrar.AutoSize = true;
             btnEntrar.Cursor = Cursors.Hand;
             btnEntrar.Location = new Point(789, 452);
@@ -51,6 +52,7 @@
             // 
             // txtLogin
             // 
+            txtLogin.Anchor = AnchorStyles.None;
             txtLogin.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtLogin.Location = new Point(789, 355);
             txtLogin.Name = "txtLogin";
@@ -61,7 +63,7 @@
             // 
             // txtSenha
             // 
-            txtSenha.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txtSenha.Anchor = AnchorStyles.None;
             txtSenha.Location = new Point(789, 407);
             txtSenha.Name = "txtSenha";
             txtSenha.PlaceholderText = "Senha";
@@ -71,6 +73,7 @@
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.None;
             button1.Cursor = Cursors.Hand;
             button1.Location = new Point(869, 520);
             button1.Name = "button1";
@@ -82,13 +85,13 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.None;
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.BackgroundImageLayout = ImageLayout.Center;
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
             panel1.Controls.Add(button1);
             panel1.Controls.Add(txtSenha);
             panel1.Controls.Add(btnEntrar);
             panel1.Controls.Add(txtLogin);
-            panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1171, 782);
@@ -97,14 +100,14 @@
             // pnlConteudo
             // 
             AcceptButton = btnEntrar;
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(239, 209, 209);
             ClientSize = new Size(1171, 782);
             Controls.Add(panel1);
             Name = "pnlConteudo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
+            WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
