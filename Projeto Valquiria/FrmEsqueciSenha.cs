@@ -85,6 +85,11 @@ namespace Projeto_Valquiria
                 {
                     MessageBox.Show("Erro: " + erro.Message);
                 }
+                finally
+                {
+                    conn.Close();
+                }
+                this.Close(); //Fecha a tela após a atualização
             }
         }
 
