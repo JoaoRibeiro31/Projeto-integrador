@@ -57,10 +57,9 @@
             btnHome.BackColor = Color.FromArgb(255, 226, 100);
             btnHome.FlatStyle = FlatStyle.Popup;
             btnHome.ForeColor = Color.White;
-            btnHome.Location = new Point(14, 33);
-            btnHome.Margin = new Padding(3, 4, 3, 4);
+            btnHome.Location = new Point(12, 25);
             btnHome.Name = "btnHome";
-            btnHome.Size = new Size(61, 75);
+            btnHome.Size = new Size(53, 56);
             btnHome.TabIndex = 3;
             btnHome.Text = "Home";
             btnHome.UseVisualStyleBackColor = false;
@@ -70,20 +69,19 @@
             // 
             dgvDadosProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDadosProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDadosProdutos.Location = new Point(402, 229);
-            dgvDadosProdutos.Margin = new Padding(3, 4, 3, 4);
+            dgvDadosProdutos.Location = new Point(352, 172);
             dgvDadosProdutos.Name = "dgvDadosProdutos";
             dgvDadosProdutos.RowHeadersWidth = 51;
-            dgvDadosProdutos.Size = new Size(1048, 541);
+            dgvDadosProdutos.Size = new Size(917, 406);
             dgvDadosProdutos.TabIndex = 5;
             // 
             // label1
             // 
             label1.BackColor = Color.White;
             label1.Font = new Font("Segoe UI", 10F);
-            label1.Location = new Point(17, 13);
+            label1.Location = new Point(15, 10);
             label1.Name = "label1";
-            label1.Size = new Size(142, 33);
+            label1.Size = new Size(124, 25);
             label1.TabIndex = 1;
             label1.Text = "Nome do produto";
             // 
@@ -91,9 +89,9 @@
             // 
             label2.BackColor = Color.White;
             label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(32, 59);
+            label2.Location = new Point(28, 44);
             label2.Name = "label2";
-            label2.Size = new Size(127, 29);
+            label2.Size = new Size(111, 22);
             label2.TabIndex = 1;
             label2.Text = "Valor do Produto";
             // 
@@ -102,11 +100,10 @@
             txtNome.BorderStyle = BorderStyle.FixedSingle;
             txtNome.Cursor = Cursors.IBeam;
             txtNome.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNome.Location = new Point(190, 13);
-            txtNome.Margin = new Padding(3, 4, 3, 4);
+            txtNome.Location = new Point(166, 10);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "Ex: Bolo";
-            txtNome.Size = new Size(383, 29);
+            txtNome.Size = new Size(335, 25);
             txtNome.TabIndex = 1;
             // 
             // txtValor
@@ -114,19 +111,17 @@
             txtValor.BorderStyle = BorderStyle.FixedSingle;
             txtValor.Cursor = Cursors.IBeam;
             txtValor.Font = new Font("Segoe UI", 10F);
-            txtValor.Location = new Point(190, 55);
-            txtValor.Margin = new Padding(3, 4, 3, 4);
+            txtValor.Location = new Point(166, 41);
             txtValor.Name = "txtValor";
             txtValor.PlaceholderText = "Ex: 9,99";
-            txtValor.Size = new Size(383, 30);
+            txtValor.Size = new Size(335, 25);
             txtValor.TabIndex = 2;
             // 
             // btnCadastroProduto
             // 
-            btnCadastroProduto.Location = new Point(611, 13);
-            btnCadastroProduto.Margin = new Padding(3, 4, 3, 4);
+            btnCadastroProduto.Location = new Point(535, 10);
             btnCadastroProduto.Name = "btnCadastroProduto";
-            btnCadastroProduto.Size = new Size(150, 56);
+            btnCadastroProduto.Size = new Size(131, 42);
             btnCadastroProduto.TabIndex = 3;
             btnCadastroProduto.Text = "Cadastrar Produto";
             btnCadastroProduto.UseVisualStyleBackColor = true;
@@ -140,10 +135,9 @@
             panel1.Controls.Add(txtValor);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(txtNome);
-            panel1.Location = new Point(402, 805);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(352, 604);
             panel1.Name = "panel1";
-            panel1.Size = new Size(795, 104);
+            panel1.Size = new Size(696, 78);
             panel1.TabIndex = 4;
             // 
             // panel2
@@ -155,9 +149,8 @@
             panel2.Controls.Add(btnPedido);
             panel2.Controls.Add(btnHome);
             panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(312, 925);
+            panel2.Size = new Size(273, 694);
             panel2.TabIndex = 6;
             // 
             // btnCadastroCliente
@@ -165,10 +158,9 @@
             btnCadastroCliente.BackColor = Color.FromArgb(253, 208, 23);
             btnCadastroCliente.FlatStyle = FlatStyle.Popup;
             btnCadastroCliente.ForeColor = Color.White;
-            btnCadastroCliente.Location = new Point(70, 475);
-            btnCadastroCliente.Margin = new Padding(3, 4, 3, 4);
+            btnCadastroCliente.Location = new Point(61, 356);
             btnCadastroCliente.Name = "btnCadastroCliente";
-            btnCadastroCliente.Size = new Size(181, 63);
+            btnCadastroCliente.Size = new Size(158, 47);
             btnCadastroCliente.TabIndex = 6;
             btnCadastroCliente.Text = "Cliente";
             btnCadastroCliente.UseVisualStyleBackColor = false;
@@ -180,10 +172,9 @@
             btnProduto.Cursor = Cursors.No;
             btnProduto.Enabled = false;
             btnProduto.ForeColor = Color.White;
-            btnProduto.Location = new Point(70, 404);
-            btnProduto.Margin = new Padding(3, 4, 3, 4);
+            btnProduto.Location = new Point(61, 303);
             btnProduto.Name = "btnProduto";
-            btnProduto.Size = new Size(181, 63);
+            btnProduto.Size = new Size(158, 47);
             btnProduto.TabIndex = 5;
             btnProduto.Text = "Produtos";
             btnProduto.UseVisualStyleBackColor = false;
@@ -193,10 +184,9 @@
             btnPedido.BackColor = Color.FromArgb(164, 92, 218);
             btnPedido.FlatStyle = FlatStyle.Popup;
             btnPedido.ForeColor = Color.White;
-            btnPedido.Location = new Point(70, 333);
-            btnPedido.Margin = new Padding(3, 4, 3, 4);
+            btnPedido.Location = new Point(61, 250);
             btnPedido.Name = "btnPedido";
-            btnPedido.Size = new Size(181, 63);
+            btnPedido.Size = new Size(158, 47);
             btnPedido.TabIndex = 4;
             btnPedido.Text = "Pedidos";
             btnPedido.UseVisualStyleBackColor = false;
@@ -207,19 +197,18 @@
             label3.BackColor = Color.White;
             label3.FlatStyle = FlatStyle.Flat;
             label3.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(754, 33);
+            label3.Location = new Point(660, 25);
             label3.Name = "label3";
-            label3.Size = new Size(425, 59);
+            label3.Size = new Size(372, 44);
             label3.TabIndex = 7;
             label3.Text = "Área de Cadastro de Produtos";
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Location = new Point(505, 153);
-            txtPesquisar.Margin = new Padding(3, 4, 3, 4);
+            txtPesquisar.Location = new Point(442, 115);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar:";
-            txtPesquisar.Size = new Size(829, 27);
+            txtPesquisar.Size = new Size(726, 23);
             txtPesquisar.TabIndex = 0;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
@@ -227,19 +216,19 @@
             // 
             btnEdicao.BackgroundImage = (Image)resources.GetObject("btnEdicao.BackgroundImage");
             btnEdicao.FlatStyle = FlatStyle.Flat;
-            btnEdicao.Location = new Point(1480, 229);
-            btnEdicao.Margin = new Padding(3, 4, 3, 4);
+            btnEdicao.Location = new Point(1295, 172);
             btnEdicao.Name = "btnEdicao";
-            btnEdicao.Size = new Size(65, 81);
+            btnEdicao.Size = new Size(57, 61);
             btnEdicao.TabIndex = 8;
             btnEdicao.UseVisualStyleBackColor = true;
             btnEdicao.Click += btnEdicao_Click_1;
             // 
             // btnAtualizar
             // 
-            btnAtualizar.Location = new Point(1494, 354);
+            btnAtualizar.Location = new Point(1295, 275);
+            btnAtualizar.Margin = new Padding(3, 2, 3, 2);
             btnAtualizar.Name = "btnAtualizar";
-            btnAtualizar.Size = new Size(94, 29);
+            btnAtualizar.Size = new Size(82, 22);
             btnAtualizar.TabIndex = 9;
             btnAtualizar.Text = "Atualizar";
             btnAtualizar.UseVisualStyleBackColor = true;
@@ -247,9 +236,10 @@
             // 
             // btnDeletar
             // 
-            btnDeletar.Location = new Point(1502, 406);
+            btnDeletar.Location = new Point(1295, 303);
+            btnDeletar.Margin = new Padding(3, 2, 3, 2);
             btnDeletar.Name = "btnDeletar";
-            btnDeletar.Size = new Size(94, 29);
+            btnDeletar.Size = new Size(82, 22);
             btnDeletar.TabIndex = 10;
             btnDeletar.Text = "Deletar";
             btnDeletar.UseVisualStyleBackColor = true;
@@ -257,10 +247,10 @@
             // 
             // FrmProdutos
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(205, 226, 176);
-            ClientSize = new Size(1637, 925);
+            ClientSize = new Size(1432, 694);
             Controls.Add(btnDeletar);
             Controls.Add(btnAtualizar);
             Controls.Add(btnEdicao);
@@ -269,7 +259,6 @@
             Controls.Add(dgvDadosProdutos);
             Controls.Add(panel1);
             Controls.Add(panel2);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmProdutos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Produtos";

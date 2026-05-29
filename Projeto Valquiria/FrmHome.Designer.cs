@@ -104,9 +104,9 @@
             btnFecharApp.BackColor = Color.FromArgb(159, 214, 242);
             btnFecharApp.BackgroundImage = (Image)resources.GetObject("btnFecharApp.BackgroundImage");
             btnFecharApp.FlatStyle = FlatStyle.Popup;
-            btnFecharApp.Location = new Point(30, 585);
+            btnFecharApp.Location = new Point(30, 588);
             btnFecharApp.Name = "btnFecharApp";
-            btnFecharApp.Size = new Size(61, 61);
+            btnFecharApp.Size = new Size(62, 58);
             btnFecharApp.TabIndex = 3;
             btnFecharApp.UseVisualStyleBackColor = false;
             btnFecharApp.Click += btnFecharApp_Click;
