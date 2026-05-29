@@ -6,7 +6,8 @@ USE bd_pjval;
 CREATE TABLE login (
  id INT AUTO_INCREMENT PRIMARY KEY,
  usuario varchar(20) NOT NULL UNIQUE,
- senha varchar(10) NOT NULL
+ senha varchar(10) NOT NULL,
+ cpf varchar(11) NOT NULL UNIQUE
  );
 
 
@@ -18,9 +19,9 @@ CREATE TABLE produtos (
 
 CREATE TABLE clientes (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  nome VARCHAR(80) NOT NULL,
-  contato VARCHAR(80) UNIQUE,
-  data_de_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
+  nome VARCHAR(120) NOT NULL UNIQUE,
+  contato VARCHAR(80) NOT NULL UNIQUE,
+  data_de_cadastro DATE DEFAULT (CURRENT_DATE)
 );
 
 CREATE TABLE pedidos (
@@ -45,8 +46,8 @@ CREATE TABLE pedidos (
     ON UPDATE CASCADE
 );
 
-INSERT INTO login (usuario, senha) VALUES
-   ('adm',1234);
+INSERT INTO login (usuario, senha,cpf) VALUES
+   ('adm',1234,12345678900);
 
 INSERT INTO clientes (nome, contato) VALUES
 
