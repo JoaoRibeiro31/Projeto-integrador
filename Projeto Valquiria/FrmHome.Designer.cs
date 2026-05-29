@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(panelConteudo));
             panelMenu = new PictureBox();
             txtPesquisar = new TextBox();
             dgvPedidos = new DataGridView();
@@ -35,6 +36,7 @@
             btnProduto = new Button();
             btnFecharApp = new Button();
             btnCliente = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)panelMenu).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
             SuspendLayout();
@@ -44,19 +46,17 @@
             panelMenu.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panelMenu.BackColor = Color.FromArgb(159, 214, 242);
             panelMenu.Location = new Point(0, 0);
-            panelMenu.Margin = new Padding(3, 4, 3, 4);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(312, 925);
+            panelMenu.Size = new Size(273, 694);
             panelMenu.TabIndex = 0;
             panelMenu.TabStop = false;
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Location = new Point(651, 131);
-            txtPesquisar.Margin = new Padding(3, 4, 3, 4);
+            txtPesquisar.Location = new Point(570, 98);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar:";
-            txtPesquisar.Size = new Size(829, 27);
+            txtPesquisar.Size = new Size(726, 23);
             txtPesquisar.TabIndex = 4;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
@@ -66,12 +66,11 @@
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPedidos.BackgroundColor = Color.FromArgb(217, 217, 217);
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPedidos.Location = new Point(616, 185);
-            dgvPedidos.Margin = new Padding(3, 4, 3, 4);
+            dgvPedidos.Location = new Point(539, 139);
             dgvPedidos.Name = "dgvPedidos";
             dgvPedidos.ReadOnly = true;
             dgvPedidos.RowHeadersWidth = 51;
-            dgvPedidos.Size = new Size(890, 696);
+            dgvPedidos.Size = new Size(779, 522);
             dgvPedidos.TabIndex = 5;
             // 
             // btnPedido
@@ -79,10 +78,9 @@
             btnPedido.BackColor = Color.FromArgb(164, 92, 218);
             btnPedido.FlatStyle = FlatStyle.Popup;
             btnPedido.ForeColor = Color.White;
-            btnPedido.Location = new Point(70, 333);
-            btnPedido.Margin = new Padding(3, 4, 3, 4);
+            btnPedido.Location = new Point(61, 250);
             btnPedido.Name = "btnPedido";
-            btnPedido.Size = new Size(181, 63);
+            btnPedido.Size = new Size(158, 47);
             btnPedido.TabIndex = 0;
             btnPedido.Text = "Pedidos";
             btnPedido.UseVisualStyleBackColor = false;
@@ -93,10 +91,9 @@
             btnProduto.BackColor = Color.FromArgb(56, 206, 22);
             btnProduto.FlatStyle = FlatStyle.Popup;
             btnProduto.ForeColor = Color.White;
-            btnProduto.Location = new Point(70, 404);
-            btnProduto.Margin = new Padding(3, 4, 3, 4);
+            btnProduto.Location = new Point(61, 303);
             btnProduto.Name = "btnProduto";
-            btnProduto.Size = new Size(181, 63);
+            btnProduto.Size = new Size(158, 47);
             btnProduto.TabIndex = 1;
             btnProduto.Text = "Produtos";
             btnProduto.UseVisualStyleBackColor = false;
@@ -104,14 +101,13 @@
             // 
             // btnFecharApp
             // 
-            btnFecharApp.BackColor = Color.FromArgb(128, 255, 255);
+            btnFecharApp.BackColor = Color.FromArgb(159, 214, 242);
+            btnFecharApp.BackgroundImage = (Image)resources.GetObject("btnFecharApp.BackgroundImage");
             btnFecharApp.FlatStyle = FlatStyle.Popup;
-            btnFecharApp.Location = new Point(70, 819);
-            btnFecharApp.Margin = new Padding(3, 4, 3, 4);
+            btnFecharApp.Location = new Point(87, 514);
             btnFecharApp.Name = "btnFecharApp";
-            btnFecharApp.Size = new Size(181, 63);
+            btnFecharApp.Size = new Size(94, 96);
             btnFecharApp.TabIndex = 3;
-            btnFecharApp.Text = "Fechar Aplicativo";
             btnFecharApp.UseVisualStyleBackColor = false;
             btnFecharApp.Click += btnFecharApp_Click;
             // 
@@ -120,29 +116,38 @@
             btnCliente.BackColor = Color.FromArgb(253, 208, 23);
             btnCliente.FlatStyle = FlatStyle.Popup;
             btnCliente.ForeColor = Color.White;
-            btnCliente.Location = new Point(70, 475);
-            btnCliente.Margin = new Padding(3, 4, 3, 4);
+            btnCliente.Location = new Point(61, 356);
             btnCliente.Name = "btnCliente";
-            btnCliente.Size = new Size(181, 63);
+            btnCliente.Size = new Size(158, 47);
             btnCliente.TabIndex = 6;
             btnCliente.Text = "Cliente";
             btnCliente.UseVisualStyleBackColor = false;
             btnCliente.Click += btnCliente_Click;
             // 
+            // label1
+            // 
+            label1.BackColor = Color.WhiteSmoke;
+            label1.Enabled = false;
+            label1.Location = new Point(96, 622);
+            label1.Name = "label1";
+            label1.Size = new Size(74, 19);
+            label1.TabIndex = 7;
+            label1.Text = "Desligar App";
+            // 
             // panelConteudo
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(249, 235, 190);
-            ClientSize = new Size(1637, 925);
-            Controls.Add(btnCliente);
+            ClientSize = new Size(1432, 694);
+            Controls.Add(label1);
             Controls.Add(btnFecharApp);
+            Controls.Add(btnCliente);
             Controls.Add(btnProduto);
             Controls.Add(dgvPedidos);
             Controls.Add(txtPesquisar);
             Controls.Add(btnPedido);
             Controls.Add(panelMenu);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "panelConteudo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Home";
@@ -163,5 +168,6 @@
         private Button btnProduto;
         private Button btnFecharApp;
         private Button btnCliente;
+        private Label label1;
     }
 }
