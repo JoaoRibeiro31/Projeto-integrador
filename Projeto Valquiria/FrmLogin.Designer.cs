@@ -51,7 +51,6 @@
             // 
             // txtLogin
             // 
-            txtLogin.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtLogin.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtLogin.Location = new Point(789, 355);
             txtLogin.Name = "txtLogin";

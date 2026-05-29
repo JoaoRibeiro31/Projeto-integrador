@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProdutos));
             btnHome = new Button();
             dgvDadosProdutos = new DataGridView();
             label1 = new Label();
@@ -42,6 +43,7 @@
             btnPedido = new Button();
             label3 = new Label();
             txtPesquisar = new TextBox();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDadosProdutos).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -68,7 +70,7 @@
             dgvDadosProdutos.Location = new Point(352, 172);
             dgvDadosProdutos.Name = "dgvDadosProdutos";
             dgvDadosProdutos.RowHeadersWidth = 51;
-            dgvDadosProdutos.Size = new Size(925, 374);
+            dgvDadosProdutos.Size = new Size(917, 406);
             dgvDadosProdutos.TabIndex = 5;
             // 
             // label1
@@ -131,7 +133,7 @@
             panel1.Controls.Add(txtValor);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(txtNome);
-            panel1.Location = new Point(352, 570);
+            panel1.Location = new Point(352, 604);
             panel1.Name = "panel1";
             panel1.Size = new Size(696, 78);
             panel1.TabIndex = 4;
@@ -210,12 +212,23 @@
             txtPesquisar.TabIndex = 0;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
+            // button1
+            // 
+            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Location = new Point(1295, 172);
+            button1.Name = "button1";
+            button1.Size = new Size(57, 61);
+            button1.TabIndex = 8;
+            button1.UseVisualStyleBackColor = true;
+            // 
             // FrmProdutos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(205, 226, 176);
             ClientSize = new Size(1432, 694);
+            Controls.Add(button1);
             Controls.Add(txtPesquisar);
             Controls.Add(label3);
             Controls.Add(dgvDadosProdutos);
@@ -250,5 +263,6 @@
         private Button btnPedido;
         private Label label3;
         private TextBox txtPesquisar;
+        private Button button1;
     }
 }
