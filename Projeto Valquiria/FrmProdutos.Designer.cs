@@ -214,7 +214,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(205, 226, 176);
-            ClientSize = new Size(1345, 694);
+            ClientSize = new Size(1432, 694);
             Controls.Add(txtPesquisar);
             Controls.Add(label3);
             Controls.Add(dgvDadosProdutos);

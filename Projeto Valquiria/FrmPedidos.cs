@@ -211,5 +211,31 @@ namespace Projeto_Valquiria
                 editando = false;
             }
         }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            panelConteudo tela = new panelConteudo();
+            tela.ShowDialog();
+            this.Close();
+        }
+
+        private void btnPedido_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnProduto_Click(object sender, EventArgs e)
+        {
+            FrmProdutos tela = new FrmProdutos();
+            tela.ShowDialog();
+            this.Close();
+        }
+
+        private void btnCadastroCliente_Click(object sender, EventArgs e)
+        {
+            FrmClientes tela = new FrmClientes();
+            tela.ShowDialog();
+            this.Close();
+        }
     }
 }

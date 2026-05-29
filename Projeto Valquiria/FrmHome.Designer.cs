@@ -127,7 +127,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(249, 235, 190);
-            ClientSize = new Size(1345, 694);
+            ClientSize = new Size(1432, 694);
             Controls.Add(btnCliente);
             Controls.Add(btnFecharApp);
             Controls.Add(btnProduto);
