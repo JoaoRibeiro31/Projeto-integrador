@@ -12,9 +12,11 @@ using System.Globalization;
 
 namespace Projeto_Valquiria
 {
+
     public partial class FrmPedidos : Form
     {
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
+        DataTable dt = new DataTable();
 
         public FrmPedidos()
         {
@@ -236,6 +238,22 @@ namespace Projeto_Valquiria
             FrmClientes tela = new FrmClientes();
             tela.ShowDialog();
             this.Close();
+        }
+
+        private void dgvPedidos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = txtPesquisar.Text.Replace("'", "''");
+
+            dt.DefaultView.RowFilter =
+             $"nome LIKE '%{filtro}%' OR " +
+             $"valor_total LIKE '%{filtro}%' OR " +
+             $"data_cadastro LIKE '%{filtro}%' OR " +
+             $"status_pagamento LIKE '%{filtro}%' ";
         }
     }
 }

@@ -35,13 +35,17 @@
             label1 = new Label();
             textBox2 = new TextBox();
             textBox1 = new TextBox();
+            txtLogin = new TextBox();
+            label3 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(txtLogin);
             panel1.Controls.Add(btnFechar);
             panel1.Controls.Add(btnAtualizarSenha);
+            panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(textBox2);
@@ -82,7 +86,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(62, 53);
+            label1.Location = new Point(62, 30);
             label1.Name = "label1";
             label1.Size = new Size(31, 15);
             label1.TabIndex = 1;
@@ -98,11 +102,28 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(108, 50);
+            textBox1.Location = new Point(108, 27);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "123.456.789-09";
             textBox1.Size = new Size(115, 23);
             textBox1.TabIndex = 1;
+            // 
+            // txtLogin
+            // 
+            txtLogin.Location = new Point(108, 68);
+            txtLogin.Name = "txtLogin";
+            txtLogin.PlaceholderText = "Digite um novo nome de Login";
+            txtLogin.Size = new Size(287, 23);
+            txtLogin.TabIndex = 4;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(53, 71);
+            label3.Name = "label3";
+            label3.Size = new Size(40, 15);
+            label3.TabIndex = 2;
+            label3.Text = "Login:";
             // 
             // FrmEsqueciSenha
             // 
@@ -126,5 +147,7 @@
         private Label label1;
         private Button btnFechar;
         private Button btnAtualizarSenha;
+        private TextBox txtLogin;
+        private Label label3;
     }
 }

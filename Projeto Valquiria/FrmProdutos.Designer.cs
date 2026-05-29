@@ -167,6 +167,7 @@
             // 
             btnProduto.BackColor = Color.FromArgb(56, 206, 22);
             btnProduto.Cursor = Cursors.No;
+            btnProduto.Enabled = false;
             btnProduto.ForeColor = Color.White;
             btnProduto.Location = new Point(61, 303);
             btnProduto.Name = "btnProduto";

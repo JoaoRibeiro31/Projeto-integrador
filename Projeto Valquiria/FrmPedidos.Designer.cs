@@ -49,6 +49,7 @@
             btnHome = new Button();
             btnPedido = new Button();
             btnEditar = new Button();
+            txtPesquisar = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
             panel2.SuspendLayout();
@@ -67,8 +68,9 @@
             // btnCadastroCliente
             // 
             btnCadastroCliente.BackColor = Color.FromArgb(253, 208, 23);
-            btnCadastroCliente.FlatStyle = FlatStyle.Flat;
-            btnCadastroCliente.Location = new Point(52, 354);
+            btnCadastroCliente.FlatStyle = FlatStyle.Popup;
+            btnCadastroCliente.ForeColor = Color.White;
+            btnCadastroCliente.Location = new Point(61, 354);
             btnCadastroCliente.Name = "btnCadastroCliente";
             btnCadastroCliente.Size = new Size(158, 43);
             btnCadastroCliente.TabIndex = 1;
@@ -110,8 +112,9 @@
             // btnProduto
             // 
             btnProduto.BackColor = Color.FromArgb(56, 206, 22);
-            btnProduto.FlatStyle = FlatStyle.Flat;
-            btnProduto.Location = new Point(52, 285);
+            btnProduto.FlatStyle = FlatStyle.Popup;
+            btnProduto.ForeColor = Color.White;
+            btnProduto.Location = new Point(61, 301);
             btnProduto.Name = "btnProduto";
             btnProduto.Size = new Size(158, 47);
             btnProduto.TabIndex = 10;
@@ -221,12 +224,15 @@
             // 
             // dgvPedidos
             // 
+            dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPedidos.Location = new Point(352, 86);
+            dgvPedidos.Location = new Point(352, 140);
             dgvPedidos.Name = "dgvPedidos";
             dgvPedidos.RowHeadersWidth = 51;
-            dgvPedidos.Size = new Size(917, 460);
+            dgvPedidos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPedidos.Size = new Size(917, 406);
             dgvPedidos.TabIndex = 14;
+            dgvPedidos.CellContentClick += dgvPedidos_CellContentClick;
             // 
             // panel2
             // 
@@ -245,6 +251,7 @@
             // 
             btnHome.BackColor = Color.FromArgb(255, 226, 100);
             btnHome.FlatStyle = FlatStyle.Popup;
+            btnHome.ForeColor = Color.White;
             btnHome.Location = new Point(12, 25);
             btnHome.Name = "btnHome";
             btnHome.Size = new Size(53, 56);
@@ -257,7 +264,9 @@
             // 
             btnPedido.BackColor = Color.FromArgb(164, 92, 218);
             btnPedido.Cursor = Cursors.No;
-            btnPedido.Location = new Point(52, 223);
+            btnPedido.Enabled = false;
+            btnPedido.ForeColor = Color.White;
+            btnPedido.Location = new Point(61, 250);
             btnPedido.Name = "btnPedido";
             btnPedido.Size = new Size(158, 47);
             btnPedido.TabIndex = 11;
@@ -279,12 +288,22 @@
             btnEditar.UseVisualStyleBackColor = true;
             btnEditar.Click += btnEditar_Click;
             // 
+            // txtPesquisar
+            // 
+            txtPesquisar.Location = new Point(440, 93);
+            txtPesquisar.Name = "txtPesquisar";
+            txtPesquisar.PlaceholderText = "Pesquisar:";
+            txtPesquisar.Size = new Size(726, 23);
+            txtPesquisar.TabIndex = 17;
+            txtPesquisar.TextChanged += txtPesquisar_TextChanged;
+            // 
             // FrmPedidos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(223, 190, 249);
             ClientSize = new Size(1432, 694);
+            Controls.Add(txtPesquisar);
             Controls.Add(btnEditar);
             Controls.Add(dgvPedidos);
             Controls.Add(a);
@@ -300,6 +319,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).EndInit();
             panel2.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -325,5 +345,6 @@
         private Label lblTotal;
         private Button btnEditar;
         private Button btnHome;
+        private TextBox txtPesquisar;
     }
 }
