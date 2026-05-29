@@ -10,13 +10,14 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Globalization;
 
+
 namespace Projeto_Valquiria
 {
-
     public partial class FrmPedidos : Form
     {
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
         DataTable dt = new DataTable();
+        bool editando = false;
 
         public FrmPedidos()
         {
@@ -35,6 +36,16 @@ namespace Projeto_Valquiria
             dgvPedidos.ReadOnly = true;
             dgvPedidos.CellValueChanged += dgvPedidos_CellValueChanged;
 
+            // limpa os campos de cadastro ao abrir
+            cmbClientes.SelectedIndex = -1;
+            cmbProdutos.SelectedIndex = -1;
+            cmbStatus.SelectedIndex = -1;
+            txtQuantidade.Clear();
+            lblValorProduto.Text = "";
+            lblTotal.Text = "";
+
+            // botão deletar começa escondido
+            btnDeletar.Visible = false;
         }
 
         // ---------- CLIENTES ----------
@@ -112,6 +123,16 @@ namespace Projeto_Valquiria
         // ---------- CADASTRAR PEDIDO ----------
         private void btnCadastrarPedido_Click_1(object sender, EventArgs e)
         {
+            DialogResult confirmacao = MessageBox.Show(
+                "Confirma cadastrar este pedido?",
+                "Confirmação",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirmacao == DialogResult.No)
+                return;
+
             using (MySqlConnection conn = new MySqlConnection(conexao))
             {
                 conn.Open();
@@ -140,11 +161,11 @@ namespace Projeto_Valquiria
             {
                 conn.Open();
                 string sql = @"SELECT p.id, c.nome AS Cliente, pr.nome AS Produto,
-                                      p.quantidade, p.valor_total, p.data_pedido, p.status_pagamento
-                               FROM pedidos p
-                               JOIN clientes c ON p.cliente_id = c.id
-                               JOIN produtos pr ON p.produto_id = pr.id
-                               ORDER BY data_pedido desc ;";
+                              p.quantidade, p.valor_total, p.data_pedido, p.status_pagamento
+                       FROM pedidos p
+                       JOIN clientes c ON p.cliente_id = c.id
+                       JOIN produtos pr ON p.produto_id = pr.id
+                       ORDER BY data_pedido desc ;";
 
                 MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
                 dt = new DataTable();
@@ -154,6 +175,7 @@ namespace Projeto_Valquiria
 
                 dgvPedidos.Columns["id"].Visible = false;
 
+                // Remove a coluna original e cria a ComboBox editável
                 if (dgvPedidos.Columns.Contains("status_pagamento"))
                 {
                     dgvPedidos.Columns.Remove("status_pagamento");
@@ -165,8 +187,12 @@ namespace Projeto_Valquiria
                     comboStatus.Items.Add("Pago");
                     comboStatus.Items.Add("Pendente");
 
+                    comboStatus.ReadOnly = false;
+
                     dgvPedidos.Columns.Add(comboStatus);
                 }
+
+                dgvPedidos.ReadOnly = false;
             }
         }
 
@@ -189,41 +215,60 @@ namespace Projeto_Valquiria
             }
         }
 
-
-        bool editando = false;
+        // ---------- EDITAR / DELETAR ----------
         private void btnEditar_Click(object sender, EventArgs e)
         {
             if (!editando)
             {
-                dgvPedidos.ReadOnly = false; // libera edição geral
-                                             // se quiser travar todas as outras colunas, pode fazer um loop:
-                foreach (DataGridViewColumn col in dgvPedidos.Columns)
-                {
-                    col.ReadOnly = true; // trava todas
-                }
-                dgvPedidos.Columns["status_pagamento"].ReadOnly = false; // só libera status
-
                 btnEditar.Text = "Bloquear Edição";
+                btnDeletar.Visible = true; // mostra botão deletar
                 editando = true;
             }
             else
             {
-                dgvPedidos.ReadOnly = true; // volta a bloquear tudo
                 btnEditar.Text = "Editar";
+                btnDeletar.Visible = false; // esconde botão deletar
                 editando = false;
             }
         }
 
+        private void btnDeletar_Click(object sender, EventArgs e)
+        {
+            if (dgvPedidos.CurrentRow != null)
+            {
+                int idPedido = Convert.ToInt32(dgvPedidos.CurrentRow.Cells["id"].Value);
+
+                DialogResult confirmacao = MessageBox.Show(
+                    "Confirma excluir este pedido?",
+                    "Confirmação",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (confirmacao == DialogResult.No)
+                    return;
+
+                using (MySqlConnection conn = new MySqlConnection(conexao))
+                {
+                    conn.Open();
+                    string sql = "DELETE FROM pedidos WHERE id = @id";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@id", idPedido);
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Pedido excluído com sucesso!");
+                CarregarPedidos();
+            }
+        }
+
+
+        // ---------- NAVEGAÇÃO ----------
         private void btnHome_Click(object sender, EventArgs e)
         {
             panelConteudo tela = new panelConteudo();
             tela.ShowDialog();
             this.Close();
-        }
-
-        private void btnPedido_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnProduto_Click(object sender, EventArgs e)
@@ -240,11 +285,7 @@ namespace Projeto_Valquiria
             this.Close();
         }
 
-        private void dgvPedidos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        // ---------- PESQUISA ----------
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
             string filtro = txtPesquisar.Text.Replace("'", "''");
