@@ -30,28 +30,31 @@ namespace Projeto_Valquiria
 
         public void CarregarDadosProdutos()
         {
-            using (MySqlConnection conn = new MySqlConnection(conexao))
+            MySqlConnection conn = new MySqlConnection(conexao);
+
+            try
             {
-                try
-                {
-                    conn.Open();
-                    string sql = @"SELECT id AS Id,
-                                          nome AS Nome,
-                                          valor AS Valor
-                                   FROM produtos
-                                   ORDER BY nome ASC";
+                conn.Open();
+                string sql = @"SELECT id AS Id,
+                              nome AS Nome,
+                              valor AS Valor
+                       FROM produtos
+                       ORDER BY nome ASC";
 
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
-                    tabela = new DataTable();
-                    adapter.Fill(tabela);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
+                tabela = new DataTable();
+                adapter.Fill(tabela);
 
-                    dgvDadosProdutos.DataSource = tabela;
-                    dgvDadosProdutos.Columns["Id"].Visible = false;
-                }
-                catch (Exception erro)
-                {
-                    MessageBox.Show("Erro: " + erro.Message);
-                }
+                dgvDadosProdutos.DataSource = tabela;
+                dgvDadosProdutos.Columns["Id"].Visible = false;
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao carregar produtos: " + erro.Message);
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -84,47 +87,55 @@ namespace Projeto_Valquiria
         // Botão cadastrar produto
         private void btnCadastroProduto_Click(object sender, EventArgs e)
         {
-            // Verifica se os campos estão preenchidos
             if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtValor.Text))
             {
                 MessageBox.Show("Preencha todos os campos antes de cadastrar!",
-                                "Aviso",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return; // interrompe o cadastro
-            }
-
-            DialogResult confirmacao = MessageBox.Show(
-                "Confirma cadastrar este produto?",
-                "Confirmação",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (confirmacao == DialogResult.No)
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-
-            using (MySqlConnection conn = new MySqlConnection(conexao))
-            {
-                try
-                {
-                    conn.Open();
-                    string sql = @"INSERT INTO produtos (nome, valor) VALUES (@nome, @valor)";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@nome", txtNome.Text);
-                    cmd.Parameters.AddWithValue("@valor", decimal.Parse(txtValor.Text, new System.Globalization.CultureInfo("pt-BR")));
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception erro)
-                {
-                    MessageBox.Show("Erro: " + erro.Message);
-                }
             }
 
-            MessageBox.Show("Produto cadastrado com sucesso!");
-            CarregarDadosProdutos();
+            MySqlConnection conn = new MySqlConnection(conexao);
 
-            // Limpa os campos após cadastro
+            try
+            {
+                conn.Open();
+
+                string sqlCheck = "SELECT COUNT(*) FROM produtos WHERE nome = @nome";
+                MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
+                cmdCheck.Parameters.AddWithValue("@nome", txtNome.Text);
+
+                int existe = Convert.ToInt32(cmdCheck.ExecuteScalar());
+                if (existe > 0)
+                {
+                    MessageBox.Show("Já existe um produto com este nome!",
+                                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DialogResult confirmacao = MessageBox.Show(
+                    "Confirma cadastrar este produto?",
+                    "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (confirmacao == DialogResult.No) return;
+
+                string sql = @"INSERT INTO produtos (nome, valor) VALUES (@nome, @valor)";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@nome", txtNome.Text);
+                cmd.Parameters.AddWithValue("@valor", decimal.Parse(txtValor.Text, new System.Globalization.CultureInfo("pt-BR")));
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Produto cadastrado com sucesso!");
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao cadastrar produto: " + erro.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            CarregarDadosProdutos();
             txtNome.Clear();
             txtValor.Clear();
         }
@@ -132,17 +143,16 @@ namespace Projeto_Valquiria
         // Botão atualizar (salva alterações feitas na tabela)
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
+            bool houveAlteracao = false;
             DialogResult confirmacao = MessageBox.Show(
                 "Confirma atualizar os produtos?",
-                "Confirmação",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
+                "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (confirmacao == DialogResult.No)
-                return;
+            if (confirmacao == DialogResult.No) return;
 
-            using (MySqlConnection conn = new MySqlConnection(conexao))
+            MySqlConnection conn = new MySqlConnection(conexao);
+
+            try
             {
                 conn.Open();
 
@@ -154,49 +164,94 @@ namespace Projeto_Valquiria
                     string nome = row.Cells["Nome"].Value.ToString();
                     decimal valor = Convert.ToDecimal(row.Cells["Valor"].Value);
 
-                    string sql = "UPDATE produtos SET nome = @nome, valor = @valor WHERE id = @id";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@nome", nome);
-                    cmd.Parameters.AddWithValue("@valor", valor);
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
+                    string sqlCheck = "SELECT nome, valor FROM produtos WHERE id = @id";
+                    MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
+                    cmdCheck.Parameters.AddWithValue("@id", id);
+
+                    using (var reader = cmdCheck.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string nomeAtual = reader.GetString("nome");
+                            decimal valorAtual = reader.GetDecimal("valor");
+
+                            if (nome != nomeAtual || valor != valorAtual)
+                            {
+                                houveAlteracao = true;
+                            }
+                        }
+                    }
+
+                    if (houveAlteracao)
+                    {
+                        string sql = "UPDATE produtos SET nome = @nome, valor = @valor WHERE id = @id";
+                        MySqlCommand cmd = new MySqlCommand(sql, conn);
+                        cmd.Parameters.AddWithValue("@nome", nome);
+                        cmd.Parameters.AddWithValue("@valor", valor);
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
+
+                if (houveAlteracao)
+                    MessageBox.Show("Produtos atualizados com sucesso!");
+                else
+                    MessageBox.Show("Nenhuma alteração detectada. Modifique algo antes de atualizar.",
+                                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao atualizar produtos: " + erro.Message);
+            }
+            finally
+            {
+                conn.Close();
             }
 
-            MessageBox.Show("Produtos atualizados com sucesso!");
             CarregarDadosProdutos();
         }
 
         // Botão deletar (remove linha selecionada)
         private void btnDeletar_Click(object sender, EventArgs e)
         {
-            if (dgvDadosProdutos.CurrentRow != null)
+            if (dgvDadosProdutos.CurrentRow == null || dgvDadosProdutos.CurrentRow.IsNewRow)
             {
-                int id = Convert.ToInt32(dgvDadosProdutos.CurrentRow.Cells["Id"].Value);
-                string nome = dgvDadosProdutos.CurrentRow.Cells["Nome"].Value.ToString();
+                MessageBox.Show("Selecione um produto para excluir!",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                DialogResult confirmacao = MessageBox.Show(
-                    $"Confirma excluir o produto '{nome}'?",
-                    "Confirmação",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning
-                );
+            int id = Convert.ToInt32(dgvDadosProdutos.CurrentRow.Cells["Id"].Value);
+            string nome = dgvDadosProdutos.CurrentRow.Cells["Nome"].Value.ToString();
 
-                if (confirmacao == DialogResult.No)
-                    return;
+            DialogResult confirmacao = MessageBox.Show(
+                $"Confirma excluir o produto '{nome}'?",
+                "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-                using (MySqlConnection conn = new MySqlConnection(conexao))
-                {
-                    conn.Open();
-                    string sql = "DELETE FROM produtos WHERE id = @id";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
+            if (confirmacao == DialogResult.No) return;
+
+            MySqlConnection conn = new MySqlConnection(conexao);
+
+            try
+            {
+                conn.Open();
+                string sql = "DELETE FROM produtos WHERE id = @id";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Produto excluído com sucesso!");
-                CarregarDadosProdutos();
             }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao excluir produto: " + erro.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            CarregarDadosProdutos();
         }
 
         // Pesquisa
