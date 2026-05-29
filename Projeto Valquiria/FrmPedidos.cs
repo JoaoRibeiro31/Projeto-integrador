@@ -45,7 +45,7 @@ namespace Projeto_Valquiria
                 conn.Open();
                 string sql = "SELECT id, nome, contato FROM clientes";
                 MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
-                DataTable dt = new DataTable();
+                dt = new DataTable();
                 da.Fill(dt);
 
                 cmbClientes.DataSource = dt;
@@ -147,7 +147,7 @@ namespace Projeto_Valquiria
                                ORDER BY data_pedido desc ;";
 
                 MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
-                DataTable dt = new DataTable();
+                dt = new DataTable();
                 da.Fill(dt);
 
                 dgvPedidos.DataSource = dt;
@@ -249,11 +249,19 @@ namespace Projeto_Valquiria
         {
             string filtro = txtPesquisar.Text.Replace("'", "''");
 
+
+            if (string.IsNullOrWhiteSpace(filtro))
+            {
+                dt.DefaultView.RowFilter = "";
+            }
             dt.DefaultView.RowFilter =
-             $"nome LIKE '%{filtro}%' OR " +
-             $"valor_total LIKE '%{filtro}%' OR " +
-             $"data_cadastro LIKE '%{filtro}%' OR " +
-             $"status_pagamento LIKE '%{filtro}%' ";
+            $"Cliente LIKE '%{filtro}%' OR " +
+            $"Produto LIKE '%{filtro}%' OR " +
+            $"Convert(quantidade, 'System.String') LIKE '%{filtro}%' OR " +
+            $"Convert(valor_total, 'System.String') LIKE '%{filtro}%' OR " +
+            $"Convert(data_pedido, 'System.String') LIKE '%{filtro}%' OR " +
+            $"status_pagamento LIKE '%{filtro}%'";
+
         }
     }
 }
