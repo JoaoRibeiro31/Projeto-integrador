@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(panelConteudo));
             panelMenu = new PictureBox();
             txtPesquisar = new TextBox();
             dgvPedidos = new DataGridView();
@@ -35,6 +36,7 @@
             btnProduto = new Button();
             btnFecharApp = new Button();
             btnCliente = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)panelMenu).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
             SuspendLayout();
@@ -99,13 +101,13 @@
             // 
             // btnFecharApp
             // 
-            btnFecharApp.BackColor = Color.FromArgb(128, 255, 255);
+            btnFecharApp.BackColor = Color.FromArgb(159, 214, 242);
+            btnFecharApp.BackgroundImage = (Image)resources.GetObject("btnFecharApp.BackgroundImage");
             btnFecharApp.FlatStyle = FlatStyle.Popup;
-            btnFecharApp.Location = new Point(61, 614);
+            btnFecharApp.Location = new Point(87, 514);
             btnFecharApp.Name = "btnFecharApp";
-            btnFecharApp.Size = new Size(158, 47);
+            btnFecharApp.Size = new Size(94, 96);
             btnFecharApp.TabIndex = 3;
-            btnFecharApp.Text = "Fechar Aplicativo";
             btnFecharApp.UseVisualStyleBackColor = false;
             btnFecharApp.Click += btnFecharApp_Click;
             // 
@@ -122,14 +124,25 @@
             btnCliente.UseVisualStyleBackColor = false;
             btnCliente.Click += btnCliente_Click;
             // 
+            // label1
+            // 
+            label1.BackColor = Color.WhiteSmoke;
+            label1.Enabled = false;
+            label1.Location = new Point(96, 622);
+            label1.Name = "label1";
+            label1.Size = new Size(74, 19);
+            label1.TabIndex = 7;
+            label1.Text = "Desligar App";
+            // 
             // panelConteudo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(249, 235, 190);
             ClientSize = new Size(1432, 694);
-            Controls.Add(btnCliente);
+            Controls.Add(label1);
             Controls.Add(btnFecharApp);
+            Controls.Add(btnCliente);
             Controls.Add(btnProduto);
             Controls.Add(dgvPedidos);
             Controls.Add(txtPesquisar);
@@ -155,5 +168,6 @@
         private Button btnProduto;
         private Button btnFecharApp;
         private Button btnCliente;
+        private Label label1;
     }
 }

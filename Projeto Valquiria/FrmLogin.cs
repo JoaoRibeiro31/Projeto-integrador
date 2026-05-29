@@ -68,5 +68,15 @@ namespace Projeto_Valquiria
             FrmAtualizarLogin tela = new FrmAtualizarLogin();
             tela.ShowDialog();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtLogin_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
