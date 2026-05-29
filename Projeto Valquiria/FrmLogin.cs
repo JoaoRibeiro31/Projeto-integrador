@@ -65,7 +65,7 @@ namespace Projeto_Valquiria
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FrmEsqueciSenha tela = new FrmEsqueciSenha();
+            FrmAtualizarLogin tela = new FrmAtualizarLogin();
             tela.ShowDialog();
         }
     }
