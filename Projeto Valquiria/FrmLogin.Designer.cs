@@ -45,7 +45,7 @@
             btnEntrar.Location = new Point(789, 452);
             btnEntrar.Name = "btnEntrar";
             btnEntrar.Size = new Size(346, 35);
-            btnEntrar.TabIndex = 2;
+            btnEntrar.TabIndex = 0;
             btnEntrar.Text = "Entrar";
             btnEntrar.UseVisualStyleBackColor = true;
             btnEntrar.Click += btnEntrar_Click;
@@ -58,7 +58,7 @@
             txtLogin.Name = "txtLogin";
             txtLogin.PlaceholderText = "Login";
             txtLogin.Size = new Size(346, 25);
-            txtLogin.TabIndex = 0;
+            txtLogin.TabIndex = 1;
             txtLogin.TextChanged += txtLogin_TextChanged;
             // 
             // txtSenha
@@ -68,7 +68,7 @@
             txtSenha.Name = "txtSenha";
             txtSenha.PlaceholderText = "Senha";
             txtSenha.Size = new Size(346, 23);
-            txtSenha.TabIndex = 1;
+            txtSenha.TabIndex = 2;
             txtSenha.UseSystemPasswordChar = true;
             // 
             // button1
@@ -78,7 +78,7 @@
             button1.Location = new Point(869, 520);
             button1.Name = "button1";
             button1.Size = new Size(176, 35);
-            button1.TabIndex = 4;
+            button1.TabIndex = 3;
             button1.Text = "Esqueci a Senha";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClientes));
             label1 = new Label();
             txtNome = new TextBox();
             txtContato = new TextBox();
@@ -43,6 +44,10 @@
             btnPedido = new Button();
             button1 = new Button();
             button2 = new Button();
+            txtPesquisar = new TextBox();
+            btnEdicao = new Button();
+            btnAtualizar = new Button();
+            btnDeletar = new Button();
             pnlCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dvgTabela).BeginInit();
             ((System.ComponentModel.ISupportInitialize)panelMenu).BeginInit();
@@ -119,10 +124,10 @@
             // 
             dvgTabela.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dvgTabela.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvgTabela.Location = new Point(392, 87);
+            dvgTabela.Location = new Point(352, 140);
             dvgTabela.Name = "dvgTabela";
             dvgTabela.RowHeadersWidth = 51;
-            dvgTabela.Size = new Size(917, 460);
+            dvgTabela.Size = new Size(917, 406);
             dvgTabela.TabIndex = 7;
             // 
             // panelMenu
@@ -137,14 +142,16 @@
             // 
             // btnHome
             // 
+            btnHome.BackColor = Color.FromArgb(159, 214, 242);
+            btnHome.BackgroundImage = (Image)resources.GetObject("btnHome.BackgroundImage");
+            btnHome.BackgroundImageLayout = ImageLayout.Stretch;
             btnHome.FlatStyle = FlatStyle.Popup;
             btnHome.ForeColor = Color.White;
             btnHome.Location = new Point(12, 25);
             btnHome.Name = "btnHome";
             btnHome.Size = new Size(53, 56);
             btnHome.TabIndex = 3;
-            btnHome.Text = "Home";
-            btnHome.UseVisualStyleBackColor = true;
+            btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnVoltar_Click;
             // 
             // btnProduto
@@ -209,12 +216,52 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
+            // txtPesquisar
+            // 
+            txtPesquisar.Location = new Point(417, 94);
+            txtPesquisar.Name = "txtPesquisar";
+            txtPesquisar.PlaceholderText = "Pesquisar:";
+            txtPesquisar.Size = new Size(726, 23);
+            txtPesquisar.TabIndex = 18;
+            // 
+            // btnEdicao
+            // 
+            btnEdicao.BackgroundImage = (Image)resources.GetObject("btnEdicao.BackgroundImage");
+            btnEdicao.FlatStyle = FlatStyle.Flat;
+            btnEdicao.Location = new Point(1315, 140);
+            btnEdicao.Name = "btnEdicao";
+            btnEdicao.Size = new Size(57, 61);
+            btnEdicao.TabIndex = 19;
+            btnEdicao.UseVisualStyleBackColor = true;
+            // 
+            // btnAtualizar
+            // 
+            btnAtualizar.Location = new Point(1317, 240);
+            btnAtualizar.Name = "btnAtualizar";
+            btnAtualizar.Size = new Size(75, 23);
+            btnAtualizar.TabIndex = 20;
+            btnAtualizar.Text = "Atualizar";
+            btnAtualizar.UseVisualStyleBackColor = true;
+            // 
+            // btnDeletar
+            // 
+            btnDeletar.Location = new Point(1315, 269);
+            btnDeletar.Name = "btnDeletar";
+            btnDeletar.Size = new Size(75, 23);
+            btnDeletar.TabIndex = 20;
+            btnDeletar.Text = "Deletar";
+            btnDeletar.UseVisualStyleBackColor = true;
+            // 
             // FrmClientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 226, 100);
-            ClientSize = new Size(1345, 694);
+            ClientSize = new Size(1432, 694);
+            Controls.Add(btnDeletar);
+            Controls.Add(btnAtualizar);
+            Controls.Add(btnEdicao);
+            Controls.Add(txtPesquisar);
             Controls.Add(button2);
             Controls.Add(btnProduto);
             Controls.Add(btnClientes);
@@ -257,5 +304,9 @@
         private Button btnPedido;
         private Button button1;
         private Button button2;
+        private TextBox txtPesquisar;
+        private Button btnEdicao;
+        private Button btnAtualizar;
+        private Button btnDeletar;
     }
 }
