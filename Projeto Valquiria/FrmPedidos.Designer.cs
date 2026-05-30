@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPedidos));
             cmbClientes = new ComboBox();
             btnCadastroCliente = new Button();
             cmbProdutos = new ComboBox();
@@ -249,14 +250,15 @@
             // 
             // btnHome
             // 
-            btnHome.BackColor = Color.FromArgb(255, 226, 100);
+            btnHome.BackColor = Color.FromArgb(159, 214, 242);
+            btnHome.BackgroundImage = (Image)resources.GetObject("btnHome.BackgroundImage");
+            btnHome.BackgroundImageLayout = ImageLayout.Stretch;
             btnHome.FlatStyle = FlatStyle.Popup;
             btnHome.ForeColor = Color.White;
             btnHome.Location = new Point(12, 25);
             btnHome.Name = "btnHome";
             btnHome.Size = new Size(53, 56);
             btnHome.TabIndex = 12;
-            btnHome.Text = "Home";
             btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnHome_Click;
             // 
@@ -275,9 +277,11 @@
             // 
             // btnEditar
             // 
+            btnEditar.BackgroundImageLayout = ImageLayout.Stretch;
             btnEditar.Cursor = Cursors.Hand;
             btnEditar.FlatStyle = FlatStyle.Popup;
             btnEditar.ForeColor = Color.Transparent;
+            btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
             btnEditar.Location = new Point(1315, 120);
             btnEditar.Margin = new Padding(3, 2, 3, 2);
             btnEditar.Name = "btnEditar";
@@ -298,10 +302,10 @@
             // 
             // btnDeletar
             // 
-            btnDeletar.Location = new Point(1315, 217);
+            btnDeletar.Location = new Point(1315, 188);
             btnDeletar.Margin = new Padding(3, 2, 3, 2);
             btnDeletar.Name = "btnDeletar";
-            btnDeletar.Size = new Size(82, 22);
+            btnDeletar.Size = new Size(66, 22);
             btnDeletar.TabIndex = 18;
             btnDeletar.Text = "Deletar";
             btnDeletar.UseVisualStyleBackColor = true;

@@ -53,7 +53,7 @@
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Location = new Point(570, 98);
+            txtPesquisar.Location = new Point(525, 127);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar:";
             txtPesquisar.Size = new Size(726, 23);
@@ -66,7 +66,7 @@
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPedidos.BackgroundColor = Color.FromArgb(217, 217, 217);
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPedidos.Location = new Point(539, 139);
+            dgvPedidos.Location = new Point(497, 160);
             dgvPedidos.Name = "dgvPedidos";
             dgvPedidos.ReadOnly = true;
             dgvPedidos.RowHeadersWidth = 51;
