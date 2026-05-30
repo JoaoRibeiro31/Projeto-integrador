@@ -92,7 +92,6 @@
             panel1.Controls.Add(txtSenha);
             panel1.Controls.Add(btnEntrar);
             panel1.Controls.Add(txtLogin);
-            panel1.Enabled = false;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1171, 782);
