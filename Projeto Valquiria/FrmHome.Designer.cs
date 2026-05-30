@@ -103,6 +103,7 @@
             // 
             btnFecharApp.BackColor = Color.FromArgb(159, 214, 242);
             btnFecharApp.BackgroundImage = (Image)resources.GetObject("btnFecharApp.BackgroundImage");
+            btnFecharApp.BackgroundImageLayout = ImageLayout.Stretch;
             btnFecharApp.FlatStyle = FlatStyle.Popup;
             btnFecharApp.Location = new Point(30, 588);
             btnFecharApp.Name = "btnFecharApp";
@@ -126,7 +127,7 @@
             // 
             // label1
             // 
-            label1.BackColor = Color.WhiteSmoke;
+            label1.BackColor = Color.Pink;
             label1.BorderStyle = BorderStyle.FixedSingle;
             label1.Enabled = false;
             label1.Location = new Point(30, 649);

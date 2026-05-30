@@ -54,14 +54,14 @@
             // btnHome
             // 
             btnHome.AccessibleRole = AccessibleRole.None;
-            btnHome.BackColor = Color.FromArgb(255, 226, 100);
+            btnHome.BackColor = Color.Transparent;
+            btnHome.BackgroundImage = (Image)resources.GetObject("btnHome.BackgroundImage");
             btnHome.FlatStyle = FlatStyle.Popup;
-            btnHome.ForeColor = Color.White;
+            btnHome.ForeColor = Color.Transparent;
             btnHome.Location = new Point(12, 25);
             btnHome.Name = "btnHome";
             btnHome.Size = new Size(53, 56);
             btnHome.TabIndex = 3;
-            btnHome.Text = "Home";
             btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnHome_Click;
             // 
