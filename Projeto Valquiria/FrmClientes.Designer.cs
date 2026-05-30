@@ -29,21 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClientes));
-            label1 = new Label();
+            lblTitulo = new Label();
             txtNome = new TextBox();
             txtContato = new TextBox();
-            btnCliente = new Button();
+            btnCadastrar = new Button();
             lblNome = new Label();
             lblContato = new Label();
             pnlCadastro = new Panel();
             dvgTabela = new DataGridView();
             panelMenu = new PictureBox();
             btnHome = new Button();
-            btnProduto = new Button();
-            btnClientes = new Button();
-            btnPedido = new Button();
-            button1 = new Button();
-            button2 = new Button();
+            btnCliente = new Button();
+            btnPedidos = new Button();
+            btnProdutos = new Button();
             txtPesquisar = new TextBox();
             btnEdicao = new Button();
             btnAtualizar = new Button();
@@ -53,17 +51,17 @@
             ((System.ComponentModel.ISupportInitialize)panelMenu).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // lblTitulo
             // 
-            label1.BackColor = Color.White;
-            label1.BorderStyle = BorderStyle.FixedSingle;
-            label1.FlatStyle = FlatStyle.Flat;
-            label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(734, 25);
-            label1.Name = "label1";
-            label1.Size = new Size(412, 66);
-            label1.TabIndex = 0;
-            label1.Text = "Área de cadastro de clientes";
+            lblTitulo.BackColor = Color.White;
+            lblTitulo.BorderStyle = BorderStyle.FixedSingle;
+            lblTitulo.FlatStyle = FlatStyle.Flat;
+            lblTitulo.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitulo.Location = new Point(734, 25);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(412, 66);
+            lblTitulo.TabIndex = 0;
+            lblTitulo.Text = "Área de cadastro de clientes";
             // 
             // txtNome
             // 
@@ -81,16 +79,16 @@
             txtContato.Size = new Size(611, 27);
             txtContato.TabIndex = 1;
             // 
-            // btnCliente
+            // btnCadastrar
             // 
-            btnCliente.Location = new Point(721, 92);
-            btnCliente.Margin = new Padding(3, 4, 3, 4);
-            btnCliente.Name = "btnCliente";
-            btnCliente.Size = new Size(130, 31);
-            btnCliente.TabIndex = 2;
-            btnCliente.Text = "Cadastrar Cliente";
-            btnCliente.UseVisualStyleBackColor = true;
-            btnCliente.Click += btnCliente_Click;
+            btnCadastrar.Location = new Point(721, 92);
+            btnCadastrar.Margin = new Padding(3, 4, 3, 4);
+            btnCadastrar.Name = "btnCadastrar";
+            btnCadastrar.Size = new Size(130, 31);
+            btnCadastrar.TabIndex = 2;
+            btnCadastrar.Text = "Cadastrar Cliente";
+            btnCadastrar.UseVisualStyleBackColor = true;
+            btnCadastrar.Click += btnCadastrar_Click;
             // 
             // lblNome
             // 
@@ -115,7 +113,7 @@
             // pnlCadastro
             // 
             pnlCadastro.BackColor = Color.White;
-            pnlCadastro.Controls.Add(btnCliente);
+            pnlCadastro.Controls.Add(btnCadastrar);
             pnlCadastro.Controls.Add(txtNome);
             pnlCadastro.Controls.Add(txtContato);
             pnlCadastro.Location = new Point(464, 739);
@@ -161,72 +159,46 @@
             btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnVoltar_Click;
             // 
-            // btnProduto
+            // btnCliente
             // 
-            btnProduto.BackColor = Color.FromArgb(56, 206, 22);
-            btnProduto.FlatStyle = FlatStyle.Popup;
-            btnProduto.ForeColor = Color.White;
-            btnProduto.Location = new Point(70, 404);
-            btnProduto.Margin = new Padding(3, 4, 3, 4);
-            btnProduto.Name = "btnProduto";
-            btnProduto.Size = new Size(181, 63);
-            btnProduto.TabIndex = 11;
-            btnProduto.Text = "Produtos";
-            btnProduto.UseVisualStyleBackColor = false;
+            btnCliente.BackColor = Color.FromArgb(253, 208, 23);
+            btnCliente.Cursor = Cursors.No;
+            btnCliente.ForeColor = Color.White;
+            btnCliente.Location = new Point(70, 475);
+            btnCliente.Margin = new Padding(3, 4, 3, 4);
+            btnCliente.Name = "btnCliente";
+            btnCliente.Size = new Size(181, 63);
+            btnCliente.TabIndex = 10;
+            btnCliente.Text = "Clientes";
+            btnCliente.UseVisualStyleBackColor = false;
             // 
-            // btnClientes
+            // btnPedidos
             // 
-            btnClientes.BackColor = Color.FromArgb(253, 208, 23);
-            btnClientes.Cursor = Cursors.No;
-            btnClientes.ForeColor = Color.White;
-            btnClientes.Location = new Point(70, 475);
-            btnClientes.Margin = new Padding(3, 4, 3, 4);
-            btnClientes.Name = "btnClientes";
-            btnClientes.Size = new Size(181, 63);
-            btnClientes.TabIndex = 10;
-            btnClientes.Text = "Cliente";
-            btnClientes.UseVisualStyleBackColor = false;
+            btnPedidos.BackColor = Color.FromArgb(164, 92, 218);
+            btnPedidos.FlatStyle = FlatStyle.Popup;
+            btnPedidos.ForeColor = Color.White;
+            btnPedidos.Location = new Point(70, 333);
+            btnPedidos.Margin = new Padding(3, 4, 3, 4);
+            btnPedidos.Name = "btnPedidos";
+            btnPedidos.Size = new Size(181, 63);
+            btnPedidos.TabIndex = 9;
+            btnPedidos.Text = "Pedidos";
+            btnPedidos.UseVisualStyleBackColor = false;
+            btnPedidos.Click += btnPedidos_Click;
             // 
-            // btnPedido
+            // btnProdutos
             // 
-            btnPedido.BackColor = Color.FromArgb(164, 92, 218);
-            btnPedido.FlatStyle = FlatStyle.Popup;
-            btnPedido.ForeColor = Color.White;
-            btnPedido.Location = new Point(70, 333);
-            btnPedido.Margin = new Padding(3, 4, 3, 4);
-            btnPedido.Name = "btnPedido";
-            btnPedido.Size = new Size(181, 63);
-            btnPedido.TabIndex = 9;
-            btnPedido.Text = "Pedidos";
-            btnPedido.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.FromArgb(164, 92, 218);
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(70, 333);
-            button1.Margin = new Padding(3, 4, 3, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(181, 63);
-            button1.TabIndex = 9;
-            button1.Text = "Pedidos";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click_1;
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.FromArgb(56, 206, 22);
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(70, 404);
-            button2.Margin = new Padding(3, 4, 3, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(181, 63);
-            button2.TabIndex = 11;
-            button2.Text = "Produtos";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            btnProdutos.BackColor = Color.FromArgb(56, 206, 22);
+            btnProdutos.FlatStyle = FlatStyle.Popup;
+            btnProdutos.ForeColor = Color.White;
+            btnProdutos.Location = new Point(70, 404);
+            btnProdutos.Margin = new Padding(3, 4, 3, 4);
+            btnProdutos.Name = "btnProdutos";
+            btnProdutos.Size = new Size(181, 63);
+            btnProdutos.TabIndex = 11;
+            btnProdutos.Text = "Produtos";
+            btnProdutos.UseVisualStyleBackColor = false;
+            btnProdutos.Click += btnProdutos_Click;
             // 
             // txtPesquisar
             // 
@@ -259,6 +231,7 @@
             btnAtualizar.TabIndex = 20;
             btnAtualizar.Text = "Atualizar";
             btnAtualizar.UseVisualStyleBackColor = true;
+            btnAtualizar.Click += btnAtualizar_Click;
             // 
             // btnDeletar
             // 
@@ -269,6 +242,7 @@
             btnDeletar.TabIndex = 20;
             btnDeletar.Text = "Deletar";
             btnDeletar.UseVisualStyleBackColor = true;
+            btnDeletar.Click += btnDeletar_Click;
             // 
             // FrmClientes
             // 
@@ -280,16 +254,14 @@
             Controls.Add(btnAtualizar);
             Controls.Add(btnEdicao);
             Controls.Add(txtPesquisar);
-            Controls.Add(button2);
-            Controls.Add(btnProduto);
-            Controls.Add(btnClientes);
-            Controls.Add(button1);
-            Controls.Add(btnPedido);
+            Controls.Add(btnProdutos);
+            Controls.Add(btnCliente);
+            Controls.Add(btnPedidos);
             Controls.Add(btnHome);
             Controls.Add(dvgTabela);
             Controls.Add(lblContato);
             Controls.Add(lblNome);
-            Controls.Add(label1);
+            Controls.Add(lblTitulo);
             Controls.Add(pnlCadastro);
             Controls.Add(panelMenu);
             Margin = new Padding(3, 4, 3, 4);
@@ -308,21 +280,19 @@
 
         #endregion
 
-        private Label label1;
+        private Label lblTitulo;
         private TextBox txtNome;
         private TextBox txtContato;
-        private Button btnCliente;
+        private Button btnCadastrar;
         private Label lblNome;
         private Label lblContato;
         private Panel pnlCadastro;
         private DataGridView dvgTabela;
         private PictureBox panelMenu;
         private Button btnHome;
-        private Button btnProduto;
-        private Button btnClientes;
-        private Button btnPedido;
-        private Button button1;
-        private Button button2;
+        private Button btnCliente;
+        private Button btnPedidos;
+        private Button btnProdutos;
         private TextBox txtPesquisar;
         private Button btnEdicao;
         private Button btnAtualizar;
