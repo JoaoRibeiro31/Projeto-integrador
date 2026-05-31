@@ -140,7 +140,7 @@ namespace Projeto_Valquiria
                 int.TryParse(txtQuantidade.Text, out int qtd))
             {
                 decimal total = valorProduto * qtd;
-                lblTotal.Text = total.ToString("C2", new CultureInfo("pt-BR"));
+                lblTotal.Text = total.ToString("N2", new CultureInfo("pt-BR"));
                 lblTotal.ForeColor = Color.Green;
             }
         }
