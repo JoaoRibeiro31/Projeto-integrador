@@ -57,9 +57,9 @@
             lblTitulo.BorderStyle = BorderStyle.FixedSingle;
             lblTitulo.FlatStyle = FlatStyle.Flat;
             lblTitulo.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(734, 25);
+            lblTitulo.Location = new Point(754, 33);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(412, 66);
+            lblTitulo.Size = new Size(450, 66);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Área de cadastro de clientes";
             // 
@@ -94,7 +94,7 @@
             // 
             lblNome.AutoSize = true;
             lblNome.BackColor = Color.White;
-            lblNome.Location = new Point(495, 757);
+            lblNome.Location = new Point(499, 796);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(53, 20);
             lblNome.TabIndex = 4;
@@ -104,7 +104,7 @@
             // 
             lblContato.AutoSize = true;
             lblContato.BackColor = Color.White;
-            lblContato.Location = new Point(483, 831);
+            lblContato.Location = new Point(487, 870);
             lblContato.Name = "lblContato";
             lblContato.Size = new Size(65, 20);
             lblContato.TabIndex = 5;
@@ -116,7 +116,7 @@
             pnlCadastro.Controls.Add(btnCadastrar);
             pnlCadastro.Controls.Add(txtNome);
             pnlCadastro.Controls.Add(txtContato);
-            pnlCadastro.Location = new Point(464, 739);
+            pnlCadastro.Location = new Point(468, 778);
             pnlCadastro.Margin = new Padding(3, 4, 3, 4);
             pnlCadastro.Name = "pnlCadastro";
             pnlCadastro.Size = new Size(882, 147);
@@ -126,7 +126,7 @@
             // 
             dvgTabela.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dvgTabela.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvgTabela.Location = new Point(402, 187);
+            dvgTabela.Location = new Point(402, 229);
             dvgTabela.Margin = new Padding(3, 4, 3, 4);
             dvgTabela.Name = "dvgTabela";
             dvgTabela.RowHeadersWidth = 51;
@@ -202,7 +202,7 @@
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Location = new Point(477, 125);
+            txtPesquisar.Location = new Point(505, 153);
             txtPesquisar.Margin = new Padding(3, 4, 3, 4);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar:";
@@ -213,18 +213,19 @@
             // btnEdicao
             // 
             btnEdicao.BackgroundImage = (Image)resources.GetObject("btnEdicao.BackgroundImage");
+            btnEdicao.BackgroundImageLayout = ImageLayout.Stretch;
             btnEdicao.FlatStyle = FlatStyle.Flat;
-            btnEdicao.Location = new Point(1503, 187);
+            btnEdicao.Location = new Point(1512, 229);
             btnEdicao.Margin = new Padding(3, 4, 3, 4);
             btnEdicao.Name = "btnEdicao";
-            btnEdicao.Size = new Size(65, 81);
+            btnEdicao.Size = new Size(75, 69);
             btnEdicao.TabIndex = 19;
             btnEdicao.UseVisualStyleBackColor = true;
             btnEdicao.Click += btnEdicao_Click;
             // 
             // btnAtualizar
             // 
-            btnAtualizar.Location = new Point(1505, 320);
+            btnAtualizar.Location = new Point(1503, 349);
             btnAtualizar.Margin = new Padding(3, 4, 3, 4);
             btnAtualizar.Name = "btnAtualizar";
             btnAtualizar.Size = new Size(86, 31);
@@ -235,7 +236,7 @@
             // 
             // btnDeletar
             // 
-            btnDeletar.Location = new Point(1503, 359);
+            btnDeletar.Location = new Point(1501, 388);
             btnDeletar.Margin = new Padding(3, 4, 3, 4);
             btnDeletar.Name = "btnDeletar";
             btnDeletar.Size = new Size(86, 31);
