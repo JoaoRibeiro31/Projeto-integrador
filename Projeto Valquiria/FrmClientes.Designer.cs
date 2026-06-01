@@ -203,11 +203,11 @@
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Location = new Point(505, 153);
+            txtPesquisar.Location = new Point(402, 153);
             txtPesquisar.Margin = new Padding(3, 4, 3, 4);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar:";
-            txtPesquisar.Size = new Size(829, 27);
+            txtPesquisar.Size = new Size(1048, 27);
             txtPesquisar.TabIndex = 18;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 

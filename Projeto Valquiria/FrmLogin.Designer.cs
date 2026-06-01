@@ -81,7 +81,7 @@
             button1.TabIndex = 3;
             button1.Text = "Esqueci a Senha";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += btnEsqueciSenha_Click;
             // 
             // panel1
             // 
