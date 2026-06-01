@@ -1,76 +1,74 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Data;
+using System.Drawing;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Globalization;
-using System.Text.RegularExpressions;
-
+using MySql.Data.MySqlClient;
 
 namespace Projeto_Valquiria
 {
     public partial class FrmClientes : Form
     {
-        string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
-        private bool editando = false; // controle de edição
+        private string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
+        private bool editando = false;
+        private System.Windows.Forms.Timer timerPesquisa = new System.Windows.Forms.Timer();
 
         public FrmClientes()
         {
             InitializeComponent();
         }
 
-        public void CarregarDadosClientes()
-        {
-            MySqlConnection conn = new MySqlConnection(conexao);
-
-            try
-            {
-                conn.Open();
-                string sql = @"SELECT id AS Id,
-                                      nome AS Nome,
-                                      contato AS Contato,
-                                      data_de_cadastro AS Cadastro
-                               FROM clientes
-                               ORDER BY data_de_cadastro DESC;";
-
-                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
-                DataTable tabela = new DataTable();
-                adapter.Fill(tabela);
-
-                dvgTabela.DataSource = tabela;
-                dvgTabela.Columns["Id"].Visible = false;
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao carregar clientes: " + erro.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
         private void FrmClientes_Load(object sender, EventArgs e)
         {
             CarregarDadosClientes();
 
-            // 🔄 Botões começam invisíveis
             btnAtualizar.Visible = false;
             btnDeletar.Visible = false;
-
-            // tabela começa bloqueada
             dvgTabela.ReadOnly = true;
+        }
+
+        // ---------- CARREGAR CLIENTES ----------
+        public void CarregarDadosClientes(string filtro = "")
+        {
+            using (MySqlConnection conn = new MySqlConnection(conexao))
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = @"SELECT id AS Id,
+                                          nome AS Nome,
+                                          contato AS Contato,
+                                          data_de_cadastro AS Cadastro
+                                   FROM clientes
+                                   WHERE (nome LIKE @filtro
+                                          OR contato LIKE @filtro
+                                          OR data_de_cadastro LIKE @filtro)
+                                   ORDER BY nome ASC;";
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
+                    adapter.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+
+                    DataTable tabela = new DataTable();
+                    adapter.Fill(tabela);
+
+                    dvgTabela.DataSource = tabela;
+                    dvgTabela.Columns["Id"].Visible = false;
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show("Erro ao carregar clientes: " + erro.Message,
+                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         // ---------- CADASTRAR ----------
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            // 🚫 Verificação de campos obrigatórios
             if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtContato.Text))
             {
-                MessageBox.Show("Preencha todos os campos antes de cadastrar o cliente!",
+                MessageBox.Show("Preencha todos os campos antes de cadastrar!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -78,102 +76,77 @@ namespace Projeto_Valquiria
             string nome = txtNome.Text.Trim();
             string contato = txtContato.Text.Trim();
 
-            // 🔒 Limite de caracteres
-            if (nome.Length > 120)
+            if (nome.Length > 120 || contato.Length > 80)
             {
-                MessageBox.Show("O nome deve ter no máximo 120 caracteres!",
+                MessageBox.Show("Nome ou contato excedem o limite de caracteres!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (contato.Length > 80)
-            {
-                MessageBox.Show("O contato deve ter no máximo 80 caracteres!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // 🔒 Validação de nome (letras, espaços, hífen e apóstrofo)
             Regex regexNome = new Regex(@"^[A-Za-zÀ-ÿ\s'-]+$");
             nome = Regex.Replace(nome, @"\s+", " ");
             if (!regexNome.IsMatch(nome) || nome.Trim().Length < 2)
             {
-                MessageBox.Show("Digite um nome válido (somente letras, espaços, hífen ou apóstrofo)!",
+                MessageBox.Show("Digite um nome válido!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 🔄 Formatar nome para Title Case
             TextInfo textInfo = new CultureInfo("pt-BR", false).TextInfo;
             nome = textInfo.ToTitleCase(nome.ToLower());
 
-            // 🔒 Validação de contato (telefone ou email)
-            Regex regexTelefone = new Regex(@"^\d{8,}$"); // mínimo 8 dígitos numéricos
+            Regex regexTelefone = new Regex(@"^\d{8,}$");
             Regex regexEmail = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
-
             if (!regexTelefone.IsMatch(contato) && !regexEmail.IsMatch(contato))
             {
-                MessageBox.Show("O contato deve ser um telefone válido (apenas números) ou um e-mail válido!",
+                MessageBox.Show("O contato deve ser um telefone válido ou um e-mail válido!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Se passou nas validações, insere no banco
-            MySqlConnection conn = new MySqlConnection(conexao);
+            using (MySqlConnection conn = new MySqlConnection(conexao))
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = @"INSERT INTO clientes (nome, contato) VALUES (@nome, @contato)";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@nome", nome);
+                    cmd.Parameters.AddWithValue("@contato", contato);
+                    cmd.ExecuteNonQuery();
 
-            try
-            {
-                conn.Open();
-                string sql = @"INSERT INTO clientes (nome, contato) VALUES (@nome, @contato)";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@nome", nome);
-                cmd.Parameters.AddWithValue("@contato", contato);
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show($"Cliente '{nome}' cadastrado com sucesso!",
-                                "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao cadastrar cliente: " + erro.Message,
-                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conn.Close();
+                    MessageBox.Show($"Cliente '{nome}' cadastrado com sucesso!",
+                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show("Erro ao cadastrar cliente: " + erro.Message,
+                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
             CarregarDadosClientes();
-
             txtNome.Clear();
             txtContato.Clear();
         }
 
-        // ---------- PESQUISA ----------
+        // ---------- PESQUISA COM DELAY ----------
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                string filtro = txtPesquisar.Text.Replace("'", "''");
+            timerPesquisa.Stop();
+            timerPesquisa.Interval = 500; // meio segundo
 
-                if (string.IsNullOrWhiteSpace(filtro))
-                {
-                    (dvgTabela.DataSource as DataTable).DefaultView.RowFilter = "";
-                }
-                else
-                {
-                    (dvgTabela.DataSource as DataTable).DefaultView.RowFilter =
-                        $"Nome LIKE '%{filtro}%' OR " +
-                        $"Contato LIKE '%{filtro}%' OR " +
-                        $"Convert(Cadastro, 'System.String') LIKE '%{filtro}%'";
-                }
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao aplicar filtro de pesquisa: " + erro.Message);
-            }
+            timerPesquisa.Tick -= TimerPesquisa_Tick;
+            timerPesquisa.Tick += TimerPesquisa_Tick;
+
+            timerPesquisa.Start();
         }
 
+        private void TimerPesquisa_Tick(object sender, EventArgs e)
+        {
+            timerPesquisa.Stop();
+            CarregarDadosClientes(txtPesquisar.Text);
+        }
         // ---------- EDIÇÃO ----------
         private void btnEdicao_Click(object sender, EventArgs e)
         {
@@ -196,7 +169,7 @@ namespace Projeto_Valquiria
         // ---------- ATUALIZAR ----------
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            int contadorAtualizados = 0; // contador de alterações
+            int contadorAtualizados = 0;
 
             DialogResult confirmacao = MessageBox.Show(
                 "Confirma atualizar os clientes?",
@@ -204,86 +177,20 @@ namespace Projeto_Valquiria
 
             if (confirmacao == DialogResult.No) return;
 
-            MySqlConnection conn = new MySqlConnection(conexao);
-
-            try
+            using (MySqlConnection conn = new MySqlConnection(conexao))
             {
-                conn.Open();
-
-                foreach (DataGridViewRow row in dvgTabela.Rows)
+                try
                 {
-                    if (row.IsNewRow) continue;
+                    conn.Open();
 
-                    bool houveAlteracaoLinha = false;
-
-                    int id = Convert.ToInt32(row.Cells["Id"].Value);
-                    string nome = row.Cells["Nome"].Value.ToString().Trim();
-                    string contato = row.Cells["Contato"].Value.ToString().Trim();
-
-                    // 🔒 Validação de tamanho
-                    if (nome.Length > 120)
+                    foreach (DataGridViewRow row in dvgTabela.Rows)
                     {
-                        MessageBox.Show($"O nome do(a) cliente (ID {id}) excede 120 caracteres!",
-                                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        continue;
-                    }
+                        if (row.IsNewRow) continue;
 
-                    if (contato.Length > 80)
-                    {
-                        MessageBox.Show($"O contato do(a) cliente (ID {id}) excede 80 caracteres!",
-                                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        continue;
-                    }
+                        int id = Convert.ToInt32(row.Cells["Id"].Value);
+                        string nome = row.Cells["Nome"].Value.ToString().Trim();
+                        string contato = row.Cells["Contato"].Value.ToString().Trim();
 
-                    // 🔒 Validação de nome (letras, espaços, hífen e apóstrofo)
-                    Regex regexNome = new Regex(@"^[A-Za-zÀ-ÿ\s'-]+$");
-
-                    nome = Regex.Replace(nome, @"\s+", " "); // normaliza espaços
-
-                    if (!regexNome.IsMatch(nome) || nome.Trim().Length < 2)
-                    {
-                        MessageBox.Show($"O nome do(a) cliente (ID {id}) não é válido!",
-                                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        continue;
-                    }
-
-                    // 🔄 Formatar para Title Case
-                    TextInfo textInfo = new CultureInfo("pt-BR", false).TextInfo;
-                    nome = textInfo.ToTitleCase(nome.ToLower());
-
-
-                    // 🔒 Validação de contato (telefone ou email)
-                    Regex regexTelefone = new Regex(@"^\d{8,}$");
-                    Regex regexEmail = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
-
-                    if (!regexTelefone.IsMatch(contato) && !regexEmail.IsMatch(contato))
-                    {
-                        MessageBox.Show($"O contato do(a) cliente (ID {id}) não é válido. Deve ser telefone ou email!",
-                                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        continue;
-                    }
-
-                    // Verifica se houve alteração
-                    string sqlCheck = "SELECT nome, contato FROM clientes WHERE id = @id";
-                    MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
-                    cmdCheck.Parameters.AddWithValue("@id", id);
-
-                    using (var reader = cmdCheck.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            string nomeAtual = reader.GetString("nome");
-                            string contatoAtual = reader.GetString("contato");
-
-                            if (nome != nomeAtual || contato != contatoAtual)
-                            {
-                                houveAlteracaoLinha = true;
-                            }
-                        }
-                    }
-
-                    if (houveAlteracaoLinha)
-                    {
                         string sql = "UPDATE clientes SET nome = @nome, contato = @contato WHERE id = @id";
                         MySqlCommand cmd = new MySqlCommand(sql, conn);
                         cmd.Parameters.AddWithValue("@nome", nome);
@@ -293,38 +200,23 @@ namespace Projeto_Valquiria
 
                         contadorAtualizados++;
                     }
-                }
 
-                // Mensagens mais elegantes e profissionais
-                if (contadorAtualizados == 0)
-                {
-                    MessageBox.Show("Nenhuma alteração detectada.",
-                                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (contadorAtualizados == 0)
+                        MessageBox.Show("Nenhuma alteração detectada.",
+                                        "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show($"Clientes atualizados com sucesso! ({contadorAtualizados} registros)",
+                                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else if (contadorAtualizados == 1)
+                catch (Exception erro)
                 {
-                    MessageBox.Show("Cliente atualizado com sucesso!",
-                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Erro ao atualizar clientes: " + erro.Message,
+                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else
-                {
-                    MessageBox.Show($"Clientes atualizados com sucesso! ({contadorAtualizados} registros)",
-                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao atualizar clientes: " + erro.Message);
-            }
-            finally
-            {
-                conn.Close();
             }
 
             CarregarDadosClientes();
         }
-
-
 
         // ---------- DELETAR ----------
         private void btnDeletar_Click(object sender, EventArgs e)
@@ -344,32 +236,28 @@ namespace Projeto_Valquiria
 
             if (confirmacao == DialogResult.No) return;
 
-            MySqlConnection conn = new MySqlConnection(conexao);
+            using (MySqlConnection conn = new MySqlConnection(conexao))
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = "DELETE FROM clientes WHERE nome = @nome";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@nome", nome);
+                    cmd.ExecuteNonQuery();
 
-            try
-            {
-                conn.Open();
-                string sql = "DELETE FROM clientes WHERE nome = @nome";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@nome", nome);
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show($"Cliente '{nome}' excluído com sucesso!",
-                                "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao excluir o(a) cliente: " + erro.Message,
-                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conn.Close();
+                    MessageBox.Show($"Cliente '{nome}' excluído com sucesso!",
+                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show("Erro ao excluir cliente: " + erro.Message,
+                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
             CarregarDadosClientes();
         }
-
 
         // ---------- NAVEGAÇÃO ----------
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -391,11 +279,6 @@ namespace Projeto_Valquiria
             FrmPedidos tela = new FrmPedidos();
             tela.Show();
             this.Hide();
-        }
-
-        private void dvgTabela_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
