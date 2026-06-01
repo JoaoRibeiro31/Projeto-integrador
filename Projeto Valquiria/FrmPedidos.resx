@@ -117,14 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="btnPedido.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnHome.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADUAAAA1CAYAAADh5qNwAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAABkFJREFUaEPtmXlsFHUUx79zz17tLj22lZ5BKOWSgtwi2IIa07REPAgeCTHGIEaI
+        vAAADrwBlbxySQAABkFJREFUaEPtmXlsFHUUx79zz17tLj22lZ5BKOWSgtwi2IIa07REPAgeCTHGIEaI
         oIZQFBIQIodRRFFCyxGjKOA/yj9CgIAhIBLAKEVAQaughuBFoSp95g2zdfzt2t1tO+1i+pJPdmZn5vV9
         9/d77/fmV6Dbuu1/bRKACgANAEaLF69H0wA8LktovH2g+T2ASwCm2EKvS/MD2GRoUtPie0N08Y1CmlsV
         JFXBZQDLAejiA6lu2QB25QYV2vpkNjXVFdMf64vpSl0x1T6aRWkeuRnAWwDSxQdT1foDONI7R6PDi3pa
@@ -157,10 +154,10 @@
   <metadata name="btnPedido.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="btnEditar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnEdicao.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADkAAAA7CAYAAADB0CKOAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAACaBJREFUaEPtmgdwjWsax/8nV4QlJAQnSCJKEESExF69C0JwxVVWi84lF6P3ZVkM
+        vAAADrwBlbxySQAACaBJREFUaEPtmgdwjWsax/8nV4QlJAQnSCJKEESExF69C0JwxVVWi84lF6P3ZVkM
         Y+/VGb3L6HVZ1qzoo4yyyhK9GyU6ybPzf+dLJnlvQs45X8Y1N7+ZTCY53znf837P8z7l/x4gk0wyyeQP
         hgVAGQCdAEwCEA3gGIA1ANz1i78FCgFoBiAKwAIAJzw9PRPq1KkjI0aMkKVLl8rRo0flyZMnMmHCBAEw
         V/+A3xNZAPgB+AHAXwHsdXFxuV+pUiXp06ePTJs2TbZv3y63b9+WtHj37p3kzp37OQAX/cO/FoEAfgaw

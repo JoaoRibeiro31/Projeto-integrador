@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using System.Globalization;
-
 
 namespace Projeto_Valquiria
 {
@@ -43,41 +37,35 @@ namespace Projeto_Valquiria
             txtQuantidade.Clear();
             lblValorProduto.Text = "";
             lblTotal.Text = "";
-            lblContato.Text = "";   // 🔄 limpa também o contato
+            lblContato.Text = "";
 
-            // botão deletar começa escondido
             btnDeletar.Visible = false;
         }
-
 
         // ---------- CLIENTES ----------
         private void CarregarClientes()
         {
-            MySqlConnection conn = new MySqlConnection(conexao);
+            using (MySqlConnection conn = new MySqlConnection(conexao))
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = "SELECT id, nome, contato FROM clientes";
+                    MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+                    dt = new DataTable();
+                    da.Fill(dt);
 
-            try
-            {
-                conn.Open();
-                string sql = "SELECT id, nome, contato FROM clientes";
-                MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
-                dt = new DataTable();
-                da.Fill(dt);
-
-                cmbClientes.DataSource = dt;
-                cmbClientes.DisplayMember = "nome";
-                cmbClientes.ValueMember = "id";
-                cmbClientes.Tag = dt;
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao carregar clientes: " + erro.Message);
-            }
-            finally
-            {
-                conn.Close();
+                    cmbClientes.DataSource = dt;
+                    cmbClientes.DisplayMember = "nome";
+                    cmbClientes.ValueMember = "id";
+                    cmbClientes.Tag = dt;
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show("Erro ao carregar clientes: " + erro.Message);
+                }
             }
         }
-
 
         private void cmbClientes_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -91,31 +79,27 @@ namespace Projeto_Valquiria
         // ---------- PRODUTOS ----------
         private void CarregarProdutos()
         {
-            MySqlConnection conn = new MySqlConnection(conexao);
+            using (MySqlConnection conn = new MySqlConnection(conexao))
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = "SELECT id, nome, valor FROM produtos";
+                    MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-            try
-            {
-                conn.Open();
-                string sql = "SELECT id, nome, valor FROM produtos";
-                MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                cmbProdutos.DataSource = dt;
-                cmbProdutos.DisplayMember = "nome";
-                cmbProdutos.ValueMember = "id";
-                cmbProdutos.Tag = dt;
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao carregar produtos: " + erro.Message);
-            }
-            finally
-            {
-                conn.Close();
+                    cmbProdutos.DataSource = dt;
+                    cmbProdutos.DisplayMember = "nome";
+                    cmbProdutos.ValueMember = "id";
+                    cmbProdutos.Tag = dt;
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show("Erro ao carregar produtos: " + erro.Message);
+                }
             }
         }
-
 
         private void cmbProdutos_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -146,13 +130,36 @@ namespace Projeto_Valquiria
         }
 
         // ---------- CADASTRAR PEDIDO ----------
-        private void btnCadastrarPedido_Click_1(object sender, EventArgs e)
+        private void btnCadastrar_Click_1(object sender, EventArgs e)
         {
-            // Validação dos campos obrigatórios
+            // 🚫 Verificação de campos obrigatórios
             if (cmbClientes.SelectedIndex == -1 || cmbProdutos.SelectedIndex == -1 ||
                 cmbStatus.SelectedIndex == -1 || string.IsNullOrWhiteSpace(txtQuantidade.Text))
             {
                 MessageBox.Show("Preencha todos os campos antes de cadastrar o pedido!",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 🔒 Validação da quantidade
+            if (!int.TryParse(txtQuantidade.Text, out int qtd) || qtd <= 0)
+            {
+                MessageBox.Show("Digite uma quantidade válida (maior que 0)!",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (qtd > 999)
+            {
+                MessageBox.Show("A quantidade máxima permitida é 999 unidades!",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 🔒 Validação do valor total
+            if (!decimal.TryParse(lblTotal.Text, NumberStyles.Number, new CultureInfo("pt-BR"), out decimal total) || total <= 0)
+            {
+                MessageBox.Show("O valor total do pedido deve ser maior que 0!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -167,32 +174,31 @@ namespace Projeto_Valquiria
             if (confirmacao == DialogResult.No)
                 return;
 
-            MySqlConnection conn = new MySqlConnection(conexao);
-
-            try
+            using (MySqlConnection conn = new MySqlConnection(conexao))
             {
-                conn.Open();
-                string sql = @"INSERT INTO pedidos 
-                       (cliente_id, produto_id, quantidade, valor_total, status_pagamento) 
-                       VALUES (@cliente, @produto, @qtd, @total, @status)";
+                try
+                {
+                    conn.Open();
+                    string sql = @"INSERT INTO pedidos 
+                                   (cliente_id, produto_id, quantidade, valor_total, status_pagamento) 
+                                   VALUES (@cliente, @produto, @qtd, @total, @status)";
 
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@cliente", cmbClientes.SelectedValue);
-                cmd.Parameters.AddWithValue("@produto", cmbProdutos.SelectedValue);
-                cmd.Parameters.AddWithValue("@qtd", int.Parse(txtQuantidade.Text));
-                cmd.Parameters.AddWithValue("@total", decimal.Parse(lblTotal.Text, new System.Globalization.CultureInfo("pt-BR")));
-                cmd.Parameters.AddWithValue("@status", cmbStatus.SelectedItem.ToString());
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@cliente", cmbClientes.SelectedValue);
+                    cmd.Parameters.AddWithValue("@produto", cmbProdutos.SelectedValue);
+                    cmd.Parameters.AddWithValue("@qtd", qtd);
+                    cmd.Parameters.AddWithValue("@total", total);
+                    cmd.Parameters.AddWithValue("@status", cmbStatus.SelectedItem.ToString());
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Pedido cadastrado com sucesso!");
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao cadastrar pedido: " + erro.Message);
-            }
-            finally
-            {
-                conn.Close();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Pedido cadastrado com sucesso!",
+                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show("Erro ao cadastrar pedido: " + erro.Message,
+                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
             CarregarPedidos(); // atualiza tabela
@@ -207,107 +213,104 @@ namespace Projeto_Valquiria
             lblContato.Text = "";
         }
 
-
-
         // ---------- DATAGRIDVIEW ----------
         private void CarregarPedidos()
         {
-            MySqlConnection conn = new MySqlConnection(conexao);
-
-            try
+            using (MySqlConnection conn = new MySqlConnection(conexao))
             {
-                conn.Open();
-                string sql = @"SELECT p.id, c.nome AS Cliente, pr.nome AS Produto,
-                              p.quantidade, p.valor_total, p.data_pedido, p.status_pagamento
-                       FROM pedidos p
-                       JOIN clientes c ON p.cliente_id = c.id
-                       JOIN produtos pr ON p.produto_id = pr.id
-                       ORDER BY data_pedido desc;";
-
-                MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
-                dt = new DataTable();
-                da.Fill(dt);
-
-                dgvPedidos.DataSource = dt;
-                dgvPedidos.Columns["id"].Visible = false;
-
-                if (dgvPedidos.Columns.Contains("status_pagamento"))
+                try
                 {
-                    dgvPedidos.Columns.Remove("status_pagamento");
+                    conn.Open();
+                    string sql = @"SELECT p.id, c.nome AS Cliente, pr.nome AS Produto,
+                                   p.quantidade, p.valor_total, p.data_pedido, p.status_pagamento
+                                   FROM pedidos p
+                                   JOIN clientes c ON p.cliente_id = c.id
+                                   JOIN produtos pr ON p.produto_id = pr.id
+                                   ORDER BY data_pedido DESC;";
 
-                    DataGridViewComboBoxColumn comboStatus = new DataGridViewComboBoxColumn();
-                    comboStatus.HeaderText = "Status";
-                    comboStatus.Name = "status_pagamento";
-                    comboStatus.DataPropertyName = "status_pagamento";
-                    comboStatus.Items.Add("Pago");
-                    comboStatus.Items.Add("Pendente");
-                    comboStatus.ReadOnly = false;
+                    MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+                    dt = new DataTable();
+                    da.Fill(dt);
 
-                    dgvPedidos.Columns.Add(comboStatus);
+                    dgvPedidos.DataSource = dt;
+                    dgvPedidos.Columns["id"].Visible = false;
+
+                    if (dgvPedidos.Columns.Contains("status_pagamento"))
+                    {
+                        dgvPedidos.Columns.Remove("status_pagamento");
+
+                        DataGridViewComboBoxColumn comboStatus = new DataGridViewComboBoxColumn();
+                        comboStatus.HeaderText = "Status";
+                        comboStatus.Name = "status_pagamento";
+                        comboStatus.DataPropertyName = "status_pagamento";
+                        comboStatus.Items.Add("Pago");
+                        comboStatus.Items.Add("Pendente");
+                        comboStatus.ReadOnly = false;
+
+                        dgvPedidos.Columns.Add(comboStatus);
+                    }
+
+                    dgvPedidos.ReadOnly = false;
                 }
-
-                dgvPedidos.ReadOnly = false;
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao carregar pedidos: " + erro.Message);
-            }
-            finally
-            {
-                conn.Close();
+                catch (Exception erro)
+                {
+                    MessageBox.Show("Erro ao carregar pedidos: " + erro.Message);
+                }
             }
         }
 
-
+        // ---------- ATUALIZA STATUS ----------
         private void dgvPedidos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvPedidos.Columns[e.ColumnIndex].Name == "status_pagamento" && e.RowIndex >= 0)
             {
                 int idPedido = Convert.ToInt32(dgvPedidos.Rows[e.RowIndex].Cells["id"].Value);
-                string novoStatus = dgvPedidos.Rows[e.RowIndex].Cells["status_pagamento"].Value.ToString();
+                string novoStatus = dgvPedidos.Rows[e.RowIndex].Cells["status_pagamento"].Value?.ToString();
 
-                MySqlConnection conn = new MySqlConnection(conexao);
+                // 🚫 Validação do status
+                if (novoStatus != "Pago" && novoStatus != "Pendente")
+                {
+                    MessageBox.Show("Status inválido! Use apenas 'Pago' ou 'Pendente'.",
+                                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    CarregarPedidos();
+                    return;
+                }
 
-                try
+                using (MySqlConnection conn = new MySqlConnection(conexao))
                 {
-                    conn.Open();
-                    string sql = "UPDATE pedidos SET status_pagamento = @status WHERE id = @id";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@status", novoStatus);
-                    cmd.Parameters.AddWithValue("@id", idPedido);
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception erro)
-                {
-                    MessageBox.Show("Erro ao atualizar status: " + erro.Message);
-                }
-                finally
-                {
-                    conn.Close();
+                    try
+                    {
+                        conn.Open();
+                        string sql = "UPDATE pedidos SET status_pagamento = @status WHERE id = @id";
+                        MySqlCommand cmd = new MySqlCommand(sql, conn);
+                        cmd.Parameters.AddWithValue("@status", novoStatus);
+                        cmd.Parameters.AddWithValue("@id", idPedido);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception erro)
+                    {
+                        MessageBox.Show("Erro ao atualizar status: " + erro.Message);
+                    }
                 }
             }
         }
 
-
         // ---------- EDITAR / DELETAR ----------
-        private void btnEditar_Click(object sender, EventArgs e)
+        private void btnEdicao_Click(object sender, EventArgs e)
         {
             if (!editando)
             {
-                btnEditar.Text = "Bloquear Edição";
-                dgvPedidos.ReadOnly = false; // libera edição
-                btnDeletar.Visible = true;   // mostra botão deletar
+                dgvPedidos.ReadOnly = false;
+                btnDeletar.Visible = true;
                 editando = true;
             }
             else
             {
-                btnEditar.Text = "Editar";
-                dgvPedidos.ReadOnly = true;  // bloqueia edição
-                btnDeletar.Visible = false;  // esconde botão deletar
+                dgvPedidos.ReadOnly = true;
+                btnDeletar.Visible = false;
                 editando = false;
             }
         }
-
 
         private void btnDeletar_Click(object sender, EventArgs e)
         {
@@ -319,9 +322,11 @@ namespace Projeto_Valquiria
             }
 
             int idPedido = Convert.ToInt32(dgvPedidos.CurrentRow.Cells["id"].Value);
+            string cliente = dgvPedidos.CurrentRow.Cells["Cliente"].Value.ToString();
+            string produto = dgvPedidos.CurrentRow.Cells["Produto"].Value.ToString();
 
             DialogResult confirmacao = MessageBox.Show(
-                "Confirma excluir este pedido?",
+                $"Confirma excluir o pedido do cliente '{cliente}' para o produto '{produto}'?",
                 "Confirmação",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning
@@ -330,28 +335,27 @@ namespace Projeto_Valquiria
             if (confirmacao == DialogResult.No)
                 return;
 
-            MySqlConnection conn = new MySqlConnection(conexao);
-
-            try
+            using (MySqlConnection conn = new MySqlConnection(conexao))
             {
-                conn.Open();
-                string sql = "DELETE FROM pedidos WHERE id = @id";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@id", idPedido);
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    conn.Open();
+                    string sql = "DELETE FROM pedidos WHERE id = @id";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@id", idPedido);
+                    cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Pedido excluído com sucesso!");
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao excluir pedido: " + erro.Message);
-            }
-            finally
-            {
-                conn.Close(); // garante que o banco será fechado
+                    MessageBox.Show("Pedido excluído com sucesso!",
+                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show("Erro ao excluir pedido: " + erro.Message,
+                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
-            CarregarPedidos(); // atualiza a tabela
+            CarregarPedidos();
         }
 
         // ---------- NAVEGAÇÃO ----------
@@ -369,7 +373,7 @@ namespace Projeto_Valquiria
             this.Close();
         }
 
-        private void btnCadastroCliente_Click(object sender, EventArgs e)
+        private void btnCliente_Click(object sender, EventArgs e)
         {
             FrmClientes tela = new FrmClientes();
             tela.ShowDialog();
@@ -402,16 +406,6 @@ namespace Projeto_Valquiria
             {
                 MessageBox.Show("Erro ao aplicar filtro de pesquisa: " + erro.Message);
             }
-        }
-
-        private void lblTotal_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblValor_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

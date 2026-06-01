@@ -30,31 +30,31 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPedidos));
             cmbClientes = new ComboBox();
-            btnCadastroCliente = new Button();
+            btnCliente = new Button();
             cmbProdutos = new ComboBox();
-            lblValor = new Label();
-            btnCadastrarPedido = new Button();
+            lblValorTotal = new Label();
+            btnCadastrar = new Button();
             btnProduto = new Button();
             a = new Label();
-            panel1 = new Panel();
+            pnlCadastro = new Panel();
             lblTotal = new Label();
             lblContato = new Label();
             lblValorProduto = new Label();
-            label3 = new Label();
-            label2 = new Label();
+            lblQuantidade = new Label();
+            lblValorP = new Label();
             cmbStatus = new ComboBox();
-            label1 = new Label();
+            lblNome = new Label();
             txtQuantidade = new TextBox();
             dgvPedidos = new DataGridView();
-            panel2 = new Panel();
+            pnlNavegacao = new Panel();
             btnHome = new Button();
             btnPedido = new Button();
-            btnEditar = new Button();
+            btnEdicao = new Button();
             txtPesquisar = new TextBox();
             btnDeletar = new Button();
-            panel1.SuspendLayout();
+            pnlCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
-            panel2.SuspendLayout();
+            pnlNavegacao.SuspendLayout();
             SuspendLayout();
             // 
             // cmbClientes
@@ -68,19 +68,19 @@
             cmbClientes.TabIndex = 0;
             cmbClientes.SelectedIndexChanged += cmbClientes_SelectedIndexChanged_1;
             // 
-            // btnCadastroCliente
+            // btnCliente
             // 
-            btnCadastroCliente.BackColor = Color.FromArgb(253, 208, 23);
-            btnCadastroCliente.FlatStyle = FlatStyle.Popup;
-            btnCadastroCliente.ForeColor = Color.White;
-            btnCadastroCliente.Location = new Point(70, 472);
-            btnCadastroCliente.Margin = new Padding(3, 4, 3, 4);
-            btnCadastroCliente.Name = "btnCadastroCliente";
-            btnCadastroCliente.Size = new Size(181, 57);
-            btnCadastroCliente.TabIndex = 1;
-            btnCadastroCliente.Text = "Cliente";
-            btnCadastroCliente.UseVisualStyleBackColor = false;
-            btnCadastroCliente.Click += btnCadastroCliente_Click;
+            btnCliente.BackColor = Color.FromArgb(253, 208, 23);
+            btnCliente.FlatStyle = FlatStyle.Popup;
+            btnCliente.ForeColor = Color.White;
+            btnCliente.Location = new Point(70, 472);
+            btnCliente.Margin = new Padding(3, 4, 3, 4);
+            btnCliente.Name = "btnCliente";
+            btnCliente.Size = new Size(181, 57);
+            btnCliente.TabIndex = 1;
+            btnCliente.Text = "Cliente";
+            btnCliente.UseVisualStyleBackColor = false;
+            btnCliente.Click += btnCliente_Click;
             // 
             // cmbProdutos
             // 
@@ -93,28 +93,27 @@
             cmbProdutos.Text = "Produtos";
             cmbProdutos.SelectedIndexChanged += cmbProdutos_SelectedIndexChanged_1;
             // 
-            // lblValor
+            // lblValorTotal
             // 
-            lblValor.BackColor = Color.White;
-            lblValor.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblValor.Location = new Point(18, 105);
-            lblValor.Name = "lblValor";
-            lblValor.Size = new Size(214, 36);
-            lblValor.TabIndex = 6;
-            lblValor.Text = "Valor total";
-            lblValor.Click += lblValor_Click;
+            lblValorTotal.BackColor = Color.White;
+            lblValorTotal.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblValorTotal.Location = new Point(18, 105);
+            lblValorTotal.Name = "lblValorTotal";
+            lblValorTotal.Size = new Size(214, 36);
+            lblValorTotal.TabIndex = 6;
+            lblValorTotal.Text = "Valor total";
             // 
-            // btnCadastrarPedido
+            // btnCadastrar
             // 
-            btnCadastrarPedido.BackColor = Color.White;
-            btnCadastrarPedido.Location = new Point(517, 103);
-            btnCadastrarPedido.Margin = new Padding(3, 4, 3, 4);
-            btnCadastrarPedido.Name = "btnCadastrarPedido";
-            btnCadastrarPedido.Size = new Size(223, 36);
-            btnCadastrarPedido.TabIndex = 9;
-            btnCadastrarPedido.Text = "Cadastrar Pedido";
-            btnCadastrarPedido.UseVisualStyleBackColor = false;
-            btnCadastrarPedido.Click += btnCadastrarPedido_Click_1;
+            btnCadastrar.BackColor = Color.White;
+            btnCadastrar.Location = new Point(517, 103);
+            btnCadastrar.Margin = new Padding(3, 4, 3, 4);
+            btnCadastrar.Name = "btnCadastrar";
+            btnCadastrar.Size = new Size(223, 36);
+            btnCadastrar.TabIndex = 9;
+            btnCadastrar.Text = "Cadastrar Pedido";
+            btnCadastrar.UseVisualStyleBackColor = false;
+            btnCadastrar.Click += btnCadastrar_Click_1;
             // 
             // btnProduto
             // 
@@ -142,26 +141,26 @@
             a.TabIndex = 11;
             a.Text = "Área de Cadastro de Pedidos";
             // 
-            // panel1
+            // pnlCadastro
             // 
-            panel1.BackColor = Color.White;
-            panel1.Controls.Add(lblTotal);
-            panel1.Controls.Add(lblContato);
-            panel1.Controls.Add(lblValorProduto);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(cmbStatus);
-            panel1.Controls.Add(cmbClientes);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(lblValor);
-            panel1.Controls.Add(txtQuantidade);
-            panel1.Controls.Add(cmbProdutos);
-            panel1.Controls.Add(btnCadastrarPedido);
-            panel1.Location = new Point(402, 760);
-            panel1.Margin = new Padding(3, 4, 3, 4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1048, 149);
-            panel1.TabIndex = 13;
+            pnlCadastro.BackColor = Color.White;
+            pnlCadastro.Controls.Add(lblTotal);
+            pnlCadastro.Controls.Add(lblContato);
+            pnlCadastro.Controls.Add(lblValorProduto);
+            pnlCadastro.Controls.Add(lblQuantidade);
+            pnlCadastro.Controls.Add(lblValorP);
+            pnlCadastro.Controls.Add(cmbStatus);
+            pnlCadastro.Controls.Add(cmbClientes);
+            pnlCadastro.Controls.Add(lblNome);
+            pnlCadastro.Controls.Add(lblValorTotal);
+            pnlCadastro.Controls.Add(txtQuantidade);
+            pnlCadastro.Controls.Add(cmbProdutos);
+            pnlCadastro.Controls.Add(btnCadastrar);
+            pnlCadastro.Location = new Point(402, 760);
+            pnlCadastro.Margin = new Padding(3, 4, 3, 4);
+            pnlCadastro.Name = "pnlCadastro";
+            pnlCadastro.Size = new Size(1048, 149);
+            pnlCadastro.TabIndex = 13;
             // 
             // lblTotal
             // 
@@ -170,7 +169,6 @@
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(93, 25);
             lblTotal.TabIndex = 13;
-            lblTotal.Click += lblTotal_Click;
             // 
             // lblContato
             // 
@@ -188,23 +186,23 @@
             lblValorProduto.Size = new Size(90, 20);
             lblValorProduto.TabIndex = 12;
             // 
-            // label3
+            // lblQuantidade
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(488, 67);
-            label3.Name = "label3";
-            label3.Size = new Size(87, 20);
-            label3.TabIndex = 12;
-            label3.Text = "Quantidade";
+            lblQuantidade.AutoSize = true;
+            lblQuantidade.Location = new Point(488, 67);
+            lblQuantidade.Name = "lblQuantidade";
+            lblQuantidade.Size = new Size(87, 20);
+            lblQuantidade.TabIndex = 12;
+            lblQuantidade.Text = "Quantidade";
             // 
-            // label2
+            // lblValorP
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(261, 67);
-            label2.Name = "label2";
-            label2.Size = new Size(100, 20);
-            label2.TabIndex = 12;
-            label2.Text = "Valor Produto";
+            lblValorP.AutoSize = true;
+            lblValorP.Location = new Point(261, 67);
+            lblValorP.Name = "lblValorP";
+            lblValorP.Size = new Size(100, 20);
+            lblValorP.TabIndex = 12;
+            lblValorP.Text = "Valor Produto";
             // 
             // cmbStatus
             // 
@@ -216,14 +214,14 @@
             cmbStatus.TabIndex = 11;
             cmbStatus.Text = "Status";
             // 
-            // label1
+            // lblNome
             // 
-            label1.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(35, 21);
-            label1.Name = "label1";
-            label1.Size = new Size(113, 28);
-            label1.TabIndex = 10;
-            label1.Text = "Nome Cliente:";
+            lblNome.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNome.Location = new Point(35, 21);
+            lblNome.Name = "lblNome";
+            lblNome.Size = new Size(113, 28);
+            lblNome.TabIndex = 10;
+            lblNome.Text = "Nome Cliente:";
             // 
             // txtQuantidade
             // 
@@ -246,19 +244,19 @@
             dgvPedidos.Size = new Size(1048, 541);
             dgvPedidos.TabIndex = 14;
             // 
-            // panel2
+            // pnlNavegacao
             // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            panel2.BackColor = Color.FromArgb(159, 214, 242);
-            panel2.Controls.Add(btnHome);
-            panel2.Controls.Add(btnPedido);
-            panel2.Controls.Add(btnCadastroCliente);
-            panel2.Controls.Add(btnProduto);
-            panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(3, 4, 3, 4);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(312, 925);
-            panel2.TabIndex = 15;
+            pnlNavegacao.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            pnlNavegacao.BackColor = Color.FromArgb(159, 214, 242);
+            pnlNavegacao.Controls.Add(btnHome);
+            pnlNavegacao.Controls.Add(btnPedido);
+            pnlNavegacao.Controls.Add(btnCliente);
+            pnlNavegacao.Controls.Add(btnProduto);
+            pnlNavegacao.Location = new Point(0, 0);
+            pnlNavegacao.Margin = new Padding(3, 4, 3, 4);
+            pnlNavegacao.Name = "pnlNavegacao";
+            pnlNavegacao.Size = new Size(312, 925);
+            pnlNavegacao.TabIndex = 15;
             // 
             // btnHome
             // 
@@ -289,27 +287,27 @@
             btnPedido.Text = "Pedidos";
             btnPedido.UseVisualStyleBackColor = false;
             // 
-            // btnEditar
+            // btnEdicao
             // 
-            btnEditar.BackgroundImageLayout = ImageLayout.Stretch;
-            btnEditar.Cursor = Cursors.Hand;
-            btnEditar.FlatStyle = FlatStyle.Popup;
-            btnEditar.ForeColor = Color.Transparent;
-            btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
-            btnEditar.Location = new Point(1503, 211);
-            btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(75, 69);
-            btnEditar.TabIndex = 16;
-            btnEditar.UseVisualStyleBackColor = true;
-            btnEditar.Click += btnEditar_Click;
+            btnEdicao.BackgroundImageLayout = ImageLayout.Stretch;
+            btnEdicao.Cursor = Cursors.Hand;
+            btnEdicao.FlatStyle = FlatStyle.Popup;
+            btnEdicao.ForeColor = Color.Transparent;
+            btnEdicao.Image = (Image)resources.GetObject("btnEdicao.Image");
+            btnEdicao.Location = new Point(1503, 211);
+            btnEdicao.Name = "btnEdicao";
+            btnEdicao.Size = new Size(75, 69);
+            btnEdicao.TabIndex = 16;
+            btnEdicao.UseVisualStyleBackColor = true;
+            btnEdicao.Click += btnEdicao_Click;
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Location = new Point(505, 153);
+            txtPesquisar.Location = new Point(402, 153);
             txtPesquisar.Margin = new Padding(3, 4, 3, 4);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar:";
-            txtPesquisar.Size = new Size(829, 27);
+            txtPesquisar.Size = new Size(1048, 27);
             txtPesquisar.TabIndex = 17;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
@@ -331,21 +329,21 @@
             ClientSize = new Size(1637, 925);
             Controls.Add(btnDeletar);
             Controls.Add(txtPesquisar);
-            Controls.Add(btnEditar);
+            Controls.Add(btnEdicao);
             Controls.Add(dgvPedidos);
             Controls.Add(a);
-            Controls.Add(panel1);
-            Controls.Add(panel2);
+            Controls.Add(pnlCadastro);
+            Controls.Add(pnlNavegacao);
             Margin = new Padding(3, 4, 3, 4);
             Name = "FrmPedidos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pedidos";
             WindowState = FormWindowState.Maximized;
             Load += FrmPedidos_Load_1;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            pnlCadastro.ResumeLayout(false);
+            pnlCadastro.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).EndInit();
-            panel2.ResumeLayout(false);
+            pnlNavegacao.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -353,25 +351,25 @@
         #endregion
 
         private ComboBox cmbClientes;
-        private Button btnCadastroCliente;
+        private Button btnCliente;
         private ComboBox cmbProdutos;
-        private Label lblValor;
-        private Button btnCadastrarPedido;
+        private Label lblValorTotal;
+        private Button btnCadastrar;
         private Button btnProduto;
         private Label a;
-        private Panel panel1;
+        private Panel pnlCadastro;
         private TextBox txtQuantidade;
-        private Label label1;
+        private Label lblNome;
         private ComboBox cmbStatus;
-        private Label label2;
+        private Label lblValorP;
         private Label lblContato;
         private Label lblValorProduto;
-        private Label label3;
+        private Label lblQuantidade;
         private DataGridView dgvPedidos;
-        private Panel panel2;
+        private Panel pnlNavegacao;
         private Button btnPedido;
         private Label lblTotal;
-        private Button btnEditar;
+        private Button btnEdicao;
         private Button btnHome;
         private TextBox txtPesquisar;
         private Button btnDeletar;
