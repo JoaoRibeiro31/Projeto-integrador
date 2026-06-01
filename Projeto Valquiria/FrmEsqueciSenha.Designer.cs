@@ -37,13 +37,11 @@
             btnAtualizar = new Button();
             btnFechar = new Button();
             txtUsuario = new TextBox();
-            panel1 = new Panel();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // txtCPF
             // 
-            txtCPF.Location = new Point(108, 27);
+            txtCPF.Location = new Point(164, 92);
             txtCPF.Name = "txtCPF";
             txtCPF.PlaceholderText = "123.456.789-09";
             txtCPF.Size = new Size(115, 23);
@@ -51,7 +49,7 @@
             // 
             // txtSenha
             // 
-            txtSenha.Location = new Point(108, 107);
+            txtSenha.Location = new Point(164, 150);
             txtSenha.Name = "txtSenha";
             txtSenha.PlaceholderText = "Digite uma Senha de até 10 digitos";
             txtSenha.Size = new Size(287, 23);
@@ -60,7 +58,7 @@
             // lblCpf
             // 
             lblCpf.AutoSize = true;
-            lblCpf.Location = new Point(62, 30);
+            lblCpf.Location = new Point(117, 92);
             lblCpf.Name = "lblCpf";
             lblCpf.Size = new Size(31, 15);
             lblCpf.TabIndex = 1;
@@ -69,7 +67,7 @@
             // lblNovaSenha
             // 
             lblNovaSenha.AutoSize = true;
-            lblNovaSenha.Location = new Point(29, 110);
+            lblNovaSenha.Location = new Point(85, 150);
             lblNovaSenha.Name = "lblNovaSenha";
             lblNovaSenha.Size = new Size(73, 15);
             lblNovaSenha.TabIndex = 2;
@@ -78,7 +76,7 @@
             // lblLogin
             // 
             lblLogin.AutoSize = true;
-            lblLogin.Location = new Point(53, 71);
+            lblLogin.Location = new Point(108, 121);
             lblLogin.Name = "lblLogin";
             lblLogin.Size = new Size(40, 15);
             lblLogin.TabIndex = 2;
@@ -86,7 +84,7 @@
             // 
             // btnAtualizar
             // 
-            btnAtualizar.Location = new Point(158, 170);
+            btnAtualizar.Location = new Point(219, 209);
             btnAtualizar.Name = "btnAtualizar";
             btnAtualizar.Size = new Size(169, 42);
             btnAtualizar.TabIndex = 3;
@@ -98,7 +96,7 @@
             // 
             btnFechar.FlatStyle = FlatStyle.Popup;
             btnFechar.Image = (Image)resources.GetObject("btnFechar.Image");
-            btnFechar.Location = new Point(440, 25);
+            btnFechar.Location = new Point(512, 35);
             btnFechar.Name = "btnFechar";
             btnFechar.Size = new Size(37, 25);
             btnFechar.TabIndex = 0;
@@ -108,40 +106,31 @@
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(108, 68);
+            txtUsuario.Location = new Point(164, 121);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.PlaceholderText = "Digite um novo nome de Login";
             txtUsuario.Size = new Size(287, 23);
             txtUsuario.TabIndex = 4;
             // 
-            // panel1
-            // 
-            panel1.BackColor = SystemColors.ControlDark;
-            panel1.Controls.Add(txtUsuario);
-            panel1.Controls.Add(btnFechar);
-            panel1.Controls.Add(btnAtualizar);
-            panel1.Controls.Add(lblLogin);
-            panel1.Controls.Add(lblNovaSenha);
-            panel1.Controls.Add(lblCpf);
-            panel1.Controls.Add(txtSenha);
-            panel1.Controls.Add(txtCPF);
-            panel1.Location = new Point(42, 40);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(498, 245);
-            panel1.TabIndex = 0;
-            // 
             // FrmAtualizarLogin
             // 
+            AcceptButton = btnAtualizar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlDark;
+            BackColor = Color.FromArgb(255, 255, 128);
             ClientSize = new Size(578, 333);
-            Controls.Add(panel1);
+            Controls.Add(btnFechar);
+            Controls.Add(txtUsuario);
+            Controls.Add(btnAtualizar);
+            Controls.Add(lblNovaSenha);
+            Controls.Add(lblLogin);
+            Controls.Add(lblCpf);
+            Controls.Add(txtCPF);
+            Controls.Add(txtSenha);
             Name = "FrmAtualizarLogin";
             Text = "FrmEsqueciSenha";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -154,6 +143,5 @@
         private Button btnAtualizar;
         private Button btnFechar;
         private TextBox txtUsuario;
-        private Panel panel1;
     }
 }

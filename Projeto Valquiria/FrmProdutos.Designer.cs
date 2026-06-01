@@ -59,11 +59,10 @@
             btnHome.BackgroundImageLayout = ImageLayout.Stretch;
             btnHome.FlatStyle = FlatStyle.Popup;
             btnHome.ForeColor = Color.Transparent;
-            btnHome.Location = new Point(14, 33);
-            btnHome.Margin = new Padding(3, 4, 3, 4);
+            btnHome.Location = new Point(12, 25);
             btnHome.Name = "btnHome";
-            btnHome.Size = new Size(61, 75);
-            btnHome.TabIndex = 3;
+            btnHome.Size = new Size(53, 56);
+            btnHome.TabIndex = 0;
             btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnHome_Click;
             // 
@@ -71,29 +70,28 @@
             // 
             dgvDadosProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDadosProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDadosProdutos.Location = new Point(402, 229);
-            dgvDadosProdutos.Margin = new Padding(3, 4, 3, 4);
+            dgvDadosProdutos.Location = new Point(352, 172);
             dgvDadosProdutos.Name = "dgvDadosProdutos";
             dgvDadosProdutos.RowHeadersWidth = 51;
-            dgvDadosProdutos.Size = new Size(1048, 541);
+            dgvDadosProdutos.Size = new Size(917, 406);
             dgvDadosProdutos.TabIndex = 5;
             // 
             // lblNome
             // 
             lblNome.BackColor = Color.White;
             lblNome.Font = new Font("Segoe UI", 10F);
-            lblNome.Location = new Point(17, 13);
+            lblNome.Location = new Point(15, 10);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(142, 33);
+            lblNome.Size = new Size(124, 25);
             lblNome.TabIndex = 1;
             // 
             // lblPreco
             // 
             lblPreco.BackColor = Color.White;
             lblPreco.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPreco.Location = new Point(32, 59);
+            lblPreco.Location = new Point(28, 44);
             lblPreco.Name = "lblPreco";
-            lblPreco.Size = new Size(127, 29);
+            lblPreco.Size = new Size(111, 22);
             lblPreco.TabIndex = 1;
             lblPreco.Text = "Valor do Produto";
             // 
@@ -102,32 +100,29 @@
             txtNome.BorderStyle = BorderStyle.FixedSingle;
             txtNome.Cursor = Cursors.IBeam;
             txtNome.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNome.Location = new Point(190, 13);
-            txtNome.Margin = new Padding(3, 4, 3, 4);
+            txtNome.Location = new Point(166, 10);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "Ex: Bolo";
-            txtNome.Size = new Size(383, 29);
-            txtNome.TabIndex = 1;
+            txtNome.Size = new Size(335, 25);
+            txtNome.TabIndex = 4;
             // 
             // txtValor
             // 
             txtValor.BorderStyle = BorderStyle.FixedSingle;
             txtValor.Cursor = Cursors.IBeam;
             txtValor.Font = new Font("Segoe UI", 10F);
-            txtValor.Location = new Point(190, 55);
-            txtValor.Margin = new Padding(3, 4, 3, 4);
+            txtValor.Location = new Point(166, 41);
             txtValor.Name = "txtValor";
             txtValor.PlaceholderText = "Ex: 9,99";
-            txtValor.Size = new Size(383, 30);
-            txtValor.TabIndex = 2;
+            txtValor.Size = new Size(335, 25);
+            txtValor.TabIndex = 5;
             // 
             // btnCadastrar
             // 
-            btnCadastrar.Location = new Point(611, 13);
-            btnCadastrar.Margin = new Padding(3, 4, 3, 4);
+            btnCadastrar.Location = new Point(535, 10);
             btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(150, 56);
-            btnCadastrar.TabIndex = 3;
+            btnCadastrar.Size = new Size(131, 42);
+            btnCadastrar.TabIndex = 6;
             btnCadastrar.Text = "Cadastrar Produto";
             btnCadastrar.UseVisualStyleBackColor = true;
             btnCadastrar.Click += btnCadastroProduto_Click;
@@ -140,10 +135,9 @@
             pnlCadastro.Controls.Add(txtValor);
             pnlCadastro.Controls.Add(lblPreco);
             pnlCadastro.Controls.Add(txtNome);
-            pnlCadastro.Location = new Point(402, 805);
-            pnlCadastro.Margin = new Padding(3, 4, 3, 4);
+            pnlCadastro.Location = new Point(352, 604);
             pnlCadastro.Name = "pnlCadastro";
-            pnlCadastro.Size = new Size(795, 104);
+            pnlCadastro.Size = new Size(696, 78);
             pnlCadastro.TabIndex = 4;
             // 
             // pnlNavegacao
@@ -155,9 +149,8 @@
             pnlNavegacao.Controls.Add(btnPedido);
             pnlNavegacao.Controls.Add(btnHome);
             pnlNavegacao.Location = new Point(0, 0);
-            pnlNavegacao.Margin = new Padding(3, 4, 3, 4);
             pnlNavegacao.Name = "pnlNavegacao";
-            pnlNavegacao.Size = new Size(312, 925);
+            pnlNavegacao.Size = new Size(273, 694);
             pnlNavegacao.TabIndex = 6;
             // 
             // btnCliente
@@ -165,11 +158,10 @@
             btnCliente.BackColor = Color.FromArgb(253, 208, 23);
             btnCliente.FlatStyle = FlatStyle.Popup;
             btnCliente.ForeColor = Color.White;
-            btnCliente.Location = new Point(70, 475);
-            btnCliente.Margin = new Padding(3, 4, 3, 4);
+            btnCliente.Location = new Point(61, 356);
             btnCliente.Name = "btnCliente";
-            btnCliente.Size = new Size(181, 63);
-            btnCliente.TabIndex = 6;
+            btnCliente.Size = new Size(158, 47);
+            btnCliente.TabIndex = 2;
             btnCliente.Text = "Cliente";
             btnCliente.UseVisualStyleBackColor = false;
             btnCliente.Click += btnCliente_Click;
@@ -180,11 +172,10 @@
             btnProduto.Cursor = Cursors.No;
             btnProduto.Enabled = false;
             btnProduto.ForeColor = Color.White;
-            btnProduto.Location = new Point(70, 404);
-            btnProduto.Margin = new Padding(3, 4, 3, 4);
+            btnProduto.Location = new Point(61, 303);
             btnProduto.Name = "btnProduto";
-            btnProduto.Size = new Size(181, 63);
-            btnProduto.TabIndex = 5;
+            btnProduto.Size = new Size(158, 47);
+            btnProduto.TabIndex = 17;
             btnProduto.Text = "Produtos";
             btnProduto.UseVisualStyleBackColor = false;
             // 
@@ -193,11 +184,10 @@
             btnPedido.BackColor = Color.FromArgb(164, 92, 218);
             btnPedido.FlatStyle = FlatStyle.Popup;
             btnPedido.ForeColor = Color.White;
-            btnPedido.Location = new Point(70, 333);
-            btnPedido.Margin = new Padding(3, 4, 3, 4);
+            btnPedido.Location = new Point(61, 250);
             btnPedido.Name = "btnPedido";
-            btnPedido.Size = new Size(181, 63);
-            btnPedido.TabIndex = 4;
+            btnPedido.Size = new Size(158, 47);
+            btnPedido.TabIndex = 1;
             btnPedido.Text = "Pedidos";
             btnPedido.UseVisualStyleBackColor = false;
             btnPedido.Click += btnPedido_Click;
@@ -207,20 +197,20 @@
             lblTitulo.BackColor = Color.White;
             lblTitulo.FlatStyle = FlatStyle.Flat;
             lblTitulo.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(754, 33);
+            lblTitulo.Location = new Point(660, 25);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(425, 59);
+            lblTitulo.Size = new Size(372, 44);
             lblTitulo.TabIndex = 7;
             lblTitulo.Text = "Área de Cadastro de Produtos";
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Location = new Point(402, 153);
-            txtPesquisar.Margin = new Padding(3, 4, 3, 4);
+            txtPesquisar.Location = new Point(352, 115);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar:";
-            txtPesquisar.Size = new Size(1048, 27);
-            txtPesquisar.TabIndex = 0;
+            txtPesquisar.Size = new Size(918, 23);
+            txtPesquisar.TabIndex = 3;
+            txtPesquisar.TabStop = false;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
             // btnEdicao
@@ -228,40 +218,42 @@
             btnEdicao.BackgroundImage = (Image)resources.GetObject("btnEdicao.BackgroundImage");
             btnEdicao.BackgroundImageLayout = ImageLayout.Stretch;
             btnEdicao.FlatStyle = FlatStyle.Flat;
-            btnEdicao.Location = new Point(1480, 229);
-            btnEdicao.Margin = new Padding(3, 4, 3, 4);
+            btnEdicao.Location = new Point(1295, 172);
             btnEdicao.Name = "btnEdicao";
-            btnEdicao.Size = new Size(65, 81);
-            btnEdicao.TabIndex = 8;
+            btnEdicao.Size = new Size(57, 61);
+            btnEdicao.TabIndex = 7;
             btnEdicao.UseVisualStyleBackColor = true;
             btnEdicao.Click += btnEdicao_Click;
             // 
             // btnAtualizar
             // 
-            btnAtualizar.Location = new Point(1480, 367);
+            btnAtualizar.Location = new Point(1295, 275);
+            btnAtualizar.Margin = new Padding(3, 2, 3, 2);
             btnAtualizar.Name = "btnAtualizar";
-            btnAtualizar.Size = new Size(94, 29);
-            btnAtualizar.TabIndex = 9;
+            btnAtualizar.Size = new Size(82, 22);
+            btnAtualizar.TabIndex = 8;
             btnAtualizar.Text = "Atualizar";
             btnAtualizar.UseVisualStyleBackColor = true;
             btnAtualizar.Click += btnAtualizar_Click;
             // 
             // btnDeletar
             // 
-            btnDeletar.Location = new Point(1480, 404);
+            btnDeletar.Location = new Point(1295, 303);
+            btnDeletar.Margin = new Padding(3, 2, 3, 2);
             btnDeletar.Name = "btnDeletar";
-            btnDeletar.Size = new Size(94, 29);
-            btnDeletar.TabIndex = 10;
+            btnDeletar.Size = new Size(82, 22);
+            btnDeletar.TabIndex = 9;
             btnDeletar.Text = "Deletar";
             btnDeletar.UseVisualStyleBackColor = true;
             btnDeletar.Click += btnDeletar_Click;
             // 
             // FrmProdutos
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AcceptButton = btnCadastrar;
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(205, 226, 176);
-            ClientSize = new Size(1637, 925);
+            ClientSize = new Size(1432, 694);
             Controls.Add(btnDeletar);
             Controls.Add(btnAtualizar);
             Controls.Add(btnEdicao);
@@ -270,7 +262,6 @@
             Controls.Add(dgvDadosProdutos);
             Controls.Add(pnlCadastro);
             Controls.Add(pnlNavegacao);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmProdutos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Produtos";
