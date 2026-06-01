@@ -15,17 +15,15 @@ namespace Projeto_Valquiria
 
         public FrmProdutos()
         {
-            InitializeComponent(); // garante que os controles sejam criados
+            InitializeComponent();
 
-            // Agora sim pode acessar os botões
+            // Botões começam invisíveis
             btnAtualizar.Visible = false;
             btnDeletar.Visible = false;
-            btnEdicao.Text = "Habilitar Edição";
 
-            dgvDadosProdutos.ReadOnly = true; // trava edição ao abrir
+            // 🔒 Travar edição da tabela ao abrir
+            dgvDadosProdutos.ReadOnly = true;
         }
-
-
 
         public void CarregarDadosProdutos()
         {
@@ -49,7 +47,8 @@ namespace Projeto_Valquiria
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Erro ao carregar produtos: " + erro.Message);
+                MessageBox.Show("Erro ao carregar produtos: " + erro.Message,
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -84,6 +83,14 @@ namespace Projeto_Valquiria
         // Botão cadastrar produto
         private void btnCadastroProduto_Click(object sender, EventArgs e)
         {
+            // 🚫 Verificação de campos obrigatórios
+            if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtValor.Text))
+            {
+                MessageBox.Show("Preencha todos os campos antes de cadastrar o produto!",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string nome = txtNome.Text.Trim();
             string valorTexto = txtValor.Text.Trim();
 
@@ -91,11 +98,12 @@ namespace Projeto_Valquiria
             if (nome.Length > 80)
                 nome = nome.Substring(0, 80);
 
-            // Validação de nome
-            Regex regexNome = new Regex(@"^[A-Za-zÀ-ÿ\s]+$");
-            if (!regexNome.IsMatch(nome) || nome.Length < 2)
+            // 🔒 Validação de nome (letras, espaços, hífen e apóstrofo)
+            Regex regexNome = new Regex(@"^[A-Za-zÀ-ÿ\s'-]+$");
+            nome = Regex.Replace(nome, @"\s+", " ");
+            if (!regexNome.IsMatch(nome) || nome.Trim().Length < 2)
             {
-                MessageBox.Show("Digite um nome válido (somente letras e espaços)!",
+                MessageBox.Show("Digite um nome válido para o produto!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -105,30 +113,26 @@ namespace Projeto_Valquiria
             nome = textInfo.ToTitleCase(nome.ToLower());
 
             // 🔒 Validação e formatação do valor
-            if (!decimal.TryParse(valorTexto, NumberStyles.Number, new CultureInfo("pt-BR"), out decimal valor) || valor <= 0)
+            if (!decimal.TryParse(valorTexto, NumberStyles.Number, new CultureInfo("pt-BR"), out decimal valor))
             {
-                MessageBox.Show("Digite um valor válido (número positivo)!",
+                MessageBox.Show("Digite um valor válido (somente números, use vírgula para decimais)!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Converter para string e aplicar regra de casas decimais
-            string valorFormatado = valor.ToString("F10", new CultureInfo("pt-BR"));
-            string[] partes = valorFormatado.Split(',');
+            if (valor <= 0)
+            {
+                MessageBox.Show("O valor do produto deve ser maior que 0!",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            string parteInteira = partes[0];
-            string parteDecimal = partes.Length > 1 ? partes[1] : "";
-
-            // Máximo 2 dígitos antes da vírgula
-            if (parteInteira.Length > 2)
-                parteInteira = parteInteira.Substring(parteInteira.Length - 2);
-
-            // Máximo 10 dígitos depois da vírgula
-            if (parteDecimal.Length > 10)
-                parteDecimal = parteDecimal.Substring(0, 10);
-
-            valorFormatado = parteInteira + (parteDecimal != "" ? "," + parteDecimal : "");
-            valor = decimal.Parse(valorFormatado, new CultureInfo("pt-BR"));
+            if (valor > 999)
+            {
+                MessageBox.Show("O valor do produto não pode ser maior que 999!",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             MySqlConnection conn = new MySqlConnection(conexao);
 
@@ -203,30 +207,14 @@ namespace Projeto_Valquiria
                     string nome = row.Cells["Nome"].Value.ToString().Trim();
                     string valorTexto = row.Cells["Valor"].Value.ToString().Trim();
 
-                    // 🔒 Nome máximo 80 caracteres
                     if (nome.Length > 80)
                         nome = nome.Substring(0, 80);
 
-                    // 🔄 Formatar nome
                     TextInfo textInfo = new CultureInfo("pt-BR", false).TextInfo;
                     nome = textInfo.ToTitleCase(nome.ToLower());
 
-                    // 🔒 Valor com regra de casas decimais
                     if (!decimal.TryParse(valorTexto, NumberStyles.Number, new CultureInfo("pt-BR"), out decimal valor) || valor <= 0)
                         continue;
-
-                    string valorFormatado = valor.ToString("F10", new CultureInfo("pt-BR"));
-                    string[] partes = valorFormatado.Split(',');
-                    string parteInteira = partes[0];
-                    string parteDecimal = partes.Length > 1 ? partes[1] : "";
-
-                    if (parteInteira.Length > 2)
-                        parteInteira = parteInteira.Substring(parteInteira.Length - 2);
-                    if (parteDecimal.Length > 10)
-                        parteDecimal = parteDecimal.Substring(0, 10);
-
-                    valorFormatado = parteInteira + (parteDecimal != "" ? "," + parteDecimal : "");
-                    valor = decimal.Parse(valorFormatado, new CultureInfo("pt-BR"));
 
                     // Verifica se houve alteração
                     string sqlCheck = "SELECT nome, valor FROM produtos WHERE id = @id";
@@ -288,6 +276,7 @@ namespace Projeto_Valquiria
                 return;
             }
 
+            int id = Convert.ToInt32(dgvDadosProdutos.CurrentRow.Cells["Id"].Value);
             string nome = dgvDadosProdutos.CurrentRow.Cells["Nome"].Value.ToString();
 
             DialogResult confirmacao = MessageBox.Show(
@@ -301,9 +290,9 @@ namespace Projeto_Valquiria
             try
             {
                 conn.Open();
-                string sql = "DELETE FROM produtos WHERE nome = @nome";
+                string sql = "DELETE FROM produtos WHERE id = @id";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@nome", nome);
+                cmd.Parameters.AddWithValue("@id", id);
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show($"Produto '{nome}' excluído com sucesso!",
@@ -322,13 +311,14 @@ namespace Projeto_Valquiria
             CarregarDadosProdutos();
         }
 
-        // Pesquisa
+        // Pesquisa em tempo real
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
             string filtro = txtPesquisar.Text.Replace("'", "''");
             tabela.DefaultView.RowFilter = $"Nome LIKE '%{filtro}%'";
         }
 
+        // Navegação para Pedidos
         private void btnPedido_Click(object sender, EventArgs e)
         {
             FrmPedidos tela = new FrmPedidos();
@@ -336,6 +326,7 @@ namespace Projeto_Valquiria
             this.Close();
         }
 
+        // Navegação para Home
         private void btnHome_Click(object sender, EventArgs e)
         {
             panelConteudo tela = new panelConteudo();
@@ -343,6 +334,7 @@ namespace Projeto_Valquiria
             this.Close();
         }
 
+        // Navegação para Clientes
         private void btnCliente_Click(object sender, EventArgs e)
         {
             FrmClientes tela = new FrmClientes();

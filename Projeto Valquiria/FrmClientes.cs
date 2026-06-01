@@ -67,10 +67,18 @@ namespace Projeto_Valquiria
         // ---------- CADASTRAR ----------
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            string nome = txtNome.Text.Trim();      // remove espaços extras
+            // 🚫 Verificação de campos obrigatórios
+            if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtContato.Text))
+            {
+                MessageBox.Show("Preencha todos os campos antes de cadastrar o cliente!",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string nome = txtNome.Text.Trim();
             string contato = txtContato.Text.Trim();
 
-            // Limite de caracteres
+            // 🔒 Limite de caracteres
             if (nome.Length > 120)
             {
                 MessageBox.Show("O nome deve ter no máximo 120 caracteres!",
@@ -85,26 +93,27 @@ namespace Projeto_Valquiria
                 return;
             }
 
-            // Validação de nome (não pode ter números ou caracteres especiais)
-            Regex regexNome = new Regex(@"^[A-Za-zÀ-ÿ\s]+$"); // letras e espaços
-            if (!regexNome.IsMatch(nome) || nome.Length < 2)
+            // 🔒 Validação de nome (letras, espaços, hífen e apóstrofo)
+            Regex regexNome = new Regex(@"^[A-Za-zÀ-ÿ\s'-]+$");
+            nome = Regex.Replace(nome, @"\s+", " ");
+            if (!regexNome.IsMatch(nome) || nome.Trim().Length < 2)
             {
-                MessageBox.Show("Digite um nome válido (somente letras e espaços)!",
+                MessageBox.Show("Digite um nome válido (somente letras, espaços, hífen ou apóstrofo)!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Formatar nome para Title Case (primeira letra maiúscula em cada palavra)
+            // 🔄 Formatar nome para Title Case
             TextInfo textInfo = new CultureInfo("pt-BR", false).TextInfo;
             nome = textInfo.ToTitleCase(nome.ToLower());
 
-            // Validação de contato (telefone ou email)
-            Regex regexTelefone = new Regex(@"^\d{8,}$");
+            // 🔒 Validação de contato (telefone ou email)
+            Regex regexTelefone = new Regex(@"^\d{8,}$"); // mínimo 8 dígitos numéricos
             Regex regexEmail = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
 
             if (!regexTelefone.IsMatch(contato) && !regexEmail.IsMatch(contato))
             {
-                MessageBox.Show("O contato deve ser um número de telefone válido ou um e-mail válido!",
+                MessageBox.Show("O contato deve ser um telefone válido (apenas números) ou um e-mail válido!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -226,18 +235,22 @@ namespace Projeto_Valquiria
                         continue;
                     }
 
-                    // 🔒 Validação de nome (somente letras e espaços)
-                    Regex regexNome = new Regex(@"^[A-Za-zÀ-ÿ\s]+$");
-                    if (!regexNome.IsMatch(nome) || nome.Length < 2)
+                    // 🔒 Validação de nome (letras, espaços, hífen e apóstrofo)
+                    Regex regexNome = new Regex(@"^[A-Za-zÀ-ÿ\s'-]+$");
+
+                    nome = Regex.Replace(nome, @"\s+", " "); // normaliza espaços
+
+                    if (!regexNome.IsMatch(nome) || nome.Trim().Length < 2)
                     {
                         MessageBox.Show($"O nome do(a) cliente (ID {id}) não é válido!",
                                         "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         continue;
                     }
 
-                    // 🔄 Formatar nome para Title Case
+                    // 🔄 Formatar para Title Case
                     TextInfo textInfo = new CultureInfo("pt-BR", false).TextInfo;
                     nome = textInfo.ToTitleCase(nome.ToLower());
+
 
                     // 🔒 Validação de contato (telefone ou email)
                     Regex regexTelefone = new Regex(@"^\d{8,}$");
