@@ -147,6 +147,7 @@ namespace Projeto_Valquiria
             timerPesquisa.Stop();
             CarregarDadosClientes(txtPesquisar.Text);
         }
+
         // ---------- EDIÇÃO ----------
         private void btnEdicao_Click(object sender, EventArgs e)
         {
@@ -191,19 +192,42 @@ namespace Projeto_Valquiria
                         string nome = row.Cells["Nome"].Value.ToString().Trim();
                         string contato = row.Cells["Contato"].Value.ToString().Trim();
 
-                        string sql = "UPDATE clientes SET nome = @nome, contato = @contato WHERE id = @id";
-                        MySqlCommand cmd = new MySqlCommand(sql, conn);
-                        cmd.Parameters.AddWithValue("@nome", nome);
-                        cmd.Parameters.AddWithValue("@contato", contato);
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.ExecuteNonQuery();
+                        // Verifica se houve alteração comparando com o banco
+                        string sqlCheck = "SELECT nome, contato FROM clientes WHERE id = @id";
+                        MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
+                        cmdCheck.Parameters.AddWithValue("@id", id);
 
-                        contadorAtualizados++;
+                        bool houveAlteracao = false;
+                        using (var reader = cmdCheck.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string nomeAtual = reader.GetString("nome");
+                                string contatoAtual = reader.GetString("contato");
+
+                                if (nome != nomeAtual || contato != contatoAtual)
+                                    houveAlteracao = true;
+                            }
+                        }
+
+                        if (houveAlteracao)
+                        {
+                            string sql = "UPDATE clientes SET nome = @nome, contato = @contato WHERE id = @id";
+                            MySqlCommand cmd = new MySqlCommand(sql, conn);
+                            cmd.Parameters.AddWithValue("@nome", nome);
+                            cmd.Parameters.AddWithValue("@contato", contato);
+                            cmd.Parameters.AddWithValue("@id", id);
+                            cmd.ExecuteNonQuery();
+                            contadorAtualizados++;
+                        }
                     }
 
                     if (contadorAtualizados == 0)
-                        MessageBox.Show("Nenhuma alteração detectada.",
+                        MessageBox.Show("Nenhuma alteração realizada.",
                                         "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else if (contadorAtualizados == 1)
+                        MessageBox.Show("Cliente atualizado com sucesso!",
+                                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else
                         MessageBox.Show($"Clientes atualizados com sucesso! ({contadorAtualizados} registros)",
                                         "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
