@@ -51,7 +51,6 @@ namespace Projeto_Valquiria
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
 
-                    // parâmetro com % para funcionar como LIKE
                     adapter.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
 
                     tabela = new DataTable();

@@ -132,7 +132,6 @@
             dvgTabela.RowHeadersWidth = 51;
             dvgTabela.Size = new Size(1048, 541);
             dvgTabela.TabIndex = 7;
-            dvgTabela.CellContentClick += dvgTabela_CellContentClick;
             // 
             // panelMenu
             // 
