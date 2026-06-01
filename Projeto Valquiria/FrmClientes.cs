@@ -379,5 +379,11 @@ namespace Projeto_Valquiria
             tela.ShowDialog();
             this.Close();
         }
+
+        private void dvgTabela_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
+S

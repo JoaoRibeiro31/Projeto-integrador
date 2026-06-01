@@ -141,6 +141,7 @@ namespace Projeto_Valquiria
             {
                 decimal total = valorProduto * qtd;
                 lblTotal.Text = total.ToString("N2", new CultureInfo("pt-BR"));
+                lblTotal.ForeColor = Color.Green;
             }
         }
 
@@ -403,5 +404,14 @@ namespace Projeto_Valquiria
             }
         }
 
+        private void lblTotal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblValor_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
