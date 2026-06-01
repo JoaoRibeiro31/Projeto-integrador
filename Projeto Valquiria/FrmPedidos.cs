@@ -362,22 +362,22 @@ namespace Projeto_Valquiria
         private void btnHome_Click(object sender, EventArgs e)
         {
             panelConteudo tela = new panelConteudo();
-            tela.ShowDialog();
-            this.Close();
+            tela.Show();
+            this.Hide();
         }
 
         private void btnProduto_Click(object sender, EventArgs e)
         {
             FrmProdutos tela = new FrmProdutos();
-            tela.ShowDialog();
-            this.Close();
+            tela.Show();
+            this.Hide();
         }
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
             FrmClientes tela = new FrmClientes();
-            tela.ShowDialog();
-            this.Close();
+            tela.Show();
+            this.Hide();
         }
 
         // ---------- PESQUISA ----------

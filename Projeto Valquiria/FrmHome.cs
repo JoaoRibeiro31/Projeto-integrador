@@ -41,6 +41,7 @@ namespace Projeto_Valquiria
                                    INNER JOIN clientes cl ON p.cliente_id = cl.id
                                    WHERE p.status_pagamento = 'Pendente'
                                    GROUP BY cl.nome, cl.contato;";
+//AND (cl.nome LIKE '%@filtro%' OR cl.contato = '%@filtro%')
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
                     tabela = new DataTable();
@@ -107,22 +108,22 @@ namespace Projeto_Valquiria
         private void btnProdutos_Click(object sender, EventArgs e)
         {
             FrmProdutos tela = new FrmProdutos();
-            tela.ShowDialog();
-            this.Close();
+            tela.Show();
+            this.Hide();
         }
 
         private void btnPedidos_Click(object sender, EventArgs e)
         {
             FrmPedidos tela = new FrmPedidos();
-            tela.ShowDialog();
-            this.Close();
+            tela.Show();
+            this.Hide();
         }
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
             FrmClientes tela = new FrmClientes();
-            tela.ShowDialog();
-            this.Close();
+            tela.Show();
+            this.Hide();
         }
 
         // ---------- PESQUISA ----------

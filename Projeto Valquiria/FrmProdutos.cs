@@ -322,24 +322,24 @@ namespace Projeto_Valquiria
         private void btnPedido_Click(object sender, EventArgs e)
         {
             FrmPedidos tela = new FrmPedidos();
-            tela.ShowDialog();
-            this.Close();
+            tela.Show();
+            this.Hide();
         }
 
         // Navegação para Home
         private void btnHome_Click(object sender, EventArgs e)
         {
             panelConteudo tela = new panelConteudo();
-            tela.ShowDialog();
-            this.Close();
+            tela.Show();
+            this.Hide();
         }
 
         // Navegação para Clientes
         private void btnCliente_Click(object sender, EventArgs e)
         {
             FrmClientes tela = new FrmClientes();
-            tela.ShowDialog();
-            this.Close();
+            tela.Show();
+            this.Hide();
         }
     }
 }

@@ -375,22 +375,22 @@ namespace Projeto_Valquiria
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             panelConteudo tela = new panelConteudo();
-            tela.ShowDialog();
-            this.Close();
+            tela.Show();
+            this.Hide();
         }
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
             FrmProdutos tela = new FrmProdutos();
-            tela.ShowDialog();
-            this.Close();
+            tela.Show();
+            this.Hide();
         }
 
         private void btnPedidos_Click(object sender, EventArgs e)
         {
             FrmPedidos tela = new FrmPedidos();
-            tela.ShowDialog();
-            this.Close();
+            tela.Show();
+            this.Hide();
         }
 
         private void dvgTabela_CellContentClick(object sender, DataGridViewCellEventArgs e)
