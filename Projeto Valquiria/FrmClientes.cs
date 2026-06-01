@@ -16,41 +16,49 @@ namespace Projeto_Valquiria
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
         private bool editando = false; // controle de edição
 
+        private System.Windows.Forms.Timer timerPesquisa = new System.Windows.Forms.Timer();
+
+
         public FrmClientes()
         {
             InitializeComponent();
         }
 
-        public void CarregarDadosClientes()
+        public void CarregarDadosClientes(string filtro = "")
         {
-            MySqlConnection conn = new MySqlConnection(conexao);
-
-            try
+            using (MySqlConnection conn = new MySqlConnection(conexao))
             {
-                conn.Open();
-                string sql = @"SELECT id AS Id,
-                                      nome AS Nome,
-                                      contato AS Contato,
-                                      data_de_cadastro AS Cadastro
-                               FROM clientes
-                               ORDER BY data_de_cadastro DESC;";
+                try
+                {
+                    conn.Open();
+                    string sql = @"SELECT id AS Id,
+                                  nome AS Nome,
+                                  contato AS Contato,
+                                  data_de_cadastro AS Cadastro
+                           FROM clientes
+                           WHERE (nome LIKE @filtro
+                                  OR contato LIKE @filtro
+                                  OR data_de_cadastro LIKE @filtro)
+                           ORDER BY data_de_cadastro DESC;";
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
-                DataTable tabela = new DataTable();
-                adapter.Fill(tabela);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
 
-                dvgTabela.DataSource = tabela;
-                dvgTabela.Columns["Id"].Visible = false;
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao carregar clientes: " + erro.Message);
-            }
-            finally
-            {
-                conn.Close();
+                    // parâmetro com % para funcionar como LIKE
+                    adapter.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+
+                    DataTable tabela = new DataTable();
+                    adapter.Fill(tabela);
+
+                    dvgTabela.DataSource = tabela;
+                    dvgTabela.Columns["Id"].Visible = false;
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show("Erro ao carregar clientes: " + erro.Message);
+                }
             }
         }
+
 
         private void FrmClientes_Load(object sender, EventArgs e)
         {
@@ -152,27 +160,26 @@ namespace Projeto_Valquiria
         // ---------- PESQUISA ----------
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                string filtro = txtPesquisar.Text.Replace("'", "''");
+            // Para o timer se já estiver rodando
+            timerPesquisa.Stop();
 
-                if (string.IsNullOrWhiteSpace(filtro))
-                {
-                    (dvgTabela.DataSource as DataTable).DefaultView.RowFilter = "";
-                }
-                else
-                {
-                    (dvgTabela.DataSource as DataTable).DefaultView.RowFilter =
-                        $"Nome LIKE '%{filtro}%' OR " +
-                        $"Contato LIKE '%{filtro}%' OR " +
-                        $"Convert(Cadastro, 'System.String') LIKE '%{filtro}%'";
-                }
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao aplicar filtro de pesquisa: " + erro.Message);
-            }
+            // Define intervalo de meio segundo (500ms)
+            timerPesquisa.Interval = 500;
+
+            // Remove handlers antigos para não acumular
+            timerPesquisa.Tick -= TimerPesquisa_Tick;
+            timerPesquisa.Tick += TimerPesquisa_Tick;
+
+            // Inicia o timer
+            timerPesquisa.Start();
         }
+
+        private void TimerPesquisa_Tick(object sender, EventArgs e)
+        {
+            timerPesquisa.Stop(); // para o timer
+            CarregarDadosClientes(txtPesquisar.Text); // chama o método com filtro
+        }
+
 
         // ---------- EDIÇÃO ----------
         private void btnEdicao_Click(object sender, EventArgs e)

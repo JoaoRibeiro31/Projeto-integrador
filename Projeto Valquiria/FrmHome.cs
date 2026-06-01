@@ -14,7 +14,6 @@ namespace Projeto_Valquiria
 
         private System.Windows.Forms.Timer timerPesquisa = new System.Windows.Forms.Timer();
 
-
         public panelConteudo()
         {
             InitializeComponent();
@@ -39,16 +38,16 @@ namespace Projeto_Valquiria
                     conn.Open();
 
                     string sql = @"SELECT cl.nome AS Nome,
-                                  cl.contato AS Contato,
-                                  SUM(p.valor_total) AS Pendencias
-                           FROM pedidos p
-                           INNER JOIN clientes cl ON p.cliente_id = cl.id
-                           WHERE p.status_pagamento = 'Pendente'
-                             AND (cl.nome LIKE @filtro
-                                  OR cl.contato LIKE @filtro
-                                  OR p.valor_total LIKE @filtro)
-                           GROUP BY cl.nome, cl.contato
-                           ORDER BY Nome ASC;";
+                                          cl.contato AS Contato,
+                                          SUM(p.valor_total) AS Pendencias
+                                   FROM pedidos p
+                                   INNER JOIN clientes cl ON p.cliente_id = cl.id
+                                   WHERE p.status_pagamento = 'Pendente'
+                                     AND (cl.nome LIKE @filtro
+                                          OR cl.contato LIKE @filtro
+                                          OR p.valor_total LIKE @filtro)
+                                   GROUP BY cl.nome, cl.contato
+                                   ORDER BY Nome ASC;";
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
 
@@ -77,7 +76,6 @@ namespace Projeto_Valquiria
                 }
             }
         }
-
 
         // ---------- MÉTODO DE DESTAQUE ----------
         private void AplicarDestaquePendencias()
@@ -136,20 +134,24 @@ namespace Projeto_Valquiria
             this.Hide();
         }
 
-        // ---------- PESQUISA ----------
-
+        // ---------- PESQUISA COM DELAY ----------
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
             timerPesquisa.Stop();
             timerPesquisa.Interval = 500; // meio segundo
-            timerPesquisa.Tick += (s, args) =>
-            {
-                timerPesquisa.Stop();
-                CarregarClientes(txtPesquisar.Text);
-            };
+
+            // evita acumular handlers
+            timerPesquisa.Tick -= TimerPesquisa_Tick;
+            timerPesquisa.Tick += TimerPesquisa_Tick;
+
             timerPesquisa.Start();
         }
 
+        private void TimerPesquisa_Tick(object sender, EventArgs e)
+        {
+            timerPesquisa.Stop();
+            CarregarClientes(txtPesquisar.Text);
+        }
 
         // ---------- SAIR DO SISTEMA ----------
         private void btnFecharApp_Click(object sender, EventArgs e)
