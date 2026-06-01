@@ -109,12 +109,18 @@ namespace Projeto_Valquiria
                     MessageBox.Show("Erro: " + erro.Message,
                                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
         {
             this.Close(); // Fecha a tela
+        }
+
+        private void FrmAtualizarLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

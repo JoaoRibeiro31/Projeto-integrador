@@ -41,7 +41,7 @@
             // 
             // txtCPF
             // 
-            txtCPF.Location = new Point(164, 92);
+            txtCPF.Location = new Point(198, 99);
             txtCPF.Name = "txtCPF";
             txtCPF.PlaceholderText = "123.456.789-09";
             txtCPF.Size = new Size(115, 23);
@@ -49,7 +49,7 @@
             // 
             // txtSenha
             // 
-            txtSenha.Location = new Point(164, 150);
+            txtSenha.Location = new Point(198, 157);
             txtSenha.Name = "txtSenha";
             txtSenha.PlaceholderText = "Digite uma Senha de até 10 digitos";
             txtSenha.Size = new Size(287, 23);
@@ -58,7 +58,9 @@
             // lblCpf
             // 
             lblCpf.AutoSize = true;
-            lblCpf.Location = new Point(117, 92);
+            lblCpf.BackColor = Color.Transparent;
+            lblCpf.ForeColor = Color.White;
+            lblCpf.Location = new Point(151, 99);
             lblCpf.Name = "lblCpf";
             lblCpf.Size = new Size(31, 15);
             lblCpf.TabIndex = 1;
@@ -67,7 +69,9 @@
             // lblNovaSenha
             // 
             lblNovaSenha.AutoSize = true;
-            lblNovaSenha.Location = new Point(85, 150);
+            lblNovaSenha.BackColor = Color.Transparent;
+            lblNovaSenha.ForeColor = Color.White;
+            lblNovaSenha.Location = new Point(119, 157);
             lblNovaSenha.Name = "lblNovaSenha";
             lblNovaSenha.Size = new Size(73, 15);
             lblNovaSenha.TabIndex = 2;
@@ -76,7 +80,9 @@
             // lblLogin
             // 
             lblLogin.AutoSize = true;
-            lblLogin.Location = new Point(108, 121);
+            lblLogin.BackColor = Color.Transparent;
+            lblLogin.ForeColor = Color.White;
+            lblLogin.Location = new Point(142, 128);
             lblLogin.Name = "lblLogin";
             lblLogin.Size = new Size(40, 15);
             lblLogin.TabIndex = 2;
@@ -84,7 +90,7 @@
             // 
             // btnAtualizar
             // 
-            btnAtualizar.Location = new Point(219, 209);
+            btnAtualizar.Location = new Point(253, 216);
             btnAtualizar.Name = "btnAtualizar";
             btnAtualizar.Size = new Size(169, 42);
             btnAtualizar.TabIndex = 3;
@@ -94,11 +100,12 @@
             // 
             // btnFechar
             // 
-            btnFechar.FlatStyle = FlatStyle.Popup;
+            btnFechar.BackgroundImageLayout = ImageLayout.Stretch;
+            btnFechar.FlatStyle = FlatStyle.Flat;
             btnFechar.Image = (Image)resources.GetObject("btnFechar.Image");
-            btnFechar.Location = new Point(512, 35);
+            btnFechar.Location = new Point(517, 25);
             btnFechar.Name = "btnFechar";
-            btnFechar.Size = new Size(37, 25);
+            btnFechar.Size = new Size(34, 33);
             btnFechar.TabIndex = 0;
             btnFechar.Text = " ";
             btnFechar.UseVisualStyleBackColor = true;
@@ -106,7 +113,7 @@
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(164, 121);
+            txtUsuario.Location = new Point(198, 128);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.PlaceholderText = "Digite um novo nome de Login";
             txtUsuario.Size = new Size(287, 23);
@@ -117,7 +124,8 @@
             AcceptButton = btnAtualizar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(255, 255, 128);
+            BackColor = Color.FromArgb(89, 208, 255);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(578, 333);
             Controls.Add(btnFechar);
             Controls.Add(txtUsuario);
@@ -128,7 +136,8 @@
             Controls.Add(txtCPF);
             Controls.Add(txtSenha);
             Name = "FrmAtualizarLogin";
-            Text = "FrmEsqueciSenha";
+            Text = "Esqueci Senha";
+            Load += FrmAtualizarLogin_Load;
             ResumeLayout(false);
             PerformLayout();
         }
