@@ -10,6 +10,7 @@ namespace Projeto_Valquiria
     public partial class FrmPedidos : Form
     {
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
+        private System.Windows.Forms.Timer timerPesquisa = new System.Windows.Forms.Timer();
         DataTable dt = new DataTable();
         bool editando = false;
 
@@ -40,6 +41,78 @@ namespace Projeto_Valquiria
             lblContato.Text = "";
 
             btnDeletar.Visible = false;
+        }
+
+        // ---------- DATAGRIDVIEW ----------
+        public void CarregarPedidos(string filtro = "")
+        {
+            using (MySqlConnection conn = new MySqlConnection(conexao))
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = @"SELECT p.id, c.nome AS Cliente, pr.nome AS Produto,
+                           p.quantidade, p.valor_total, p.data_pedido, p.status_pagamento
+                           FROM pedidos p
+                           JOIN clientes c ON p.cliente_id = c.id
+                           JOIN produtos pr ON p.produto_id = pr.id
+                           WHERE (c.nome LIKE @filtro
+                                  OR pr.nome LIKE @filtro
+                                  OR p.quantidade LIKE @filtro
+                                  OR p.valor_total LIKE @filtro
+                                  OR p.data_pedido LIKE @filtro
+                                  OR p.status_pagamento LIKE @filtro)
+                           ORDER BY data_pedido DESC;";
+
+                    MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+                    da.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+
+                    dt = new DataTable();
+                    da.Fill(dt);
+
+                    dgvPedidos.DataSource = dt;
+                    dgvPedidos.Columns["id"].Visible = false;
+
+                    if (dgvPedidos.Columns.Contains("status_pagamento"))
+                    {
+                        dgvPedidos.Columns.Remove("status_pagamento");
+
+                        DataGridViewComboBoxColumn comboStatus = new DataGridViewComboBoxColumn();
+                        comboStatus.HeaderText = "Status";
+                        comboStatus.Name = "status_pagamento";
+                        comboStatus.DataPropertyName = "status_pagamento";
+                        comboStatus.Items.Add("Pago");
+                        comboStatus.Items.Add("Pendente");
+                        comboStatus.ReadOnly = false;
+
+                        dgvPedidos.Columns.Add(comboStatus);
+                    }
+
+                    dgvPedidos.ReadOnly = false;
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show("Erro ao carregar pedidos: " + erro.Message);
+                }
+            }
+        }
+
+        // ---------- PESQUISA COM DELAY ----------
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            timerPesquisa.Stop();
+            timerPesquisa.Interval = 500; // meio segundo
+
+            timerPesquisa.Tick -= TimerPesquisa_Tick;
+            timerPesquisa.Tick += TimerPesquisa_Tick;
+
+            timerPesquisa.Start();
+        }
+
+        private void TimerPesquisa_Tick(object sender, EventArgs e)
+        {
+            timerPesquisa.Stop();
+            CarregarPedidos(txtPesquisar.Text);
         }
 
         // ---------- CLIENTES ----------
@@ -213,52 +286,6 @@ namespace Projeto_Valquiria
             lblContato.Text = "";
         }
 
-        // ---------- DATAGRIDVIEW ----------
-        private void CarregarPedidos()
-        {
-            using (MySqlConnection conn = new MySqlConnection(conexao))
-            {
-                try
-                {
-                    conn.Open();
-                    string sql = @"SELECT p.id, c.nome AS Cliente, pr.nome AS Produto,
-                                   p.quantidade, p.valor_total, p.data_pedido, p.status_pagamento
-                                   FROM pedidos p
-                                   JOIN clientes c ON p.cliente_id = c.id
-                                   JOIN produtos pr ON p.produto_id = pr.id
-                                   ORDER BY data_pedido DESC;";
-
-                    MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
-                    dt = new DataTable();
-                    da.Fill(dt);
-
-                    dgvPedidos.DataSource = dt;
-                    dgvPedidos.Columns["id"].Visible = false;
-
-                    if (dgvPedidos.Columns.Contains("status_pagamento"))
-                    {
-                        dgvPedidos.Columns.Remove("status_pagamento");
-
-                        DataGridViewComboBoxColumn comboStatus = new DataGridViewComboBoxColumn();
-                        comboStatus.HeaderText = "Status";
-                        comboStatus.Name = "status_pagamento";
-                        comboStatus.DataPropertyName = "status_pagamento";
-                        comboStatus.Items.Add("Pago");
-                        comboStatus.Items.Add("Pendente");
-                        comboStatus.ReadOnly = false;
-
-                        dgvPedidos.Columns.Add(comboStatus);
-                    }
-
-                    dgvPedidos.ReadOnly = false;
-                }
-                catch (Exception erro)
-                {
-                    MessageBox.Show("Erro ao carregar pedidos: " + erro.Message);
-                }
-            }
-        }
-
         // ---------- ATUALIZA STATUS ----------
         private void dgvPedidos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -378,34 +405,6 @@ namespace Projeto_Valquiria
             FrmClientes tela = new FrmClientes();
             tela.Show();
             this.Hide();
-        }
-
-        // ---------- PESQUISA ----------
-        private void txtPesquisar_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                string filtro = txtPesquisar.Text.Replace("'", "''");
-
-                if (string.IsNullOrWhiteSpace(filtro))
-                {
-                    dt.DefaultView.RowFilter = "";
-                }
-                else
-                {
-                    dt.DefaultView.RowFilter =
-                        $"Cliente LIKE '%{filtro}%' OR " +
-                        $"Produto LIKE '%{filtro}%' OR " +
-                        $"Convert(quantidade, 'System.String') LIKE '%{filtro}%' OR " +
-                        $"Convert(valor_total, 'System.String') LIKE '%{filtro}%' OR " +
-                        $"Convert(data_pedido, 'System.String') LIKE '%{filtro}%' OR " +
-                        $"status_pagamento LIKE '%{filtro}%'";
-                }
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao aplicar filtro de pesquisa: " + erro.Message);
-            }
         }
     }
 }
