@@ -12,6 +12,9 @@ namespace Projeto_Valquiria
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
         DataTable tabela = new DataTable();
 
+        private System.Windows.Forms.Timer timerPesquisa = new System.Windows.Forms.Timer();
+
+
         public panelConteudo()
         {
             InitializeComponent();
@@ -27,30 +30,37 @@ namespace Projeto_Valquiria
         }
 
         // ---------- CARREGAR CLIENTES COM PENDÊNCIAS ----------
-        public void CarregarClientes()
+        public void CarregarClientes(string filtro = "")
         {
             using (MySqlConnection conn = new MySqlConnection(conexao))
             {
                 try
                 {
                     conn.Open();
+
                     string sql = @"SELECT cl.nome AS Nome,
-                                          cl.contato AS Contato,
-                                          SUM(p.valor_total) AS Pendencias
-                                   FROM pedidos p
-                                   INNER JOIN clientes cl ON p.cliente_id = cl.id
-                                   WHERE p.status_pagamento = 'Pendente'
-                                   GROUP BY cl.nome, cl.contato;";
-//AND (cl.nome LIKE '%@filtro%' OR cl.contato = '%@filtro%')
+                                  cl.contato AS Contato,
+                                  SUM(p.valor_total) AS Pendencias
+                           FROM pedidos p
+                           INNER JOIN clientes cl ON p.cliente_id = cl.id
+                           WHERE p.status_pagamento = 'Pendente'
+                             AND (cl.nome LIKE @filtro
+                                  OR cl.contato LIKE @filtro
+                                  OR p.valor_total LIKE @filtro)
+                           GROUP BY cl.nome, cl.contato
+                           ORDER BY Nome ASC;";
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
+
+                    // parâmetro com % para funcionar como LIKE
+                    adapter.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+
                     tabela = new DataTable();
                     adapter.Fill(tabela);
 
                     dgvPedidos.DataSource = tabela;
                     dgvPedidos.ReadOnly = true;
 
-                    // Formata coluna de Pendências como moeda
                     if (dgvPedidos.Columns.Contains("Pendencias"))
                     {
                         dgvPedidos.Columns["Pendencias"].DefaultCellStyle.Format = "C2";
@@ -58,7 +68,6 @@ namespace Projeto_Valquiria
                         dgvPedidos.Columns["Pendencias"].HeaderText = "Pendências (R$)";
                     }
 
-                    // Aplica destaque inicial
                     AplicarDestaquePendencias();
                 }
                 catch (Exception erro)
@@ -68,6 +77,7 @@ namespace Projeto_Valquiria
                 }
             }
         }
+
 
         // ---------- MÉTODO DE DESTAQUE ----------
         private void AplicarDestaquePendencias()
@@ -127,30 +137,19 @@ namespace Projeto_Valquiria
         }
 
         // ---------- PESQUISA ----------
+
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
-            try
+            timerPesquisa.Stop();
+            timerPesquisa.Interval = 500; // meio segundo
+            timerPesquisa.Tick += (s, args) =>
             {
-                string filtro = txtPesquisar.Text.Replace("'", "''");
-
-                if (string.IsNullOrWhiteSpace(filtro))
-                {
-                    tabela.DefaultView.RowFilter = "";
-                }
-                else
-                {
-                    tabela.DefaultView.RowFilter =
-                        $"Nome LIKE '%{filtro}%' OR " +
-                        $"Contato LIKE '%{filtro}%' OR " +
-                        $"Convert(Pendencias, 'System.String') LIKE '%{filtro}%'";
-                }
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Erro ao aplicar filtro de pesquisa: " + erro.Message,
-                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                timerPesquisa.Stop();
+                CarregarClientes(txtPesquisar.Text);
+            };
+            timerPesquisa.Start();
         }
+
 
         // ---------- SAIR DO SISTEMA ----------
         private void btnFecharApp_Click(object sender, EventArgs e)
