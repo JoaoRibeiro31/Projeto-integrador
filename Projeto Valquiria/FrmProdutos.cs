@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -13,20 +9,23 @@ namespace Projeto_Valquiria
 {
     public partial class FrmProdutos : Form
     {
-        MySqlConnection Conexao;
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
         DataTable tabela = new DataTable();
         bool editando = false;
 
         public FrmProdutos()
         {
-            InitializeComponent();
+            InitializeComponent(); // garante que os controles sejam criados
 
-            // Botões começam invisíveis
+            // Agora sim pode acessar os botões
             btnAtualizar.Visible = false;
             btnDeletar.Visible = false;
             btnEdicao.Text = "Habilitar Edição";
+
+            dgvDadosProdutos.ReadOnly = true; // trava edição ao abrir
         }
+
+
 
         public void CarregarDadosProdutos()
         {
@@ -36,10 +35,10 @@ namespace Projeto_Valquiria
             {
                 conn.Open();
                 string sql = @"SELECT id AS Id,
-                              nome AS Nome,
-                              valor AS Valor
-                       FROM produtos
-                       ORDER BY nome ASC";
+                                      nome AS Nome,
+                                      valor AS Valor
+                               FROM produtos
+                               ORDER BY nome ASC";
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
                 tabela = new DataTable();
@@ -58,20 +57,19 @@ namespace Projeto_Valquiria
             }
         }
 
-        private void FrmProdutos_Load_1(object sender, EventArgs e)
+        private void FrmProdutos_Load(object sender, EventArgs e)
         {
             CarregarDadosProdutos();
         }
 
         // Botão habilitar edição
-        private void btnEdicao_Click_1(object sender, EventArgs e)
+        private void btnEdicao_Click(object sender, EventArgs e)
         {
             if (!editando)
             {
                 dgvDadosProdutos.ReadOnly = false;
                 btnAtualizar.Visible = true;
                 btnDeletar.Visible = true;
-                btnEdicao.Text = "Bloquear Edição";
                 editando = true;
             }
             else
@@ -79,7 +77,6 @@ namespace Projeto_Valquiria
                 dgvDadosProdutos.ReadOnly = true;
                 btnAtualizar.Visible = false;
                 btnDeletar.Visible = false;
-                btnEdicao.Text = "Habilitar Edição";
                 editando = false;
             }
         }
@@ -87,12 +84,51 @@ namespace Projeto_Valquiria
         // Botão cadastrar produto
         private void btnCadastroProduto_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtValor.Text))
+            string nome = txtNome.Text.Trim();
+            string valorTexto = txtValor.Text.Trim();
+
+            // 🔒 Limite de caracteres do nome
+            if (nome.Length > 80)
+                nome = nome.Substring(0, 80);
+
+            // Validação de nome
+            Regex regexNome = new Regex(@"^[A-Za-zÀ-ÿ\s]+$");
+            if (!regexNome.IsMatch(nome) || nome.Length < 2)
             {
-                MessageBox.Show("Preencha todos os campos antes de cadastrar!",
+                MessageBox.Show("Digite um nome válido (somente letras e espaços)!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            // 🔄 Formatar nome para Title Case
+            TextInfo textInfo = new CultureInfo("pt-BR", false).TextInfo;
+            nome = textInfo.ToTitleCase(nome.ToLower());
+
+            // 🔒 Validação e formatação do valor
+            if (!decimal.TryParse(valorTexto, NumberStyles.Number, new CultureInfo("pt-BR"), out decimal valor) || valor <= 0)
+            {
+                MessageBox.Show("Digite um valor válido (número positivo)!",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Converter para string e aplicar regra de casas decimais
+            string valorFormatado = valor.ToString("F10", new CultureInfo("pt-BR"));
+            string[] partes = valorFormatado.Split(',');
+
+            string parteInteira = partes[0];
+            string parteDecimal = partes.Length > 1 ? partes[1] : "";
+
+            // Máximo 2 dígitos antes da vírgula
+            if (parteInteira.Length > 2)
+                parteInteira = parteInteira.Substring(parteInteira.Length - 2);
+
+            // Máximo 10 dígitos depois da vírgula
+            if (parteDecimal.Length > 10)
+                parteDecimal = parteDecimal.Substring(0, 10);
+
+            valorFormatado = parteInteira + (parteDecimal != "" ? "," + parteDecimal : "");
+            valor = decimal.Parse(valorFormatado, new CultureInfo("pt-BR"));
 
             MySqlConnection conn = new MySqlConnection(conexao);
 
@@ -102,7 +138,7 @@ namespace Projeto_Valquiria
 
                 string sqlCheck = "SELECT COUNT(*) FROM produtos WHERE nome = @nome";
                 MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
-                cmdCheck.Parameters.AddWithValue("@nome", txtNome.Text);
+                cmdCheck.Parameters.AddWithValue("@nome", nome);
 
                 int existe = Convert.ToInt32(cmdCheck.ExecuteScalar());
                 if (existe > 0)
@@ -113,22 +149,24 @@ namespace Projeto_Valquiria
                 }
 
                 DialogResult confirmacao = MessageBox.Show(
-                    "Confirma cadastrar este produto?",
+                    $"Confirma cadastrar o produto '{nome}'?",
                     "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (confirmacao == DialogResult.No) return;
 
                 string sql = @"INSERT INTO produtos (nome, valor) VALUES (@nome, @valor)";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@nome", txtNome.Text);
-                cmd.Parameters.AddWithValue("@valor", decimal.Parse(txtValor.Text, new System.Globalization.CultureInfo("pt-BR")));
+                cmd.Parameters.AddWithValue("@nome", nome);
+                cmd.Parameters.AddWithValue("@valor", valor);
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Produto cadastrado com sucesso!");
+                MessageBox.Show($"Produto '{nome}' cadastrado com sucesso!",
+                                "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Erro ao cadastrar produto: " + erro.Message);
+                MessageBox.Show("Erro ao cadastrar produto: " + erro.Message,
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -140,10 +178,11 @@ namespace Projeto_Valquiria
             txtValor.Clear();
         }
 
-        // Botão atualizar (salva alterações feitas na tabela)
+        // Botão atualizar
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            bool houveAlteracao = false;
+            int contadorAtualizados = 0;
+
             DialogResult confirmacao = MessageBox.Show(
                 "Confirma atualizar os produtos?",
                 "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -161,9 +200,35 @@ namespace Projeto_Valquiria
                     if (row.IsNewRow) continue;
 
                     int id = Convert.ToInt32(row.Cells["Id"].Value);
-                    string nome = row.Cells["Nome"].Value.ToString();
-                    decimal valor = Convert.ToDecimal(row.Cells["Valor"].Value);
+                    string nome = row.Cells["Nome"].Value.ToString().Trim();
+                    string valorTexto = row.Cells["Valor"].Value.ToString().Trim();
 
+                    // 🔒 Nome máximo 80 caracteres
+                    if (nome.Length > 80)
+                        nome = nome.Substring(0, 80);
+
+                    // 🔄 Formatar nome
+                    TextInfo textInfo = new CultureInfo("pt-BR", false).TextInfo;
+                    nome = textInfo.ToTitleCase(nome.ToLower());
+
+                    // 🔒 Valor com regra de casas decimais
+                    if (!decimal.TryParse(valorTexto, NumberStyles.Number, new CultureInfo("pt-BR"), out decimal valor) || valor <= 0)
+                        continue;
+
+                    string valorFormatado = valor.ToString("F10", new CultureInfo("pt-BR"));
+                    string[] partes = valorFormatado.Split(',');
+                    string parteInteira = partes[0];
+                    string parteDecimal = partes.Length > 1 ? partes[1] : "";
+
+                    if (parteInteira.Length > 2)
+                        parteInteira = parteInteira.Substring(parteInteira.Length - 2);
+                    if (parteDecimal.Length > 10)
+                        parteDecimal = parteDecimal.Substring(0, 10);
+
+                    valorFormatado = parteInteira + (parteDecimal != "" ? "," + parteDecimal : "");
+                    valor = decimal.Parse(valorFormatado, new CultureInfo("pt-BR"));
+
+                    // Verifica se houve alteração
                     string sqlCheck = "SELECT nome, valor FROM produtos WHERE id = @id";
                     MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
                     cmdCheck.Parameters.AddWithValue("@id", id);
@@ -177,31 +242,33 @@ namespace Projeto_Valquiria
 
                             if (nome != nomeAtual || valor != valorAtual)
                             {
-                                houveAlteracao = true;
+                                reader.Close();
+                                string sql = "UPDATE produtos SET nome = @nome, valor = @valor WHERE id = @id";
+                                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                                cmd.Parameters.AddWithValue("@nome", nome);
+                                cmd.Parameters.AddWithValue("@valor", valor);
+                                cmd.Parameters.AddWithValue("@id", id);
+                                cmd.ExecuteNonQuery();
+                                contadorAtualizados++;
                             }
                         }
                     }
-
-                    if (houveAlteracao)
-                    {
-                        string sql = "UPDATE produtos SET nome = @nome, valor = @valor WHERE id = @id";
-                        MySqlCommand cmd = new MySqlCommand(sql, conn);
-                        cmd.Parameters.AddWithValue("@nome", nome);
-                        cmd.Parameters.AddWithValue("@valor", valor);
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.ExecuteNonQuery();
-                    }
                 }
 
-                if (houveAlteracao)
-                    MessageBox.Show("Produtos atualizados com sucesso!");
-                else
-                    MessageBox.Show("Nenhuma alteração detectada. Modifique algo antes de atualizar.",
+                if (contadorAtualizados == 0)
+                    MessageBox.Show("Nenhuma alteração detectada.",
                                     "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else if (contadorAtualizados == 1)
+                    MessageBox.Show("Produto atualizado com sucesso!",
+                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show($"Produtos atualizados com sucesso! ({contadorAtualizados} registros)",
+                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Erro ao atualizar produtos: " + erro.Message);
+                MessageBox.Show("Erro ao atualizar produtos: " + erro.Message,
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -221,7 +288,6 @@ namespace Projeto_Valquiria
                 return;
             }
 
-            int id = Convert.ToInt32(dgvDadosProdutos.CurrentRow.Cells["Id"].Value);
             string nome = dgvDadosProdutos.CurrentRow.Cells["Nome"].Value.ToString();
 
             DialogResult confirmacao = MessageBox.Show(
@@ -235,16 +301,18 @@ namespace Projeto_Valquiria
             try
             {
                 conn.Open();
-                string sql = "DELETE FROM produtos WHERE id = @id";
+                string sql = "DELETE FROM produtos WHERE nome = @nome";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@nome", nome);
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Produto excluído com sucesso!");
+                MessageBox.Show($"Produto '{nome}' excluído com sucesso!",
+                                "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Erro ao excluir produto: " + erro.Message);
+                MessageBox.Show("Erro ao excluir produto: " + erro.Message,
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -275,7 +343,7 @@ namespace Projeto_Valquiria
             this.Close();
         }
 
-        private void btnCadastroCliente_Click(object sender, EventArgs e)
+        private void btnCliente_Click(object sender, EventArgs e)
         {
             FrmClientes tela = new FrmClientes();
             tela.ShowDialog();
@@ -283,4 +351,3 @@ namespace Projeto_Valquiria
         }
     }
 }
-
