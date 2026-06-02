@@ -41,6 +41,39 @@ namespace Projeto_Valquiria
             lblContato.Text = "";
 
             btnDeletar.Visible = false;
+
+            // Cor de fundo geral da tabela
+            dgvPedidos.BackgroundColor = Color.FromArgb(240, 192, 229); // rosa pastel do layout
+
+            // Linhas alternadas
+            dgvPedidos.DefaultCellStyle.BackColor = Color.White;
+            dgvPedidos.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(235, 220, 250); // lilás pastel suave
+
+            // Texto das células
+            dgvPedidos.DefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100); // roxo escuro
+            dgvPedidos.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
+
+            // Seleção
+            dgvPedidos.DefaultCellStyle.SelectionBackColor = Color.FromArgb(164, 92, 218); // roxo vibrante (igual ao botão Pedidos)
+            dgvPedidos.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            // Cabeçalho
+            dgvPedidos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 192, 229); // rosa pastel
+            dgvPedidos.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);   // roxo escuro
+            dgvPedidos.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            dgvPedidos.EnableHeadersVisualStyles = false;
+
+            // Bordas e estilo geral
+            dgvPedidos.GridColor = Color.FromArgb(200, 160, 210);
+            dgvPedidos.BorderStyle = BorderStyle.None;
+            dgvPedidos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+
+            // Centraliza o texto do cabeçalho (títulos das colunas)
+            dgvPedidos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Centraliza o conteúdo da coluna "Quantidade"
+            dgvPedidos.Columns["Quantidade"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
         }
 
         // ---------- DATAGRIDVIEW ----------
@@ -51,8 +84,13 @@ namespace Projeto_Valquiria
                 try
                 {
                     conn.Open();
-                    string sql = @"SELECT p.id, c.nome AS Cliente, pr.nome AS Produto,
-                           p.quantidade, p.valor_total, p.data_pedido, p.status_pagamento
+                    string sql = @"SELECT p.id, 
+                                          c.nome                AS Cliente, 
+                                          pr.nome               AS Produto,
+                                          p.quantidade          AS Quantidade, 
+                                          p.valor_total         AS 'Valor Total',
+                                          p.data_pedido         AS Data, 
+                                          p.status_pagamento    AS Status
                            FROM pedidos p
                            JOIN clientes c ON p.cliente_id = c.id
                            JOIN produtos pr ON p.produto_id = pr.id
@@ -73,14 +111,14 @@ namespace Projeto_Valquiria
                     dgvPedidos.DataSource = dt;
                     dgvPedidos.Columns["id"].Visible = false;
 
-                    if (dgvPedidos.Columns.Contains("status_pagamento"))
+                    if (dgvPedidos.Columns.Contains("Status"))
                     {
-                        dgvPedidos.Columns.Remove("status_pagamento");
+                        dgvPedidos.Columns.Remove("Status");
 
                         DataGridViewComboBoxColumn comboStatus = new DataGridViewComboBoxColumn();
                         comboStatus.HeaderText = "Status";
-                        comboStatus.Name = "status_pagamento";
-                        comboStatus.DataPropertyName = "status_pagamento";
+                        comboStatus.Name = "Status";
+                        comboStatus.DataPropertyName = "Status";
                         comboStatus.Items.Add("Pago");
                         comboStatus.Items.Add("Pendente");
                         comboStatus.ReadOnly = false;
@@ -123,7 +161,7 @@ namespace Projeto_Valquiria
                 try
                 {
                     conn.Open();
-                    string sql = "SELECT id, nome, contato FROM clientes";
+                    string sql = "SELECT id, nome, contato FROM clientes ORDER BY nome asc";
                     MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
                     dt = new DataTable();
                     da.Fill(dt);
@@ -157,7 +195,7 @@ namespace Projeto_Valquiria
                 try
                 {
                     conn.Open();
-                    string sql = "SELECT id, nome, valor FROM produtos";
+                    string sql = "SELECT id, nome, valor FROM produtos ORDER BY nome ASC;";
                     MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -289,10 +327,10 @@ namespace Projeto_Valquiria
         // ---------- ATUALIZA STATUS ----------
         private void dgvPedidos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvPedidos.Columns[e.ColumnIndex].Name == "status_pagamento" && e.RowIndex >= 0)
+            if (dgvPedidos.Columns[e.ColumnIndex].Name == "Status" && e.RowIndex >= 0)
             {
                 int idPedido = Convert.ToInt32(dgvPedidos.Rows[e.RowIndex].Cells["id"].Value);
-                string novoStatus = dgvPedidos.Rows[e.RowIndex].Cells["status_pagamento"].Value?.ToString();
+                string novoStatus = dgvPedidos.Rows[e.RowIndex].Cells["Status"].Value?.ToString();
 
                 // 🚫 Validação do status
                 if (novoStatus != "Pago" && novoStatus != "Pendente")

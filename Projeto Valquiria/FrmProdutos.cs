@@ -26,6 +26,35 @@ namespace Projeto_Valquiria
         private void FrmProdutos_Load(object sender, EventArgs e)
         {
             CarregarDadosProdutos();
+
+            // Cor de fundo geral da tabela
+            dgvDadosProdutos.BackgroundColor = Color.FromArgb(240, 192, 229); // rosa pastel do layout
+
+            // Linhas alternadas
+            dgvDadosProdutos.DefaultCellStyle.BackColor = Color.White;
+            dgvDadosProdutos.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(220, 255, 220); // verde pastel suave
+
+            // Texto das células
+            dgvDadosProdutos.DefaultCellStyle.ForeColor = Color.FromArgb(40, 80, 40); // verde escuro
+            dgvDadosProdutos.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(40, 80, 40);
+
+            // Seleção
+            dgvDadosProdutos.DefaultCellStyle.SelectionBackColor = Color.FromArgb(92, 184, 92); // verde vibrante (botão Produtos)
+            dgvDadosProdutos.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            // Cabeçalho
+            dgvDadosProdutos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 192, 229); // rosa pastel
+            dgvDadosProdutos.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);   // lilás escuro
+            dgvDadosProdutos.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            dgvDadosProdutos.EnableHeadersVisualStyles = false;
+
+            // Bordas e estilo geral
+            dgvDadosProdutos.GridColor = Color.FromArgb(200, 230, 200);
+            dgvDadosProdutos.BorderStyle = BorderStyle.None;
+            dgvDadosProdutos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+
+            // Centraliza o texto do cabeçalho (títulos das colunas)
+            dgvDadosProdutos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         // ---------- CARREGAR PRODUTOS ----------

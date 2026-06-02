@@ -37,7 +37,6 @@
             lblContato = new Label();
             pnlCadastro = new Panel();
             dvgTabela = new DataGridView();
-            panelMenu = new PictureBox();
             btnHome = new Button();
             btnCliente = new Button();
             btnPedidos = new Button();
@@ -46,9 +45,10 @@
             btnEdicao = new Button();
             btnAtualizar = new Button();
             btnDeletar = new Button();
+            pnlMenu = new Panel();
             pnlCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dvgTabela).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)panelMenu).BeginInit();
+            pnlMenu.SuspendLayout();
             SuspendLayout();
             // 
             // lblTitulo
@@ -57,34 +57,37 @@
             lblTitulo.BorderStyle = BorderStyle.FixedSingle;
             lblTitulo.FlatStyle = FlatStyle.Flat;
             lblTitulo.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(754, 33);
+            lblTitulo.Location = new Point(936, 33);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(450, 66);
+            lblTitulo.Size = new Size(450, 50);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Área de cadastro de clientes";
             // 
             // txtNome
             // 
-            txtNome.Location = new Point(87, 15);
+            txtNome.Font = new Font("Segoe UI", 12F);
+            txtNome.Location = new Point(96, 16);
             txtNome.Margin = new Padding(3, 4, 3, 4);
             txtNome.Name = "txtNome";
-            txtNome.Size = new Size(755, 27);
+            txtNome.Size = new Size(935, 34);
             txtNome.TabIndex = 1;
             // 
             // txtContato
             // 
-            txtContato.Location = new Point(87, 83);
+            txtContato.Font = new Font("Segoe UI", 12F);
+            txtContato.Location = new Point(109, 84);
             txtContato.Margin = new Padding(3, 4, 3, 4);
             txtContato.Name = "txtContato";
-            txtContato.Size = new Size(611, 27);
+            txtContato.Size = new Size(773, 34);
             txtContato.TabIndex = 1;
             // 
             // btnCadastrar
             // 
-            btnCadastrar.Location = new Point(721, 92);
+            btnCadastrar.Font = new Font("Segoe UI", 12F);
+            btnCadastrar.Location = new Point(901, 84);
             btnCadastrar.Margin = new Padding(3, 4, 3, 4);
             btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(130, 31);
+            btnCadastrar.Size = new Size(130, 34);
             btnCadastrar.TabIndex = 2;
             btnCadastrar.Text = "Cadastrar Cliente";
             btnCadastrar.UseVisualStyleBackColor = true;
@@ -94,9 +97,10 @@
             // 
             lblNome.AutoSize = true;
             lblNome.BackColor = Color.White;
-            lblNome.Location = new Point(499, 796);
+            lblNome.Font = new Font("Segoe UI", 12F);
+            lblNome.Location = new Point(12, 16);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(53, 20);
+            lblNome.Size = new Size(70, 28);
             lblNome.TabIndex = 4;
             lblNome.Text = "Nome:";
             // 
@@ -104,9 +108,10 @@
             // 
             lblContato.AutoSize = true;
             lblContato.BackColor = Color.White;
-            lblContato.Location = new Point(487, 870);
+            lblContato.Font = new Font("Segoe UI", 12F);
+            lblContato.Location = new Point(16, 84);
             lblContato.Name = "lblContato";
-            lblContato.Size = new Size(65, 20);
+            lblContato.Size = new Size(87, 28);
             lblContato.TabIndex = 5;
             lblContato.Text = "Contato:";
             // 
@@ -116,45 +121,36 @@
             pnlCadastro.Controls.Add(btnCadastrar);
             pnlCadastro.Controls.Add(txtNome);
             pnlCadastro.Controls.Add(txtContato);
-            pnlCadastro.Location = new Point(468, 778);
+            pnlCadastro.Controls.Add(lblNome);
+            pnlCadastro.Controls.Add(lblContato);
+            pnlCadastro.Location = new Point(638, 760);
             pnlCadastro.Margin = new Padding(3, 4, 3, 4);
             pnlCadastro.Name = "pnlCadastro";
-            pnlCadastro.Size = new Size(882, 147);
+            pnlCadastro.Size = new Size(1048, 147);
             pnlCadastro.TabIndex = 6;
             // 
             // dvgTabela
             // 
             dvgTabela.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dvgTabela.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvgTabela.Location = new Point(402, 229);
+            dvgTabela.Location = new Point(638, 211);
             dvgTabela.Margin = new Padding(3, 4, 3, 4);
             dvgTabela.Name = "dvgTabela";
             dvgTabela.RowHeadersWidth = 51;
             dvgTabela.Size = new Size(1048, 541);
             dvgTabela.TabIndex = 7;
             // 
-            // panelMenu
-            // 
-            panelMenu.BackColor = Color.FromArgb(159, 214, 242);
-            panelMenu.Dock = DockStyle.Left;
-            panelMenu.Location = new Point(0, 0);
-            panelMenu.Margin = new Padding(3, 4, 3, 4);
-            panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(312, 925);
-            panelMenu.TabIndex = 8;
-            panelMenu.TabStop = false;
-            // 
             // btnHome
             // 
-            btnHome.BackColor = Color.FromArgb(159, 214, 242);
+            btnHome.BackColor = Color.Transparent;
             btnHome.BackgroundImage = (Image)resources.GetObject("btnHome.BackgroundImage");
             btnHome.BackgroundImageLayout = ImageLayout.Stretch;
             btnHome.FlatStyle = FlatStyle.Popup;
-            btnHome.ForeColor = Color.White;
-            btnHome.Location = new Point(14, 33);
+            btnHome.ForeColor = Color.Transparent;
+            btnHome.Location = new Point(157, 690);
             btnHome.Margin = new Padding(3, 4, 3, 4);
             btnHome.Name = "btnHome";
-            btnHome.Size = new Size(61, 75);
+            btnHome.Size = new Size(77, 77);
             btnHome.TabIndex = 3;
             btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnVoltar_Click;
@@ -163,8 +159,10 @@
             // 
             btnCliente.BackColor = Color.FromArgb(253, 208, 23);
             btnCliente.Cursor = Cursors.No;
+            btnCliente.Enabled = false;
+            btnCliente.Font = new Font("Segoe UI", 12F);
             btnCliente.ForeColor = Color.White;
-            btnCliente.Location = new Point(70, 475);
+            btnCliente.Location = new Point(104, 540);
             btnCliente.Margin = new Padding(3, 4, 3, 4);
             btnCliente.Name = "btnCliente";
             btnCliente.Size = new Size(181, 63);
@@ -174,10 +172,11 @@
             // 
             // btnPedidos
             // 
-            btnPedidos.BackColor = Color.FromArgb(164, 92, 218);
+            btnPedidos.BackColor = Color.MediumPurple;
             btnPedidos.FlatStyle = FlatStyle.Popup;
+            btnPedidos.Font = new Font("Segoe UI", 12F);
             btnPedidos.ForeColor = Color.White;
-            btnPedidos.Location = new Point(70, 333);
+            btnPedidos.Location = new Point(104, 240);
             btnPedidos.Margin = new Padding(3, 4, 3, 4);
             btnPedidos.Name = "btnPedidos";
             btnPedidos.Size = new Size(181, 63);
@@ -188,10 +187,11 @@
             // 
             // btnProdutos
             // 
-            btnProdutos.BackColor = Color.FromArgb(56, 206, 22);
+            btnProdutos.BackColor = Color.MediumSeaGreen;
             btnProdutos.FlatStyle = FlatStyle.Popup;
+            btnProdutos.Font = new Font("Segoe UI", 12F);
             btnProdutos.ForeColor = Color.White;
-            btnProdutos.Location = new Point(70, 404);
+            btnProdutos.Location = new Point(104, 390);
             btnProdutos.Margin = new Padding(3, 4, 3, 4);
             btnProdutos.Name = "btnProdutos";
             btnProdutos.Size = new Size(181, 63);
@@ -202,11 +202,12 @@
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Location = new Point(402, 153);
+            txtPesquisar.Font = new Font("Segoe UI", 12F);
+            txtPesquisar.Location = new Point(638, 153);
             txtPesquisar.Margin = new Padding(3, 4, 3, 4);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar:";
-            txtPesquisar.Size = new Size(1048, 27);
+            txtPesquisar.Size = new Size(1048, 34);
             txtPesquisar.TabIndex = 18;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
@@ -215,20 +216,21 @@
             btnEdicao.BackgroundImage = (Image)resources.GetObject("btnEdicao.BackgroundImage");
             btnEdicao.BackgroundImageLayout = ImageLayout.Stretch;
             btnEdicao.FlatStyle = FlatStyle.Flat;
-            btnEdicao.Location = new Point(1512, 229);
+            btnEdicao.Location = new Point(1739, 211);
             btnEdicao.Margin = new Padding(3, 4, 3, 4);
             btnEdicao.Name = "btnEdicao";
-            btnEdicao.Size = new Size(75, 69);
+            btnEdicao.Size = new Size(75, 75);
             btnEdicao.TabIndex = 19;
             btnEdicao.UseVisualStyleBackColor = true;
             btnEdicao.Click += btnEdicao_Click;
             // 
             // btnAtualizar
             // 
-            btnAtualizar.Location = new Point(1503, 349);
+            btnAtualizar.Font = new Font("Segoe UI", 12F);
+            btnAtualizar.Location = new Point(1739, 303);
             btnAtualizar.Margin = new Padding(3, 4, 3, 4);
             btnAtualizar.Name = "btnAtualizar";
-            btnAtualizar.Size = new Size(86, 31);
+            btnAtualizar.Size = new Size(99, 39);
             btnAtualizar.TabIndex = 20;
             btnAtualizar.Text = "Atualizar";
             btnAtualizar.UseVisualStyleBackColor = true;
@@ -236,45 +238,54 @@
             // 
             // btnDeletar
             // 
-            btnDeletar.Location = new Point(1501, 388);
+            btnDeletar.Font = new Font("Segoe UI", 12F);
+            btnDeletar.Location = new Point(1739, 347);
             btnDeletar.Margin = new Padding(3, 4, 3, 4);
             btnDeletar.Name = "btnDeletar";
-            btnDeletar.Size = new Size(86, 31);
+            btnDeletar.Size = new Size(99, 39);
             btnDeletar.TabIndex = 20;
             btnDeletar.Text = "Deletar";
             btnDeletar.UseVisualStyleBackColor = true;
             btnDeletar.Click += btnDeletar_Click;
+            // 
+            // pnlMenu
+            // 
+            pnlMenu.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            pnlMenu.BackColor = Color.FromArgb(240, 192, 229);
+            pnlMenu.BackgroundImage = (Image)resources.GetObject("pnlMenu.BackgroundImage");
+            pnlMenu.Controls.Add(btnPedidos);
+            pnlMenu.Controls.Add(btnProdutos);
+            pnlMenu.Controls.Add(btnCliente);
+            pnlMenu.Controls.Add(btnHome);
+            pnlMenu.Location = new Point(0, 0);
+            pnlMenu.Margin = new Padding(3, 4, 3, 4);
+            pnlMenu.Name = "pnlMenu";
+            pnlMenu.Size = new Size(397, 1055);
+            pnlMenu.TabIndex = 21;
             // 
             // FrmClientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 226, 100);
-            ClientSize = new Size(1637, 925);
+            ClientSize = new Size(1924, 925);
+            Controls.Add(pnlMenu);
             Controls.Add(btnDeletar);
             Controls.Add(btnAtualizar);
             Controls.Add(btnEdicao);
             Controls.Add(txtPesquisar);
-            Controls.Add(btnProdutos);
-            Controls.Add(btnCliente);
-            Controls.Add(btnPedidos);
-            Controls.Add(btnHome);
             Controls.Add(dvgTabela);
-            Controls.Add(lblContato);
-            Controls.Add(lblNome);
             Controls.Add(lblTitulo);
             Controls.Add(pnlCadastro);
-            Controls.Add(panelMenu);
             Margin = new Padding(3, 4, 3, 4);
             Name = "FrmClientes";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Clientes";
             WindowState = FormWindowState.Maximized;
             Load += FrmClientes_Load;
             pnlCadastro.ResumeLayout(false);
             pnlCadastro.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dvgTabela).EndInit();
-            ((System.ComponentModel.ISupportInitialize)panelMenu).EndInit();
+            pnlMenu.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -289,7 +300,6 @@
         private Label lblContato;
         private Panel pnlCadastro;
         private DataGridView dvgTabela;
-        private PictureBox panelMenu;
         private Button btnHome;
         private Button btnCliente;
         private Button btnPedidos;
@@ -298,5 +308,6 @@
         private Button btnEdicao;
         private Button btnAtualizar;
         private Button btnDeletar;
+        private Panel pnlMenu;
     }
 }

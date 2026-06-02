@@ -26,6 +26,35 @@ namespace Projeto_Valquiria
             btnAtualizar.Visible = false;
             btnDeletar.Visible = false;
             dvgTabela.ReadOnly = true;
+
+            // Cor de fundo geral da tabela
+            dvgTabela.BackgroundColor = Color.FromArgb(240, 192, 229); // rosa pastel do layout
+
+            // Linhas alternadas
+            dvgTabela.DefaultCellStyle.BackColor = Color.White;
+            dvgTabela.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(255, 245, 200); // amarelo pastel suave
+
+            // Texto das células
+            dvgTabela.DefaultCellStyle.ForeColor = Color.FromArgb(100, 80, 20); // marrom/amarelo escuro
+            dvgTabela.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(100, 80, 20);
+
+            // Seleção
+            dvgTabela.DefaultCellStyle.SelectionBackColor = Color.FromArgb(253, 208, 23); // amarelo vibrante (igual ao botão Clientes)
+            dvgTabela.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            // Cabeçalho
+            dvgTabela.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 192, 229); // rosa pastel
+            dvgTabela.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);   // lilás escuro
+            dvgTabela.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            dvgTabela.EnableHeadersVisualStyles = false;
+
+            // Bordas e estilo geral
+            dvgTabela.GridColor = Color.FromArgb(230, 210, 150);
+            dvgTabela.BorderStyle = BorderStyle.None;
+            dvgTabela.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+
+            // Centraliza o texto do cabeçalho (títulos das colunas)
+            dvgTabela.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         // ---------- CARREGAR CLIENTES ----------
