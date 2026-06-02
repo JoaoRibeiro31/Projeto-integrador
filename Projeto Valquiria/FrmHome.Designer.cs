@@ -76,7 +76,7 @@
             btnPedido.Location = new Point(104, 240);
             btnPedido.Margin = new Padding(3, 4, 3, 4);
             btnPedido.Name = "btnPedido";
-            btnPedido.Size = new Size(181, 63);
+            btnPedido.Size = new Size(158, 47);
             btnPedido.TabIndex = 0;
             btnPedido.Text = "Pedidos";
             btnPedido.UseVisualStyleBackColor = false;
@@ -91,7 +91,7 @@
             btnProduto.Location = new Point(104, 390);
             btnProduto.Margin = new Padding(3, 4, 3, 4);
             btnProduto.Name = "btnProduto";
-            btnProduto.Size = new Size(181, 63);
+            btnProduto.Size = new Size(158, 47);
             btnProduto.TabIndex = 1;
             btnProduto.Text = "Produtos";
             btnProduto.UseVisualStyleBackColor = false;
@@ -120,7 +120,7 @@
             btnCliente.Location = new Point(104, 540);
             btnCliente.Margin = new Padding(3, 4, 3, 4);
             btnCliente.Name = "btnCliente";
-            btnCliente.Size = new Size(181, 63);
+            btnCliente.Size = new Size(158, 47);
             btnCliente.TabIndex = 6;
             btnCliente.Text = "Clientes";
             btnCliente.UseVisualStyleBackColor = false;
@@ -167,7 +167,7 @@
             // 
             // panelConteudo
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(249, 235, 190);
             ClientSize = new Size(1924, 1055);
