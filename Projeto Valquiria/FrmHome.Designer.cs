@@ -49,7 +49,7 @@
             txtPesquisar.Margin = new Padding(3, 4, 3, 4);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar:";
-            txtPesquisar.Size = new Size(1048, 30);
+            txtPesquisar.Size = new Size(1048, 26);
             txtPesquisar.TabIndex = 4;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
@@ -141,6 +141,7 @@
             // pnlMenu
             // 
             pnlMenu.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            pnlMenu.AutoScroll = true;
             pnlMenu.BackColor = Color.FromArgb(240, 192, 229);
             pnlMenu.BackgroundImage = (Image)resources.GetObject("pnlMenu.BackgroundImage");
             pnlMenu.Controls.Add(btnPedido);
@@ -151,7 +152,7 @@
             pnlMenu.Location = new Point(0, 0);
             pnlMenu.Margin = new Padding(3, 4, 3, 4);
             pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(397, 1055);
+            pnlMenu.Size = new Size(347, 1062);
             pnlMenu.TabIndex = 16;
             // 
             // lblTitulo
