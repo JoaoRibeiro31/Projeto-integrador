@@ -45,11 +45,11 @@
             // txtPesquisar
             // 
             txtPesquisar.Font = new Font("Arial Narrow", 12F);
-            txtPesquisar.Location = new Point(638, 153);
-            txtPesquisar.Margin = new Padding(3, 4, 3, 4);
+            txtPesquisar.Location = new Point(729, 204);
+            txtPesquisar.Margin = new Padding(3, 5, 3, 5);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar:";
-            txtPesquisar.Size = new Size(1048, 26);
+            txtPesquisar.Size = new Size(1197, 30);
             txtPesquisar.TabIndex = 4;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
@@ -59,12 +59,12 @@
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPedidos.BackgroundColor = Color.FromArgb(217, 217, 217);
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPedidos.Location = new Point(638, 211);
-            dgvPedidos.Margin = new Padding(3, 4, 3, 4);
+            dgvPedidos.Location = new Point(729, 281);
+            dgvPedidos.Margin = new Padding(3, 5, 3, 5);
             dgvPedidos.Name = "dgvPedidos";
             dgvPedidos.ReadOnly = true;
             dgvPedidos.RowHeadersWidth = 51;
-            dgvPedidos.Size = new Size(1048, 541);
+            dgvPedidos.Size = new Size(1198, 721);
             dgvPedidos.TabIndex = 5;
             // 
             // btnPedido
@@ -74,9 +74,9 @@
             btnPedido.Font = new Font("Segoe UI", 12F);
             btnPedido.ForeColor = Color.White;
             btnPedido.Location = new Point(104, 240);
-            btnPedido.Margin = new Padding(3, 4, 3, 4);
+            btnPedido.Margin = new Padding(3, 5, 3, 5);
             btnPedido.Name = "btnPedido";
-            btnPedido.Size = new Size(158, 47);
+            btnPedido.Size = new Size(181, 63);
             btnPedido.TabIndex = 0;
             btnPedido.Text = "Pedidos";
             btnPedido.UseVisualStyleBackColor = false;
@@ -88,10 +88,10 @@
             btnProduto.FlatStyle = FlatStyle.Popup;
             btnProduto.Font = new Font("Segoe UI", 12F);
             btnProduto.ForeColor = Color.White;
-            btnProduto.Location = new Point(104, 390);
-            btnProduto.Margin = new Padding(3, 4, 3, 4);
+            btnProduto.Location = new Point(104, 389);
+            btnProduto.Margin = new Padding(3, 5, 3, 5);
             btnProduto.Name = "btnProduto";
-            btnProduto.Size = new Size(158, 47);
+            btnProduto.Size = new Size(181, 63);
             btnProduto.TabIndex = 1;
             btnProduto.Text = "Produtos";
             btnProduto.UseVisualStyleBackColor = false;
@@ -103,8 +103,8 @@
             btnFecharApp.BackgroundImage = (Image)resources.GetObject("btnFecharApp.BackgroundImage");
             btnFecharApp.BackgroundImageLayout = ImageLayout.Stretch;
             btnFecharApp.FlatStyle = FlatStyle.Popup;
-            btnFecharApp.Location = new Point(156, 670);
-            btnFecharApp.Margin = new Padding(3, 4, 3, 4);
+            btnFecharApp.Location = new Point(157, 691);
+            btnFecharApp.Margin = new Padding(3, 5, 3, 5);
             btnFecharApp.Name = "btnFecharApp";
             btnFecharApp.Size = new Size(77, 77);
             btnFecharApp.TabIndex = 3;
@@ -118,9 +118,9 @@
             btnCliente.Font = new Font("Segoe UI", 12F);
             btnCliente.ForeColor = Color.White;
             btnCliente.Location = new Point(104, 540);
-            btnCliente.Margin = new Padding(3, 4, 3, 4);
+            btnCliente.Margin = new Padding(3, 5, 3, 5);
             btnCliente.Name = "btnCliente";
-            btnCliente.Size = new Size(158, 47);
+            btnCliente.Size = new Size(181, 63);
             btnCliente.TabIndex = 6;
             btnCliente.Text = "Clientes";
             btnCliente.UseVisualStyleBackColor = false;
@@ -131,9 +131,9 @@
             lblDesligar.BackColor = Color.Pink;
             lblDesligar.BorderStyle = BorderStyle.FixedSingle;
             lblDesligar.Enabled = false;
-            lblDesligar.Location = new Point(156, 751);
+            lblDesligar.Location = new Point(157, 773);
             lblDesligar.Name = "lblDesligar";
-            lblDesligar.Size = new Size(77, 25);
+            lblDesligar.Size = new Size(77, 33);
             lblDesligar.TabIndex = 7;
             lblDesligar.Text = "Desligar";
             lblDesligar.TextAlign = ContentAlignment.MiddleCenter;
@@ -150,9 +150,9 @@
             pnlMenu.Controls.Add(btnFecharApp);
             pnlMenu.Controls.Add(btnCliente);
             pnlMenu.Location = new Point(0, 0);
-            pnlMenu.Margin = new Padding(3, 4, 3, 4);
+            pnlMenu.Margin = new Padding(3, 5, 3, 5);
             pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(347, 1062);
+            pnlMenu.Size = new Size(397, 1055);
             pnlMenu.TabIndex = 16;
             // 
             // lblTitulo
@@ -160,15 +160,15 @@
             lblTitulo.BackColor = Color.White;
             lblTitulo.FlatStyle = FlatStyle.Flat;
             lblTitulo.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(1105, 33);
+            lblTitulo.Location = new Point(1263, 44);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(114, 50);
+            lblTitulo.Size = new Size(111, 67);
             lblTitulo.TabIndex = 17;
             lblTitulo.Text = "Home";
             // 
             // panelConteudo
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(249, 235, 190);
             ClientSize = new Size(1924, 1055);
@@ -176,7 +176,7 @@
             Controls.Add(pnlMenu);
             Controls.Add(dgvPedidos);
             Controls.Add(txtPesquisar);
-            Margin = new Padding(3, 4, 3, 4);
+            Margin = new Padding(3, 5, 3, 5);
             Name = "panelConteudo";
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Maximized;

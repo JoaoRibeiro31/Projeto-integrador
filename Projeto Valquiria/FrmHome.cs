@@ -66,21 +66,39 @@ namespace Projeto_Valquiria
                 {
                     conn.Open();
 
-                    string sql = @"SELECT cl.nome AS Nome,
-                                          cl.contato AS Contato,
-                                          SUM(p.valor_total) AS Pendencias
-                                   FROM pedidos p
-                                   INNER JOIN clientes cl ON p.cliente_id = cl.id
-                                   WHERE p.status_pagamento = 'Pendente'
-                                     AND (cl.nome LIKE @filtro
-                                          OR cl.contato LIKE @filtro
-                                          OR p.valor_total LIKE @filtro)
-                                   GROUP BY cl.nome, cl.contato
-                                   ORDER BY Nome ASC;";
+                    string sql = @"SELECT Nome, Contato, Pendencias
+               FROM (
+                   SELECT cl.nome AS Nome,
+                          cl.contato AS Contato,
+                          SUM(p.valor_total) AS Pendencias
+                   FROM pedidos p
+                   INNER JOIN clientes cl ON p.cliente_id = cl.id
+                   WHERE p.status_pagamento = 'Pendente'
+                   GROUP BY cl.nome, cl.contato
+               ) AS sub
+               WHERE (Nome LIKE @filtro
+                      OR Contato LIKE @filtro
+                      OR CAST(Pendencias AS CHAR) LIKE @filtro
+                      OR REPLACE(CAST(Pendencias AS CHAR), '.', ',') LIKE @filtro
+                      OR Pendencias = @valor)
+               ORDER BY Nome ASC;";
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
 
+                    // parâmetro texto
                     adapter.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+
+                    // parâmetro numérico (só se for número válido)
+                    decimal valorPesquisa;
+                    if (decimal.TryParse(filtro, out valorPesquisa))
+                    {
+                        adapter.SelectCommand.Parameters.AddWithValue("@valor", valorPesquisa);
+                    }
+                    else
+                    {
+                        // se não for número, evita erro no HAVING
+                        adapter.SelectCommand.Parameters.AddWithValue("@valor", -1);
+                    }
 
                     tabela = new DataTable();
                     adapter.Fill(tabela);
@@ -104,6 +122,8 @@ namespace Projeto_Valquiria
                 }
             }
         }
+
+
 
         // ---------- MÉTODO DE DESTAQUE ----------
         private void AplicarDestaquePendencias()

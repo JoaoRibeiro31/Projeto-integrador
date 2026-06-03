@@ -64,9 +64,10 @@
             btnCliente.FlatStyle = FlatStyle.Popup;
             btnCliente.Font = new Font("Segoe UI", 12F);
             btnCliente.ForeColor = Color.White;
-            btnCliente.Location = new Point(91, 405);
+            btnCliente.Location = new Point(104, 540);
+            btnCliente.Margin = new Padding(3, 4, 3, 4);
             btnCliente.Name = "btnCliente";
-            btnCliente.Size = new Size(158, 43);
+            btnCliente.Size = new Size(181, 57);
             btnCliente.TabIndex = 1;
             btnCliente.Text = "Cliente";
             btnCliente.UseVisualStyleBackColor = false;
@@ -78,9 +79,10 @@
             btnProduto.FlatStyle = FlatStyle.Popup;
             btnProduto.Font = new Font("Segoe UI", 12F);
             btnProduto.ForeColor = Color.White;
-            btnProduto.Location = new Point(91, 292);
+            btnProduto.Location = new Point(104, 389);
+            btnProduto.Margin = new Padding(3, 4, 3, 4);
             btnProduto.Name = "btnProduto";
-            btnProduto.Size = new Size(158, 47);
+            btnProduto.Size = new Size(181, 63);
             btnProduto.TabIndex = 10;
             btnProduto.Text = "Produtos";
             btnProduto.UseVisualStyleBackColor = false;
@@ -95,8 +97,9 @@
             pnlMenu.Controls.Add(btnPedido);
             pnlMenu.Controls.Add(btnProduto);
             pnlMenu.Location = new Point(0, 0);
+            pnlMenu.Margin = new Padding(3, 4, 3, 4);
             pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(347, 791);
+            pnlMenu.Size = new Size(397, 1055);
             pnlMenu.TabIndex = 15;
             // 
             // btnHome
@@ -108,9 +111,10 @@
             btnHome.FlatAppearance.BorderSize = 0;
             btnHome.FlatStyle = FlatStyle.Popup;
             btnHome.ForeColor = Color.Transparent;
-            btnHome.Location = new Point(137, 518);
+            btnHome.Location = new Point(157, 691);
+            btnHome.Margin = new Padding(3, 4, 3, 4);
             btnHome.Name = "btnHome";
-            btnHome.Size = new Size(67, 58);
+            btnHome.Size = new Size(77, 77);
             btnHome.TabIndex = 12;
             btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnHome_Click;
@@ -122,9 +126,10 @@
             btnPedido.Enabled = false;
             btnPedido.Font = new Font("Segoe UI", 12F);
             btnPedido.ForeColor = Color.White;
-            btnPedido.Location = new Point(91, 180);
+            btnPedido.Location = new Point(104, 240);
+            btnPedido.Margin = new Padding(3, 4, 3, 4);
             btnPedido.Name = "btnPedido";
-            btnPedido.Size = new Size(158, 47);
+            btnPedido.Size = new Size(181, 63);
             btnPedido.TabIndex = 11;
             btnPedido.Text = "Pedidos";
             btnPedido.UseVisualStyleBackColor = false;
@@ -136,10 +141,9 @@
             btnEdicao.FlatStyle = FlatStyle.Popup;
             btnEdicao.ForeColor = Color.Transparent;
             btnEdicao.Image = (Image)resources.GetObject("btnEdicao.Image");
-            btnEdicao.Location = new Point(1522, 158);
-            btnEdicao.Margin = new Padding(3, 2, 3, 2);
+            btnEdicao.Location = new Point(1739, 211);
             btnEdicao.Name = "btnEdicao";
-            btnEdicao.Size = new Size(66, 56);
+            btnEdicao.Size = new Size(75, 75);
             btnEdicao.TabIndex = 16;
             btnEdicao.UseVisualStyleBackColor = true;
             btnEdicao.Click += btnEdicao_Click;
@@ -147,10 +151,9 @@
             // btnDeletar
             // 
             btnDeletar.Font = new Font("Segoe UI", 12F);
-            btnDeletar.Location = new Point(1522, 260);
-            btnDeletar.Margin = new Padding(3, 2, 3, 2);
+            btnDeletar.Location = new Point(1739, 347);
             btnDeletar.Name = "btnDeletar";
-            btnDeletar.Size = new Size(87, 29);
+            btnDeletar.Size = new Size(99, 39);
             btnDeletar.TabIndex = 18;
             btnDeletar.Text = "Deletar";
             btnDeletar.UseVisualStyleBackColor = true;
@@ -160,9 +163,10 @@
             // 
             btnCadastrar.BackColor = Color.White;
             btnCadastrar.Font = new Font("Segoe UI", 12F);
-            btnCadastrar.Location = new Point(701, 78);
+            btnCadastrar.Location = new Point(801, 104);
+            btnCadastrar.Margin = new Padding(3, 4, 3, 4);
             btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(186, 27);
+            btnCadastrar.Size = new Size(213, 36);
             btnCadastrar.TabIndex = 9;
             btnCadastrar.Text = "Cadastrar Pedido";
             btnCadastrar.UseVisualStyleBackColor = false;
@@ -172,18 +176,20 @@
             // 
             cmbProdutos.Font = new Font("Segoe UI", 12F);
             cmbProdutos.FormattingEnabled = true;
-            cmbProdutos.Location = new Point(112, 47);
+            cmbProdutos.Location = new Point(128, 63);
+            cmbProdutos.Margin = new Padding(3, 4, 3, 4);
             cmbProdutos.Name = "cmbProdutos";
-            cmbProdutos.Size = new Size(234, 29);
+            cmbProdutos.Size = new Size(267, 36);
             cmbProdutos.TabIndex = 2;
             cmbProdutos.SelectedIndexChanged += cmbProdutos_SelectedIndexChanged_1;
             // 
             // txtQuantidade
             // 
             txtQuantidade.Font = new Font("Segoe UI", 12F);
-            txtQuantidade.Location = new Point(729, 47);
+            txtQuantidade.Location = new Point(833, 63);
+            txtQuantidade.Margin = new Padding(3, 4, 3, 4);
             txtQuantidade.Name = "txtQuantidade";
-            txtQuantidade.Size = new Size(158, 29);
+            txtQuantidade.Size = new Size(180, 34);
             txtQuantidade.TabIndex = 0;
             txtQuantidade.TextChanged += txtQuantidade_TextChanged_1;
             // 
@@ -191,18 +197,18 @@
             // 
             lblValorTotal.BackColor = Color.White;
             lblValorTotal.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblValorTotal.Location = new Point(38, 78);
+            lblValorTotal.Location = new Point(43, 104);
             lblValorTotal.Name = "lblValorTotal";
-            lblValorTotal.Size = new Size(97, 21);
+            lblValorTotal.Size = new Size(111, 28);
             lblValorTotal.TabIndex = 6;
             lblValorTotal.Text = "Valor total";
             // 
             // lblNome
             // 
             lblNome.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNome.Location = new Point(38, 12);
+            lblNome.Location = new Point(43, 16);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(59, 21);
+            lblNome.Size = new Size(67, 28);
             lblNome.TabIndex = 10;
             lblNome.Text = "Nome Cliente:";
             // 
@@ -210,9 +216,10 @@
             // 
             cmbClientes.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbClientes.FormattingEnabled = true;
-            cmbClientes.Location = new Point(96, 12);
+            cmbClientes.Location = new Point(110, 16);
+            cmbClientes.Margin = new Padding(3, 4, 3, 4);
             cmbClientes.Name = "cmbClientes";
-            cmbClientes.Size = new Size(293, 29);
+            cmbClientes.Size = new Size(334, 36);
             cmbClientes.TabIndex = 0;
             cmbClientes.SelectedIndexChanged += cmbClientes_SelectedIndexChanged_1;
             // 
@@ -220,9 +227,10 @@
             // 
             cmbStatus.Font = new Font("Segoe UI", 12F);
             cmbStatus.FormattingEnabled = true;
-            cmbStatus.Location = new Point(368, 78);
+            cmbStatus.Location = new Point(421, 104);
+            cmbStatus.Margin = new Padding(3, 4, 3, 4);
             cmbStatus.Name = "cmbStatus";
-            cmbStatus.Size = new Size(221, 29);
+            cmbStatus.Size = new Size(252, 36);
             cmbStatus.TabIndex = 11;
             cmbStatus.Text = "Status";
             // 
@@ -230,9 +238,9 @@
             // 
             lblValorP.AutoSize = true;
             lblValorP.Font = new Font("Segoe UI", 12F);
-            lblValorP.Location = new Point(351, 47);
+            lblValorP.Location = new Point(401, 63);
             lblValorP.Name = "lblValorP";
-            lblValorP.Size = new Size(106, 21);
+            lblValorP.Size = new Size(134, 28);
             lblValorP.TabIndex = 12;
             lblValorP.Text = "Valor Produto";
             // 
@@ -240,9 +248,9 @@
             // 
             lblQuantidade.AutoSize = true;
             lblQuantidade.Font = new Font("Segoe UI", 12F);
-            lblQuantidade.Location = new Point(614, 47);
+            lblQuantidade.Location = new Point(702, 63);
             lblQuantidade.Name = "lblQuantidade";
-            lblQuantidade.Size = new Size(91, 21);
+            lblQuantidade.Size = new Size(115, 28);
             lblQuantidade.TabIndex = 12;
             lblQuantidade.Text = "Quantidade";
             // 
@@ -250,27 +258,27 @@
             // 
             lblValorProduto.BackColor = Color.Gainsboro;
             lblValorProduto.Font = new Font("Segoe UI", 12F);
-            lblValorProduto.Location = new Point(478, 47);
+            lblValorProduto.Location = new Point(546, 63);
             lblValorProduto.Name = "lblValorProduto";
-            lblValorProduto.Size = new Size(93, 21);
+            lblValorProduto.Size = new Size(106, 28);
             lblValorProduto.TabIndex = 12;
             // 
             // lblContato
             // 
             lblContato.BackColor = Color.Gainsboro;
             lblContato.Font = new Font("Segoe UI", 12F);
-            lblContato.Location = new Point(394, 12);
+            lblContato.Location = new Point(450, 16);
             lblContato.Name = "lblContato";
-            lblContato.Size = new Size(493, 27);
+            lblContato.Size = new Size(563, 36);
             lblContato.TabIndex = 12;
             // 
             // lblTotal
             // 
             lblTotal.BackColor = Color.Gainsboro;
             lblTotal.Font = new Font("Segoe UI", 12F);
-            lblTotal.Location = new Point(144, 78);
+            lblTotal.Location = new Point(165, 104);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(154, 21);
+            lblTotal.Size = new Size(176, 28);
             lblTotal.TabIndex = 13;
             // 
             // pnlCadastro
@@ -289,18 +297,19 @@
             pnlCadastro.Controls.Add(txtQuantidade);
             pnlCadastro.Controls.Add(cmbProdutos);
             pnlCadastro.Controls.Add(btnCadastrar);
-            pnlCadastro.Location = new Point(558, 570);
+            pnlCadastro.Location = new Point(638, 760);
+            pnlCadastro.Margin = new Padding(3, 4, 3, 4);
             pnlCadastro.Name = "pnlCadastro";
-            pnlCadastro.Size = new Size(917, 112);
+            pnlCadastro.Size = new Size(1048, 149);
             pnlCadastro.TabIndex = 13;
             // 
             // lblProduto
             // 
             lblProduto.AutoSize = true;
             lblProduto.Font = new Font("Segoe UI", 12F);
-            lblProduto.Location = new Point(38, 47);
+            lblProduto.Location = new Point(43, 63);
             lblProduto.Name = "lblProduto";
-            lblProduto.Size = new Size(66, 21);
+            lblProduto.Size = new Size(84, 28);
             lblProduto.TabIndex = 14;
             lblProduto.Text = "Produto";
             // 
@@ -310,9 +319,9 @@
             lblTitulo.BackColor = Color.White;
             lblTitulo.BorderStyle = BorderStyle.FixedSingle;
             lblTitulo.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(815, 25);
+            lblTitulo.Location = new Point(931, 33);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(398, 38);
+            lblTitulo.Size = new Size(455, 50);
             lblTitulo.TabIndex = 11;
             lblTitulo.Text = "Área de Cadastro de Pedidos";
             // 
@@ -320,29 +329,31 @@
             // 
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPedidos.Location = new Point(558, 158);
+            dgvPedidos.Location = new Point(638, 211);
+            dgvPedidos.Margin = new Padding(3, 4, 3, 4);
             dgvPedidos.Name = "dgvPedidos";
             dgvPedidos.RowHeadersWidth = 51;
             dgvPedidos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvPedidos.Size = new Size(917, 406);
+            dgvPedidos.Size = new Size(1048, 541);
             dgvPedidos.TabIndex = 14;
             // 
             // txtPesquisar
             // 
             txtPesquisar.Font = new Font("Segoe UI", 12F);
-            txtPesquisar.Location = new Point(558, 115);
+            txtPesquisar.Location = new Point(638, 153);
+            txtPesquisar.Margin = new Padding(3, 4, 3, 4);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar:";
-            txtPesquisar.Size = new Size(918, 29);
+            txtPesquisar.Size = new Size(1049, 34);
             txtPesquisar.TabIndex = 17;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
             // FrmPedidos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.MediumPurple;
-            ClientSize = new Size(1684, 791);
+            ClientSize = new Size(1924, 1055);
             Controls.Add(btnDeletar);
             Controls.Add(btnCliente);
             Controls.Add(txtPesquisar);
@@ -351,6 +362,7 @@
             Controls.Add(lblTitulo);
             Controls.Add(pnlCadastro);
             Controls.Add(pnlMenu);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmPedidos";
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Maximized;
