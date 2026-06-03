@@ -49,8 +49,8 @@
             tlpHome = new TableLayoutPanel();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
-            btnDeletar = new Button();
             btnAtualizar = new Button();
+            btnDeletar = new Button();
             tableLayoutPanel2 = new TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)dgvDadosProdutos).BeginInit();
             pnlCadastro.SuspendLayout();
@@ -359,18 +359,6 @@
             tableLayoutPanel3.Size = new Size(204, 510);
             tableLayoutPanel3.TabIndex = 24;
             // 
-            // btnDeletar
-            // 
-            btnDeletar.Dock = DockStyle.Fill;
-            btnDeletar.Font = new Font("Segoe UI", 12F);
-            btnDeletar.Location = new Point(43, 207);
-            btnDeletar.Name = "btnDeletar";
-            btnDeletar.Size = new Size(96, 39);
-            btnDeletar.TabIndex = 9;
-            btnDeletar.Text = "Deletar";
-            btnDeletar.UseVisualStyleBackColor = true;
-            btnDeletar.Click += btnDeletar_Click;
-            // 
             // btnAtualizar
             // 
             btnAtualizar.Dock = DockStyle.Fill;
@@ -382,6 +370,18 @@
             btnAtualizar.Text = "Atualizar";
             btnAtualizar.UseVisualStyleBackColor = true;
             btnAtualizar.Click += btnAtualizar_Click;
+            // 
+            // btnDeletar
+            // 
+            btnDeletar.Dock = DockStyle.Fill;
+            btnDeletar.Font = new Font("Segoe UI", 12F);
+            btnDeletar.Location = new Point(43, 207);
+            btnDeletar.Name = "btnDeletar";
+            btnDeletar.Size = new Size(96, 39);
+            btnDeletar.TabIndex = 9;
+            btnDeletar.Text = "Deletar";
+            btnDeletar.UseVisualStyleBackColor = true;
+            btnDeletar.Click += btnDeletar_Click;
             // 
             // tableLayoutPanel2
             // 
