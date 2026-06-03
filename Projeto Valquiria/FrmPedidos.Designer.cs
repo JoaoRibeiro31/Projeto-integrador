@@ -71,7 +71,6 @@
             // btnCliente
             // 
             btnCliente.BackColor = Color.FromArgb(253, 208, 23);
-            btnCliente.Dock = DockStyle.Fill;
             btnCliente.FlatStyle = FlatStyle.Popup;
             btnCliente.Font = new Font("Segoe UI", 12F);
             btnCliente.ForeColor = Color.White;
@@ -86,7 +85,6 @@
             // btnProduto
             // 
             btnProduto.BackColor = Color.MediumSeaGreen;
-            btnProduto.Dock = DockStyle.Fill;
             btnProduto.FlatStyle = FlatStyle.Popup;
             btnProduto.Font = new Font("Segoe UI", 12F);
             btnProduto.ForeColor = Color.White;
@@ -141,8 +139,6 @@
             // 
             btnPedido.BackColor = Color.MediumPurple;
             btnPedido.Cursor = Cursors.No;
-            btnPedido.Dock = DockStyle.Fill;
-            btnPedido.Enabled = false;
             btnPedido.Font = new Font("Segoe UI", 12F);
             btnPedido.ForeColor = Color.White;
             btnPedido.Location = new Point(99, 181);
@@ -185,28 +181,26 @@
             // 
             // btnEdicao
             // 
-            btnEdicao.BackgroundImageLayout = ImageLayout.Stretch;
+            btnEdicao.BackgroundImageLayout = ImageLayout.Center;
             btnEdicao.Cursor = Cursors.Hand;
-            btnEdicao.Dock = DockStyle.Fill;
             btnEdicao.FlatStyle = FlatStyle.Popup;
             btnEdicao.ForeColor = Color.Transparent;
             btnEdicao.Image = (Image)resources.GetObject("btnEdicao.Image");
-            btnEdicao.Location = new Point(39, 2);
-            btnEdicao.Margin = new Padding(3, 2, 3, 2);
+            btnEdicao.Location = new Point(39, 3);
             btnEdicao.Name = "btnEdicao";
-            btnEdicao.Size = new Size(83, 73);
+            btnEdicao.Size = new Size(83, 68);
             btnEdicao.TabIndex = 16;
             btnEdicao.UseVisualStyleBackColor = true;
             btnEdicao.Click += btnEdicao_Click;
             // 
             // btnDeletar
             // 
-            btnDeletar.Dock = DockStyle.Fill;
+            btnDeletar.AutoSize = true;
             btnDeletar.Font = new Font("Segoe UI", 12F);
             btnDeletar.Location = new Point(39, 110);
             btnDeletar.Margin = new Padding(3, 2, 3, 2);
             btnDeletar.Name = "btnDeletar";
-            btnDeletar.Size = new Size(83, 28);
+            btnDeletar.Size = new Size(82, 28);
             btnDeletar.TabIndex = 18;
             btnDeletar.Text = "Deletar";
             btnDeletar.UseVisualStyleBackColor = true;
@@ -485,6 +479,7 @@
             tableLayoutPanel1.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
             ResumeLayout(false);
         }
 

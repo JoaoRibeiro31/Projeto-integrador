@@ -63,19 +63,20 @@
             // 
             // lblTitulo
             // 
+            lblTitulo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             lblTitulo.BackColor = Color.White;
             lblTitulo.BorderStyle = BorderStyle.FixedSingle;
-            lblTitulo.Dock = DockStyle.Fill;
             lblTitulo.FlatStyle = FlatStyle.Flat;
             lblTitulo.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(256, 0);
+            lblTitulo.Location = new Point(281, 0);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(401, 39);
+            lblTitulo.Size = new Size(351, 39);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Área de cadastro de clientes";
             // 
             // txtNome
             // 
+            txtNome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtNome.Font = new Font("Segoe UI", 12F);
             txtNome.Location = new Point(84, 12);
             txtNome.Name = "txtNome";
@@ -84,6 +85,7 @@
             // 
             // txtContato
             // 
+            txtContato.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtContato.Font = new Font("Segoe UI", 12F);
             txtContato.Location = new Point(95, 63);
             txtContato.Name = "txtContato";
@@ -92,10 +94,11 @@
             // 
             // btnCadastrar
             // 
+            btnCadastrar.Anchor = AnchorStyles.Right;
             btnCadastrar.Font = new Font("Segoe UI", 12F);
-            btnCadastrar.Location = new Point(788, 63);
+            btnCadastrar.Location = new Point(802, 63);
             btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(114, 26);
+            btnCadastrar.Size = new Size(101, 29);
             btnCadastrar.TabIndex = 2;
             btnCadastrar.Text = "Cadastrar Cliente";
             btnCadastrar.UseVisualStyleBackColor = true;
@@ -103,35 +106,37 @@
             // 
             // lblNome
             // 
+            lblNome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblNome.AutoSize = true;
             lblNome.BackColor = Color.White;
-            lblNome.Font = new Font("Segoe UI", 12F);
-            lblNome.Location = new Point(10, 12);
+            lblNome.Font = new Font("Segoe UI", 15F);
+            lblNome.Location = new Point(6, 13);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(56, 21);
+            lblNome.Size = new Size(70, 28);
             lblNome.TabIndex = 4;
             lblNome.Text = "Nome:";
             // 
             // lblContato
             // 
+            lblContato.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblContato.AutoSize = true;
             lblContato.BackColor = Color.White;
-            lblContato.Font = new Font("Segoe UI", 12F);
-            lblContato.Location = new Point(14, 63);
+            lblContato.Font = new Font("Segoe UI", 15F);
+            lblContato.Location = new Point(6, 64);
             lblContato.Name = "lblContato";
-            lblContato.Size = new Size(68, 21);
+            lblContato.Size = new Size(87, 28);
             lblContato.TabIndex = 5;
             lblContato.Text = "Contato:";
             // 
             // pnlCadastro
             // 
+            pnlCadastro.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlCadastro.BackColor = Color.White;
             pnlCadastro.Controls.Add(btnCadastrar);
             pnlCadastro.Controls.Add(txtNome);
             pnlCadastro.Controls.Add(txtContato);
             pnlCadastro.Controls.Add(lblNome);
             pnlCadastro.Controls.Add(lblContato);
-            pnlCadastro.Dock = DockStyle.Fill;
             pnlCadastro.Location = new Point(563, 563);
             pnlCadastro.Name = "pnlCadastro";
             pnlCadastro.Size = new Size(914, 102);
@@ -166,7 +171,6 @@
             // 
             btnCliente.BackColor = Color.FromArgb(253, 208, 23);
             btnCliente.Cursor = Cursors.No;
-            btnCliente.Enabled = false;
             btnCliente.Font = new Font("Segoe UI", 12F);
             btnCliente.ForeColor = Color.White;
             btnCliente.Location = new Point(99, 405);
@@ -218,8 +222,9 @@
             // btnEdicao
             // 
             btnEdicao.BackgroundImage = (Image)resources.GetObject("btnEdicao.BackgroundImage");
-            btnEdicao.BackgroundImageLayout = ImageLayout.Zoom;
-            btnEdicao.FlatStyle = FlatStyle.Flat;
+            btnEdicao.BackgroundImageLayout = ImageLayout.Center;
+            btnEdicao.Cursor = Cursors.Hand;
+            btnEdicao.FlatStyle = FlatStyle.Popup;
             btnEdicao.Location = new Point(38, 3);
             btnEdicao.Name = "btnEdicao";
             btnEdicao.Size = new Size(83, 68);
@@ -229,11 +234,13 @@
             // 
             // btnAtualizar
             // 
-            btnAtualizar.Dock = DockStyle.Fill;
+            btnAtualizar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnAtualizar.AutoSize = true;
             btnAtualizar.Font = new Font("Segoe UI", 12F);
-            btnAtualizar.Location = new Point(38, 111);
+            btnAtualizar.Location = new Point(38, 110);
+            btnAtualizar.Margin = new Padding(3, 2, 3, 2);
             btnAtualizar.Name = "btnAtualizar";
-            btnAtualizar.Size = new Size(83, 28);
+            btnAtualizar.Size = new Size(83, 30);
             btnAtualizar.TabIndex = 20;
             btnAtualizar.Text = "Atualizar";
             btnAtualizar.UseVisualStyleBackColor = true;
@@ -241,11 +248,12 @@
             // 
             // btnDeletar
             // 
-            btnDeletar.Dock = DockStyle.Fill;
+            btnDeletar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnDeletar.Font = new Font("Segoe UI", 12F);
-            btnDeletar.Location = new Point(38, 156);
+            btnDeletar.Location = new Point(38, 155);
+            btnDeletar.Margin = new Padding(3, 2, 3, 2);
             btnDeletar.Name = "btnDeletar";
-            btnDeletar.Size = new Size(83, 28);
+            btnDeletar.Size = new Size(83, 30);
             btnDeletar.TabIndex = 20;
             btnDeletar.Text = "Deletar";
             btnDeletar.UseVisualStyleBackColor = true;
@@ -359,8 +367,8 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 71.61646F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 53F));
             tableLayoutPanel3.Controls.Add(btnDeletar, 1, 4);
-            tableLayoutPanel3.Controls.Add(btnEdicao, 1, 0);
             tableLayoutPanel3.Controls.Add(btnAtualizar, 1, 2);
+            tableLayoutPanel3.Controls.Add(btnEdicao, 1, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(1483, 152);
             tableLayoutPanel3.Margin = new Padding(3, 2, 3, 2);
@@ -397,6 +405,7 @@
             tableLayoutPanel1.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
             ResumeLayout(false);
         }
 

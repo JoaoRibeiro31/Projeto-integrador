@@ -183,7 +183,6 @@
             // 
             btnProduto.BackColor = Color.MediumSeaGreen;
             btnProduto.Cursor = Cursors.No;
-            btnProduto.Enabled = false;
             btnProduto.Font = new Font("Segoe UI", 12F);
             btnProduto.ForeColor = Color.White;
             btnProduto.Location = new Point(99, 293);
@@ -221,12 +220,12 @@
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Dock = DockStyle.Left;
+            txtPesquisar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtPesquisar.Font = new Font("Segoe UI", 12F);
             txtPesquisar.Location = new Point(563, 104);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar:";
-            txtPesquisar.Size = new Size(836, 29);
+            txtPesquisar.Size = new Size(914, 29);
             txtPesquisar.TabIndex = 3;
             txtPesquisar.TabStop = false;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
@@ -234,12 +233,12 @@
             // btnEdicao
             // 
             btnEdicao.BackgroundImage = (Image)resources.GetObject("btnEdicao.BackgroundImage");
-            btnEdicao.BackgroundImageLayout = ImageLayout.Stretch;
-            btnEdicao.Dock = DockStyle.Fill;
-            btnEdicao.FlatStyle = FlatStyle.Flat;
+            btnEdicao.BackgroundImageLayout = ImageLayout.Center;
+            btnEdicao.Cursor = Cursors.Hand;
+            btnEdicao.FlatStyle = FlatStyle.Popup;
             btnEdicao.Location = new Point(38, 3);
             btnEdicao.Name = "btnEdicao";
-            btnEdicao.Size = new Size(82, 72);
+            btnEdicao.Size = new Size(82, 68);
             btnEdicao.TabIndex = 7;
             btnEdicao.UseVisualStyleBackColor = true;
             btnEdicao.Click += btnEdicao_Click;
@@ -335,7 +334,7 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 71.61646F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 54F));
             tableLayoutPanel3.Controls.Add(btnEdicao, 1, 0);
-            tableLayoutPanel3.Controls.Add(btnAtualizar, 1, 1);
+            tableLayoutPanel3.Controls.Add(btnAtualizar, 1, 2);
             tableLayoutPanel3.Controls.Add(btnDeletar, 1, 4);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(1483, 152);
@@ -348,17 +347,20 @@
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 11F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 34F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 195F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel3.Size = new Size(178, 383);
             tableLayoutPanel3.TabIndex = 24;
             // 
             // btnAtualizar
             // 
-            btnAtualizar.Dock = DockStyle.Fill;
+            btnAtualizar.AutoSize = true;
             btnAtualizar.Font = new Font("Segoe UI", 12F);
-            btnAtualizar.Location = new Point(38, 80);
+            btnAtualizar.Location = new Point(38, 110);
             btnAtualizar.Margin = new Padding(3, 2, 3, 2);
             btnAtualizar.Name = "btnAtualizar";
-            btnAtualizar.Size = new Size(82, 26);
+            btnAtualizar.Size = new Size(82, 30);
             btnAtualizar.TabIndex = 8;
             btnAtualizar.Text = "Atualizar";
             btnAtualizar.UseVisualStyleBackColor = true;
@@ -366,7 +368,7 @@
             // 
             // btnDeletar
             // 
-            btnDeletar.Dock = DockStyle.Fill;
+            btnDeletar.AutoSize = true;
             btnDeletar.Font = new Font("Segoe UI", 12F);
             btnDeletar.Location = new Point(38, 155);
             btnDeletar.Margin = new Padding(3, 2, 3, 2);
@@ -415,6 +417,7 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }

@@ -48,7 +48,6 @@
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Dock = DockStyle.Fill;
             txtPesquisar.Font = new Font("Arial Narrow", 12F);
             txtPesquisar.Location = new Point(553, 103);
             txtPesquisar.Margin = new Padding(3, 4, 3, 4);
@@ -64,7 +63,6 @@
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPedidos.BackgroundColor = Color.FromArgb(217, 217, 217);
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPedidos.Dock = DockStyle.Fill;
             dgvPedidos.Location = new Point(553, 151);
             dgvPedidos.Margin = new Padding(3, 4, 3, 4);
             dgvPedidos.Name = "dgvPedidos";
@@ -118,8 +116,7 @@
             // btnPedido
             // 
             btnPedido.BackColor = Color.MediumPurple;
-            btnPedido.Dock = DockStyle.Fill;
-            btnPedido.FlatStyle = FlatStyle.Flat;
+            btnPedido.FlatStyle = FlatStyle.Popup;
             btnPedido.Font = new Font("Segoe UI", 12F);
             btnPedido.ForeColor = Color.White;
             btnPedido.Location = new Point(99, 182);
@@ -134,7 +131,6 @@
             // btnProduto
             // 
             btnProduto.BackColor = Color.MediumSeaGreen;
-            btnProduto.Dock = DockStyle.Fill;
             btnProduto.FlatStyle = FlatStyle.Popup;
             btnProduto.Font = new Font("Segoe UI", 12F);
             btnProduto.ForeColor = Color.White;
@@ -150,7 +146,6 @@
             // btnCliente
             // 
             btnCliente.BackColor = Color.FromArgb(253, 208, 23);
-            btnCliente.Dock = DockStyle.Fill;
             btnCliente.FlatStyle = FlatStyle.Popup;
             btnCliente.Font = new Font("Segoe UI", 12F);
             btnCliente.ForeColor = Color.White;
