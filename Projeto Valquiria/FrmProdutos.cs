@@ -345,7 +345,7 @@ namespace Projeto_Valquiria
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            panelConteudo tela = new panelConteudo();
+            frmHome tela = new frmHome();
             tela.Show();
             this.Hide();
         }

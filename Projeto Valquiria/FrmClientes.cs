@@ -315,7 +315,7 @@ namespace Projeto_Valquiria
         // ---------- NAVEGAÇÃO ----------
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            panelConteudo tela = new panelConteudo();
+            frmHome tela = new frmHome();
             tela.Show();
             this.Hide();
         }

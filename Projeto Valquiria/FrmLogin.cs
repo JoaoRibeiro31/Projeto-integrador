@@ -64,7 +64,7 @@ namespace Projeto_Valquiria
                         MessageBox.Show("Login realizado com sucesso!",
                                         "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        panelConteudo home = new panelConteudo();
+                        frmHome home = new frmHome();
                         home.Show();
                         this.Hide();
                     }

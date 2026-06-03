@@ -7,14 +7,14 @@ using MySql.Data.MySqlClient;
 
 namespace Projeto_Valquiria
 {
-    public partial class panelConteudo : Form
+    public partial class frmHome : Form
     {
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
         DataTable tabela = new DataTable();
 
         private System.Windows.Forms.Timer timerPesquisa = new System.Windows.Forms.Timer();
 
-        public panelConteudo()
+        public frmHome()
         {
             InitializeComponent();
 
