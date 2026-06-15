@@ -6,21 +6,21 @@ using MySql.Data.MySqlClient;
 
 namespace Projeto_Valquiria
 {
-    public partial class pnlConteudo : Form
+    public partial class frmLogin : Form
     {
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
 
-        public pnlConteudo()
+        public frmLogin()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void frmLogin_Load(object sender, EventArgs e)
         {
             this.StartPosition = FormStartPosition.CenterScreen;
 
             // 🔒 Esconde caracteres da senha
-            txtSenha.PasswordChar = '*';
+            txtSenha.UseSystemPasswordChar = true;
         }
 
         // ---------- GERAR HASH ----------
@@ -36,37 +36,46 @@ namespace Projeto_Valquiria
         // ---------- LOGIN ----------
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            // 🚫 Verificação de campos obrigatórios
+            // 🚫 1. Verificação de campos obrigatórios
             if (string.IsNullOrWhiteSpace(txtLogin.Text) || string.IsNullOrWhiteSpace(txtSenha.Text))
             {
                 MessageBox.Show("Preencha login e senha!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return; // Sai do método se não tiver login ou senha
             }
 
+            // 2. Cria conexão com o banco
             using (MySqlConnection conn = new MySqlConnection(conexao))
             {
                 try
                 {
-                    conn.Open();
+                    conn.Open(); // Abre a conexão
 
+                    // 3. SQL com BINARY → comparação case-sensitive
                     string sql = @"SELECT COUNT(*) FROM login
-                                   WHERE usuario=@usuario AND senha=@senha";
+                           WHERE BINARY usuario=@usuario AND senha=@senha";
 
+                    // 4. Cria comando SQL
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    // 5. Adiciona parâmetros
+                    // Trim() remove espaços no começo e fim
                     cmd.Parameters.AddWithValue("@usuario", txtLogin.Text.Trim());
                     cmd.Parameters.AddWithValue("@senha", GerarHash(txtSenha.Text.Trim()));
 
+                    // 6. Executa a consulta e pega o resultado
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
 
+                    // 7. Verifica se encontrou usuário válido
                     if (count > 0)
                     {
                         MessageBox.Show("Login realizado com sucesso!",
                                         "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                        // Abre a tela principal
                         frmHome home = new frmHome();
                         home.Show();
-                        this.Hide();
+                        this.Hide(); // Esconde a tela de login
                     }
                     else
                     {
@@ -76,23 +85,34 @@ namespace Projeto_Valquiria
                 }
                 catch (Exception erro)
                 {
+                    // 8. Tratamento de erro
                     MessageBox.Show("Erro ao realizar login: " + erro.Message,
                                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
+
         // ---------- ESQUECI A SENHA ----------
-        private void btnEsqueciSenha_Click(object sender, EventArgs e)
+        private void btnEsqueci_Click(object sender, EventArgs e)
         {
             FrmAtualizarLogin tela = new FrmAtualizarLogin();
             tela.ShowDialog();
         }
 
-
-        private void txtLogin_TextChanged(object sender, EventArgs e)
+        // ---------- MOSTRAR SENHA ----------
+        private void btnMostrarSenha_Click(object sender, EventArgs e)
         {
-            // opcional: validação dinâmica
+            if (txtSenha.UseSystemPasswordChar)
+            {
+                txtSenha.UseSystemPasswordChar = false;
+                btnMostrarSenha.Image = Properties.Resources.olhoaberto;
+            }
+            else
+            {
+                txtSenha.UseSystemPasswordChar = true;
+                btnMostrarSenha.Image = Properties.Resources.olhofechado; 
+            }
         }
     }
 }
