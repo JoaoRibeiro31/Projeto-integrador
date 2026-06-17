@@ -7,7 +7,9 @@ CREATE TABLE login (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario VARCHAR(20) NOT NULL UNIQUE,
     senha CHAR(64) NOT NULL,
-    cpf VARCHAR(11) NOT NULL UNIQUE
+    email VARCHAR(250) NOT NULL UNIQUE,
+    reset_code VARCHAR(10),
+    reset_expiration DATETIME
 );
 
 CREATE TABLE produtos (
@@ -20,7 +22,7 @@ CREATE TABLE clientes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(120) NOT NULL UNIQUE,
     contato VARCHAR(80) NOT NULL UNIQUE,
-    data_de_cadastro DATE DEFAULT (CURRENT_DATE)
+    data_de_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE pedidos (
@@ -36,8 +38,8 @@ CREATE TABLE pedidos (
 );
 
 -- Usuário administrador inicial
-INSERT INTO login (usuario, senha, cpf)
-VALUES ('adm', LOWER(CONVERT(SHA2('12345678', 256) USING utf8)), '12345678901');
+INSERT INTO login (usuario, senha, email)
+VALUES ('adm', LOWER(CONVERT(SHA2('12345678', 256) USING utf8)), 'jjoaovvitor999@gmail.com');
 
 -- 70 clientes
 INSERT INTO clientes (nome, contato) VALUES

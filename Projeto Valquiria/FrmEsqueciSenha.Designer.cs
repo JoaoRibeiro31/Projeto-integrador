@@ -1,6 +1,6 @@
 ﻿namespace Projeto_Valquiria
 {
-    partial class FrmAtualizarLogin
+    partial class FrmEsqueciSenha
     {
         /// <summary>
         /// Required designer variable.
@@ -28,52 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAtualizarLogin));
-            txtCPF = new TextBox();
-            txtSenha = new TextBox();
-            lblCpf = new Label();
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEsqueciSenha));
+            txtEmail = new TextBox();
+            txtNovaSenha = new TextBox();
+            lblEmail = new Label();
             lblNovaSenha = new Label();
             lblLogin = new Label();
             btnAtualizar = new Button();
-            btnFechar = new Button();
-            txtUsuario = new TextBox();
+            btnVoltar = new Button();
+            txtLogin = new TextBox();
+            btnEnviarCodigo = new Button();
+            lblCodigo = new Label();
+            txtCodigo = new TextBox();
+            lblEmailVerificacao = new Label();
+            lblTempoRestante = new Label();
+            timerEnvio = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
-            // txtCPF
+            // txtEmail
             // 
-            txtCPF.Location = new Point(198, 99);
-            txtCPF.Name = "txtCPF";
-            txtCPF.PlaceholderText = "123.456.789-09";
-            txtCPF.Size = new Size(115, 23);
-            txtCPF.TabIndex = 1;
+            txtEmail.Location = new Point(204, 114);
+            txtEmail.Margin = new Padding(3, 4, 3, 4);
+            txtEmail.Name = "txtEmail";
+            txtEmail.PlaceholderText = "Digite seu e-mail";
+            txtEmail.Size = new Size(274, 27);
+            txtEmail.TabIndex = 1;
             // 
-            // txtSenha
+            // txtNovaSenha
             // 
-            txtSenha.Location = new Point(198, 157);
-            txtSenha.Name = "txtSenha";
-            txtSenha.PlaceholderText = "Digite uma Senha de até 10 digitos";
-            txtSenha.Size = new Size(287, 23);
-            txtSenha.TabIndex = 2;
+            txtNovaSenha.Location = new Point(204, 308);
+            txtNovaSenha.Margin = new Padding(3, 4, 3, 4);
+            txtNovaSenha.Name = "txtNovaSenha";
+            txtNovaSenha.PlaceholderText = "Digite uma Senha de até 10 digitos";
+            txtNovaSenha.Size = new Size(393, 27);
+            txtNovaSenha.TabIndex = 2;
             // 
-            // lblCpf
+            // lblEmail
             // 
-            lblCpf.AutoSize = true;
-            lblCpf.BackColor = Color.Transparent;
-            lblCpf.ForeColor = Color.White;
-            lblCpf.Location = new Point(151, 99);
-            lblCpf.Name = "lblCpf";
-            lblCpf.Size = new Size(31, 15);
-            lblCpf.TabIndex = 1;
-            lblCpf.Text = "CPF:";
+            lblEmail.AutoSize = true;
+            lblEmail.BackColor = Color.Transparent;
+            lblEmail.ForeColor = Color.White;
+            lblEmail.Location = new Point(150, 113);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(49, 20);
+            lblEmail.TabIndex = 1;
+            lblEmail.Text = "Email:";
             // 
             // lblNovaSenha
             // 
             lblNovaSenha.AutoSize = true;
             lblNovaSenha.BackColor = Color.Transparent;
             lblNovaSenha.ForeColor = Color.White;
-            lblNovaSenha.Location = new Point(119, 157);
+            lblNovaSenha.Location = new Point(108, 315);
             lblNovaSenha.Name = "lblNovaSenha";
-            lblNovaSenha.Size = new Size(73, 15);
+            lblNovaSenha.Size = new Size(91, 20);
             lblNovaSenha.TabIndex = 2;
             lblNovaSenha.Text = "Nova Senha:";
             // 
@@ -82,75 +91,142 @@
             lblLogin.AutoSize = true;
             lblLogin.BackColor = Color.Transparent;
             lblLogin.ForeColor = Color.White;
-            lblLogin.Location = new Point(142, 128);
+            lblLogin.Location = new Point(150, 270);
             lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(40, 15);
+            lblLogin.Size = new Size(49, 20);
             lblLogin.TabIndex = 2;
             lblLogin.Text = "Login:";
             // 
             // btnAtualizar
             // 
-            btnAtualizar.Location = new Point(253, 216);
+            btnAtualizar.Location = new Point(293, 354);
+            btnAtualizar.Margin = new Padding(3, 4, 3, 4);
             btnAtualizar.Name = "btnAtualizar";
-            btnAtualizar.Size = new Size(169, 42);
+            btnAtualizar.Size = new Size(193, 56);
             btnAtualizar.TabIndex = 3;
             btnAtualizar.Text = "Atualizar Senha";
             btnAtualizar.UseVisualStyleBackColor = true;
             btnAtualizar.Click += btnAtualizar_Click;
             // 
-            // btnFechar
+            // btnVoltar
             // 
-            btnFechar.BackgroundImageLayout = ImageLayout.Stretch;
-            btnFechar.FlatStyle = FlatStyle.Flat;
-            btnFechar.Image = (Image)resources.GetObject("btnFechar.Image");
-            btnFechar.Location = new Point(517, 25);
-            btnFechar.Name = "btnFechar";
-            btnFechar.Size = new Size(34, 33);
-            btnFechar.TabIndex = 0;
-            btnFechar.Text = " ";
-            btnFechar.UseVisualStyleBackColor = true;
-            btnFechar.Click += btnFechar_Click;
+            btnVoltar.BackgroundImageLayout = ImageLayout.Stretch;
+            btnVoltar.FlatStyle = FlatStyle.Flat;
+            btnVoltar.Image = (Image)resources.GetObject("btnVoltar.Image");
+            btnVoltar.Location = new Point(504, 45);
+            btnVoltar.Margin = new Padding(3, 4, 3, 4);
+            btnVoltar.Name = "btnVoltar";
+            btnVoltar.Size = new Size(39, 44);
+            btnVoltar.TabIndex = 0;
+            btnVoltar.Text = " ";
+            btnVoltar.UseVisualStyleBackColor = true;
+            btnVoltar.Click += btnVoltar_Click;
             // 
-            // txtUsuario
+            // txtLogin
             // 
-            txtUsuario.Location = new Point(198, 128);
-            txtUsuario.Name = "txtUsuario";
-            txtUsuario.PlaceholderText = "Digite um novo nome de Login";
-            txtUsuario.Size = new Size(287, 23);
-            txtUsuario.TabIndex = 4;
+            txtLogin.Location = new Point(204, 270);
+            txtLogin.Margin = new Padding(3, 4, 3, 4);
+            txtLogin.Name = "txtLogin";
+            txtLogin.PlaceholderText = "Digite um novo nome de Login";
+            txtLogin.Size = new Size(393, 27);
+            txtLogin.TabIndex = 4;
             // 
-            // FrmAtualizarLogin
+            // btnEnviarCodigo
+            // 
+            btnEnviarCodigo.Location = new Point(484, 114);
+            btnEnviarCodigo.Name = "btnEnviarCodigo";
+            btnEnviarCodigo.Size = new Size(113, 29);
+            btnEnviarCodigo.TabIndex = 5;
+            btnEnviarCodigo.Text = "Enviar Código";
+            btnEnviarCodigo.UseVisualStyleBackColor = true;
+            btnEnviarCodigo.Click += btnEnviarCodigo_Click;
+            // 
+            // lblCodigo
+            // 
+            lblCodigo.AutoSize = true;
+            lblCodigo.BackColor = Color.Transparent;
+            lblCodigo.ForeColor = Color.White;
+            lblCodigo.Location = new Point(141, 173);
+            lblCodigo.Name = "lblCodigo";
+            lblCodigo.Size = new Size(58, 20);
+            lblCodigo.TabIndex = 6;
+            lblCodigo.Text = "Código";
+            // 
+            // txtCodigo
+            // 
+            txtCodigo.Location = new Point(204, 170);
+            txtCodigo.Name = "txtCodigo";
+            txtCodigo.PlaceholderText = "Digite o código recebido";
+            txtCodigo.Size = new Size(393, 27);
+            txtCodigo.TabIndex = 7;
+            // 
+            // lblEmailVerificacao
+            // 
+            lblEmailVerificacao.AutoSize = true;
+            lblEmailVerificacao.BackColor = Color.Transparent;
+            lblEmailVerificacao.ForeColor = Color.Yellow;
+            lblEmailVerificacao.Location = new Point(226, 215);
+            lblEmailVerificacao.Name = "lblEmailVerificacao";
+            lblEmailVerificacao.Size = new Size(327, 20);
+            lblEmailVerificacao.TabIndex = 8;
+            lblEmailVerificacao.Text = "_____________________________________________________";
+            // 
+            // lblTempoRestante
+            // 
+            lblTempoRestante.AutoSize = true;
+            lblTempoRestante.BackColor = Color.Transparent;
+            lblTempoRestante.ForeColor = Color.Yellow;
+            lblTempoRestante.Location = new Point(504, 146);
+            lblTempoRestante.Name = "lblTempoRestante";
+            lblTempoRestante.Size = new Size(0, 20);
+            lblTempoRestante.TabIndex = 9;
+            // 
+            // timerEnvio
+            // 
+            timerEnvio.Interval = 1000;
+            // 
+            // FrmEsqueciSenha
             // 
             AcceptButton = btnAtualizar;
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(89, 208, 255);
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(578, 333);
-            Controls.Add(btnFechar);
-            Controls.Add(txtUsuario);
+            ClientSize = new Size(782, 553);
+            Controls.Add(lblTempoRestante);
+            Controls.Add(lblEmailVerificacao);
+            Controls.Add(txtCodigo);
+            Controls.Add(lblCodigo);
+            Controls.Add(btnEnviarCodigo);
+            Controls.Add(btnVoltar);
+            Controls.Add(txtLogin);
             Controls.Add(btnAtualizar);
             Controls.Add(lblNovaSenha);
             Controls.Add(lblLogin);
-            Controls.Add(lblCpf);
-            Controls.Add(txtCPF);
-            Controls.Add(txtSenha);
-            Name = "FrmAtualizarLogin";
-            Text = "Esqueci Senha";
-            Load += FrmAtualizarLogin_Load;
+            Controls.Add(lblEmail);
+            Controls.Add(txtEmail);
+            Controls.Add(txtNovaSenha);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "FrmEsqueciSenha";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox txtCPF;
-        private TextBox txtSenha;
-        private Label lblCpf;
+        private TextBox txtEmail;
+        private TextBox txtNovaSenha;
+        private Label lblEmail;
         private Label lblNovaSenha;
         private Label lblLogin;
         private Button btnAtualizar;
-        private Button btnFechar;
-        private TextBox txtUsuario;
+        private Button btnVoltar;
+        private TextBox txtLogin;
+        private Button btnEnviarCodigo;
+        private Label lblCodigo;
+        private TextBox txtCodigo;
+        private Label lblEmailVerificacao;
+        private Label lblTempoRestante;
+        private System.Windows.Forms.Timer timerEnvio;
     }
 }
