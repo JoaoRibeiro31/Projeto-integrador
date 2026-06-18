@@ -9,7 +9,8 @@ CREATE TABLE login (
     senha CHAR(64) NOT NULL,
     email VARCHAR(250) NOT NULL UNIQUE,
     reset_code VARCHAR(10),
-    reset_expiration DATETIME
+    reset_expiration DATETIME,
+    reset_last_sent DATETIME NULL
 );
 
 CREATE TABLE produtos (

@@ -41,7 +41,6 @@
             btnEnviarCodigo = new Button();
             lblCodigo = new Label();
             txtCodigo = new TextBox();
-            lblEmailVerificacao = new Label();
             lblTempoRestante = new Label();
             timerEnvio = new System.Windows.Forms.Timer(components);
             SuspendLayout();
@@ -54,6 +53,7 @@
             txtEmail.PlaceholderText = "Digite seu e-mail";
             txtEmail.Size = new Size(274, 27);
             txtEmail.TabIndex = 1;
+            txtEmail.Enter += txtEmail_Enter;
             // 
             // txtNovaSenha
             // 
@@ -63,6 +63,7 @@
             txtNovaSenha.PlaceholderText = "Digite uma Senha de até 10 digitos";
             txtNovaSenha.Size = new Size(393, 27);
             txtNovaSenha.TabIndex = 2;
+            txtNovaSenha.Enter += txtNovaSenha_Enter;
             // 
             // lblEmail
             // 
@@ -130,6 +131,7 @@
             txtLogin.PlaceholderText = "Digite um novo nome de Login";
             txtLogin.Size = new Size(393, 27);
             txtLogin.TabIndex = 4;
+            txtLogin.Enter += txtLogin_Enter;
             // 
             // btnEnviarCodigo
             // 
@@ -159,24 +161,14 @@
             txtCodigo.PlaceholderText = "Digite o código recebido";
             txtCodigo.Size = new Size(393, 27);
             txtCodigo.TabIndex = 7;
-            // 
-            // lblEmailVerificacao
-            // 
-            lblEmailVerificacao.AutoSize = true;
-            lblEmailVerificacao.BackColor = Color.Transparent;
-            lblEmailVerificacao.ForeColor = Color.Yellow;
-            lblEmailVerificacao.Location = new Point(226, 215);
-            lblEmailVerificacao.Name = "lblEmailVerificacao";
-            lblEmailVerificacao.Size = new Size(327, 20);
-            lblEmailVerificacao.TabIndex = 8;
-            lblEmailVerificacao.Text = "_____________________________________________________";
+            txtCodigo.Enter += txtCodigo_Enter;
             // 
             // lblTempoRestante
             // 
             lblTempoRestante.AutoSize = true;
             lblTempoRestante.BackColor = Color.Transparent;
             lblTempoRestante.ForeColor = Color.Yellow;
-            lblTempoRestante.Location = new Point(504, 146);
+            lblTempoRestante.Location = new Point(486, 146);
             lblTempoRestante.Name = "lblTempoRestante";
             lblTempoRestante.Size = new Size(0, 20);
             lblTempoRestante.TabIndex = 9;
@@ -184,6 +176,7 @@
             // timerEnvio
             // 
             timerEnvio.Interval = 1000;
+            timerEnvio.Tick += timerEnvio_Tick;
             // 
             // FrmEsqueciSenha
             // 
@@ -194,7 +187,6 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(782, 553);
             Controls.Add(lblTempoRestante);
-            Controls.Add(lblEmailVerificacao);
             Controls.Add(txtCodigo);
             Controls.Add(lblCodigo);
             Controls.Add(btnEnviarCodigo);
@@ -225,7 +217,6 @@
         private Button btnEnviarCodigo;
         private Label lblCodigo;
         private TextBox txtCodigo;
-        private Label lblEmailVerificacao;
         private Label lblTempoRestante;
         private System.Windows.Forms.Timer timerEnvio;
     }

@@ -34,10 +34,14 @@ namespace Projeto_Valquiria
         // ---------- ENVIAR CÓDIGO ----------
         private void btnEnviarCodigo_Click(object sender, EventArgs e)
         {
+            // Verifica se o campo de e-mail está vazio
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                MessageBox.Show("Digite o e-mail cadastrado!", "Aviso",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.BackColor = Color.Khaki; // destaque amarelo escuro
+                txtEmail.Enter += (s, ev) => txtEmail.BackColor = Color.White; // remove ao selecionar
+
+                MessageBox.Show("O campo 'E-mail' precisa ser preenchido.",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -50,13 +54,13 @@ namespace Projeto_Valquiria
             }
             catch
             {
-                MessageBox.Show("Formato de e-mail inválido!", "Erro",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEmail.BackColor = Color.Khaki; // destaca campo inválido
+                txtEmail.Enter += (s, ev) => txtEmail.BackColor = Color.White;
+
+                MessageBox.Show("Formato de e-mail inválido. Digite um endereço válido.",
+                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            string codigo = new Random().Next(100000, 999999).ToString(); // Código de 6 dígitos
-            DateTime validade = DateTime.Now.AddMinutes(10); // Expira em 10 minutos
 
             using (MySqlConnection conn = new MySqlConnection(conexao))
             {
@@ -72,34 +76,25 @@ namespace Projeto_Valquiria
 
                     if (existe == 0)
                     {
-                        MessageBox.Show("E-mail não encontrado no sistema!",
+                        txtEmail.BackColor = Color.Khaki; // destaca campo inexistente
+                        txtEmail.Enter += (s, ev) => txtEmail.BackColor = Color.White;
+
+                        MessageBox.Show("E-mail não encontrado no sistema.",
                                         "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    // Verifica se já existe um código recente
-                    string sqlCheckTime = @"SELECT reset_last_sent FROM login WHERE email=@email";
-                    MySqlCommand cmdCheckTime = new MySqlCommand(sqlCheckTime, conn);
-                    cmdCheckTime.Parameters.AddWithValue("@email", email);
-                    object lastSentObj = cmdCheckTime.ExecuteScalar();
-
-                    if (lastSentObj != DBNull.Value)
-                    {
-                        DateTime lastSent = Convert.ToDateTime(lastSentObj);
-                        if (DateTime.Now < lastSent.AddMinutes(TEMPO_MINIMO_ENVIO))
-                        {
-                            MessageBox.Show($"Você deve aguardar {TEMPO_MINIMO_ENVIO} minutos antes de solicitar um novo código.",
-                                            "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return;
-                        }
-                    }
+                    // Gera código somente após confirmar que o e-mail existe
+                    string codigo = new Random().Next(100000, 999999).ToString(); // Código de 6 dígitos
+                    DateTime validade = DateTime.Now.AddMinutes(10); // Expira em 10 minutos
 
                     // Atualiza o código e validade no banco
                     string sqlUpdate = @"UPDATE login 
-                                         SET reset_code=@codigo, 
-                                             reset_expiration=@validade, 
-                                             reset_last_sent=@agora 
-                                         WHERE email=@email";
+                                 SET reset_code       = @codigo, 
+                                     reset_expiration = @validade, 
+                                     reset_last_sent  = @agora 
+                                 WHERE email = @email";
+
                     MySqlCommand cmdUpdate = new MySqlCommand(sqlUpdate, conn);
                     cmdUpdate.Parameters.AddWithValue("@codigo", codigo);
                     cmdUpdate.Parameters.AddWithValue("@validade", validade);
@@ -107,21 +102,21 @@ namespace Projeto_Valquiria
                     cmdUpdate.Parameters.AddWithValue("@email", email);
                     cmdUpdate.ExecuteNonQuery();
 
-                    // Envia o código por e-mail com mensagem profissional
+                    // Envia o código por e-mail
                     MailMessage mail = new MailMessage();
-                    mail.From = new MailAddress("sistemaprojetoval@gmail.com"); // Conta do programa
-                    mail.To.Add(email); // Destinatário
+                    mail.From = new MailAddress("sistemaprojetoval@gmail.com");
+                    mail.To.Add(email);
                     mail.Subject = "Redefinição de senha - Projeto Valquíria";
                     mail.Body =
-$@"Olá,
+        $@"Olá,
 
 Recebemos uma solicitação para redefinir sua senha no sistema do aplicativo Valquíria Gomes.
 Aqui está o seu código de verificação:
 
 Código: {codigo}
-Validade: até {validade:HH:mm} de hoje
+Esse código irá expirar em 10 minutos.
 
-Se você não solicitou essa alteração, por favor ignore este e-mail.
+Se você não deseja redefinir sua senha, apenas ignore esta mensagem.
 
 Atenciosamente,
 Equipe Projeto Valquíria";
@@ -129,8 +124,8 @@ Equipe Projeto Valquíria";
                     SmtpClient smtp = new SmtpClient("smtp.gmail.com");
                     smtp.Port = 587;
                     smtp.Credentials = new System.Net.NetworkCredential(
-                        "sistemaprojetoval@gmail.com",   // Conta criada para o programa
-                        "zjnegtnljplmsiya"               // 👉 Senha de aplicativo
+                        "sistemaprojetoval@gmail.com",
+                        "zjnegtnljplmsiya" // senha de aplicativo
                     );
                     smtp.EnableSsl = true;
 
@@ -139,13 +134,10 @@ Equipe Projeto Valquíria";
                     MessageBox.Show("Código enviado para o e-mail cadastrado!",
                                     "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Limpa o campo de e-mail após envio
-                    txtEmail.Clear();
-
                     // Marca o horário do envio e inicia o Timer
                     ultimoEnvio = DateTime.Now;
-                    btnEnviarCodigo.Enabled = false; // desabilita botão
-                    timerEnvio.Start();              // inicia contador
+                    btnEnviarCodigo.Enabled = false;
+                    timerEnvio.Start();
                 }
                 catch (Exception erro)
                 {
@@ -154,6 +146,7 @@ Equipe Projeto Valquíria";
                 }
             }
         }
+
 
         // ---------- EVENTO DO TIMER ----------
         private void timerEnvio_Tick(object sender, EventArgs e)
@@ -175,27 +168,56 @@ Equipe Projeto Valquíria";
         // ---------- ATUALIZAR LOGIN E SENHA ----------
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtCodigo.Text) ||
-                string.IsNullOrWhiteSpace(txtLogin.Text) ||
-                string.IsNullOrWhiteSpace(txtNovaSenha.Text))
+            // Lista para armazenar os campos que não foram preenchidos
+            List<TextBox> camposFaltando = new List<TextBox>();
+
+            // Verifica cada campo e adiciona à lista se estiver vazio
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+                camposFaltando.Add(txtEmail);
+
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text))
+                camposFaltando.Add(txtCodigo);
+
+            if (string.IsNullOrWhiteSpace(txtLogin.Text))
+                camposFaltando.Add(txtLogin);
+
+            if (string.IsNullOrWhiteSpace(txtNovaSenha.Text))
+                camposFaltando.Add(txtNovaSenha);
+
+            // Se houver campos faltando, aplica destaque visual e mostra mensagem clara
+            if (camposFaltando.Count > 0)
             {
-                MessageBox.Show("Preencha código, login e nova senha!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                foreach (var campo in camposFaltando)
+                {
+                    campo.BackColor = Color.Khaki; // amarelo mais escuro para chamar atenção
+                    campo.Enter += (s, ev) => campo.BackColor = Color.White; // remove destaque ao selecionar
+                }
+
+                // Monta mensagem listando todos os campos faltando
+                string mensagem = "Os seguintes campos precisam ser preenchidos:\n- "
+                                  + string.Join("\n- ", camposFaltando.Select(c => c.Name.Replace("txt", "")));
+                MessageBox.Show(mensagem, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // interrompe execução até que os campos sejam preenchidos
             }
 
+            // Captura valores dos campos já validados
             string email = txtEmail.Text.Trim();
             string codigo = txtCodigo.Text.Trim();
             string usuario = txtLogin.Text.Trim();
             string senha = txtNovaSenha.Text.Trim();
 
+            // Validação da senha: tamanho mínimo e máximo
             if (senha.Length < 8 || senha.Length > 10)
             {
-                MessageBox.Show("A senha deve ter entre 8 e 10 caracteres!",
+                txtNovaSenha.BackColor = Color.Khaki; // destaca campo inválido
+                txtNovaSenha.Enter += (s, ev) => txtNovaSenha.BackColor = Color.White;
+
+                MessageBox.Show("A senha deve ter entre 8 e 10 caracteres.",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            // Gera hash da senha para salvar no banco de forma segura
             string senhaHash = GerarHash(senha);
 
             using (MySqlConnection conn = new MySqlConnection(conexao))
@@ -204,9 +226,12 @@ Equipe Projeto Valquíria";
                 {
                     conn.Open();
 
+                    // Verifica se o código informado é válido para o e-mail e ainda não expirou
                     string sqlCheck = @"SELECT COUNT(*) FROM login 
-                                        WHERE email=@email AND reset_code=@codigo 
-                                        AND reset_expiration > NOW()";
+                                WHERE email=@email 
+                                AND reset_code=@codigo 
+                                AND reset_expiration > NOW()";
+
                     MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
                     cmdCheck.Parameters.AddWithValue("@email", email);
                     cmdCheck.Parameters.AddWithValue("@codigo", codigo);
@@ -214,37 +239,66 @@ Equipe Projeto Valquíria";
 
                     if (valido == 0)
                     {
-                        MessageBox.Show("Código inválido ou expirado!",
+                        MessageBox.Show("O código informado é inválido ou já expirou.",
                                         "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
+                    // Atualiza login e senha no banco, limpando código e validade
                     string sqlUpdate = @"UPDATE login 
-                                         SET usuario=@usuario, senha=@senha, 
-                                             reset_code=NULL, reset_expiration=NULL 
-                                         WHERE email=@email";
+                                 SET usuario=@usuario, 
+                                     senha=@senha, 
+                                     reset_code=NULL, 
+                                     reset_expiration=NULL 
+                                 WHERE email=@email AND reset_code=@codigo";
+
                     MySqlCommand cmdUpdate = new MySqlCommand(sqlUpdate, conn);
                     cmdUpdate.Parameters.AddWithValue("@usuario", usuario);
                     cmdUpdate.Parameters.AddWithValue("@senha", senhaHash);
                     cmdUpdate.Parameters.AddWithValue("@email", email);
+                    cmdUpdate.Parameters.AddWithValue("@codigo", codigo);
                     cmdUpdate.ExecuteNonQuery();
 
+                    // Confirmação para o usuário
                     MessageBox.Show("Login e senha atualizados com sucesso!",
                                     "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    this.Close(); // fecha a janela após sucesso
                 }
                 catch (Exception erro)
                 {
-                    MessageBox.Show("Erro: " + erro.Message,
+                    // Tratamento de erro genérico com mensagem clara
+                    MessageBox.Show("Ocorreu um erro ao atualizar os dados: " + erro.Message,
                                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
+
+
         // ---------- VOLTAR ----------
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtEmail_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCodigo_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtLogin_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNovaSenha_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
