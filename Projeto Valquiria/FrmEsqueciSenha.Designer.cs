@@ -53,7 +53,6 @@
             txtEmail.PlaceholderText = "Digite seu e-mail";
             txtEmail.Size = new Size(274, 27);
             txtEmail.TabIndex = 1;
-            txtEmail.Enter += txtEmail_Enter;
             // 
             // txtNovaSenha
             // 
@@ -63,7 +62,6 @@
             txtNovaSenha.PlaceholderText = "Digite uma Senha de até 10 digitos";
             txtNovaSenha.Size = new Size(393, 27);
             txtNovaSenha.TabIndex = 2;
-            txtNovaSenha.Enter += txtNovaSenha_Enter;
             // 
             // lblEmail
             // 
@@ -131,7 +129,6 @@
             txtLogin.PlaceholderText = "Digite um novo nome de Login";
             txtLogin.Size = new Size(393, 27);
             txtLogin.TabIndex = 4;
-            txtLogin.Enter += txtLogin_Enter;
             // 
             // btnEnviarCodigo
             // 
@@ -161,7 +158,6 @@
             txtCodigo.PlaceholderText = "Digite o código recebido";
             txtCodigo.Size = new Size(393, 27);
             txtCodigo.TabIndex = 7;
-            txtCodigo.Enter += txtCodigo_Enter;
             // 
             // lblTempoRestante
             // 
@@ -198,8 +194,12 @@
             Controls.Add(lblEmail);
             Controls.Add(txtEmail);
             Controls.Add(txtNovaSenha);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 4, 3, 4);
+            MaximumSize = new Size(960, 720);
+            MinimumSize = new Size(640, 480);
             Name = "FrmEsqueciSenha";
+            Load += FrmEsqueciSenha_Load;
             ResumeLayout(false);
             PerformLayout();
         }
