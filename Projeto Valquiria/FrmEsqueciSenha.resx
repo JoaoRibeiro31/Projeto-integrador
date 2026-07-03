@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnVoltar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnVoltar.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAYAAADFeBvrAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vQAADr0BR/uQrQAAEJBJREFUaEPtmXlU1de1xzGJTZcvbQYBGUUBNWDMExAUxSlqYk0TR2pUjEQ02CRm
@@ -201,7 +201,7 @@
   <data name="lblRodape.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAA4JJREFUOE+V0ktvG1UchnFTRFWxQGzgi7CthGDHDrFgU7EuSCkSXVEaMSQIlAtV
+        vAAADrwBlbxySQAAA4JJREFUOE+V0ktvG1UchnFTRFWxQGzgi7CthGDHDrFgU7EuSCkSXVEaMSQIlAtV
         SAqiLWlTqaKiRkkcpw2JHce5ORfbSY3jJNRNHKfE9sz4Mr47npnzGNmRKnWSSO0rjY50Zs5P739mbLaX
         SHEi+k5pOPSudf+V07BHzprLB18IZ1Qz70c0fWT784jdftb63KnRg4nz5mP5ghnOfGkEkndMd1wWw/8i
         5v9DuOIYN4Lod0Ip/cHWoDn85FL9j8iF2o3AB1anFcOf/AjPPkzGYCoGnjgiIEOsCPESPCkg1tIYjh0O
@@ -467,7 +467,7 @@
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAVUAAAAnCAYAAAC/kdtQAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAFNJJREFUeF7tXV1sHNd1puLYQRPUaVH3pWmL/ry0QYsWUYCi6INhoA9FgBZBGsJt
+        vAAADrwBlbxySQAAFNJJREFUeF7tXV1sHNd1puLYQRPUaVH3pWmL/ry0QYsWUYCi6INhoA9FgBZBGsJt
         gL4UhV4Kt0iDJIhrc0mKru3YciLbqkSL3J1dSqZImeRy+SdLpHZ3ZpayaJL7SzlwC9uJ46qxLVmWJS53
         7p1V8Z1z7uxwHTcx0AKSfT/gYmZn7j3n3HvP/Xh/hz09FhYWFhYWFhYWFhYWFj09PS8kxu7cGEp/8fJT
         K3+1c/zcX1eGMn9ZeezEHyzed/DO7rg/D57/RuYz5aFjf/zqozNfbiX9e98ZXv7yxqCzt5xI/dKNGzf2

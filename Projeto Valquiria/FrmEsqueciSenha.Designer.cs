@@ -116,6 +116,9 @@
             // 
             btnAtualizar.BackColor = Color.FromArgb(124, 175, 238);
             btnAtualizar.FlatAppearance.BorderSize = 0;
+            btnAtualizar.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
+            btnAtualizar.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
+            btnAtualizar.FlatStyle = FlatStyle.Flat;
             btnAtualizar.Font = new Font("Segoe UI", 14F);
             btnAtualizar.ForeColor = Color.White;
             btnAtualizar.Location = new Point(295, 405);
@@ -129,17 +132,19 @@
             // 
             // btnVoltar
             // 
-            btnVoltar.BackgroundImageLayout = ImageLayout.Stretch;
+            btnVoltar.BackColor = Color.FromArgb(230, 242, 254);
+            btnVoltar.BackgroundImage = (Image)resources.GetObject("btnVoltar.BackgroundImage");
+            btnVoltar.BackgroundImageLayout = ImageLayout.Zoom;
             btnVoltar.FlatAppearance.BorderSize = 0;
             btnVoltar.FlatStyle = FlatStyle.Flat;
-            btnVoltar.Image = (Image)resources.GetObject("btnVoltar.Image");
-            btnVoltar.Location = new Point(697, 34);
+            btnVoltar.ForeColor = Color.Transparent;
+            btnVoltar.Location = new Point(700, 25);
             btnVoltar.Margin = new Padding(3, 4, 3, 4);
             btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(50, 50);
+            btnVoltar.Size = new Size(52, 53);
             btnVoltar.TabIndex = 0;
             btnVoltar.Text = " ";
-            btnVoltar.UseVisualStyleBackColor = true;
+            btnVoltar.UseVisualStyleBackColor = false;
             btnVoltar.Click += btnVoltar_Click;
             // 
             // txtLogin
@@ -303,7 +308,7 @@
             AcceptButton = btnAtualizar;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(237, 246, 255);
+            BackColor = Color.FromArgb(230, 242, 254);
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(782, 553);
             Controls.Add(pictureBox1);

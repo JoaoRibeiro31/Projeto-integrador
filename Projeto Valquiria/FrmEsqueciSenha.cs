@@ -43,15 +43,8 @@ namespace Projeto_Valquiria
             txtNovaSenha.UseSystemPasswordChar = true;
 
             // Borda arredondada
-            int borda = 40; 
-            GraphicsPath path = new GraphicsPath();
-            path.StartFigure();
-            path.AddArc(new Rectangle(0, 0, borda, borda), 180, 90);
-            path.AddArc(new Rectangle(this.Width - borda, 0, borda, borda), 270, 90);
-            path.AddArc(new Rectangle(this.Width - borda, this.Height - borda, borda, borda), 0, 90);
-            path.AddArc(new Rectangle(0, this.Height - borda, borda, borda), 90, 90);
-            path.CloseFigure();
-            this.Region = new Region(path);
+            UIHelper.ArredondarBorda(this,40);
+            UIHelper.ArredondarBorda(btnAtualizar, 40);
         }
 
         // ---------- GERAR HASH ----------
