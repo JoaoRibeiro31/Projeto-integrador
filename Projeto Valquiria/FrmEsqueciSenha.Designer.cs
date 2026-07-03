@@ -118,7 +118,7 @@
             btnAtualizar.FlatAppearance.BorderSize = 0;
             btnAtualizar.Font = new Font("Segoe UI", 14F);
             btnAtualizar.ForeColor = Color.White;
-            btnAtualizar.Location = new Point(339, 404);
+            btnAtualizar.Location = new Point(295, 405);
             btnAtualizar.Margin = new Padding(3, 4, 3, 4);
             btnAtualizar.Name = "btnAtualizar";
             btnAtualizar.Size = new Size(193, 56);
@@ -220,7 +220,7 @@
             lblRodape.ForeColor = Color.FromArgb(27, 77, 136);
             lblRodape.Image = (Image)resources.GetObject("lblRodape.Image");
             lblRodape.ImageAlign = ContentAlignment.MiddleLeft;
-            lblRodape.Location = new Point(294, 493);
+            lblRodape.Location = new Point(250, 500);
             lblRodape.Name = "lblRodape";
             lblRodape.Size = new Size(283, 20);
             lblRodape.TabIndex = 11;
