@@ -15,8 +15,23 @@ namespace Projeto_Valquiria
             InitializeComponent();
         }
 
+        // ---------- LOAD ----------
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(conexao))
+                {
+                    conn.Open(); // tenta abrir a conexão
+                }
+            }
+            catch (MySqlException ex)
+            {
+                ErroHelper.MostrarErro("Erro de Conexão", "Não foi possível conectar ao banco de dados.");
+                ErroHelper.LogErro(ex);
+                this.Close();
+            }
+
             this.StartPosition = FormStartPosition.CenterScreen;
 
             // 🔒 Esconde caracteres da senha

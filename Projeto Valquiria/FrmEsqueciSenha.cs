@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing.Drawing2D;
 
 namespace Projeto_Valquiria
 {
@@ -19,6 +20,38 @@ namespace Projeto_Valquiria
         public FrmEsqueciSenha()
         {
             InitializeComponent();
+        }
+
+        // ---------- LOAD ----------
+        private void FrmEsqueciSenha_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(conexao))
+                {
+                    conn.Open(); // tenta abrir a conexão
+                }
+            }
+            catch (MySqlException ex)
+            {
+                ErroHelper.MostrarErro("Erro de Conexão", "Não foi possível conectar ao banco de dados.");
+                ErroHelper.LogErro(ex);
+                this.Close();
+            }
+
+            // 🔒 Esconde caracteres da senha
+            txtNovaSenha.UseSystemPasswordChar = true;
+
+            // Borda arredondada
+            int borda = 40; 
+            GraphicsPath path = new GraphicsPath();
+            path.StartFigure();
+            path.AddArc(new Rectangle(0, 0, borda, borda), 180, 90);
+            path.AddArc(new Rectangle(this.Width - borda, 0, borda, borda), 270, 90);
+            path.AddArc(new Rectangle(this.Width - borda, this.Height - borda, borda, borda), 0, 90);
+            path.AddArc(new Rectangle(0, this.Height - borda, borda, borda), 90, 90);
+            path.CloseFigure();
+            this.Region = new Region(path);
         }
 
         // ---------- GERAR HASH ----------
@@ -250,21 +283,18 @@ Equipe Projeto Valquíria";
             this.Close();
         }
 
-        // ---------- LOAD ----------
-        private void FrmEsqueciSenha_Load(object sender, EventArgs e)
+        // ---------- MOSTRAR SENHA ----------
+        private void btnMostrarSenha_Click(object sender, EventArgs e)
         {
-            try
+            if (txtNovaSenha.UseSystemPasswordChar)
             {
-                using (MySqlConnection conn = new MySqlConnection(conexao))
-                {
-                    conn.Open(); // tenta abrir a conexão
-                }
+                txtNovaSenha.UseSystemPasswordChar = false;
+                btnMostrarSenha.Image = Properties.Resources.olhoaberto;
             }
-            catch (MySqlException ex)
+            else
             {
-                ErroHelper.MostrarErro("Erro de Conexão", "Não foi possível conectar ao banco de dados.");
-                ErroHelper.LogErro(ex);
-                this.Close();
+                txtNovaSenha.UseSystemPasswordChar = true;
+                btnMostrarSenha.Image = Properties.Resources.olhofechado;
             }
         }
     }
