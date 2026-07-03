@@ -331,6 +331,7 @@
             MaximumSize = new Size(960, 720);
             MinimumSize = new Size(640, 480);
             Name = "FrmEsqueciSenha";
+            StartPosition = FormStartPosition.CenterScreen;
             Load += FrmEsqueciSenha_Load;
             ((System.ComponentModel.ISupportInitialize)picEmail).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCodigo).EndInit();
