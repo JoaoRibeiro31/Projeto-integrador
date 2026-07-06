@@ -54,7 +54,7 @@ namespace Projeto_Valquiria
         // ---------- LOGIN ----------
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            // 🚫 1. Verificação de campos obrigatórios
+            // 🚫 Verificação de campos obrigatórios
             if (string.IsNullOrWhiteSpace(txtSenha.Text) && string.IsNullOrWhiteSpace(txtLogin.Text))
             {
                 MessageBox.Show("Preencha os campos de Login e senha!",
@@ -78,29 +78,27 @@ namespace Projeto_Valquiria
 
             
 
-                // 2. Cria conexão com o banco
+                // Cria conexão com o banco
                 using (MySqlConnection conn = new MySqlConnection(conexao))
                 {
                     try
                     {
-                        conn.Open(); // Abre a conexão
+                        conn.Open(); 
 
-                        // 3. SQL com BINARY → comparação case-sensitive
+                        // SQL com BINARY → comparação case-sensitive (Só vai comparar exatamente o campo de login)
                         string sql = @"SELECT COUNT(*) FROM login
                            WHERE BINARY usuario=@usuario AND senha=@senha";
 
-                        // 4. Cria comando SQL
+                        // Cria comando SQL
                         MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                        // 5. Adiciona parâmetros
-                        // Trim() remove espaços no começo e fim
                         cmd.Parameters.AddWithValue("@usuario", txtLogin.Text.Trim());
                         cmd.Parameters.AddWithValue("@senha", GerarHash(txtSenha.Text.Trim()));
 
-                        // 6. Executa a consulta e pega o resultado
+                        //  Executa a consulta e pega o resultado
                         int count = Convert.ToInt32(cmd.ExecuteScalar());
 
-                        // 7. Verifica se encontrou usuário válido
+                        //  Verifica se encontrou usuário válido
                         if (count > 0)
                         {
                             MessageBox.Show("Login realizado com sucesso!",
@@ -119,7 +117,7 @@ namespace Projeto_Valquiria
                     }
                     catch (Exception erro)
                     {
-                        // 8. Tratamento de erro
+                        // Tratamento de erro
                         MessageBox.Show("Erro ao realizar login: " + erro.Message,
                                         "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
