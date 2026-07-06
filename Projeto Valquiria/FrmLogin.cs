@@ -18,11 +18,12 @@ namespace Projeto_Valquiria
         // ---------- LOAD ----------
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            //Testa a conexão do banco
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(conexao))
                 {
-                    conn.Open(); // tenta abrir a conexão
+                    conn.Open(); 
                 }
             }
             catch (MySqlException ex)
@@ -32,9 +33,7 @@ namespace Projeto_Valquiria
                 this.Close();
             }
 
-            this.StartPosition = FormStartPosition.CenterScreen;
-
-            // 🔒 Esconde caracteres da senha
+            // Esconde caracteres da senha
             txtSenha.UseSystemPasswordChar = true;
 
             // Borda arredondada
@@ -56,59 +55,75 @@ namespace Projeto_Valquiria
         private void btnEntrar_Click(object sender, EventArgs e)
         {
             // 🚫 1. Verificação de campos obrigatórios
-            if (string.IsNullOrWhiteSpace(txtLogin.Text) || string.IsNullOrWhiteSpace(txtSenha.Text))
+            if (string.IsNullOrWhiteSpace(txtSenha.Text) && string.IsNullOrWhiteSpace(txtLogin.Text))
             {
-                MessageBox.Show("Preencha login e senha!",
+                MessageBox.Show("Preencha os campos de Login e senha!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Sai do método se não tiver login ou senha
+                return;
+               
+            }
+            else if (string.IsNullOrWhiteSpace(txtLogin.Text))
+            {
+                MessageBox.Show("Preencha o campo login!",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);        
+                return;
+            }
+            else if (string.IsNullOrWhiteSpace(txtSenha.Text))
+            {
+            
+                MessageBox.Show("Preencha o campo senha!",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            // 2. Cria conexão com o banco
-            using (MySqlConnection conn = new MySqlConnection(conexao))
-            {
-                try
-                {
-                    conn.Open(); // Abre a conexão
+            
 
-                    // 3. SQL com BINARY → comparação case-sensitive
-                    string sql = @"SELECT COUNT(*) FROM login
+                // 2. Cria conexão com o banco
+                using (MySqlConnection conn = new MySqlConnection(conexao))
+                {
+                    try
+                    {
+                        conn.Open(); // Abre a conexão
+
+                        // 3. SQL com BINARY → comparação case-sensitive
+                        string sql = @"SELECT COUNT(*) FROM login
                            WHERE BINARY usuario=@usuario AND senha=@senha";
 
-                    // 4. Cria comando SQL
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                        // 4. Cria comando SQL
+                        MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                    // 5. Adiciona parâmetros
-                    // Trim() remove espaços no começo e fim
-                    cmd.Parameters.AddWithValue("@usuario", txtLogin.Text.Trim());
-                    cmd.Parameters.AddWithValue("@senha", GerarHash(txtSenha.Text.Trim()));
+                        // 5. Adiciona parâmetros
+                        // Trim() remove espaços no começo e fim
+                        cmd.Parameters.AddWithValue("@usuario", txtLogin.Text.Trim());
+                        cmd.Parameters.AddWithValue("@senha", GerarHash(txtSenha.Text.Trim()));
 
-                    // 6. Executa a consulta e pega o resultado
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        // 6. Executa a consulta e pega o resultado
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    // 7. Verifica se encontrou usuário válido
-                    if (count > 0)
-                    {
-                        MessageBox.Show("Login realizado com sucesso!",
-                                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // 7. Verifica se encontrou usuário válido
+                        if (count > 0)
+                        {
+                            MessageBox.Show("Login realizado com sucesso!",
+                                            "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        // Abre a tela principal
-                        frmHome home = new frmHome();
-                        home.Show();
-                        this.Hide(); // Esconde a tela de login
+                            // Abre a tela principal
+                            frmHome home = new frmHome();
+                            home.Show();
+                            this.Hide(); // Esconde a tela de login
+                        }
+                        else
+                        {
+                            MessageBox.Show("Usuário ou senha incorretos.",
+                                            "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
+                    catch (Exception erro)
                     {
-                        MessageBox.Show("Usuário ou senha incorretos.",
+                        // 8. Tratamento de erro
+                        MessageBox.Show("Erro ao realizar login: " + erro.Message,
                                         "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception erro)
-                {
-                    // 8. Tratamento de erro
-                    MessageBox.Show("Erro ao realizar login: " + erro.Message,
-                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
         }
 
 
