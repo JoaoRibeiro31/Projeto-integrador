@@ -36,6 +36,10 @@ namespace Projeto_Valquiria
 
             // 🔒 Esconde caracteres da senha
             txtSenha.UseSystemPasswordChar = true;
+
+            // Borda arredondada
+            UIHelper.ArredondarBorda(btnEntrar, 40);
+            UIHelper.ArredondarBorda(tlpLogin, 40);
         }
 
         // ---------- GERAR HASH ----------
