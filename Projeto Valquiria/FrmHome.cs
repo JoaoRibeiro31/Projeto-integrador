@@ -23,6 +23,14 @@ namespace Projeto_Valquiria
             dgvPedidos.DataBindingComplete += dgvPedidos_DataBindingComplete;
         }
 
+        // ---------- TIMER ----------
+        private void timerDataHora_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToString("HH:mm");
+            lblData.Text = DateTime.Now.ToString("dd/MM/yyyy");
+        }
+
+        // ---------- LOAD ----------
         private void Home_Load(object sender, EventArgs e)
         {
             CarregarClientes();
@@ -61,6 +69,9 @@ namespace Projeto_Valquiria
             UIHelper.ArredondarBorda(btnProdutos, 20);
             UIHelper.ArredondarBorda(btnClientes, 20);
             UIHelper.ArredondarBorda(btnFecharApp, 20);
+
+            //Data e hora em tempo real
+            timerDataHora.Start();
         }
 
         // ---------- CARREGAR CLIENTES COM PENDÊNCIAS ----------
@@ -225,5 +236,7 @@ namespace Projeto_Valquiria
                 MessageBoxIcon.Question
             ) == DialogResult.Yes;
         }
+
+        
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHome));
             txtPesquisar = new TextBox();
             dgvPedidos = new DataGridView();
@@ -40,11 +41,23 @@
             btnFecharApp = new Button();
             lblTitulo = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
+            tlpTituloSubtitulo = new TableLayoutPanel();
+            lblSubtitulo = new Label();
+            tlpDataHora = new TableLayoutPanel();
+            pictureBox1 = new PictureBox();
+            lblHora = new Label();
+            pictureBox2 = new PictureBox();
+            lblData = new Label();
+            timerDataHora = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
             pnlMenu.SuspendLayout();
             tlpNavegacao.SuspendLayout();
             tlpBtnFecharApp.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
+            tlpTituloSubtitulo.SuspendLayout();
+            tlpDataHora.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // txtPesquisar
@@ -53,7 +66,7 @@
             txtPesquisar.Location = new Point(638, 141);
             txtPesquisar.Margin = new Padding(3, 5, 3, 5);
             txtPesquisar.Name = "txtPesquisar";
-            txtPesquisar.PlaceholderText = "Pesquisar:";
+            txtPesquisar.PlaceholderText = "Pesquisar...";
             txtPesquisar.Size = new Size(1030, 30);
             txtPesquisar.TabIndex = 4;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
@@ -213,16 +226,17 @@
             // 
             // lblTitulo
             // 
-            lblTitulo.Anchor = AnchorStyles.Top;
-            lblTitulo.BackColor = Color.White;
+            lblTitulo.BackColor = Color.Transparent;
+            lblTitulo.Dock = DockStyle.Fill;
             lblTitulo.FlatStyle = FlatStyle.Flat;
-            lblTitulo.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(1103, 32);
+            lblTitulo.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.ForeColor = Color.FromArgb(225, 103, 148);
+            lblTitulo.Location = new Point(3, 0);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(111, 47);
+            lblTitulo.Size = new Size(421, 51);
             lblTitulo.TabIndex = 17;
-            lblTitulo.Text = "Home";
-            lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            lblTitulo.Text = "Bem-vinda!";
+            lblTitulo.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel2
             // 
@@ -232,22 +246,119 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.3F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.6F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.3F));
-            tableLayoutPanel2.Controls.Add(lblTitulo, 2, 1);
             tableLayoutPanel2.Controls.Add(dgvPedidos, 2, 5);
             tableLayoutPanel2.Controls.Add(txtPesquisar, 2, 3);
+            tableLayoutPanel2.Controls.Add(tlpTituloSubtitulo, 2, 1);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 7;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 3.069307F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 4.554455F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 5.336634F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 1.23222744F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10.2369671F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 1.421801F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 3.772277F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 2.574257F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 61.50495F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 19.18812F));
             tableLayoutPanel2.Size = new Size(1920, 1055);
             tableLayoutPanel2.TabIndex = 18;
+            // 
+            // tlpTituloSubtitulo
+            // 
+            tlpTituloSubtitulo.ColumnCount = 3;
+            tlpTituloSubtitulo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40.9788857F));
+            tlpTituloSubtitulo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17.9462566F));
+            tlpTituloSubtitulo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.0748558F));
+            tlpTituloSubtitulo.Controls.Add(lblTitulo, 0, 0);
+            tlpTituloSubtitulo.Controls.Add(lblSubtitulo, 0, 1);
+            tlpTituloSubtitulo.Controls.Add(tlpDataHora, 2, 0);
+            tlpTituloSubtitulo.Dock = DockStyle.Fill;
+            tlpTituloSubtitulo.Location = new Point(638, 16);
+            tlpTituloSubtitulo.Name = "tlpTituloSubtitulo";
+            tlpTituloSubtitulo.RowCount = 2;
+            tlpTituloSubtitulo.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpTituloSubtitulo.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpTituloSubtitulo.Size = new Size(1042, 102);
+            tlpTituloSubtitulo.TabIndex = 18;
+            // 
+            // lblSubtitulo
+            // 
+            lblSubtitulo.AutoSize = true;
+            lblSubtitulo.Dock = DockStyle.Fill;
+            lblSubtitulo.Font = new Font("Segoe UI", 10F);
+            lblSubtitulo.Location = new Point(3, 51);
+            lblSubtitulo.Name = "lblSubtitulo";
+            lblSubtitulo.Size = new Size(421, 51);
+            lblSubtitulo.TabIndex = 18;
+            lblSubtitulo.Text = "Escolha uma opção no menu ao lado para começar.";
+            lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // tlpDataHora
+            // 
+            tlpDataHora.BackColor = Color.FromArgb(247, 251, 254);
+            tlpDataHora.CellBorderStyle = TableLayoutPanelCellBorderStyle.OutsetDouble;
+            tlpDataHora.ColumnCount = 4;
+            tlpDataHora.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9.785203F));
+            tlpDataHora.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37.9474945F));
+            tlpDataHora.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9.785203F));
+            tlpDataHora.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42.7207642F));
+            tlpDataHora.Controls.Add(pictureBox1, 0, 0);
+            tlpDataHora.Controls.Add(lblHora, 3, 0);
+            tlpDataHora.Controls.Add(pictureBox2, 2, 0);
+            tlpDataHora.Controls.Add(lblData, 1, 0);
+            tlpDataHora.Dock = DockStyle.Fill;
+            tlpDataHora.Location = new Point(617, 3);
+            tlpDataHora.Name = "tlpDataHora";
+            tlpDataHora.RowCount = 1;
+            tlpDataHora.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpDataHora.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tlpDataHora.Size = new Size(422, 45);
+            tlpDataHora.TabIndex = 20;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBox1.Location = new Point(6, 6);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(33, 33);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // lblHora
+            // 
+            lblHora.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblHora.AutoSize = true;
+            lblHora.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblHora.Location = new Point(247, 11);
+            lblHora.Name = "lblHora";
+            lblHora.Size = new Size(169, 23);
+            lblHora.TabIndex = 2;
+            lblHora.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBox2.Location = new Point(205, 6);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(33, 33);
+            pictureBox2.TabIndex = 3;
+            pictureBox2.TabStop = false;
+            // 
+            // lblData
+            // 
+            lblData.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblData.AutoSize = true;
+            lblData.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblData.Location = new Point(48, 11);
+            lblData.Name = "lblData";
+            lblData.Size = new Size(148, 23);
+            lblData.TabIndex = 1;
+            lblData.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // timerDataHora
+            // 
+            timerDataHora.Interval = 1000;
+            timerDataHora.Tick += timerDataHora_Tick;
             // 
             // frmHome
             // 
@@ -268,6 +379,12 @@
             tlpBtnFecharApp.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
+            tlpTituloSubtitulo.ResumeLayout(false);
+            tlpTituloSubtitulo.PerformLayout();
+            tlpDataHora.ResumeLayout(false);
+            tlpDataHora.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -283,5 +400,13 @@
         private Button btnFecharApp;
         private Button btnClientes;
         private TableLayoutPanel tlpBtnFecharApp;
+        private TableLayoutPanel tlpTituloSubtitulo;
+        private Label lblSubtitulo;
+        private TableLayoutPanel tlpDataHora;
+        private PictureBox pictureBox1;
+        private Label lblData;
+        private Label lblHora;
+        private PictureBox pictureBox2;
+        private System.Windows.Forms.Timer timerDataHora;
     }
 }
