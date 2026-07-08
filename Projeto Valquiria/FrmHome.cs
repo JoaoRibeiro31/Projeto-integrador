@@ -36,39 +36,37 @@ namespace Projeto_Valquiria
             CarregarClientes();
 
             // Cor de fundo geral da tabela
-            dgvPedidos.BackgroundColor = Color.FromArgb(240, 192, 229); // rosa claro do layout
+            dgvPedidos.BackgroundColor = Color.FromArgb(255, 220, 235); 
 
             // Linhas alternadas (efeito suave)
             dgvPedidos.DefaultCellStyle.BackColor = Color.White;
-            dgvPedidos.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(250, 230, 240); // tom rosado pastel
+            dgvPedidos.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(255, 240, 245); 
 
             // Texto das células
-            dgvPedidos.DefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100); // lilás escuro
+            dgvPedidos.DefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100); 
             dgvPedidos.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
 
             // Cor da seleção
-            dgvPedidos.DefaultCellStyle.SelectionBackColor = Color.FromArgb(164, 92, 218); // roxo dos botões
+            dgvPedidos.DefaultCellStyle.SelectionBackColor = Color.FromArgb(200, 100, 150); 
             dgvPedidos.DefaultCellStyle.SelectionForeColor = Color.White;
 
             // Cabeçalho
-            dgvPedidos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 192, 229);
+            dgvPedidos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 200, 220); 
             dgvPedidos.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
             dgvPedidos.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             dgvPedidos.EnableHeadersVisualStyles = false;
 
             // Bordas e estilo geral
-            dgvPedidos.GridColor = Color.FromArgb(200, 160, 210);
+            dgvPedidos.GridColor = Color.FromArgb(220, 180, 200); 
             dgvPedidos.BorderStyle = BorderStyle.None;
             dgvPedidos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-
-            // Centraliza o texto do cabeçalho (títulos das colunas)
-            dgvPedidos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Borda arredondada
             UIHelper.ArredondarBorda(btnPedidos, 20);
             UIHelper.ArredondarBorda(btnProdutos, 20);
             UIHelper.ArredondarBorda(btnClientes, 20);
             UIHelper.ArredondarBorda(btnFecharApp, 20);
+            UIHelper.ArredondarBorda(dgvPedidos, 20);
 
             //Data e hora em tempo real
             timerDataHora.Start();

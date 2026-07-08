@@ -77,10 +77,12 @@
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPedidos.BackgroundColor = Color.FromArgb(217, 217, 217);
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPedidos.GridColor = SystemColors.InactiveCaptionText;
             dgvPedidos.Location = new Point(638, 207);
             dgvPedidos.Margin = new Padding(3, 5, 3, 5);
             dgvPedidos.Name = "dgvPedidos";
             dgvPedidos.ReadOnly = true;
+            dgvPedidos.RowHeadersVisible = false;
             dgvPedidos.RowHeadersWidth = 51;
             dgvPedidos.Size = new Size(1031, 624);
             dgvPedidos.TabIndex = 5;
