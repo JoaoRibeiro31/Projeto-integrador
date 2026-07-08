@@ -55,6 +55,12 @@ namespace Projeto_Valquiria
 
             // Centraliza o texto do cabeçalho (títulos das colunas)
             dgvPedidos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Borda arredondada
+            UIHelper.ArredondarBorda(btnPedidos, 20);
+            UIHelper.ArredondarBorda(btnProdutos, 20);
+            UIHelper.ArredondarBorda(btnClientes, 20);
+            UIHelper.ArredondarBorda(btnFecharApp, 20);
         }
 
         // ---------- CARREGAR CLIENTES COM PENDÊNCIAS ----------
@@ -175,7 +181,7 @@ namespace Projeto_Valquiria
             this.Hide();
         }
 
-        private void btnCliente_Click(object sender, EventArgs e)
+        private void btnClientes_Click(object sender, EventArgs e)
         {
             FrmClientes tela = new FrmClientes();
             tela.Show();
