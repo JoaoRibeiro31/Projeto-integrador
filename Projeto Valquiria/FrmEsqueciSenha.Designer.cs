@@ -77,7 +77,7 @@
             txtNovaSenha.Name = "txtNovaSenha";
             txtNovaSenha.PlaceholderText = "Digite uma Senha de até 10 digitos";
             txtNovaSenha.Size = new Size(457, 27);
-            txtNovaSenha.TabIndex = 2;
+            txtNovaSenha.TabIndex = 5;
             // 
             // lblEmail
             // 
@@ -87,7 +87,7 @@
             lblEmail.Location = new Point(101, 137);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(49, 20);
-            lblEmail.TabIndex = 1;
+            lblEmail.TabIndex = 0;
             lblEmail.Text = "Email:";
             // 
             // lblNovaSenha
@@ -98,7 +98,7 @@
             lblNovaSenha.Location = new Point(101, 347);
             lblNovaSenha.Name = "lblNovaSenha";
             lblNovaSenha.Size = new Size(91, 20);
-            lblNovaSenha.TabIndex = 2;
+            lblNovaSenha.TabIndex = 0;
             lblNovaSenha.Text = "Nova Senha:";
             // 
             // lblLogin
@@ -109,7 +109,7 @@
             lblLogin.Location = new Point(101, 277);
             lblLogin.Name = "lblLogin";
             lblLogin.Size = new Size(49, 20);
-            lblLogin.TabIndex = 2;
+            lblLogin.TabIndex = 0;
             lblLogin.Text = "Login:";
             // 
             // btnAtualizar
@@ -125,7 +125,7 @@
             btnAtualizar.Margin = new Padding(3, 4, 3, 4);
             btnAtualizar.Name = "btnAtualizar";
             btnAtualizar.Size = new Size(193, 56);
-            btnAtualizar.TabIndex = 3;
+            btnAtualizar.TabIndex = 7;
             btnAtualizar.Text = "Atualizar Senha";
             btnAtualizar.UseVisualStyleBackColor = false;
             btnAtualizar.Click += btnAtualizar_Click;
@@ -142,7 +142,7 @@
             btnVoltar.Margin = new Padding(3, 4, 3, 4);
             btnVoltar.Name = "btnVoltar";
             btnVoltar.Size = new Size(52, 53);
-            btnVoltar.TabIndex = 0;
+            btnVoltar.TabIndex = 8;
             btnVoltar.Text = " ";
             btnVoltar.UseVisualStyleBackColor = false;
             btnVoltar.Click += btnVoltar_Click;
@@ -167,7 +167,7 @@
             btnEnviarCodigo.Location = new Point(545, 133);
             btnEnviarCodigo.Name = "btnEnviarCodigo";
             btnEnviarCodigo.Size = new Size(119, 29);
-            btnEnviarCodigo.TabIndex = 5;
+            btnEnviarCodigo.TabIndex = 2;
             btnEnviarCodigo.Text = "Enviar Código";
             btnEnviarCodigo.UseVisualStyleBackColor = false;
             btnEnviarCodigo.Click += btnEnviarCodigo_Click;
@@ -177,10 +177,10 @@
             lblCodigo.AutoSize = true;
             lblCodigo.BackColor = Color.Transparent;
             lblCodigo.ForeColor = Color.FromArgb(27, 77, 136);
-            lblCodigo.Location = new Point(101, 207);
+            lblCodigo.Location = new Point(140, 220);
             lblCodigo.Name = "lblCodigo";
             lblCodigo.Size = new Size(61, 20);
-            lblCodigo.TabIndex = 6;
+            lblCodigo.TabIndex = 0;
             lblCodigo.Text = "Código:";
             // 
             // txtCodigo
@@ -190,7 +190,7 @@
             txtCodigo.Name = "txtCodigo";
             txtCodigo.PlaceholderText = "Digite o código recebido";
             txtCodigo.Size = new Size(457, 27);
-            txtCodigo.TabIndex = 7;
+            txtCodigo.TabIndex = 3;
             // 
             // lblTempoRestante
             // 
@@ -216,7 +216,7 @@
             lblTitulo.Location = new Point(220, 11);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(341, 67);
-            lblTitulo.TabIndex = 10;
+            lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Esqueci Senha";
             // 
             // lblRodape
@@ -228,7 +228,7 @@
             lblRodape.Location = new Point(250, 500);
             lblRodape.Name = "lblRodape";
             lblRodape.Size = new Size(283, 20);
-            lblRodape.TabIndex = 11;
+            lblRodape.TabIndex = 0;
             lblRodape.Text = "Sua segurança é importante para nós.\r\n";
             lblRodape.TextAlign = ContentAlignment.MiddleRight;
             // 
@@ -287,7 +287,7 @@
             btnMostrarSenha.Location = new Point(670, 341);
             btnMostrarSenha.Name = "btnMostrarSenha";
             btnMostrarSenha.Size = new Size(32, 32);
-            btnMostrarSenha.TabIndex = 16;
+            btnMostrarSenha.TabIndex = 6;
             btnMostrarSenha.TabStop = false;
             btnMostrarSenha.UseVisualStyleBackColor = true;
             btnMostrarSenha.Click += btnMostrarSenha_Click;
@@ -310,6 +310,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(230, 242, 254);
             BackgroundImageLayout = ImageLayout.Center;
+            CancelButton = btnVoltar;
             ClientSize = new Size(782, 553);
             Controls.Add(pictureBox1);
             Controls.Add(btnMostrarSenha);
