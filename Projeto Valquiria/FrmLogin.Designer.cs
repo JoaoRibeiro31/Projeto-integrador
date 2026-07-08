@@ -64,7 +64,7 @@
             btnEntrar.Location = new Point(41, 433);
             btnEntrar.Name = "btnEntrar";
             btnEntrar.Size = new Size(461, 48);
-            btnEntrar.TabIndex = 0;
+            btnEntrar.TabIndex = 3;
             btnEntrar.Text = "Entrar";
             btnEntrar.UseVisualStyleBackColor = false;
             btnEntrar.Click += btnEntrar_Click;
@@ -104,7 +104,7 @@
             btnEsqueci.Location = new Point(95, 3);
             btnEsqueci.Name = "btnEsqueci";
             btnEsqueci.Size = new Size(270, 43);
-            btnEsqueci.TabIndex = 3;
+            btnEsqueci.TabIndex = 4;
             btnEsqueci.Text = "Esqueci a Senha";
             btnEsqueci.UseVisualStyleBackColor = false;
             btnEsqueci.Click += btnEsqueci_Click;
