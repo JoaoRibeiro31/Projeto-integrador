@@ -40,34 +40,69 @@
             tlpBtnFecharApp = new TableLayoutPanel();
             btnFecharApp = new Button();
             lblTitulo = new Label();
-            tableLayoutPanel2 = new TableLayoutPanel();
+            tlpPrincipal = new TableLayoutPanel();
             tlpTituloSubtitulo = new TableLayoutPanel();
             lblSubtitulo = new Label();
             tlpDataHora = new TableLayoutPanel();
-            pictureBox1 = new PictureBox();
+            picData = new PictureBox();
             lblHora = new Label();
-            pictureBox2 = new PictureBox();
+            picHora = new PictureBox();
             lblData = new Label();
+            tlpDados = new TableLayoutPanel();
+            tlpDadosPedidos = new TableLayoutPanel();
+            picDadosPedidos = new PictureBox();
+            tlpLblPedidos = new TableLayoutPanel();
+            lblDadosPedidos = new Label();
+            lblTlpPedidos = new Label();
+            tlpDadosProdutos = new TableLayoutPanel();
+            picDadosProdutos = new PictureBox();
+            tlpLblProdutos = new TableLayoutPanel();
+            lblDadosProdutos = new Label();
+            lblTlpProdutos = new Label();
+            tlpDadosClientes = new TableLayoutPanel();
+            picDadosClientes = new PictureBox();
+            tlpLblClientes = new TableLayoutPanel();
+            lblDadosClientes = new Label();
+            lblTlpClientes = new Label();
+            tlpDadosPedencias = new TableLayoutPanel();
+            picDadosPendencias = new PictureBox();
+            tlpLblPendencias = new TableLayoutPanel();
+            lblDadosPendencias = new Label();
+            lblTlpPendencias = new Label();
             timerDataHora = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
             pnlMenu.SuspendLayout();
             tlpNavegacao.SuspendLayout();
             tlpBtnFecharApp.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
+            tlpPrincipal.SuspendLayout();
             tlpTituloSubtitulo.SuspendLayout();
             tlpDataHora.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picData).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picHora).BeginInit();
+            tlpDados.SuspendLayout();
+            tlpDadosPedidos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picDadosPedidos).BeginInit();
+            tlpLblPedidos.SuspendLayout();
+            tlpDadosProdutos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picDadosProdutos).BeginInit();
+            tlpLblProdutos.SuspendLayout();
+            tlpDadosClientes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picDadosClientes).BeginInit();
+            tlpLblClientes.SuspendLayout();
+            tlpDadosPedencias.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picDadosPendencias).BeginInit();
+            tlpLblPendencias.SuspendLayout();
             SuspendLayout();
             // 
             // txtPesquisar
             // 
+            txtPesquisar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtPesquisar.Font = new Font("Arial Narrow", 12F);
             txtPesquisar.Location = new Point(638, 141);
             txtPesquisar.Margin = new Padding(3, 5, 3, 5);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar...";
-            txtPesquisar.Size = new Size(1030, 30);
+            txtPesquisar.Size = new Size(1042, 30);
             txtPesquisar.TabIndex = 4;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
@@ -77,6 +112,7 @@
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPedidos.BackgroundColor = Color.FromArgb(217, 217, 217);
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPedidos.Dock = DockStyle.Fill;
             dgvPedidos.GridColor = SystemColors.InactiveCaptionText;
             dgvPedidos.Location = new Point(638, 207);
             dgvPedidos.Margin = new Padding(3, 5, 3, 5);
@@ -84,7 +120,7 @@
             dgvPedidos.ReadOnly = true;
             dgvPedidos.RowHeadersVisible = false;
             dgvPedidos.RowHeadersWidth = 51;
-            dgvPedidos.Size = new Size(1031, 624);
+            dgvPedidos.Size = new Size(1042, 639);
             dgvPedidos.TabIndex = 5;
             // 
             // pnlMenu
@@ -240,30 +276,31 @@
             lblTitulo.Text = "Bem-vinda!";
             lblTitulo.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // tableLayoutPanel2
+            // tlpPrincipal
             // 
-            tableLayoutPanel2.BackColor = Color.Transparent;
-            tableLayoutPanel2.ColumnCount = 4;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.8F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.3F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.6F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.3F));
-            tableLayoutPanel2.Controls.Add(dgvPedidos, 2, 5);
-            tableLayoutPanel2.Controls.Add(txtPesquisar, 2, 3);
-            tableLayoutPanel2.Controls.Add(tlpTituloSubtitulo, 2, 1);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(0, 0);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 7;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 1.23222744F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10.2369671F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 1.421801F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 3.772277F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 2.574257F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 61.50495F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 19.18812F));
-            tableLayoutPanel2.Size = new Size(1920, 1055);
-            tableLayoutPanel2.TabIndex = 18;
+            tlpPrincipal.BackColor = Color.Transparent;
+            tlpPrincipal.ColumnCount = 4;
+            tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.8F));
+            tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.3F));
+            tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.6F));
+            tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.3F));
+            tlpPrincipal.Controls.Add(dgvPedidos, 2, 5);
+            tlpPrincipal.Controls.Add(txtPesquisar, 2, 3);
+            tlpPrincipal.Controls.Add(tlpTituloSubtitulo, 2, 1);
+            tlpPrincipal.Controls.Add(tlpDados, 2, 6);
+            tlpPrincipal.Dock = DockStyle.Fill;
+            tlpPrincipal.Location = new Point(0, 0);
+            tlpPrincipal.Name = "tlpPrincipal";
+            tlpPrincipal.RowCount = 7;
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 1.23222744F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 10.2369671F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 1.421801F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 3.772277F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 2.574257F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 61.50495F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 19.18812F));
+            tlpPrincipal.Size = new Size(1920, 1055);
+            tlpPrincipal.TabIndex = 18;
             // 
             // tlpTituloSubtitulo
             // 
@@ -304,9 +341,9 @@
             tlpDataHora.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37.9474945F));
             tlpDataHora.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9.785203F));
             tlpDataHora.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42.7207642F));
-            tlpDataHora.Controls.Add(pictureBox1, 0, 0);
+            tlpDataHora.Controls.Add(picData, 0, 0);
             tlpDataHora.Controls.Add(lblHora, 3, 0);
-            tlpDataHora.Controls.Add(pictureBox2, 2, 0);
+            tlpDataHora.Controls.Add(picHora, 2, 0);
             tlpDataHora.Controls.Add(lblData, 1, 0);
             tlpDataHora.Dock = DockStyle.Fill;
             tlpDataHora.Location = new Point(617, 3);
@@ -317,14 +354,15 @@
             tlpDataHora.Size = new Size(422, 45);
             tlpDataHora.TabIndex = 20;
             // 
-            // pictureBox1
+            // picData
             // 
-            pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pictureBox1.Location = new Point(6, 6);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(33, 33);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            picData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            picData.Image = (Image)resources.GetObject("picData.Image");
+            picData.Location = new Point(6, 6);
+            picData.Name = "picData";
+            picData.Size = new Size(33, 33);
+            picData.TabIndex = 0;
+            picData.TabStop = false;
             // 
             // lblHora
             // 
@@ -337,14 +375,15 @@
             lblHora.TabIndex = 2;
             lblHora.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // pictureBox2
+            // picHora
             // 
-            pictureBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pictureBox2.Location = new Point(205, 6);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(33, 33);
-            pictureBox2.TabIndex = 3;
-            pictureBox2.TabStop = false;
+            picHora.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            picHora.Image = (Image)resources.GetObject("picHora.Image");
+            picHora.Location = new Point(205, 6);
+            picHora.Name = "picHora";
+            picHora.Size = new Size(33, 33);
+            picHora.TabIndex = 3;
+            picHora.TabStop = false;
             // 
             // lblData
             // 
@@ -356,6 +395,288 @@
             lblData.Size = new Size(148, 23);
             lblData.TabIndex = 1;
             lblData.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // tlpDados
+            // 
+            tlpDados.ColumnCount = 9;
+            tlpDados.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
+            tlpDados.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.5F));
+            tlpDados.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
+            tlpDados.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.5F));
+            tlpDados.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
+            tlpDados.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.5F));
+            tlpDados.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
+            tlpDados.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.5F));
+            tlpDados.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
+            tlpDados.Controls.Add(tlpDadosPedidos, 1, 1);
+            tlpDados.Controls.Add(tlpDadosProdutos, 3, 1);
+            tlpDados.Controls.Add(tlpDadosClientes, 5, 1);
+            tlpDados.Controls.Add(tlpDadosPedencias, 7, 1);
+            tlpDados.Dock = DockStyle.Fill;
+            tlpDados.Location = new Point(638, 854);
+            tlpDados.Name = "tlpDados";
+            tlpDados.RowCount = 3;
+            tlpDados.RowStyles.Add(new RowStyle(SizeType.Percent, 18.75F));
+            tlpDados.RowStyles.Add(new RowStyle(SizeType.Percent, 62.5F));
+            tlpDados.RowStyles.Add(new RowStyle(SizeType.Percent, 18.75F));
+            tlpDados.Size = new Size(1042, 198);
+            tlpDados.TabIndex = 19;
+            // 
+            // tlpDadosPedidos
+            // 
+            tlpDadosPedidos.BackColor = Color.FromArgb(253, 237, 247);
+            tlpDadosPedidos.ColumnCount = 2;
+            tlpDadosPedidos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tlpDadosPedidos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tlpDadosPedidos.Controls.Add(picDadosPedidos, 0, 0);
+            tlpDadosPedidos.Controls.Add(tlpLblPedidos, 1, 0);
+            tlpDadosPedidos.Dock = DockStyle.Fill;
+            tlpDadosPedidos.Location = new Point(23, 40);
+            tlpDadosPedidos.Name = "tlpDadosPedidos";
+            tlpDadosPedidos.RowCount = 1;
+            tlpDadosPedidos.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpDadosPedidos.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tlpDadosPedidos.Size = new Size(228, 117);
+            tlpDadosPedidos.TabIndex = 0;
+            // 
+            // picDadosPedidos
+            // 
+            picDadosPedidos.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            picDadosPedidos.Location = new Point(3, 16);
+            picDadosPedidos.Name = "picDadosPedidos";
+            picDadosPedidos.Size = new Size(85, 85);
+            picDadosPedidos.TabIndex = 0;
+            picDadosPedidos.TabStop = false;
+            // 
+            // tlpLblPedidos
+            // 
+            tlpLblPedidos.ColumnCount = 1;
+            tlpLblPedidos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpLblPedidos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpLblPedidos.Controls.Add(lblDadosPedidos, 0, 0);
+            tlpLblPedidos.Controls.Add(lblTlpPedidos, 0, 1);
+            tlpLblPedidos.Dock = DockStyle.Fill;
+            tlpLblPedidos.Location = new Point(94, 3);
+            tlpLblPedidos.Name = "tlpLblPedidos";
+            tlpLblPedidos.RowCount = 2;
+            tlpLblPedidos.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpLblPedidos.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpLblPedidos.Size = new Size(131, 111);
+            tlpLblPedidos.TabIndex = 1;
+            // 
+            // lblDadosPedidos
+            // 
+            lblDadosPedidos.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblDadosPedidos.AutoSize = true;
+            lblDadosPedidos.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            lblDadosPedidos.ForeColor = Color.FromArgb(229, 55, 119);
+            lblDadosPedidos.Location = new Point(3, 20);
+            lblDadosPedidos.Name = "lblDadosPedidos";
+            lblDadosPedidos.Size = new Size(125, 35);
+            lblDadosPedidos.TabIndex = 0;
+            // 
+            // lblTlpPedidos
+            // 
+            lblTlpPedidos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblTlpPedidos.AutoSize = true;
+            lblTlpPedidos.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblTlpPedidos.Location = new Point(3, 55);
+            lblTlpPedidos.Name = "lblTlpPedidos";
+            lblTlpPedidos.Size = new Size(125, 23);
+            lblTlpPedidos.TabIndex = 1;
+            lblTlpPedidos.Text = "label1";
+            // 
+            // tlpDadosProdutos
+            // 
+            tlpDadosProdutos.BackColor = Color.FromArgb(174, 180, 227);
+            tlpDadosProdutos.ColumnCount = 2;
+            tlpDadosProdutos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tlpDadosProdutos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tlpDadosProdutos.Controls.Add(picDadosProdutos, 0, 0);
+            tlpDadosProdutos.Controls.Add(tlpLblProdutos, 1, 0);
+            tlpDadosProdutos.Dock = DockStyle.Fill;
+            tlpDadosProdutos.Location = new Point(277, 40);
+            tlpDadosProdutos.Name = "tlpDadosProdutos";
+            tlpDadosProdutos.RowCount = 1;
+            tlpDadosProdutos.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpDadosProdutos.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tlpDadosProdutos.Size = new Size(228, 117);
+            tlpDadosProdutos.TabIndex = 1;
+            // 
+            // picDadosProdutos
+            // 
+            picDadosProdutos.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            picDadosProdutos.Location = new Point(3, 16);
+            picDadosProdutos.Name = "picDadosProdutos";
+            picDadosProdutos.Size = new Size(85, 85);
+            picDadosProdutos.TabIndex = 0;
+            picDadosProdutos.TabStop = false;
+            // 
+            // tlpLblProdutos
+            // 
+            tlpLblProdutos.ColumnCount = 1;
+            tlpLblProdutos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpLblProdutos.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpLblProdutos.Controls.Add(lblDadosProdutos, 0, 0);
+            tlpLblProdutos.Controls.Add(lblTlpProdutos, 0, 1);
+            tlpLblProdutos.Dock = DockStyle.Fill;
+            tlpLblProdutos.Location = new Point(94, 3);
+            tlpLblProdutos.Name = "tlpLblProdutos";
+            tlpLblProdutos.RowCount = 2;
+            tlpLblProdutos.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpLblProdutos.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpLblProdutos.Size = new Size(131, 111);
+            tlpLblProdutos.TabIndex = 1;
+            // 
+            // lblDadosProdutos
+            // 
+            lblDadosProdutos.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblDadosProdutos.AutoSize = true;
+            lblDadosProdutos.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            lblDadosProdutos.ForeColor = Color.FromArgb(44, 131, 221);
+            lblDadosProdutos.Location = new Point(3, 20);
+            lblDadosProdutos.Name = "lblDadosProdutos";
+            lblDadosProdutos.Size = new Size(125, 35);
+            lblDadosProdutos.TabIndex = 0;
+            // 
+            // lblTlpProdutos
+            // 
+            lblTlpProdutos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblTlpProdutos.AutoSize = true;
+            lblTlpProdutos.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblTlpProdutos.Location = new Point(3, 55);
+            lblTlpProdutos.Name = "lblTlpProdutos";
+            lblTlpProdutos.Size = new Size(125, 23);
+            lblTlpProdutos.TabIndex = 1;
+            lblTlpProdutos.Text = "label2";
+            // 
+            // tlpDadosClientes
+            // 
+            tlpDadosClientes.BackColor = Color.FromArgb(253, 237, 247);
+            tlpDadosClientes.ColumnCount = 2;
+            tlpDadosClientes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tlpDadosClientes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tlpDadosClientes.Controls.Add(picDadosClientes, 0, 0);
+            tlpDadosClientes.Controls.Add(tlpLblClientes, 1, 0);
+            tlpDadosClientes.Dock = DockStyle.Fill;
+            tlpDadosClientes.Location = new Point(531, 40);
+            tlpDadosClientes.Name = "tlpDadosClientes";
+            tlpDadosClientes.RowCount = 1;
+            tlpDadosClientes.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpDadosClientes.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tlpDadosClientes.Size = new Size(228, 117);
+            tlpDadosClientes.TabIndex = 2;
+            // 
+            // picDadosClientes
+            // 
+            picDadosClientes.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            picDadosClientes.Location = new Point(3, 16);
+            picDadosClientes.Name = "picDadosClientes";
+            picDadosClientes.Size = new Size(85, 85);
+            picDadosClientes.TabIndex = 0;
+            picDadosClientes.TabStop = false;
+            // 
+            // tlpLblClientes
+            // 
+            tlpLblClientes.ColumnCount = 1;
+            tlpLblClientes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpLblClientes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpLblClientes.Controls.Add(lblDadosClientes, 0, 0);
+            tlpLblClientes.Controls.Add(lblTlpClientes, 0, 1);
+            tlpLblClientes.Dock = DockStyle.Fill;
+            tlpLblClientes.Location = new Point(94, 3);
+            tlpLblClientes.Name = "tlpLblClientes";
+            tlpLblClientes.RowCount = 2;
+            tlpLblClientes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpLblClientes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpLblClientes.Size = new Size(131, 111);
+            tlpLblClientes.TabIndex = 1;
+            // 
+            // lblDadosClientes
+            // 
+            lblDadosClientes.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblDadosClientes.AutoSize = true;
+            lblDadosClientes.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            lblDadosClientes.ForeColor = Color.FromArgb(229, 55, 119);
+            lblDadosClientes.Location = new Point(3, 20);
+            lblDadosClientes.Name = "lblDadosClientes";
+            lblDadosClientes.Size = new Size(125, 35);
+            lblDadosClientes.TabIndex = 0;
+            // 
+            // lblTlpClientes
+            // 
+            lblTlpClientes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblTlpClientes.AutoSize = true;
+            lblTlpClientes.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblTlpClientes.Location = new Point(3, 55);
+            lblTlpClientes.Name = "lblTlpClientes";
+            lblTlpClientes.Size = new Size(125, 23);
+            lblTlpClientes.TabIndex = 1;
+            lblTlpClientes.Text = "label3";
+            // 
+            // tlpDadosPedencias
+            // 
+            tlpDadosPedencias.BackColor = Color.FromArgb(174, 180, 227);
+            tlpDadosPedencias.ColumnCount = 2;
+            tlpDadosPedencias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tlpDadosPedencias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tlpDadosPedencias.Controls.Add(picDadosPendencias, 0, 0);
+            tlpDadosPedencias.Controls.Add(tlpLblPendencias, 1, 0);
+            tlpDadosPedencias.Dock = DockStyle.Fill;
+            tlpDadosPedencias.Location = new Point(785, 40);
+            tlpDadosPedencias.Name = "tlpDadosPedencias";
+            tlpDadosPedencias.RowCount = 1;
+            tlpDadosPedencias.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpDadosPedencias.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tlpDadosPedencias.Size = new Size(228, 117);
+            tlpDadosPedencias.TabIndex = 3;
+            // 
+            // picDadosPendencias
+            // 
+            picDadosPendencias.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            picDadosPendencias.Location = new Point(3, 16);
+            picDadosPendencias.Name = "picDadosPendencias";
+            picDadosPendencias.Size = new Size(85, 85);
+            picDadosPendencias.TabIndex = 0;
+            picDadosPendencias.TabStop = false;
+            // 
+            // tlpLblPendencias
+            // 
+            tlpLblPendencias.ColumnCount = 1;
+            tlpLblPendencias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpLblPendencias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpLblPendencias.Controls.Add(lblDadosPendencias, 0, 0);
+            tlpLblPendencias.Controls.Add(lblTlpPendencias, 0, 1);
+            tlpLblPendencias.Dock = DockStyle.Fill;
+            tlpLblPendencias.Location = new Point(94, 3);
+            tlpLblPendencias.Name = "tlpLblPendencias";
+            tlpLblPendencias.RowCount = 2;
+            tlpLblPendencias.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpLblPendencias.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpLblPendencias.Size = new Size(131, 111);
+            tlpLblPendencias.TabIndex = 1;
+            // 
+            // lblDadosPendencias
+            // 
+            lblDadosPendencias.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblDadosPendencias.AutoSize = true;
+            lblDadosPendencias.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            lblDadosPendencias.ForeColor = Color.FromArgb(44, 131, 221);
+            lblDadosPendencias.Location = new Point(3, 20);
+            lblDadosPendencias.Name = "lblDadosPendencias";
+            lblDadosPendencias.Size = new Size(125, 35);
+            lblDadosPendencias.TabIndex = 0;
+            // 
+            // lblTlpPendencias
+            // 
+            lblTlpPendencias.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblTlpPendencias.AutoSize = true;
+            lblTlpPendencias.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblTlpPendencias.Location = new Point(3, 55);
+            lblTlpPendencias.Name = "lblTlpPendencias";
+            lblTlpPendencias.Size = new Size(125, 23);
+            lblTlpPendencias.TabIndex = 1;
+            lblTlpPendencias.Text = "label4";
             // 
             // timerDataHora
             // 
@@ -369,7 +690,7 @@
             BackColor = Color.FromArgb(239, 246, 254);
             ClientSize = new Size(1920, 1055);
             Controls.Add(pnlMenu);
-            Controls.Add(tableLayoutPanel2);
+            Controls.Add(tlpPrincipal);
             Margin = new Padding(3, 5, 3, 5);
             Name = "frmHome";
             StartPosition = FormStartPosition.CenterScreen;
@@ -379,14 +700,31 @@
             pnlMenu.ResumeLayout(false);
             tlpNavegacao.ResumeLayout(false);
             tlpBtnFecharApp.ResumeLayout(false);
-            tableLayoutPanel2.ResumeLayout(false);
-            tableLayoutPanel2.PerformLayout();
+            tlpPrincipal.ResumeLayout(false);
+            tlpPrincipal.PerformLayout();
             tlpTituloSubtitulo.ResumeLayout(false);
             tlpTituloSubtitulo.PerformLayout();
             tlpDataHora.ResumeLayout(false);
             tlpDataHora.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picData).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picHora).EndInit();
+            tlpDados.ResumeLayout(false);
+            tlpDadosPedidos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picDadosPedidos).EndInit();
+            tlpLblPedidos.ResumeLayout(false);
+            tlpLblPedidos.PerformLayout();
+            tlpDadosProdutos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picDadosProdutos).EndInit();
+            tlpLblProdutos.ResumeLayout(false);
+            tlpLblProdutos.PerformLayout();
+            tlpDadosClientes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picDadosClientes).EndInit();
+            tlpLblClientes.ResumeLayout(false);
+            tlpLblClientes.PerformLayout();
+            tlpDadosPedencias.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picDadosPendencias).EndInit();
+            tlpLblPendencias.ResumeLayout(false);
+            tlpLblPendencias.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -395,7 +733,7 @@
         private DataGridView dgvPedidos;
         private Panel pnlMenu;
         private Label lblTitulo;
-        private TableLayoutPanel tableLayoutPanel2;
+        private TableLayoutPanel tlpPrincipal;
         private TableLayoutPanel tlpNavegacao;
         private Button btnPedidos;
         private Button btnProdutos;
@@ -405,10 +743,31 @@
         private TableLayoutPanel tlpTituloSubtitulo;
         private Label lblSubtitulo;
         private TableLayoutPanel tlpDataHora;
-        private PictureBox pictureBox1;
+        private PictureBox picData;
         private Label lblData;
         private Label lblHora;
-        private PictureBox pictureBox2;
+        private PictureBox picHora;
         private System.Windows.Forms.Timer timerDataHora;
+        private TableLayoutPanel tlpDados;
+        private TableLayoutPanel tlpDadosPedidos;
+        private PictureBox picDadosPedidos;
+        private TableLayoutPanel tlpDadosProdutos;
+        private PictureBox picDadosProdutos;
+        private TableLayoutPanel tlpDadosClientes;
+        private PictureBox picDadosClientes;
+        private TableLayoutPanel tlpDadosPedencias;
+        private PictureBox picDadosPendencias;
+        private TableLayoutPanel tlpLblPedidos;
+        private Label lblDadosPedidos;
+        private TableLayoutPanel tlpLblProdutos;
+        private Label lblDadosProdutos;
+        private TableLayoutPanel tlpLblClientes;
+        private Label lblDadosClientes;
+        private TableLayoutPanel tlpLblPendencias;
+        private Label lblDadosPendencias;
+        private Label lblTlpPedidos;
+        private Label lblTlpProdutos;
+        private Label lblTlpClientes;
+        private Label lblTlpPendencias;
     }
 }
