@@ -57,7 +57,7 @@ namespace Projeto_Valquiria
             dgvPedidos.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
             dgvPedidos.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             dgvPedidos.EnableHeadersVisualStyles = false;
-
+            
             // Bordas e estilo geral
             dgvPedidos.GridColor = Color.FromArgb(220, 180, 200);
             dgvPedidos.BorderStyle = BorderStyle.None;
@@ -70,8 +70,13 @@ namespace Projeto_Valquiria
             UIHelper.ArredondarBorda(btnFecharApp, 20);
             UIHelper.ArredondarBorda(dgvPedidos, 20);
 
-            //Data e hora em tempo real
-            timerDataHora.Start();         
+            // Data e hora em tempo real
+            timerDataHora.Start();
+
+            // Intervalo de pesquisa
+            timerPesquisa.Interval = 500;
+            timerPesquisa.Tick += TimerPesquisa_Tick;
+
         }
 
         // ---------- CARREGAR CLIENTES COM PENDÊNCIAS ----------
@@ -243,12 +248,6 @@ namespace Projeto_Valquiria
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
             timerPesquisa.Stop();
-            timerPesquisa.Interval = 500; // meio segundo
-
-            // evita acumular handlers
-            timerPesquisa.Tick -= TimerPesquisa_Tick;
-            timerPesquisa.Tick += TimerPesquisa_Tick;
-
             timerPesquisa.Start();
         }
 
