@@ -71,6 +71,10 @@ namespace Projeto_Valquiria
             UIHelper.ArredondarBorda(btnClientes, 20);
             UIHelper.ArredondarBorda(btnFecharApp, 20);
             UIHelper.ArredondarBorda(dgvPedidos, 20);
+            UIHelper.ArredondarBorda(tlpDadosPedidos, 20);
+            UIHelper.ArredondarBorda(tlpDadosProdutos, 20);
+            UIHelper.ArredondarBorda(tlpDadosClientes, 20);
+            UIHelper.ArredondarBorda(tlpDadosPendencias, 20);
 
             // Data e hora em tempo real
             timerDataHora.Start();

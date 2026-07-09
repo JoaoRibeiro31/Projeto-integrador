@@ -64,7 +64,7 @@
             tlpLblClientes = new TableLayoutPanel();
             lblDadosClientes = new Label();
             lblTlpClientes = new Label();
-            tlpDadosPedencias = new TableLayoutPanel();
+            tlpDadosPendencias = new TableLayoutPanel();
             picDadosPendencias = new PictureBox();
             tlpLblPendencias = new TableLayoutPanel();
             lblDadosPendencias = new Label();
@@ -89,7 +89,7 @@
             tlpDadosClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picDadosClientes).BeginInit();
             tlpLblClientes.SuspendLayout();
-            tlpDadosPedencias.SuspendLayout();
+            tlpDadosPendencias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picDadosPendencias).BeginInit();
             tlpLblPendencias.SuspendLayout();
             SuspendLayout();
@@ -404,6 +404,7 @@
             // 
             // tlpDados
             // 
+            tlpDados.BackColor = Color.FromArgb(253, 253, 255);
             tlpDados.ColumnCount = 9;
             tlpDados.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
             tlpDados.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.5F));
@@ -417,7 +418,7 @@
             tlpDados.Controls.Add(tlpDadosPedidos, 1, 1);
             tlpDados.Controls.Add(tlpDadosProdutos, 3, 1);
             tlpDados.Controls.Add(tlpDadosClientes, 5, 1);
-            tlpDados.Controls.Add(tlpDadosPedencias, 7, 1);
+            tlpDados.Controls.Add(tlpDadosPendencias, 7, 1);
             tlpDados.Dock = DockStyle.Fill;
             tlpDados.Location = new Point(638, 854);
             tlpDados.Name = "tlpDados";
@@ -492,7 +493,7 @@
             lblTlpPedidos.Name = "lblTlpPedidos";
             lblTlpPedidos.Size = new Size(125, 46);
             lblTlpPedidos.TabIndex = 1;
-            lblTlpPedidos.Text = "Pedidos \r\ncadastrados";
+            lblTlpPedidos.Text = "Pedidos \r\npendentes";
             // 
             // tlpDadosProdutos
             // 
@@ -626,22 +627,22 @@
             lblTlpClientes.TabIndex = 1;
             lblTlpClientes.Text = "Clientes \r\ncadastrados";
             // 
-            // tlpDadosPedencias
+            // tlpDadosPendencias
             // 
-            tlpDadosPedencias.BackColor = Color.FromArgb(174, 180, 227);
-            tlpDadosPedencias.ColumnCount = 2;
-            tlpDadosPedencias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
-            tlpDadosPedencias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
-            tlpDadosPedencias.Controls.Add(picDadosPendencias, 0, 0);
-            tlpDadosPedencias.Controls.Add(tlpLblPendencias, 1, 0);
-            tlpDadosPedencias.Dock = DockStyle.Fill;
-            tlpDadosPedencias.Location = new Point(785, 40);
-            tlpDadosPedencias.Name = "tlpDadosPedencias";
-            tlpDadosPedencias.RowCount = 1;
-            tlpDadosPedencias.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpDadosPedencias.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpDadosPedencias.Size = new Size(228, 117);
-            tlpDadosPedencias.TabIndex = 3;
+            tlpDadosPendencias.BackColor = Color.FromArgb(174, 180, 227);
+            tlpDadosPendencias.ColumnCount = 2;
+            tlpDadosPendencias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tlpDadosPendencias.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tlpDadosPendencias.Controls.Add(picDadosPendencias, 0, 0);
+            tlpDadosPendencias.Controls.Add(tlpLblPendencias, 1, 0);
+            tlpDadosPendencias.Dock = DockStyle.Fill;
+            tlpDadosPendencias.Location = new Point(785, 40);
+            tlpDadosPendencias.Name = "tlpDadosPendencias";
+            tlpDadosPendencias.RowCount = 1;
+            tlpDadosPendencias.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpDadosPendencias.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tlpDadosPendencias.Size = new Size(228, 117);
+            tlpDadosPendencias.TabIndex = 3;
             // 
             // picDadosPendencias
             // 
@@ -735,7 +736,7 @@
             ((System.ComponentModel.ISupportInitialize)picDadosClientes).EndInit();
             tlpLblClientes.ResumeLayout(false);
             tlpLblClientes.PerformLayout();
-            tlpDadosPedencias.ResumeLayout(false);
+            tlpDadosPendencias.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picDadosPendencias).EndInit();
             tlpLblPendencias.ResumeLayout(false);
             tlpLblPendencias.PerformLayout();
@@ -769,7 +770,7 @@
         private PictureBox picDadosProdutos;
         private TableLayoutPanel tlpDadosClientes;
         private PictureBox picDadosClientes;
-        private TableLayoutPanel tlpDadosPedencias;
+        private TableLayoutPanel tlpDadosPendencias;
         private PictureBox picDadosPendencias;
         private TableLayoutPanel tlpLblPedidos;
         private Label lblDadosPedidos;
