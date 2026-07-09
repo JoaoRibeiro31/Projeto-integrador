@@ -108,11 +108,16 @@
             // 
             // dgvPedidos
             // 
+            dgvPedidos.AllowUserToAddRows = false;
+            dgvPedidos.AllowUserToDeleteRows = false;
             dgvPedidos.AllowUserToOrderColumns = true;
+            dgvPedidos.AllowUserToResizeColumns = false;
+            dgvPedidos.AllowUserToResizeRows = false;
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPedidos.BackgroundColor = Color.FromArgb(217, 217, 217);
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPedidos.Dock = DockStyle.Fill;
+            dgvPedidos.EnableHeadersVisualStyles = false;
             dgvPedidos.GridColor = SystemColors.InactiveCaptionText;
             dgvPedidos.Location = new Point(638, 207);
             dgvPedidos.Margin = new Padding(3, 5, 3, 5);
@@ -120,6 +125,7 @@
             dgvPedidos.ReadOnly = true;
             dgvPedidos.RowHeadersVisible = false;
             dgvPedidos.RowHeadersWidth = 51;
+            dgvPedidos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPedidos.Size = new Size(1042, 639);
             dgvPedidos.TabIndex = 5;
             // 

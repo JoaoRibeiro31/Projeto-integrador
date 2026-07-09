@@ -56,8 +56,10 @@ namespace Projeto_Valquiria
             dgvPedidos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 200, 220);
             dgvPedidos.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
             dgvPedidos.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
-            dgvPedidos.EnableHeadersVisualStyles = false;
-            
+            dgvPedidos.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 200, 220);
+            dgvPedidos.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.FromArgb(80, 40, 100);
+
+
             // Bordas e estilo geral
             dgvPedidos.GridColor = Color.FromArgb(220, 180, 200);
             dgvPedidos.BorderStyle = BorderStyle.None;
@@ -198,7 +200,7 @@ namespace Projeto_Valquiria
                 {
                     if (pendencia > 99)
                     {
-                        row.DefaultCellStyle.ForeColor = Color.Red;
+                        row.DefaultCellStyle.ForeColor = Color.FromArgb(226, 62, 121);
                         row.DefaultCellStyle.Font = new Font(dgvPedidos.Font, FontStyle.Bold);
                     }
                     else
