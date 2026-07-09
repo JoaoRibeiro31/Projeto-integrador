@@ -140,7 +140,7 @@
             pnlMenu.Location = new Point(0, 0);
             pnlMenu.Margin = new Padding(3, 5, 3, 5);
             pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(400, 1102);
+            pnlMenu.Size = new Size(400, 1080);
             pnlMenu.TabIndex = 16;
             // 
             // tlpNavegacao
@@ -167,12 +167,13 @@
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 14F));
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 5.172414F));
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 24.954628F));
-            tlpNavegacao.Size = new Size(400, 1102);
+            tlpNavegacao.Size = new Size(400, 1080);
             tlpNavegacao.TabIndex = 18;
             // 
             // btnPedidos
             // 
             btnPedidos.BackColor = Color.FromArgb(251, 141, 188);
+            btnPedidos.BackgroundImageLayout = ImageLayout.Zoom;
             btnPedidos.Dock = DockStyle.Fill;
             btnPedidos.FlatAppearance.BorderSize = 0;
             btnPedidos.FlatAppearance.MouseDownBackColor = Color.FromArgb(166, 84, 118);
@@ -181,10 +182,10 @@
             btnPedidos.ForeColor = Color.White;
             btnPedidos.Image = (Image)resources.GetObject("btnPedidos.Image");
             btnPedidos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPedidos.Location = new Point(113, 247);
+            btnPedidos.Location = new Point(113, 242);
             btnPedidos.Margin = new Padding(3, 5, 3, 5);
             btnPedidos.Name = "btnPedidos";
-            btnPedidos.Size = new Size(174, 56);
+            btnPedidos.Size = new Size(174, 54);
             btnPedidos.TabIndex = 0;
             btnPedidos.Text = "Pedidos";
             btnPedidos.UseVisualStyleBackColor = false;
@@ -193,6 +194,7 @@
             // btnProdutos
             // 
             btnProdutos.BackColor = Color.FromArgb(103, 172, 241);
+            btnProdutos.BackgroundImageLayout = ImageLayout.Zoom;
             btnProdutos.Dock = DockStyle.Fill;
             btnProdutos.FlatAppearance.BorderSize = 0;
             btnProdutos.FlatAppearance.MouseDownBackColor = Color.FromArgb(62, 118, 173);
@@ -201,10 +203,10 @@
             btnProdutos.ForeColor = Color.White;
             btnProdutos.Image = (Image)resources.GetObject("btnProdutos.Image");
             btnProdutos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProdutos.Location = new Point(113, 401);
+            btnProdutos.Location = new Point(113, 392);
             btnProdutos.Margin = new Padding(3, 5, 3, 5);
             btnProdutos.Name = "btnProdutos";
-            btnProdutos.Size = new Size(174, 56);
+            btnProdutos.Size = new Size(174, 54);
             btnProdutos.TabIndex = 1;
             btnProdutos.Text = "Produtos";
             btnProdutos.UseVisualStyleBackColor = false;
@@ -222,10 +224,10 @@
             btnClientes.ForeColor = Color.White;
             btnClientes.Image = (Image)resources.GetObject("btnClientes.Image");
             btnClientes.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClientes.Location = new Point(113, 555);
+            btnClientes.Location = new Point(113, 542);
             btnClientes.Margin = new Padding(3, 5, 3, 5);
             btnClientes.Name = "btnClientes";
-            btnClientes.Size = new Size(174, 56);
+            btnClientes.Size = new Size(174, 54);
             btnClientes.TabIndex = 6;
             btnClientes.Text = "Clientes";
             btnClientes.UseVisualStyleBackColor = false;
@@ -240,11 +242,11 @@
             tlpBtnFecharApp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
             tlpBtnFecharApp.Controls.Add(btnFecharApp, 1, 0);
             tlpBtnFecharApp.Dock = DockStyle.Fill;
-            tlpBtnFecharApp.Location = new Point(113, 773);
+            tlpBtnFecharApp.Location = new Point(113, 755);
             tlpBtnFecharApp.Name = "tlpBtnFecharApp";
             tlpBtnFecharApp.RowCount = 1;
             tlpBtnFecharApp.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBtnFecharApp.Size = new Size(174, 50);
+            tlpBtnFecharApp.Size = new Size(174, 49);
             tlpBtnFecharApp.TabIndex = 7;
             // 
             // btnFecharApp
@@ -262,7 +264,7 @@
             btnFecharApp.Location = new Point(34, 5);
             btnFecharApp.Margin = new Padding(3, 5, 3, 5);
             btnFecharApp.Name = "btnFecharApp";
-            btnFecharApp.Size = new Size(105, 40);
+            btnFecharApp.Size = new Size(105, 39);
             btnFecharApp.TabIndex = 3;
             btnFecharApp.Text = "Sair";
             btnFecharApp.UseVisualStyleBackColor = false;
