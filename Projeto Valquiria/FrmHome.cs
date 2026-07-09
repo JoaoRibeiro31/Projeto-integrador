@@ -34,6 +34,20 @@ namespace Projeto_Valquiria
         // ---------- LOAD ----------
         private void Home_Load(object sender, EventArgs e)
         {
+            //Teste de conexão
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(conexao))
+                {
+                    conn.Open();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                ErroHelper.MostrarErro("Erro de Conexão", "Não foi possível conectar ao banco de dados.");
+                ErroHelper.LogErro(ex);
+            }
+
             CarregarClientes();
             CarregarDados();
 
@@ -113,10 +127,8 @@ namespace Projeto_Valquiria
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
 
-                    // parâmetro texto
                     adapter.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
 
-                    // parâmetro numérico (só se for número válido)
                     decimal valorPesquisa;
                     if (decimal.TryParse(filtro, out valorPesquisa))
                     {
@@ -124,7 +136,6 @@ namespace Projeto_Valquiria
                     }
                     else
                     {
-                        // se não for número, evita erro no HAVING
                         adapter.SelectCommand.Parameters.AddWithValue("@valor", -1);
                     }
 
