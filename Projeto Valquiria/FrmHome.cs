@@ -145,32 +145,40 @@ namespace Projeto_Valquiria
         {
             using (MySqlConnection conn = new MySqlConnection(conexao))
             {
-                conn.Open();
+                try
+                {
+                    conn.Open();
 
-                //Dados Pedidos
-                string sqlPedidos = $"SELECT count(*) FROM pedidos WHERE status_pagamento = 'Pendente';";
-                MySqlCommand cmdP = new MySqlCommand(sqlPedidos, conn);
-                int quantidadePedidos = Convert.ToInt32(cmdP.ExecuteScalar());
-                lblDadosPedidos.Text = quantidadePedidos.ToString();
+                    //Dados Pedidos
+                    string sqlPedidos = $"SELECT count(*) FROM pedidos WHERE status_pagamento = 'Pendente';";
+                    MySqlCommand cmdP = new MySqlCommand(sqlPedidos, conn);
+                    int quantidadePedidos = Convert.ToInt32(cmdP.ExecuteScalar());
+                    lblDadosPedidos.Text = quantidadePedidos.ToString();
 
-                //Dados Produtos
-                string sqlProdutos = $"SELECT count(*) FROM produtos;";
-                MySqlCommand cmdPr = new MySqlCommand(sqlProdutos, conn);
-                int quantidadeProdutos = Convert.ToInt32(cmdPr.ExecuteScalar());
-                lblDadosProdutos.Text = quantidadeProdutos.ToString();
+                    //Dados Produtos
+                    string sqlProdutos = $"SELECT count(*) FROM produtos;";
+                    MySqlCommand cmdPr = new MySqlCommand(sqlProdutos, conn);
+                    int quantidadeProdutos = Convert.ToInt32(cmdPr.ExecuteScalar());
+                    lblDadosProdutos.Text = quantidadeProdutos.ToString();
 
-                //Dados Clientes
-                string sqlClientes = $"SELECT count(*) FROM clientes;";
-                MySqlCommand cmdC = new MySqlCommand(sqlClientes, conn);
-                int quantidadeClientes = Convert.ToInt32(cmdC.ExecuteScalar());
-                lblDadosClientes.Text = quantidadeClientes.ToString();
+                    //Dados Clientes
+                    string sqlClientes = $"SELECT count(*) FROM clientes;";
+                    MySqlCommand cmdC = new MySqlCommand(sqlClientes, conn);
+                    int quantidadeClientes = Convert.ToInt32(cmdC.ExecuteScalar());
+                    lblDadosClientes.Text = quantidadeClientes.ToString();
 
-                //Dados Pendencias
-                string sqlValor = $"select sum(valor_total) AS 'Total' from pedidos where status_pagamento = 'Pendente';";
-                MySqlCommand cmdV = new MySqlCommand(sqlValor, conn);
-                object resultado = cmdV.ExecuteScalar();
-                decimal valor = resultado != DBNull.Value ? Convert.ToDecimal(resultado) : 0;
-                lblDadosPendencias.Text = valor.ToString("C", new CultureInfo("pt-BR"));
+                    //Dados Pendencias
+                    string sqlValor = $"select sum(valor_total) AS 'Total' from pedidos where status_pagamento = 'Pendente';";
+                    MySqlCommand cmdV = new MySqlCommand(sqlValor, conn);
+                    object resultado = cmdV.ExecuteScalar();
+                    decimal valor = resultado != DBNull.Value ? Convert.ToDecimal(resultado) : 0;
+                    lblDadosPendencias.Text = valor.ToString("C", new CultureInfo("pt-BR"));
+                }
+                catch (Exception erro) 
+                {
+                    MessageBox.Show("Erro ao carregar os dados: " + erro.Message,
+                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
