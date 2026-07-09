@@ -442,6 +442,8 @@
             // picDadosPedidos
             // 
             picDadosPedidos.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            picDadosPedidos.BackColor = Color.Transparent;
+            picDadosPedidos.Image = (Image)resources.GetObject("picDadosPedidos.Image");
             picDadosPedidos.Location = new Point(3, 16);
             picDadosPedidos.Name = "picDadosPedidos";
             picDadosPedidos.Size = new Size(85, 85);
@@ -482,9 +484,9 @@
             lblTlpPedidos.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblTlpPedidos.Location = new Point(3, 55);
             lblTlpPedidos.Name = "lblTlpPedidos";
-            lblTlpPedidos.Size = new Size(125, 23);
+            lblTlpPedidos.Size = new Size(125, 46);
             lblTlpPedidos.TabIndex = 1;
-            lblTlpPedidos.Text = "label1";
+            lblTlpPedidos.Text = "Pedidos \r\ncadastrados";
             // 
             // tlpDadosProdutos
             // 
@@ -506,6 +508,8 @@
             // picDadosProdutos
             // 
             picDadosProdutos.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            picDadosProdutos.BackColor = Color.Transparent;
+            picDadosProdutos.Image = (Image)resources.GetObject("picDadosProdutos.Image");
             picDadosProdutos.Location = new Point(3, 16);
             picDadosProdutos.Name = "picDadosProdutos";
             picDadosProdutos.Size = new Size(85, 85);
@@ -546,9 +550,9 @@
             lblTlpProdutos.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblTlpProdutos.Location = new Point(3, 55);
             lblTlpProdutos.Name = "lblTlpProdutos";
-            lblTlpProdutos.Size = new Size(125, 23);
+            lblTlpProdutos.Size = new Size(125, 46);
             lblTlpProdutos.TabIndex = 1;
-            lblTlpProdutos.Text = "label2";
+            lblTlpProdutos.Text = "Produto\r\ncadastrados";
             // 
             // tlpDadosClientes
             // 
@@ -570,6 +574,8 @@
             // picDadosClientes
             // 
             picDadosClientes.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            picDadosClientes.BackColor = Color.Transparent;
+            picDadosClientes.Image = (Image)resources.GetObject("picDadosClientes.Image");
             picDadosClientes.Location = new Point(3, 16);
             picDadosClientes.Name = "picDadosClientes";
             picDadosClientes.Size = new Size(85, 85);
@@ -610,9 +616,9 @@
             lblTlpClientes.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblTlpClientes.Location = new Point(3, 55);
             lblTlpClientes.Name = "lblTlpClientes";
-            lblTlpClientes.Size = new Size(125, 23);
+            lblTlpClientes.Size = new Size(125, 46);
             lblTlpClientes.TabIndex = 1;
-            lblTlpClientes.Text = "label3";
+            lblTlpClientes.Text = "Clientes \r\ncadastrados";
             // 
             // tlpDadosPedencias
             // 
@@ -634,6 +640,8 @@
             // picDadosPendencias
             // 
             picDadosPendencias.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            picDadosPendencias.BackColor = Color.Transparent;
+            picDadosPendencias.Image = (Image)resources.GetObject("picDadosPendencias.Image");
             picDadosPendencias.Location = new Point(3, 16);
             picDadosPendencias.Name = "picDadosPendencias";
             picDadosPendencias.Size = new Size(85, 85);
@@ -674,9 +682,9 @@
             lblTlpPendencias.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblTlpPendencias.Location = new Point(3, 55);
             lblTlpPendencias.Name = "lblTlpPendencias";
-            lblTlpPendencias.Size = new Size(125, 23);
+            lblTlpPendencias.Size = new Size(125, 46);
             lblTlpPendencias.TabIndex = 1;
-            lblTlpPendencias.Text = "label4";
+            lblTlpPendencias.Text = "Total de\r\npendências";
             // 
             // timerDataHora
             // 
