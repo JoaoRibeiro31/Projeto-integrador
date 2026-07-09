@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Drawing;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Pkcs;
 
 namespace Projeto_Valquiria
 {
@@ -34,30 +35,31 @@ namespace Projeto_Valquiria
         private void Home_Load(object sender, EventArgs e)
         {
             CarregarClientes();
+            CarregarDados();
 
             // Cor de fundo geral da tabela
-            dgvPedidos.BackgroundColor = Color.FromArgb(255, 220, 235); 
+            dgvPedidos.BackgroundColor = Color.FromArgb(255, 220, 235);
 
             // Linhas alternadas (efeito suave)
             dgvPedidos.DefaultCellStyle.BackColor = Color.White;
-            dgvPedidos.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(255, 240, 245); 
+            dgvPedidos.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(255, 240, 245);
 
             // Texto das células
-            dgvPedidos.DefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100); 
+            dgvPedidos.DefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
             dgvPedidos.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
 
             // Cor da seleção
-            dgvPedidos.DefaultCellStyle.SelectionBackColor = Color.FromArgb(200, 100, 150); 
+            dgvPedidos.DefaultCellStyle.SelectionBackColor = Color.FromArgb(200, 100, 150);
             dgvPedidos.DefaultCellStyle.SelectionForeColor = Color.White;
 
             // Cabeçalho
-            dgvPedidos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 200, 220); 
+            dgvPedidos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 200, 220);
             dgvPedidos.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
             dgvPedidos.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             dgvPedidos.EnableHeadersVisualStyles = false;
 
             // Bordas e estilo geral
-            dgvPedidos.GridColor = Color.FromArgb(220, 180, 200); 
+            dgvPedidos.GridColor = Color.FromArgb(220, 180, 200);
             dgvPedidos.BorderStyle = BorderStyle.None;
             dgvPedidos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
 
@@ -69,7 +71,7 @@ namespace Projeto_Valquiria
             UIHelper.ArredondarBorda(dgvPedidos, 20);
 
             //Data e hora em tempo real
-            timerDataHora.Start();
+            timerDataHora.Start();         
         }
 
         // ---------- CARREGAR CLIENTES COM PENDÊNCIAS ----------
@@ -138,7 +140,39 @@ namespace Projeto_Valquiria
             }
         }
 
+        // ---------- CARREGAR DADOS ----------
+        private void CarregarDados()
+        {
+            using (MySqlConnection conn = new MySqlConnection(conexao))
+            {
+                conn.Open();
 
+                //Dados Pedidos
+                string sqlPedidos = $"SELECT count(*) FROM pedidos WHERE status_pagamento = 'Pendente';";
+                MySqlCommand cmdP = new MySqlCommand(sqlPedidos, conn);
+                int quantidadePedidos = Convert.ToInt32(cmdP.ExecuteScalar());
+                lblDadosPedidos.Text = quantidadePedidos.ToString();
+
+                //Dados Produtos
+                string sqlProdutos = $"SELECT count(*) FROM produtos;";
+                MySqlCommand cmdPr = new MySqlCommand(sqlProdutos, conn);
+                int quantidadeProdutos = Convert.ToInt32(cmdPr.ExecuteScalar());
+                lblDadosProdutos.Text = quantidadeProdutos.ToString();
+
+                //Dados Clientes
+                string sqlClientes = $"SELECT count(*) FROM clientes;";
+                MySqlCommand cmdC = new MySqlCommand(sqlClientes, conn);
+                int quantidadeClientes = Convert.ToInt32(cmdC.ExecuteScalar());
+                lblDadosClientes.Text = quantidadeClientes.ToString();
+
+                //Dados Pendencias
+                string sqlValor = $"select sum(valor_total) AS 'Total' from pedidos where status_pagamento = 'Pendente';";
+                MySqlCommand cmdV = new MySqlCommand(sqlValor, conn);
+                object resultado = cmdV.ExecuteScalar();
+                decimal valor = resultado != DBNull.Value ? Convert.ToDecimal(resultado) : 0;
+                lblDadosPendencias.Text = valor.ToString("C", new CultureInfo("pt-BR"));
+            }
+        }
 
         // ---------- MÉTODO DE DESTAQUE ----------
         private void AplicarDestaquePendencias()
@@ -234,7 +268,5 @@ namespace Projeto_Valquiria
                 MessageBoxIcon.Question
             ) == DialogResult.Yes;
         }
-
-        
     }
 }

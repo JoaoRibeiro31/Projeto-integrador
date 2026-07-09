@@ -668,11 +668,11 @@
             // 
             lblDadosPendencias.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblDadosPendencias.AutoSize = true;
-            lblDadosPendencias.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            lblDadosPendencias.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblDadosPendencias.ForeColor = Color.FromArgb(44, 131, 221);
-            lblDadosPendencias.Location = new Point(3, 20);
+            lblDadosPendencias.Location = new Point(3, 32);
             lblDadosPendencias.Name = "lblDadosPendencias";
-            lblDadosPendencias.Size = new Size(125, 35);
+            lblDadosPendencias.Size = new Size(125, 23);
             lblDadosPendencias.TabIndex = 0;
             // 
             // lblTlpPendencias
