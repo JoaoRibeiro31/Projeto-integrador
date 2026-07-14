@@ -55,6 +55,11 @@ namespace Projeto_Valquiria
 
             // Centraliza o texto do cabeçalho (títulos das colunas)
             dgvDadosProdutos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            UIHelper.ArredondarBorda(btnPedidos, 20);
+            UIHelper.ArredondarBorda(btnProdutos, 20);
+            UIHelper.ArredondarBorda(btnClientes, 20);
+            UIHelper.ArredondarBorda(btnHome,20);
         }
 
         // ---------- CARREGAR PRODUTOS ----------
