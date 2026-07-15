@@ -350,7 +350,7 @@ namespace Projeto_Valquiria
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            frmHome tela = new frmHome();
+            FrmHome tela = new FrmHome();
             tela.Show();
             this.Hide();
         }

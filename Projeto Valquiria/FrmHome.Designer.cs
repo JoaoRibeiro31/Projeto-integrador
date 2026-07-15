@@ -1,6 +1,6 @@
 ﻿namespace Projeto_Valquiria
 {
-    partial class frmHome
+    partial class FrmHome
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHome));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHome));
             txtPesquisar = new TextBox();
             dgvPedidos = new DataGridView();
             pnlMenu = new Panel();
@@ -300,8 +300,8 @@
             tlpPrincipal.Location = new Point(0, 0);
             tlpPrincipal.Name = "tlpPrincipal";
             tlpPrincipal.RowCount = 7;
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 1.23222744F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 10.2369671F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 1.232227F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 10.23697F));
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 1.421801F));
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 3.772277F));
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 2.574257F));
@@ -700,7 +700,7 @@
             timerDataHora.Interval = 1000;
             timerDataHora.Tick += timerDataHora_Tick;
             // 
-            // frmHome
+            // FrmHome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -709,7 +709,7 @@
             Controls.Add(pnlMenu);
             Controls.Add(tlpPrincipal);
             Margin = new Padding(3, 5, 3, 5);
-            Name = "frmHome";
+            Name = "FrmHome";
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Maximized;
             Load += Home_Load;

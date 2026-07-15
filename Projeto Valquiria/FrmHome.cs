@@ -8,14 +8,14 @@ using Org.BouncyCastle.Asn1.Pkcs;
 
 namespace Projeto_Valquiria
 {
-    public partial class frmHome : Form
+    public partial class FrmHome : Form
     {
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
         DataTable tabela = new DataTable();
 
         private System.Windows.Forms.Timer timerPesquisa = new System.Windows.Forms.Timer();
 
-        public frmHome()
+        public FrmHome()
         {
             InitializeComponent();
 

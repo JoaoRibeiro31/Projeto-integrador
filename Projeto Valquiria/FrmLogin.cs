@@ -105,7 +105,7 @@ namespace Projeto_Valquiria
                                             "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             // Abre a tela principal
-                            frmHome home = new frmHome();
+                            FrmHome home = new FrmHome();
                             home.Show();
                             this.Hide(); // Esconde a tela de login
                         }
