@@ -266,9 +266,11 @@ namespace Projeto_Valquiria
                                 string nomeAtual = reader.GetString("nome");
                                 decimal valorAtual = reader.GetDecimal("valor");
 
-                                if (nome != nomeAtual || valor != valorAtual)
+                                bool precisaAtualizar = nome != nomeAtual || valor != valorAtual;
+                                reader.Close();
+
+                                if (precisaAtualizar)
                                 {
-                                    reader.Close();
                                     string sql = "UPDATE produtos SET nome = @nome, valor = @valor WHERE id = @id";
                                     MySqlCommand cmd = new MySqlCommand(sql, conn);
                                     cmd.Parameters.AddWithValue("@nome", nome);
@@ -279,6 +281,7 @@ namespace Projeto_Valquiria
                                 }
                             }
                         }
+
                     }
 
                     if (contadorAtualizados == 0)
