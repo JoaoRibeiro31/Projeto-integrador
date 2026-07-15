@@ -428,7 +428,7 @@
             // 
             // tlpPrincipal
             // 
-            tlpPrincipal.BackColor = Color.FromArgb(239, 246, 254);
+            tlpPrincipal.BackColor = Color.Transparent;
             tlpPrincipal.ColumnCount = 4;
             tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.8F));
             tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.3F));
@@ -516,7 +516,7 @@
             AcceptButton = btnCadastrar;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.MediumSeaGreen;
+            BackColor = Color.FromArgb(239, 246, 254);
             ClientSize = new Size(1920, 1055);
             Controls.Add(pnlNavegacao);
             Controls.Add(tlpPrincipal);

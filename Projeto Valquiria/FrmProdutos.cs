@@ -23,8 +23,24 @@ namespace Projeto_Valquiria
             dgvDadosProdutos.ReadOnly = true;
         }
 
+        // ---------- LOAD ----------
         private void FrmProdutos_Load(object sender, EventArgs e)
         {
+
+            //Teste de conexão
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(conexao))
+                {
+                    conn.Open();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                ErroHelper.MostrarErro("Erro de Conexão", "Não foi possível conectar ao banco de dados.");
+                ErroHelper.LogErro(ex);
+            }
+
             CarregarDadosProdutos();
 
             // Cor de fundo geral da tabela
