@@ -443,15 +443,15 @@
             tlpPrincipal.Location = new Point(0, 0);
             tlpPrincipal.Name = "tlpPrincipal";
             tlpPrincipal.RowCount = 9;
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 5.88240051F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 5.50289059F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 1.42135882F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 3.77360749F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 2.6024878F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 50.0478439F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 3.00287056F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 16.2555389F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 11.5110044F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 5.882401F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 5.502891F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 1.421359F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 3.773607F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 2.602488F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 50.04784F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 3.002871F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 16.25554F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 11.511F));
             tlpPrincipal.Size = new Size(1920, 1055);
             tlpPrincipal.TabIndex = 23;
             // 
