@@ -60,6 +60,8 @@ namespace Projeto_Valquiria
             UIHelper.ArredondarBorda(btnProdutos, 20);
             UIHelper.ArredondarBorda(btnClientes, 20);
             UIHelper.ArredondarBorda(btnHome,20);
+            UIHelper.ArredondarBorda(tlpCadastro, 20);
+            UIHelper.ArredondarBorda(btnCadastrar,20);
         }
 
         // ---------- CARREGAR PRODUTOS ----------
