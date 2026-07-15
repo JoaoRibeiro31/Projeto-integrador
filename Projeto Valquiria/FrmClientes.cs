@@ -55,6 +55,12 @@ namespace Projeto_Valquiria
 
             // Centraliza o texto do cabeçalho (títulos das colunas)
             dvgTabela.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Borda arredondada
+            UIHelper.ArredondarBorda(btnPedidos, 20);
+            UIHelper.ArredondarBorda(btnProdutos, 20);
+            UIHelper.ArredondarBorda(btnClientes, 20);
+            UIHelper.ArredondarBorda(btnHome, 20);
         }
 
         // ---------- CARREGAR CLIENTES ----------
@@ -313,25 +319,27 @@ namespace Projeto_Valquiria
         }
 
         // ---------- NAVEGAÇÃO ----------
-        private void btnVoltar_Click(object sender, EventArgs e)
-        {
-            FrmHome tela = new FrmHome();
-            tela.Show();
-            this.Hide();
-        }
-
-        private void btnProdutos_Click(object sender, EventArgs e)
-        {
-            FrmProdutos tela = new FrmProdutos();
-            tela.Show();
-            this.Hide();
-        }
-
         private void btnPedidos_Click(object sender, EventArgs e)
         {
             FrmPedidos tela = new FrmPedidos();
             tela.Show();
             this.Hide();
         }
+
+        private void btnProdutos_Click(object sender, EventArgs e)
+        {
+            FrmClientes tela = new FrmClientes();
+            tela.Show();
+            this.Hide();
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            FrmHome tela = new FrmHome();
+            tela.Show();
+            this.Hide();
+        }
+
+        
     }
 }

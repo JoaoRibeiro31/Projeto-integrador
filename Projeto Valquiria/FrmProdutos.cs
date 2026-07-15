@@ -132,7 +132,7 @@ namespace Projeto_Valquiria
         }
 
         // ---------- CADASTRAR PRODUTO ----------
-        private void btnCadastroProduto_Click(object sender, EventArgs e)
+        private void btnCadastrar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtValor.Text))
             {
@@ -363,7 +363,7 @@ namespace Projeto_Valquiria
         }
 
         // ---------- NAVEGAÇÃO ----------
-        private void btnPedido_Click(object sender, EventArgs e)
+        private void btnPedidos_Click(object sender, EventArgs e)
         {
             FrmPedidos tela = new FrmPedidos();
             tela.Show();
@@ -377,7 +377,7 @@ namespace Projeto_Valquiria
             this.Hide();
         }
 
-        private void btnCliente_Click(object sender, EventArgs e)
+        private void btnClientes_Click(object sender, EventArgs e)
         {
             FrmClientes tela = new FrmClientes();
             tela.Show();

@@ -145,7 +145,6 @@
             // 
             // tlpNavegacao
             // 
-            tlpNavegacao.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             tlpNavegacao.BackColor = Color.Transparent;
             tlpNavegacao.ColumnCount = 3;
             tlpNavegacao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.5F));
@@ -155,6 +154,7 @@
             tlpNavegacao.Controls.Add(btnProdutos, 1, 3);
             tlpNavegacao.Controls.Add(btnClientes, 1, 5);
             tlpNavegacao.Controls.Add(tlpBtnFecharApp, 1, 7);
+            tlpNavegacao.Dock = DockStyle.Fill;
             tlpNavegacao.Location = new Point(0, 0);
             tlpNavegacao.Name = "tlpNavegacao";
             tlpNavegacao.RowCount = 9;

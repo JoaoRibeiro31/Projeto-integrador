@@ -82,7 +82,7 @@
             btnHome.Location = new Point(29, 4);
             btnHome.Margin = new Padding(3, 4, 3, 4);
             btnHome.Name = "btnHome";
-            btnHome.Size = new Size(115, 41);
+            btnHome.Size = new Size(115, 42);
             btnHome.TabIndex = 0;
             btnHome.Text = "Voltar";
             btnHome.UseVisualStyleBackColor = false;
@@ -179,7 +179,7 @@
             btnCadastrar.TabIndex = 6;
             btnCadastrar.Text = "Cadastrar Produto";
             btnCadastrar.UseVisualStyleBackColor = false;
-            btnCadastrar.Click += btnCadastroProduto_Click;
+            btnCadastrar.Click += btnCadastrar_Click;
             // 
             // pnlCadastro
             // 
@@ -276,14 +276,14 @@
             btnClientes.ForeColor = Color.White;
             btnClientes.Image = (Image)resources.GetObject("btnClientes.Image");
             btnClientes.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClientes.Location = new Point(113, 541);
+            btnClientes.Location = new Point(113, 554);
             btnClientes.Margin = new Padding(3, 4, 3, 4);
             btnClientes.Name = "btnClientes";
-            btnClientes.Size = new Size(174, 56);
+            btnClientes.Size = new Size(174, 58);
             btnClientes.TabIndex = 2;
             btnClientes.Text = "Clientes";
             btnClientes.UseVisualStyleBackColor = false;
-            btnClientes.Click += btnCliente_Click;
+            btnClientes.Click += btnClientes_Click;
             // 
             // btnProdutos
             // 
@@ -298,10 +298,10 @@
             btnProdutos.ForeColor = Color.White;
             btnProdutos.Image = (Image)resources.GetObject("btnProdutos.Image");
             btnProdutos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProdutos.Location = new Point(113, 391);
+            btnProdutos.Location = new Point(113, 400);
             btnProdutos.Margin = new Padding(3, 4, 3, 4);
             btnProdutos.Name = "btnProdutos";
-            btnProdutos.Size = new Size(174, 56);
+            btnProdutos.Size = new Size(174, 58);
             btnProdutos.TabIndex = 17;
             btnProdutos.Text = "Produtos";
             btnProdutos.UseVisualStyleBackColor = false;
@@ -318,14 +318,14 @@
             btnPedidos.ForeColor = Color.White;
             btnPedidos.Image = (Image)resources.GetObject("btnPedidos.Image");
             btnPedidos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPedidos.Location = new Point(113, 241);
+            btnPedidos.Location = new Point(113, 246);
             btnPedidos.Margin = new Padding(3, 4, 3, 4);
             btnPedidos.Name = "btnPedidos";
-            btnPedidos.Size = new Size(174, 56);
+            btnPedidos.Size = new Size(174, 58);
             btnPedidos.TabIndex = 1;
             btnPedidos.Text = "Pedidos";
             btnPedidos.UseVisualStyleBackColor = false;
-            btnPedidos.Click += btnPedido_Click;
+            btnPedidos.Click += btnPedidos_Click;
             // 
             // lblTitulo
             // 
@@ -382,11 +382,10 @@
             pnlNavegacao.Margin = new Padding(3, 4, 3, 4);
             pnlNavegacao.Name = "pnlNavegacao";
             pnlNavegacao.Size = new Size(400, 1102);
-            pnlNavegacao.TabIndex = 22;
+            pnlNavegacao.TabIndex = 0;
             // 
             // tlpNavegacao
             // 
-            tlpNavegacao.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             tlpNavegacao.BackColor = Color.Transparent;
             tlpNavegacao.ColumnCount = 3;
             tlpNavegacao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.5F));
@@ -396,6 +395,7 @@
             tlpNavegacao.Controls.Add(btnClientes, 1, 5);
             tlpNavegacao.Controls.Add(btnProdutos, 1, 3);
             tlpNavegacao.Controls.Add(tlpHome, 1, 7);
+            tlpNavegacao.Dock = DockStyle.Fill;
             tlpNavegacao.Location = new Point(0, 0);
             tlpNavegacao.Name = "tlpNavegacao";
             tlpNavegacao.RowCount = 9;
@@ -408,7 +408,7 @@
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 13.9833918F));
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 5.16264439F));
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 24.9204F));
-            tlpNavegacao.Size = new Size(400, 1080);
+            tlpNavegacao.Size = new Size(400, 1102);
             tlpNavegacao.TabIndex = 23;
             // 
             // tlpHome
@@ -419,11 +419,11 @@
             tlpHome.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
             tlpHome.Controls.Add(btnHome, 1, 0);
             tlpHome.Dock = DockStyle.Fill;
-            tlpHome.Location = new Point(113, 755);
+            tlpHome.Location = new Point(113, 773);
             tlpHome.Name = "tlpHome";
             tlpHome.RowCount = 1;
             tlpHome.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpHome.Size = new Size(174, 49);
+            tlpHome.Size = new Size(174, 50);
             tlpHome.TabIndex = 19;
             // 
             // tlpPrincipal
