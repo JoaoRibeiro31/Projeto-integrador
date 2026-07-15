@@ -35,13 +35,14 @@
             lblNome = new Label();
             lblContato = new Label();
             pnlCadastro = new Panel();
-            dvgTabela = new DataGridView();
+            dgvDadosClientes = new DataGridView();
             txtPesquisar = new TextBox();
             btnEdicao = new Button();
             btnAtualizar = new Button();
             btnDeletar = new Button();
             tlpPrincipal = new TableLayoutPanel();
             tlpEdicao = new TableLayoutPanel();
+            lblTitulo = new Label();
             pnlNavegacao = new Panel();
             tlpNavegacao = new TableLayoutPanel();
             btnPedidos = new Button();
@@ -49,9 +50,8 @@
             btnProdutos = new Button();
             tlpHome = new TableLayoutPanel();
             btnHome = new Button();
-            lblTitulo = new Label();
             pnlCadastro.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dvgTabela).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDadosClientes).BeginInit();
             tlpPrincipal.SuspendLayout();
             tlpEdicao.SuspendLayout();
             pnlNavegacao.SuspendLayout();
@@ -133,17 +133,27 @@
             pnlCadastro.Size = new Size(1042, 163);
             pnlCadastro.TabIndex = 6;
             // 
-            // dvgTabela
+            // dgvDadosClientes
             // 
-            dvgTabela.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dvgTabela.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvgTabela.Dock = DockStyle.Fill;
-            dvgTabela.Location = new Point(638, 204);
-            dvgTabela.Margin = new Padding(3, 4, 3, 4);
-            dvgTabela.Name = "dvgTabela";
-            dvgTabela.RowHeadersWidth = 51;
-            dvgTabela.Size = new Size(1042, 520);
-            dvgTabela.TabIndex = 7;
+            dgvDadosClientes.AllowUserToAddRows = false;
+            dgvDadosClientes.AllowUserToDeleteRows = false;
+            dgvDadosClientes.AllowUserToResizeColumns = false;
+            dgvDadosClientes.AllowUserToResizeRows = false;
+            dgvDadosClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDadosClientes.BackgroundColor = Color.FromArgb(217, 217, 217);
+            dgvDadosClientes.BorderStyle = BorderStyle.None;
+            dgvDadosClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDadosClientes.Dock = DockStyle.Fill;
+            dgvDadosClientes.EnableHeadersVisualStyles = false;
+            dgvDadosClientes.GridColor = SystemColors.InactiveCaptionText;
+            dgvDadosClientes.Location = new Point(638, 204);
+            dgvDadosClientes.Margin = new Padding(3, 4, 3, 4);
+            dgvDadosClientes.Name = "dgvDadosClientes";
+            dgvDadosClientes.ReadOnly = true;
+            dgvDadosClientes.RowHeadersVisible = false;
+            dgvDadosClientes.RowHeadersWidth = 51;
+            dgvDadosClientes.Size = new Size(1042, 520);
+            dgvDadosClientes.TabIndex = 7;
             // 
             // txtPesquisar
             // 
@@ -152,9 +162,10 @@
             txtPesquisar.Location = new Point(638, 138);
             txtPesquisar.Margin = new Padding(3, 4, 3, 4);
             txtPesquisar.Name = "txtPesquisar";
-            txtPesquisar.PlaceholderText = "Pesquisar:";
+            txtPesquisar.PlaceholderText = "Pesquisar...";
             txtPesquisar.Size = new Size(1042, 34);
             txtPesquisar.TabIndex = 18;
+            txtPesquisar.TabStop = false;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
             // btnEdicao
@@ -204,7 +215,7 @@
             tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.3F));
             tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.6F));
             tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.3F));
-            tlpPrincipal.Controls.Add(dvgTabela, 2, 5);
+            tlpPrincipal.Controls.Add(dgvDadosClientes, 2, 5);
             tlpPrincipal.Controls.Add(pnlCadastro, 2, 7);
             tlpPrincipal.Controls.Add(txtPesquisar, 2, 3);
             tlpPrincipal.Controls.Add(tlpEdicao, 3, 5);
@@ -246,6 +257,20 @@
             tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Absolute, 260F));
             tlpEdicao.Size = new Size(231, 522);
             tlpEdicao.TabIndex = 20;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.BackColor = Color.Transparent;
+            lblTitulo.Dock = DockStyle.Fill;
+            lblTitulo.FlatStyle = FlatStyle.Flat;
+            lblTitulo.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.ForeColor = Color.FromArgb(225, 103, 148);
+            lblTitulo.Location = new Point(638, 62);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(1042, 58);
+            lblTitulo.TabIndex = 21;
+            lblTitulo.Text = "Área de Cadastro de Clientes";
+            lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlNavegacao
             // 
@@ -387,20 +412,6 @@
             btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnHome_Click;
             // 
-            // lblTitulo
-            // 
-            lblTitulo.BackColor = Color.Transparent;
-            lblTitulo.Dock = DockStyle.Fill;
-            lblTitulo.FlatStyle = FlatStyle.Flat;
-            lblTitulo.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitulo.ForeColor = Color.FromArgb(225, 103, 148);
-            lblTitulo.Location = new Point(638, 62);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(1042, 58);
-            lblTitulo.TabIndex = 21;
-            lblTitulo.Text = "Área de Cadastro de Clientes";
-            lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // FrmClientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -416,7 +427,7 @@
             Load += FrmClientes_Load;
             pnlCadastro.ResumeLayout(false);
             pnlCadastro.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dvgTabela).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDadosClientes).EndInit();
             tlpPrincipal.ResumeLayout(false);
             tlpPrincipal.PerformLayout();
             tlpEdicao.ResumeLayout(false);
@@ -434,7 +445,7 @@
         private Label lblNome;
         private Label lblContato;
         private Panel pnlCadastro;
-        private DataGridView dvgTabela;
+        private DataGridView dgvDadosClientes;
         private TextBox txtPesquisar;
         private Button btnEdicao;
         private Button btnAtualizar;

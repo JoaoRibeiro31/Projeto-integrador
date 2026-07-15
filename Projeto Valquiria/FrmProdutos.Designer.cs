@@ -343,7 +343,7 @@
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtPesquisar.Dock = DockStyle.Fill;
             txtPesquisar.Font = new Font("Segoe UI", 12F);
             txtPesquisar.Location = new Point(638, 138);
             txtPesquisar.Margin = new Padding(3, 4, 3, 4);

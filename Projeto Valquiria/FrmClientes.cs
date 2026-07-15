@@ -25,42 +25,42 @@ namespace Projeto_Valquiria
 
             btnAtualizar.Visible = false;
             btnDeletar.Visible = false;
-            dvgTabela.ReadOnly = true;
+            dgvDadosClientes.ReadOnly = true;
 
             // Cor de fundo geral da tabela
-            dvgTabela.BackgroundColor = Color.FromArgb(240, 192, 229); // rosa pastel do layout
+            dgvDadosClientes.BackgroundColor = Color.FromArgb(255, 220, 235);
 
-            // Linhas alternadas
-            dvgTabela.DefaultCellStyle.BackColor = Color.White;
-            dvgTabela.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(255, 245, 200); // amarelo pastel suave
+            // Linhas alternadas (efeito suave)
+            dgvDadosClientes.DefaultCellStyle.BackColor = Color.White;
+            dgvDadosClientes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(255, 240, 245);
 
             // Texto das células
-            dvgTabela.DefaultCellStyle.ForeColor = Color.FromArgb(100, 80, 20); // marrom/amarelo escuro
-            dvgTabela.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(100, 80, 20);
+            dgvDadosClientes.DefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
+            dgvDadosClientes.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
 
-            // Seleção
-            dvgTabela.DefaultCellStyle.SelectionBackColor = Color.FromArgb(253, 208, 23); // amarelo vibrante (igual ao botão Clientes)
-            dvgTabela.DefaultCellStyle.SelectionForeColor = Color.White;
+            // Cor da seleção
+            dgvDadosClientes.DefaultCellStyle.SelectionBackColor = Color.FromArgb(200, 100, 150);
+            dgvDadosClientes.DefaultCellStyle.SelectionForeColor = Color.White;
 
             // Cabeçalho
-            dvgTabela.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 192, 229); // rosa pastel
-            dvgTabela.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);   // lilás escuro
-            dvgTabela.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
-            dvgTabela.EnableHeadersVisualStyles = false;
+            dgvDadosClientes.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 200, 220);
+            dgvDadosClientes.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
+            dgvDadosClientes.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            dgvDadosClientes.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 200, 220);
+            dgvDadosClientes.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.FromArgb(80, 40, 100);
 
             // Bordas e estilo geral
-            dvgTabela.GridColor = Color.FromArgb(230, 210, 150);
-            dvgTabela.BorderStyle = BorderStyle.None;
-            dvgTabela.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvDadosClientes.GridColor = Color.FromArgb(220, 180, 200);
+            dgvDadosClientes.BorderStyle = BorderStyle.None;
+            dgvDadosClientes.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
 
-            // Centraliza o texto do cabeçalho (títulos das colunas)
-            dvgTabela.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Borda arredondada
             UIHelper.ArredondarBorda(btnPedidos, 20);
             UIHelper.ArredondarBorda(btnProdutos, 20);
             UIHelper.ArredondarBorda(btnClientes, 20);
             UIHelper.ArredondarBorda(btnHome, 20);
+            UIHelper.ArredondarBorda(dgvDadosClientes,20);
         }
 
         // ---------- CARREGAR CLIENTES ----------
@@ -87,8 +87,8 @@ namespace Projeto_Valquiria
                     DataTable tabela = new DataTable();
                     adapter.Fill(tabela);
 
-                    dvgTabela.DataSource = tabela;
-                    dvgTabela.Columns["Id"].Visible = false;
+                    dgvDadosClientes.DataSource = tabela;
+                    dgvDadosClientes.Columns["Id"].Visible = false;
                 }
                 catch (Exception erro)
                 {
@@ -188,14 +188,14 @@ namespace Projeto_Valquiria
         {
             if (!editando)
             {
-                dvgTabela.ReadOnly = false;
+                dgvDadosClientes.ReadOnly = false;
                 btnAtualizar.Visible = true;
                 btnDeletar.Visible = true;
                 editando = true;
             }
             else
             {
-                dvgTabela.ReadOnly = true;
+                dgvDadosClientes.ReadOnly = true;
                 btnAtualizar.Visible = false;
                 btnDeletar.Visible = false;
                 editando = false;
@@ -219,7 +219,7 @@ namespace Projeto_Valquiria
                 {
                     conn.Open();
 
-                    foreach (DataGridViewRow row in dvgTabela.Rows)
+                    foreach (DataGridViewRow row in dgvDadosClientes.Rows)
                     {
                         if (row.IsNewRow) continue;
 
@@ -280,14 +280,14 @@ namespace Projeto_Valquiria
         // ---------- DELETAR ----------
         private void btnDeletar_Click(object sender, EventArgs e)
         {
-            if (dvgTabela.CurrentRow == null || dvgTabela.CurrentRow.IsNewRow)
+            if (dgvDadosClientes.CurrentRow == null || dgvDadosClientes.CurrentRow.IsNewRow)
             {
                 MessageBox.Show("Selecione um cliente para excluir!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string nome = dvgTabela.CurrentRow.Cells["Nome"].Value.ToString();
+            string nome = dgvDadosClientes.CurrentRow.Cells["Nome"].Value.ToString();
 
             DialogResult confirmacao = MessageBox.Show(
                 $"Confirma excluir o(a) cliente '{nome}'?",
@@ -328,7 +328,7 @@ namespace Projeto_Valquiria
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
-            FrmClientes tela = new FrmClientes();
+            FrmProdutos tela = new FrmProdutos();
             tela.Show();
             this.Hide();
         }
