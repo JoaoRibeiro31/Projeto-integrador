@@ -110,11 +110,11 @@
             // 
             dgvPedidos.AllowUserToAddRows = false;
             dgvPedidos.AllowUserToDeleteRows = false;
-            dgvPedidos.AllowUserToOrderColumns = true;
             dgvPedidos.AllowUserToResizeColumns = false;
             dgvPedidos.AllowUserToResizeRows = false;
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPedidos.BackgroundColor = Color.FromArgb(217, 217, 217);
+            dgvPedidos.BorderStyle = BorderStyle.None;
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPedidos.Dock = DockStyle.Fill;
             dgvPedidos.EnableHeadersVisualStyles = false;

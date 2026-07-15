@@ -90,12 +90,22 @@
             // 
             // dgvDadosProdutos
             // 
+            dgvDadosProdutos.AllowUserToAddRows = false;
+            dgvDadosProdutos.AllowUserToDeleteRows = false;
+            dgvDadosProdutos.AllowUserToResizeColumns = false;
+            dgvDadosProdutos.AllowUserToResizeRows = false;
             dgvDadosProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDadosProdutos.BackgroundColor = Color.FromArgb(217, 217, 217);
+            dgvDadosProdutos.BorderStyle = BorderStyle.None;
             dgvDadosProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDadosProdutos.Dock = DockStyle.Fill;
+            dgvDadosProdutos.EnableHeadersVisualStyles = false;
+            dgvDadosProdutos.GridColor = SystemColors.InactiveCaptionText;
             dgvDadosProdutos.Location = new Point(638, 204);
             dgvDadosProdutos.Margin = new Padding(3, 4, 3, 4);
             dgvDadosProdutos.Name = "dgvDadosProdutos";
+            dgvDadosProdutos.ReadOnly = true;
+            dgvDadosProdutos.RowHeadersVisible = false;
             dgvDadosProdutos.RowHeadersWidth = 51;
             dgvDadosProdutos.Size = new Size(1042, 520);
             dgvDadosProdutos.TabIndex = 5;
@@ -131,6 +141,7 @@
             txtNome.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNome.Location = new Point(3, 4);
             txtNome.Margin = new Padding(3, 4, 3, 4);
+            txtNome.MaxLength = 80;
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "Ex: Bolo";
             txtNome.Size = new Size(696, 27);
@@ -144,6 +155,7 @@
             txtValor.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtValor.Location = new Point(3, 4);
             txtValor.Margin = new Padding(3, 4, 3, 4);
+            txtValor.MaxLength = 13;
             txtValor.Name = "txtValor";
             txtValor.PlaceholderText = "Ex: 9,99";
             txtValor.Size = new Size(547, 27);
@@ -345,13 +357,16 @@
             // btnEdicao
             // 
             btnEdicao.BackgroundImage = (Image)resources.GetObject("btnEdicao.BackgroundImage");
-            btnEdicao.BackgroundImageLayout = ImageLayout.Center;
+            btnEdicao.BackgroundImageLayout = ImageLayout.Zoom;
             btnEdicao.Cursor = Cursors.Hand;
-            btnEdicao.FlatStyle = FlatStyle.Popup;
-            btnEdicao.Location = new Point(46, 4);
+            btnEdicao.Dock = DockStyle.Fill;
+            btnEdicao.FlatAppearance.BorderSize = 0;
+            btnEdicao.FlatStyle = FlatStyle.Flat;
+            btnEdicao.ForeColor = SystemColors.ControlText;
+            btnEdicao.Location = new Point(79, 4);
             btnEdicao.Margin = new Padding(3, 4, 3, 4);
             btnEdicao.Name = "btnEdicao";
-            btnEdicao.Size = new Size(94, 91);
+            btnEdicao.Size = new Size(71, 71);
             btnEdicao.TabIndex = 7;
             btnEdicao.UseVisualStyleBackColor = true;
             btnEdicao.Click += btnEdicao_Click;
@@ -443,9 +458,9 @@
             // tlpEdicao
             // 
             tlpEdicao.ColumnCount = 3;
-            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.7142849F));
-            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 74.28571F));
-            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 63F));
+            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33333F));
+            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
             tlpEdicao.Controls.Add(btnEdicao, 1, 0);
             tlpEdicao.Controls.Add(btnAtualizar, 1, 2);
             tlpEdicao.Controls.Add(btnDeletar, 1, 4);
@@ -453,40 +468,47 @@
             tlpEdicao.Location = new Point(1686, 203);
             tlpEdicao.Name = "tlpEdicao";
             tlpEdicao.RowCount = 6;
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 72.22222F));
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 27.7777786F));
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Absolute, 260F));
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 15.1341F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 1.532567F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 14.7509575F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 1.532567F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 14.7509575F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 52.29885F));
             tlpEdicao.Size = new Size(231, 522);
             tlpEdicao.TabIndex = 24;
             // 
             // btnAtualizar
             // 
             btnAtualizar.AutoSize = true;
+            btnAtualizar.BackColor = Color.Transparent;
+            btnAtualizar.BackgroundImage = (Image)resources.GetObject("btnAtualizar.BackgroundImage");
+            btnAtualizar.BackgroundImageLayout = ImageLayout.Zoom;
+            btnAtualizar.Dock = DockStyle.Fill;
+            btnAtualizar.FlatAppearance.BorderSize = 0;
+            btnAtualizar.FlatStyle = FlatStyle.Flat;
             btnAtualizar.Font = new Font("Segoe UI", 12F);
-            btnAtualizar.Location = new Point(46, 159);
+            btnAtualizar.Location = new Point(79, 90);
             btnAtualizar.Name = "btnAtualizar";
-            btnAtualizar.Size = new Size(99, 39);
+            btnAtualizar.Size = new Size(71, 71);
             btnAtualizar.TabIndex = 8;
-            btnAtualizar.Text = "Atualizar";
-            btnAtualizar.UseVisualStyleBackColor = true;
+            btnAtualizar.UseVisualStyleBackColor = false;
             btnAtualizar.Click += btnAtualizar_Click;
             // 
             // btnDeletar
             // 
             btnDeletar.AutoSize = true;
+            btnDeletar.BackColor = Color.Transparent;
+            btnDeletar.BackgroundImage = (Image)resources.GetObject("btnDeletar.BackgroundImage");
+            btnDeletar.BackgroundImageLayout = ImageLayout.Zoom;
+            btnDeletar.Dock = DockStyle.Fill;
+            btnDeletar.FlatAppearance.BorderSize = 0;
+            btnDeletar.FlatStyle = FlatStyle.Flat;
             btnDeletar.Font = new Font("Segoe UI", 12F);
-            btnDeletar.Location = new Point(46, 219);
+            btnDeletar.Location = new Point(79, 175);
             btnDeletar.Name = "btnDeletar";
-            btnDeletar.Size = new Size(94, 39);
+            btnDeletar.Size = new Size(71, 71);
             btnDeletar.TabIndex = 9;
-            btnDeletar.Text = "Deletar";
-            btnDeletar.UseVisualStyleBackColor = true;
+            btnDeletar.UseVisualStyleBackColor = false;
             btnDeletar.Click += btnDeletar_Click;
             // 
             // FrmProdutos
