@@ -60,7 +60,9 @@ namespace Projeto_Valquiria
             UIHelper.ArredondarBorda(btnProdutos, 20);
             UIHelper.ArredondarBorda(btnClientes, 20);
             UIHelper.ArredondarBorda(btnHome, 20);
-            UIHelper.ArredondarBorda(dgvDadosClientes,20);
+            UIHelper.ArredondarBorda(dgvDadosClientes, 20);
+            UIHelper.ArredondarBorda(tlpCadastro,20);
+            UIHelper.ArredondarBorda(btnCadastrar,20);
         }
 
         // ---------- CARREGAR CLIENTES ----------
@@ -339,7 +341,5 @@ namespace Projeto_Valquiria
             tela.Show();
             this.Hide();
         }
-
-        
     }
 }

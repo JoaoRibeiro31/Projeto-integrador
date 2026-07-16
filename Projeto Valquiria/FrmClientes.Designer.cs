@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClientes));
-            txtNome = new TextBox();
-            txtContato = new TextBox();
-            btnCadastrar = new Button();
-            lblNome = new Label();
-            lblContato = new Label();
-            pnlCadastro = new Panel();
             dgvDadosClientes = new DataGridView();
             txtPesquisar = new TextBox();
             btnEdicao = new Button();
@@ -43,6 +37,14 @@
             tlpPrincipal = new TableLayoutPanel();
             tlpEdicao = new TableLayoutPanel();
             lblTitulo = new Label();
+            tlpCadastro = new TableLayoutPanel();
+            lblNome = new Label();
+            tlpBtnTxtValor = new TableLayoutPanel();
+            btnCadastrar = new Button();
+            txtContato = new TextBox();
+            lblContato = new Label();
+            tlpTxtProduto = new TableLayoutPanel();
+            txtNome = new TextBox();
             pnlNavegacao = new Panel();
             tlpNavegacao = new TableLayoutPanel();
             btnPedidos = new Button();
@@ -50,88 +52,16 @@
             btnProdutos = new Button();
             tlpHome = new TableLayoutPanel();
             btnHome = new Button();
-            pnlCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDadosClientes).BeginInit();
             tlpPrincipal.SuspendLayout();
             tlpEdicao.SuspendLayout();
+            tlpCadastro.SuspendLayout();
+            tlpBtnTxtValor.SuspendLayout();
+            tlpTxtProduto.SuspendLayout();
             pnlNavegacao.SuspendLayout();
             tlpNavegacao.SuspendLayout();
             tlpHome.SuspendLayout();
             SuspendLayout();
-            // 
-            // txtNome
-            // 
-            txtNome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txtNome.Font = new Font("Segoe UI", 12F);
-            txtNome.Location = new Point(96, 16);
-            txtNome.Margin = new Padding(3, 4, 3, 4);
-            txtNome.Name = "txtNome";
-            txtNome.Size = new Size(932, 34);
-            txtNome.TabIndex = 1;
-            // 
-            // txtContato
-            // 
-            txtContato.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txtContato.Font = new Font("Segoe UI", 12F);
-            txtContato.Location = new Point(109, 111);
-            txtContato.Margin = new Padding(3, 4, 3, 4);
-            txtContato.Name = "txtContato";
-            txtContato.Size = new Size(770, 34);
-            txtContato.TabIndex = 1;
-            // 
-            // btnCadastrar
-            // 
-            btnCadastrar.Anchor = AnchorStyles.Right;
-            btnCadastrar.Font = new Font("Segoe UI", 12F);
-            btnCadastrar.Location = new Point(914, 97);
-            btnCadastrar.Margin = new Padding(3, 4, 3, 4);
-            btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(115, 39);
-            btnCadastrar.TabIndex = 2;
-            btnCadastrar.Text = "Cadastrar Cliente";
-            btnCadastrar.UseVisualStyleBackColor = true;
-            btnCadastrar.Click += btnCadastrar_Click;
-            // 
-            // lblNome
-            // 
-            lblNome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblNome.AutoSize = true;
-            lblNome.BackColor = Color.White;
-            lblNome.Font = new Font("Segoe UI", 15F);
-            lblNome.Location = new Point(7, 17);
-            lblNome.Name = "lblNome";
-            lblNome.Size = new Size(89, 35);
-            lblNome.TabIndex = 4;
-            lblNome.Text = "Nome:";
-            lblNome.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblContato
-            // 
-            lblContato.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblContato.AutoSize = true;
-            lblContato.BackColor = Color.White;
-            lblContato.Font = new Font("Segoe UI", 15F);
-            lblContato.Location = new Point(7, 85);
-            lblContato.Name = "lblContato";
-            lblContato.Size = new Size(108, 35);
-            lblContato.TabIndex = 5;
-            lblContato.Text = "Contato:";
-            lblContato.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // pnlCadastro
-            // 
-            pnlCadastro.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pnlCadastro.BackColor = Color.White;
-            pnlCadastro.Controls.Add(btnCadastrar);
-            pnlCadastro.Controls.Add(txtNome);
-            pnlCadastro.Controls.Add(txtContato);
-            pnlCadastro.Controls.Add(lblNome);
-            pnlCadastro.Controls.Add(lblContato);
-            pnlCadastro.Location = new Point(638, 763);
-            pnlCadastro.Margin = new Padding(3, 4, 3, 4);
-            pnlCadastro.Name = "pnlCadastro";
-            pnlCadastro.Size = new Size(1042, 163);
-            pnlCadastro.TabIndex = 6;
             // 
             // dgvDadosClientes
             // 
@@ -216,10 +146,10 @@
             tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.6F));
             tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.3F));
             tlpPrincipal.Controls.Add(dgvDadosClientes, 2, 5);
-            tlpPrincipal.Controls.Add(pnlCadastro, 2, 7);
             tlpPrincipal.Controls.Add(txtPesquisar, 2, 3);
             tlpPrincipal.Controls.Add(tlpEdicao, 3, 5);
             tlpPrincipal.Controls.Add(lblTitulo, 2, 1);
+            tlpPrincipal.Controls.Add(tlpCadastro, 2, 7);
             tlpPrincipal.Dock = DockStyle.Fill;
             tlpPrincipal.Location = new Point(0, 0);
             tlpPrincipal.Name = "tlpPrincipal";
@@ -271,6 +201,139 @@
             lblTitulo.TabIndex = 21;
             lblTitulo.Text = "Área de Cadastro de Clientes";
             lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // tlpCadastro
+            // 
+            tlpCadastro.BackColor = Color.FromArgb(251, 234, 244);
+            tlpCadastro.ColumnCount = 5;
+            tlpCadastro.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 3.458214F));
+            tlpCadastro.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10.1727448F));
+            tlpCadastro.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1.91938579F));
+            tlpCadastro.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80.6142044F));
+            tlpCadastro.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 3.7463975F));
+            tlpCadastro.Controls.Add(lblNome, 1, 1);
+            tlpCadastro.Controls.Add(tlpBtnTxtValor, 3, 3);
+            tlpCadastro.Controls.Add(lblContato, 1, 3);
+            tlpCadastro.Controls.Add(tlpTxtProduto, 3, 1);
+            tlpCadastro.Dock = DockStyle.Fill;
+            tlpCadastro.Location = new Point(638, 762);
+            tlpCadastro.Name = "tlpCadastro";
+            tlpCadastro.RowCount = 5;
+            tlpCadastro.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tlpCadastro.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
+            tlpCadastro.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tlpCadastro.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
+            tlpCadastro.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tlpCadastro.Size = new Size(1042, 165);
+            tlpCadastro.TabIndex = 22;
+            // 
+            // lblNome
+            // 
+            lblNome.AutoSize = true;
+            lblNome.BackColor = Color.Transparent;
+            lblNome.Dock = DockStyle.Fill;
+            lblNome.FlatStyle = FlatStyle.Flat;
+            lblNome.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblNome.ForeColor = Color.FromArgb(229, 55, 119);
+            lblNome.Location = new Point(39, 16);
+            lblNome.Name = "lblNome";
+            lblNome.Size = new Size(100, 49);
+            lblNome.TabIndex = 7;
+            lblNome.Text = "Nome:";
+            lblNome.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // tlpBtnTxtValor
+            // 
+            tlpBtnTxtValor.ColumnCount = 3;
+            tlpBtnTxtValor.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            tlpBtnTxtValor.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
+            tlpBtnTxtValor.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlpBtnTxtValor.Controls.Add(btnCadastrar, 2, 0);
+            tlpBtnTxtValor.Controls.Add(txtContato, 0, 0);
+            tlpBtnTxtValor.Dock = DockStyle.Fill;
+            tlpBtnTxtValor.Location = new Point(165, 101);
+            tlpBtnTxtValor.Name = "tlpBtnTxtValor";
+            tlpBtnTxtValor.RowCount = 1;
+            tlpBtnTxtValor.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpBtnTxtValor.Size = new Size(834, 43);
+            tlpBtnTxtValor.TabIndex = 8;
+            // 
+            // btnCadastrar
+            // 
+            btnCadastrar.BackColor = Color.FromArgb(103, 172, 241);
+            btnCadastrar.BackgroundImageLayout = ImageLayout.Zoom;
+            btnCadastrar.Dock = DockStyle.Fill;
+            btnCadastrar.FlatAppearance.BorderSize = 0;
+            btnCadastrar.FlatAppearance.MouseDownBackColor = Color.FromArgb(77, 136, 199);
+            btnCadastrar.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 89, 130);
+            btnCadastrar.FlatStyle = FlatStyle.Flat;
+            btnCadastrar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnCadastrar.ForeColor = Color.White;
+            btnCadastrar.Location = new Point(672, 4);
+            btnCadastrar.Margin = new Padding(3, 4, 3, 4);
+            btnCadastrar.Name = "btnCadastrar";
+            btnCadastrar.Size = new Size(159, 35);
+            btnCadastrar.TabIndex = 6;
+            btnCadastrar.Text = "Cadastrar Produto";
+            btnCadastrar.UseVisualStyleBackColor = false;
+            btnCadastrar.Click += btnCadastrar_Click;
+            // 
+            // txtContato
+            // 
+            txtContato.BorderStyle = BorderStyle.None;
+            txtContato.Cursor = Cursors.IBeam;
+            txtContato.Dock = DockStyle.Fill;
+            txtContato.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtContato.Location = new Point(3, 4);
+            txtContato.Margin = new Padding(3, 4, 3, 4);
+            txtContato.MaxLength = 80;
+            txtContato.Name = "txtContato";
+            txtContato.PlaceholderText = "Ex: (11) 91234-5678 ou contato@padariacentral.com";
+            txtContato.Size = new Size(653, 27);
+            txtContato.TabIndex = 5;
+            // 
+            // lblContato
+            // 
+            lblContato.BackColor = Color.Transparent;
+            lblContato.Dock = DockStyle.Fill;
+            lblContato.FlatStyle = FlatStyle.Flat;
+            lblContato.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblContato.ForeColor = Color.FromArgb(229, 55, 119);
+            lblContato.Location = new Point(39, 98);
+            lblContato.Name = "lblContato";
+            lblContato.Size = new Size(100, 49);
+            lblContato.TabIndex = 1;
+            lblContato.Text = "Contato:";
+            lblContato.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // tlpTxtProduto
+            // 
+            tlpTxtProduto.ColumnCount = 1;
+            tlpTxtProduto.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpTxtProduto.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tlpTxtProduto.Controls.Add(txtNome, 0, 0);
+            tlpTxtProduto.Dock = DockStyle.Fill;
+            tlpTxtProduto.Location = new Point(165, 19);
+            tlpTxtProduto.Name = "tlpTxtProduto";
+            tlpTxtProduto.RowCount = 1;
+            tlpTxtProduto.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpTxtProduto.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tlpTxtProduto.Size = new Size(834, 43);
+            tlpTxtProduto.TabIndex = 9;
+            // 
+            // txtNome
+            // 
+            txtNome.BorderStyle = BorderStyle.None;
+            txtNome.Cursor = Cursors.IBeam;
+            txtNome.Dock = DockStyle.Fill;
+            txtNome.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNome.Location = new Point(3, 4);
+            txtNome.Margin = new Padding(3, 4, 3, 4);
+            txtNome.MaxLength = 120;
+            txtNome.Name = "txtNome";
+            txtNome.PlaceholderText = "Ex: João Pereira";
+            txtNome.Size = new Size(828, 27);
+            txtNome.TabIndex = 4;
             // 
             // pnlNavegacao
             // 
@@ -425,13 +488,17 @@
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Maximized;
             Load += FrmClientes_Load;
-            pnlCadastro.ResumeLayout(false);
-            pnlCadastro.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDadosClientes).EndInit();
             tlpPrincipal.ResumeLayout(false);
             tlpPrincipal.PerformLayout();
             tlpEdicao.ResumeLayout(false);
             tlpEdicao.PerformLayout();
+            tlpCadastro.ResumeLayout(false);
+            tlpCadastro.PerformLayout();
+            tlpBtnTxtValor.ResumeLayout(false);
+            tlpBtnTxtValor.PerformLayout();
+            tlpTxtProduto.ResumeLayout(false);
+            tlpTxtProduto.PerformLayout();
             pnlNavegacao.ResumeLayout(false);
             tlpNavegacao.ResumeLayout(false);
             tlpHome.ResumeLayout(false);
@@ -439,12 +506,6 @@
         }
 
         #endregion
-        private TextBox txtNome;
-        private TextBox txtContato;
-        private Button btnCadastrar;
-        private Label lblNome;
-        private Label lblContato;
-        private Panel pnlCadastro;
         private DataGridView dgvDadosClientes;
         private TextBox txtPesquisar;
         private Button btnEdicao;
@@ -460,5 +521,13 @@
         private TableLayoutPanel tlpHome;
         private Button btnHome;
         private Label lblTitulo;
+        private TableLayoutPanel tlpCadastro;
+        private Label lblNome;
+        private TableLayoutPanel tlpBtnTxtValor;
+        private Button btnCadastrar;
+        private TextBox txtContato;
+        private Label lblContato;
+        private TableLayoutPanel tlpTxtProduto;
+        private TextBox txtNome;
     }
 }
