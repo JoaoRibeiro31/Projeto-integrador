@@ -1,9 +1,6 @@
-﻿using System;
-using System.Data;
-using System.Drawing;
+﻿using System.Data;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
 namespace Projeto_Valquiria
@@ -61,8 +58,8 @@ namespace Projeto_Valquiria
             UIHelper.ArredondarBorda(btnClientes, 20);
             UIHelper.ArredondarBorda(btnHome, 20);
             UIHelper.ArredondarBorda(dgvDadosClientes, 20);
-            UIHelper.ArredondarBorda(tlpCadastro,20);
-            UIHelper.ArredondarBorda(btnCadastrar,20);
+            UIHelper.ArredondarBorda(tlpCadastro, 20);
+            UIHelper.ArredondarBorda(btnCadastrar, 20);
         }
 
         // ---------- CARREGAR CLIENTES ----------
@@ -185,7 +182,7 @@ namespace Projeto_Valquiria
             CarregarDadosClientes(txtPesquisar.Text);
         }
 
-        // ---------- EDIÇÃO ----------
+        // ---------- HABILITAR EDIÇÃO ----------
         private void btnEdicao_Click(object sender, EventArgs e)
         {
             if (!editando)
@@ -319,6 +316,7 @@ namespace Projeto_Valquiria
 
             CarregarDadosClientes();
         }
+
 
         // ---------- NAVEGAÇÃO ----------
         private void btnPedidos_Click(object sender, EventArgs e)

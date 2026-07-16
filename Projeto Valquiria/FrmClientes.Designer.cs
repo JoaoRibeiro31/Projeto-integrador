@@ -31,11 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClientes));
             dgvDadosClientes = new DataGridView();
             txtPesquisar = new TextBox();
-            btnEdicao = new Button();
-            btnAtualizar = new Button();
-            btnDeletar = new Button();
             tlpPrincipal = new TableLayoutPanel();
-            tlpEdicao = new TableLayoutPanel();
             lblTitulo = new Label();
             tlpCadastro = new TableLayoutPanel();
             lblNome = new Label();
@@ -45,6 +41,10 @@
             lblContato = new Label();
             tlpTxtProduto = new TableLayoutPanel();
             txtNome = new TextBox();
+            tlpEdicao = new TableLayoutPanel();
+            btnEdicao = new Button();
+            btnAtualizar = new Button();
+            btnDeletar = new Button();
             pnlNavegacao = new Panel();
             tlpNavegacao = new TableLayoutPanel();
             btnPedidos = new Button();
@@ -54,10 +54,10 @@
             btnHome = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDadosClientes).BeginInit();
             tlpPrincipal.SuspendLayout();
-            tlpEdicao.SuspendLayout();
             tlpCadastro.SuspendLayout();
             tlpBtnTxtValor.SuspendLayout();
             tlpTxtProduto.SuspendLayout();
+            tlpEdicao.SuspendLayout();
             pnlNavegacao.SuspendLayout();
             tlpNavegacao.SuspendLayout();
             tlpHome.SuspendLayout();
@@ -98,45 +98,6 @@
             txtPesquisar.TabStop = false;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
-            // btnEdicao
-            // 
-            btnEdicao.BackgroundImage = (Image)resources.GetObject("btnEdicao.BackgroundImage");
-            btnEdicao.BackgroundImageLayout = ImageLayout.Center;
-            btnEdicao.Cursor = Cursors.Hand;
-            btnEdicao.FlatStyle = FlatStyle.Popup;
-            btnEdicao.Location = new Point(43, 4);
-            btnEdicao.Margin = new Padding(3, 4, 3, 4);
-            btnEdicao.Name = "btnEdicao";
-            btnEdicao.Size = new Size(95, 91);
-            btnEdicao.TabIndex = 19;
-            btnEdicao.UseVisualStyleBackColor = true;
-            btnEdicao.Click += btnEdicao_Click;
-            // 
-            // btnAtualizar
-            // 
-            btnAtualizar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            btnAtualizar.AutoSize = true;
-            btnAtualizar.Font = new Font("Segoe UI", 12F);
-            btnAtualizar.Location = new Point(43, 159);
-            btnAtualizar.Name = "btnAtualizar";
-            btnAtualizar.Size = new Size(122, 39);
-            btnAtualizar.TabIndex = 20;
-            btnAtualizar.Text = "Atualizar";
-            btnAtualizar.UseVisualStyleBackColor = true;
-            btnAtualizar.Click += btnAtualizar_Click;
-            // 
-            // btnDeletar
-            // 
-            btnDeletar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            btnDeletar.Font = new Font("Segoe UI", 12F);
-            btnDeletar.Location = new Point(43, 219);
-            btnDeletar.Name = "btnDeletar";
-            btnDeletar.Size = new Size(122, 39);
-            btnDeletar.TabIndex = 20;
-            btnDeletar.Text = "Deletar";
-            btnDeletar.UseVisualStyleBackColor = true;
-            btnDeletar.Click += btnDeletar_Click;
-            // 
             // tlpPrincipal
             // 
             tlpPrincipal.BackColor = Color.Transparent;
@@ -147,9 +108,9 @@
             tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.3F));
             tlpPrincipal.Controls.Add(dgvDadosClientes, 2, 5);
             tlpPrincipal.Controls.Add(txtPesquisar, 2, 3);
-            tlpPrincipal.Controls.Add(tlpEdicao, 3, 5);
             tlpPrincipal.Controls.Add(lblTitulo, 2, 1);
             tlpPrincipal.Controls.Add(tlpCadastro, 2, 7);
+            tlpPrincipal.Controls.Add(tlpEdicao, 3, 5);
             tlpPrincipal.Dock = DockStyle.Fill;
             tlpPrincipal.Location = new Point(0, 0);
             tlpPrincipal.Name = "tlpPrincipal";
@@ -165,28 +126,6 @@
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 11.51115F));
             tlpPrincipal.Size = new Size(1920, 1055);
             tlpPrincipal.TabIndex = 22;
-            // 
-            // tlpEdicao
-            // 
-            tlpEdicao.ColumnCount = 3;
-            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.1134758F));
-            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75.88653F));
-            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 62F));
-            tlpEdicao.Controls.Add(btnDeletar, 1, 4);
-            tlpEdicao.Controls.Add(btnAtualizar, 1, 2);
-            tlpEdicao.Controls.Add(btnEdicao, 1, 0);
-            tlpEdicao.Dock = DockStyle.Fill;
-            tlpEdicao.Location = new Point(1686, 203);
-            tlpEdicao.Name = "tlpEdicao";
-            tlpEdicao.RowCount = 6;
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 72.22222F));
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 27.7777786F));
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Absolute, 260F));
-            tlpEdicao.Size = new Size(231, 522);
-            tlpEdicao.TabIndex = 20;
             // 
             // lblTitulo
             // 
@@ -334,6 +273,79 @@
             txtNome.PlaceholderText = "Ex: João Pereira";
             txtNome.Size = new Size(828, 27);
             txtNome.TabIndex = 4;
+            // 
+            // tlpEdicao
+            // 
+            tlpEdicao.ColumnCount = 3;
+            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33333F));
+            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            tlpEdicao.Controls.Add(btnEdicao, 1, 0);
+            tlpEdicao.Controls.Add(btnAtualizar, 1, 2);
+            tlpEdicao.Controls.Add(btnDeletar, 1, 4);
+            tlpEdicao.Dock = DockStyle.Fill;
+            tlpEdicao.Location = new Point(1686, 203);
+            tlpEdicao.Name = "tlpEdicao";
+            tlpEdicao.RowCount = 6;
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 15.1341F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 1.532567F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 14.7509575F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 1.532567F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 14.7509575F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 52.29885F));
+            tlpEdicao.Size = new Size(231, 522);
+            tlpEdicao.TabIndex = 25;
+            // 
+            // btnEdicao
+            // 
+            btnEdicao.BackgroundImage = (Image)resources.GetObject("btnEdicao.BackgroundImage");
+            btnEdicao.BackgroundImageLayout = ImageLayout.Zoom;
+            btnEdicao.Cursor = Cursors.Hand;
+            btnEdicao.Dock = DockStyle.Fill;
+            btnEdicao.FlatAppearance.BorderSize = 0;
+            btnEdicao.FlatStyle = FlatStyle.Flat;
+            btnEdicao.ForeColor = SystemColors.ControlText;
+            btnEdicao.Location = new Point(79, 4);
+            btnEdicao.Margin = new Padding(3, 4, 3, 4);
+            btnEdicao.Name = "btnEdicao";
+            btnEdicao.Size = new Size(71, 71);
+            btnEdicao.TabIndex = 7;
+            btnEdicao.UseVisualStyleBackColor = true;
+            btnEdicao.Click += btnEdicao_Click;
+            // 
+            // btnAtualizar
+            // 
+            btnAtualizar.AutoSize = true;
+            btnAtualizar.BackColor = Color.Transparent;
+            btnAtualizar.BackgroundImage = (Image)resources.GetObject("btnAtualizar.BackgroundImage");
+            btnAtualizar.BackgroundImageLayout = ImageLayout.Zoom;
+            btnAtualizar.Dock = DockStyle.Fill;
+            btnAtualizar.FlatAppearance.BorderSize = 0;
+            btnAtualizar.FlatStyle = FlatStyle.Flat;
+            btnAtualizar.Font = new Font("Segoe UI", 12F);
+            btnAtualizar.Location = new Point(79, 90);
+            btnAtualizar.Name = "btnAtualizar";
+            btnAtualizar.Size = new Size(71, 71);
+            btnAtualizar.TabIndex = 8;
+            btnAtualizar.UseVisualStyleBackColor = false;
+            btnAtualizar.Click += btnAtualizar_Click;
+            // 
+            // btnDeletar
+            // 
+            btnDeletar.AutoSize = true;
+            btnDeletar.BackColor = Color.Transparent;
+            btnDeletar.BackgroundImage = (Image)resources.GetObject("btnDeletar.BackgroundImage");
+            btnDeletar.BackgroundImageLayout = ImageLayout.Zoom;
+            btnDeletar.Dock = DockStyle.Fill;
+            btnDeletar.FlatAppearance.BorderSize = 0;
+            btnDeletar.FlatStyle = FlatStyle.Flat;
+            btnDeletar.Font = new Font("Segoe UI", 12F);
+            btnDeletar.Location = new Point(79, 175);
+            btnDeletar.Name = "btnDeletar";
+            btnDeletar.Size = new Size(71, 71);
+            btnDeletar.TabIndex = 9;
+            btnDeletar.UseVisualStyleBackColor = false;
+            btnDeletar.Click += btnDeletar_Click;
             // 
             // pnlNavegacao
             // 
@@ -491,14 +503,14 @@
             ((System.ComponentModel.ISupportInitialize)dgvDadosClientes).EndInit();
             tlpPrincipal.ResumeLayout(false);
             tlpPrincipal.PerformLayout();
-            tlpEdicao.ResumeLayout(false);
-            tlpEdicao.PerformLayout();
             tlpCadastro.ResumeLayout(false);
             tlpCadastro.PerformLayout();
             tlpBtnTxtValor.ResumeLayout(false);
             tlpBtnTxtValor.PerformLayout();
             tlpTxtProduto.ResumeLayout(false);
             tlpTxtProduto.PerformLayout();
+            tlpEdicao.ResumeLayout(false);
+            tlpEdicao.PerformLayout();
             pnlNavegacao.ResumeLayout(false);
             tlpNavegacao.ResumeLayout(false);
             tlpHome.ResumeLayout(false);
@@ -508,11 +520,7 @@
         #endregion
         private DataGridView dgvDadosClientes;
         private TextBox txtPesquisar;
-        private Button btnEdicao;
-        private Button btnAtualizar;
-        private Button btnDeletar;
         private TableLayoutPanel tlpPrincipal;
-        private TableLayoutPanel tlpEdicao;
         private Panel pnlNavegacao;
         private TableLayoutPanel tlpNavegacao;
         private Button btnPedidos;
@@ -529,5 +537,9 @@
         private Label lblContato;
         private TableLayoutPanel tlpTxtProduto;
         private TextBox txtNome;
+        private TableLayoutPanel tlpEdicao;
+        private Button btnEdicao;
+        private Button btnAtualizar;
+        private Button btnDeletar;
     }
 }
