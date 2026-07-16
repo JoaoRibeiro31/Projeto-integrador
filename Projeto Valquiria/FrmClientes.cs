@@ -14,15 +14,28 @@ namespace Projeto_Valquiria
         public FrmClientes()
         {
             InitializeComponent();
+            btnAtualizar.Visible = false;
+            btnDeletar.Visible = false;
+            dgvDadosClientes.ReadOnly = true;
         }
 
         private void FrmClientes_Load(object sender, EventArgs e)
         {
-            CarregarDadosClientes();
+            //Teste de conexão
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(conexao))
+                {
+                    conn.Open();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                ErroHelper.MostrarErro("Erro de Conexão", "Não foi possível conectar ao banco de dados.");
+                ErroHelper.LogErro(ex);
+            }
 
-            btnAtualizar.Visible = false;
-            btnDeletar.Visible = false;
-            dgvDadosClientes.ReadOnly = true;
+            CarregarDadosClientes();
 
             // Cor de fundo geral da tabela
             dgvDadosClientes.BackgroundColor = Color.FromArgb(255, 220, 235);
@@ -50,7 +63,6 @@ namespace Projeto_Valquiria
             dgvDadosClientes.GridColor = Color.FromArgb(220, 180, 200);
             dgvDadosClientes.BorderStyle = BorderStyle.None;
             dgvDadosClientes.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-
 
             // Borda arredondada
             UIHelper.ArredondarBorda(btnPedidos, 20);
