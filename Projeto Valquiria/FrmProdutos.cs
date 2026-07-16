@@ -296,16 +296,14 @@ namespace Projeto_Valquiria
                         MessageBox.Show("Nenhuma alteração realizada.",
                                         "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else if (contadorAtualizados == 1)
-                        MessageBox.Show("Produto atualizado com sucesso!",
-                                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ErroHelper.MostrarSucesso("Produtos atualizados com sucesso!");
                     else
-                        MessageBox.Show($"Produtos atualizados com sucesso! ({contadorAtualizados} registros)",
-                                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ErroHelper.MostrarSucesso($"Produtos atualizados com sucesso! ({contadorAtualizados} registros)");
                 }
-                catch (Exception erro)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao atualizar produtos: " + erro.Message,
-                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErroHelper.MostrarErro("Erro ao atualizar produtos: ", ex.Message);
+                    ErroHelper.LogErro(ex);
                 }
             }
 

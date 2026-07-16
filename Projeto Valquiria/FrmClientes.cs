@@ -258,7 +258,6 @@ namespace Projeto_Valquiria
                         string nome = row.Cells["Nome"].Value.ToString().Trim();
                         string contato = row.Cells["Contato"].Value.ToString().Trim();
 
-                        // Verifica se houve alteração comparando com o banco
                         string sqlCheck = "SELECT nome, contato FROM clientes WHERE id = @id";
                         MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
                         cmdCheck.Parameters.AddWithValue("@id", id);
@@ -292,16 +291,14 @@ namespace Projeto_Valquiria
                         MessageBox.Show("Nenhuma alteração realizada.",
                                         "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else if (contadorAtualizados == 1)
-                        MessageBox.Show("Cliente atualizado com sucesso!",
-                                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ErroHelper.MostrarSucesso("Produtos atualizados com sucesso!");
                     else
-                        MessageBox.Show($"Clientes atualizados com sucesso! ({contadorAtualizados} registros)",
-                                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ErroHelper.MostrarSucesso($"Clientes atualizados com sucesso! ({contadorAtualizados} registros)");
                 }
-                catch (Exception erro)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao atualizar clientes: " + erro.Message,
-                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErroHelper.MostrarErro("Erro ao atualizar clientes: ", ex.Message);
+                    ErroHelper.LogErro(ex);
                 }
             }
 
