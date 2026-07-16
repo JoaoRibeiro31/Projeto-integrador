@@ -8,8 +8,8 @@ namespace Projeto_Valquiria
     public partial class FrmClientes : Form
     {
         private string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
-        private bool editando = false;
         private System.Windows.Forms.Timer timerPesquisa = new System.Windows.Forms.Timer();
+        private bool editando = false;
 
         public FrmClientes()
         {
@@ -19,6 +19,7 @@ namespace Projeto_Valquiria
             dgvDadosClientes.ReadOnly = true;
         }
 
+        // ---------- LOAD ----------
         private void FrmClientes_Load(object sender, EventArgs e)
         {
             //Teste de conexão
@@ -101,15 +102,33 @@ namespace Projeto_Valquiria
                     dgvDadosClientes.DataSource = tabela;
                     dgvDadosClientes.Columns["Id"].Visible = false;
                 }
-                catch (Exception erro)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao carregar clientes: " + erro.Message,
-                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErroHelper.MostrarErro("Erro ao carregar clientes", "Não foi possível carregar os dados.");
+                    ErroHelper.LogErro(ex);
                 }
             }
         }
 
-        // ---------- CADASTRAR ----------
+        // ---------- PESQUISA COM DELAY ----------
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            timerPesquisa.Stop();
+            timerPesquisa.Interval = 500;
+
+            timerPesquisa.Tick -= TimerPesquisa_Tick;
+            timerPesquisa.Tick += TimerPesquisa_Tick;
+
+            timerPesquisa.Start();
+        }
+
+        private void TimerPesquisa_Tick(object sender, EventArgs e)
+        {
+            timerPesquisa.Stop();
+            CarregarDadosClientes(txtPesquisar.Text);
+        }
+
+        // ---------- CADASTRAR CLIENTE ----------
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtContato.Text))
@@ -124,17 +143,16 @@ namespace Projeto_Valquiria
 
             if (nome.Length > 120 || contato.Length > 80)
             {
-                MessageBox.Show("Nome ou contato excedem o limite de caracteres!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErroHelper.MostrarAviso("Nome ou contato excedem o limite de caracteres!");
                 return;
             }
 
             Regex regexNome = new Regex(@"^[A-Za-zÀ-ÿ\s'-]+$");
             nome = Regex.Replace(nome, @"\s+", " ");
+
             if (!regexNome.IsMatch(nome) || nome.Trim().Length < 2)
             {
-                MessageBox.Show("Digite um nome válido!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErroHelper.MostrarAviso("Digite um nome válido!");
                 return;
             }
 
@@ -143,10 +161,10 @@ namespace Projeto_Valquiria
 
             Regex regexTelefone = new Regex(@"^\d{8,}$");
             Regex regexEmail = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+
             if (!regexTelefone.IsMatch(contato) && !regexEmail.IsMatch(contato))
             {
-                MessageBox.Show("O contato deve ser um telefone válido ou um e-mail válido!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErroHelper.MostrarAviso("O contato deve ser um telefone válido ou um e-mail válido!");
                 return;
             }
 
@@ -155,43 +173,45 @@ namespace Projeto_Valquiria
                 try
                 {
                     conn.Open();
+
+                    string sqlCheck = "SELECT COUNT(*) FROM clientes WHERE nome = @nome OR contato = @contato;";
+                    MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
+                    cmdCheck.Parameters.AddWithValue("@nome", nome);
+                    cmdCheck.Parameters.AddWithValue("@contato", contato);
+
+                    int existe = Convert.ToInt32(cmdCheck.ExecuteScalar());
+                    if (existe > 0)
+                    {
+                        ErroHelper.MostrarAviso("Já existe um cliente com este nome ou contato!");
+                        return;
+                    }
+
+                    DialogResult confirmacao = MessageBox.Show(
+                        $"Confirma cadastrar o(a) '{nome}'?",
+                        "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (confirmacao == DialogResult.No) return;
+
+
+
                     string sql = @"INSERT INTO clientes (nome, contato) VALUES (@nome, @contato)";
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@nome", nome);
                     cmd.Parameters.AddWithValue("@contato", contato);
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show($"Cliente '{nome}' cadastrado com sucesso!",
-                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ErroHelper.MostrarSucesso($"Cliente '{nome}' cadastrado com sucesso!");
                 }
-                catch (Exception erro)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao cadastrar cliente: " + erro.Message,
-                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErroHelper.MostrarErro("Erro ao cadastrar cliente", ex.Message);
+                    ErroHelper.LogErro(ex);
                 }
             }
 
             CarregarDadosClientes();
             txtNome.Clear();
             txtContato.Clear();
-        }
-
-        // ---------- PESQUISA COM DELAY ----------
-        private void txtPesquisar_TextChanged(object sender, EventArgs e)
-        {
-            timerPesquisa.Stop();
-            timerPesquisa.Interval = 500; // meio segundo
-
-            timerPesquisa.Tick -= TimerPesquisa_Tick;
-            timerPesquisa.Tick += TimerPesquisa_Tick;
-
-            timerPesquisa.Start();
-        }
-
-        private void TimerPesquisa_Tick(object sender, EventArgs e)
-        {
-            timerPesquisa.Stop();
-            CarregarDadosClientes(txtPesquisar.Text);
         }
 
         // ---------- HABILITAR EDIÇÃO ----------

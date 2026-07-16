@@ -9,7 +9,6 @@ namespace Projeto_Valquiria
     {
         private string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
         private System.Windows.Forms.Timer timerPesquisa = new System.Windows.Forms.Timer();
-        private DataTable tabela = new DataTable();
         private bool editando = false;
 
         public FrmProdutos()
@@ -103,10 +102,10 @@ namespace Projeto_Valquiria
                     dgvDadosProdutos.DataSource = tabela;
                     dgvDadosProdutos.Columns["Id"].Visible = false;
                 }
-                catch (Exception erro)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao carregar produtos: " + erro.Message,
-                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErroHelper.MostrarErro("Erro ao carregar clientes", "Não foi possível carregar os dados.");
+                    ErroHelper.LogErro(ex);
                 }
             }
         }
@@ -115,7 +114,7 @@ namespace Projeto_Valquiria
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
             timerPesquisa.Stop();
-            timerPesquisa.Interval = 500; // meio segundo
+            timerPesquisa.Interval = 500;
 
             timerPesquisa.Tick -= TimerPesquisa_Tick;
             timerPesquisa.Tick += TimerPesquisa_Tick;
@@ -149,8 +148,7 @@ namespace Projeto_Valquiria
             nome = Regex.Replace(nome, @"\s+", " ");
             if (!regexNome.IsMatch(nome) || nome.Trim().Length < 2)
             {
-                MessageBox.Show("Digite um nome válido para o produto!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErroHelper.MostrarAviso("Digite um nome válido para o produto!");
                 return;
             }
 
@@ -159,15 +157,13 @@ namespace Projeto_Valquiria
 
             if (!decimal.TryParse(valorTexto, NumberStyles.Number, new CultureInfo("pt-BR"), out decimal valor) || valor <= 0)
             {
-                MessageBox.Show("Digite um valor válido (somente números, use vírgula para decimais)!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErroHelper.MostrarAviso("Digite um valor válido (somente números, use vírgula para decimais)!");
                 return;
             }
 
             if (valor > 999)
             {
-                MessageBox.Show("O valor do produto não pode ser maior que 999!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErroHelper.MostrarAviso("O valor do produto não pode ser maior que 999!");
                 return;
             }
 
@@ -184,8 +180,7 @@ namespace Projeto_Valquiria
                     int existe = Convert.ToInt32(cmdCheck.ExecuteScalar());
                     if (existe > 0)
                     {
-                        MessageBox.Show("Já existe um produto com este nome!",
-                                        "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        ErroHelper.MostrarAviso("Já existe um produto com este nome!");
                         return;
                     }
 
@@ -201,13 +196,12 @@ namespace Projeto_Valquiria
                     cmd.Parameters.AddWithValue("@valor", valor);
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show($"Produto '{nome}' cadastrado com sucesso!",
-                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ErroHelper.MostrarSucesso($"Produto '{nome}' cadastrado com sucesso!");
                 }
-                catch (Exception erro)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao cadastrar produto: " + erro.Message,
-                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErroHelper.MostrarErro("Erro ao cadastrar produto", ex.Message);
+                    ErroHelper.LogErro(ex);
                 }
             }
 
