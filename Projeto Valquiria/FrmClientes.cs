@@ -310,11 +310,11 @@ namespace Projeto_Valquiria
         {
             if (dgvDadosClientes.CurrentRow == null || dgvDadosClientes.CurrentRow.IsNewRow)
             {
-                MessageBox.Show("Selecione um cliente para excluir!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErroHelper.MostrarAviso("Selecione um cliente para excluir!");
                 return;
             }
 
+            int id = Convert.ToInt32(dgvDadosClientes.CurrentRow.Cells["Id"].Value);
             string nome = dgvDadosClientes.CurrentRow.Cells["Nome"].Value.ToString();
 
             DialogResult confirmacao = MessageBox.Show(
@@ -328,18 +328,17 @@ namespace Projeto_Valquiria
                 try
                 {
                     conn.Open();
-                    string sql = "DELETE FROM clientes WHERE nome = @nome";
+                    string sql = "DELETE FROM clientes WHERE id = @id";
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@nome", nome);
+                    cmd.Parameters.AddWithValue("@id", id);
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show($"Cliente '{nome}' excluído com sucesso!",
-                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ErroHelper.MostrarSucesso($"Cliente '{nome}' excluído com sucesso!");
                 }
-                catch (Exception erro)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao excluir cliente: " + erro.Message,
-                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErroHelper.MostrarErro("Erro ao excluir cliente", ex.Message);
+                    ErroHelper.LogErro(ex);
                 }
             }
 

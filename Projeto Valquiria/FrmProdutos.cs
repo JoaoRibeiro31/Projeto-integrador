@@ -315,8 +315,7 @@ namespace Projeto_Valquiria
         {
             if (dgvDadosProdutos.CurrentRow == null || dgvDadosProdutos.CurrentRow.IsNewRow)
             {
-                MessageBox.Show("Selecione um produto para excluir!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErroHelper.MostrarAviso("Selecione um produto para excluir!");
                 return;
             }
 
@@ -339,13 +338,12 @@ namespace Projeto_Valquiria
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show($"Produto '{nome}' excluído com sucesso!",
-                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ErroHelper.MostrarSucesso($"Produtos '{nome}' excluído com sucesso!");
                 }
-                catch (Exception erro)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao excluir produto: " + erro.Message,
-                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErroHelper.MostrarErro("Erro ao excluir produto", ex.Message);
+                    ErroHelper.LogErro(ex);
                 }
             }
 
