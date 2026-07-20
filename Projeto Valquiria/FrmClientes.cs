@@ -1,7 +1,8 @@
-﻿using System.Data;
+﻿using MySql.Data.MySqlClient;
+using System.Data;
 using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
-using MySql.Data.MySqlClient;
 
 namespace Projeto_Valquiria
 {
@@ -98,6 +99,22 @@ namespace Projeto_Valquiria
 
                     DataTable tabela = new DataTable();
                     adapter.Fill(tabela);
+
+                    if (!tabela.Columns.Contains("Dia Semana"))
+                        tabela.Columns.Add("Dia Semana", typeof(string));
+
+                    foreach (DataRow row in tabela.Rows)
+                    {
+                        if (row["Cadastro"] != DBNull.Value)
+                        {
+                            DateTime dataCadastro = Convert.ToDateTime(row["Cadastro"]);
+
+                            row["Cadastro"] = dataCadastro.ToString("dd/MM/yyyy");
+
+                            string diaSemana = dataCadastro.ToString("dddd", new CultureInfo("pt-BR"));
+                            row["Dia Semana"] = diaSemana; 
+                        }
+                    }
 
                     dgvDadosClientes.DataSource = tabela;
                     dgvDadosClientes.Columns["Id"].Visible = false;
@@ -231,6 +248,11 @@ namespace Projeto_Valquiria
                 btnDeletar.Visible = false;
                 editando = false;
             }
+
+            if (dgvDadosClientes.Columns.Contains("Dia Semana"))
+            {
+                dgvDadosClientes.Columns["Dia Semana"].ReadOnly = true;
+            }
         }
 
         // ---------- ATUALIZAR ----------
@@ -258,29 +280,38 @@ namespace Projeto_Valquiria
                         string nome = row.Cells["Nome"].Value.ToString().Trim();
                         string contato = row.Cells["Contato"].Value.ToString().Trim();
 
-                        string sqlCheck = "SELECT nome, contato FROM clientes WHERE id = @id";
+                        string sqlCheck = "SELECT nome, contato, data_de_cadastro FROM clientes WHERE id = @id";
                         MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
                         cmdCheck.Parameters.AddWithValue("@id", id);
 
                         bool houveAlteracao = false;
+                        DateTime dataCadastroAtual = DateTime.MinValue;
+
                         using (var reader = cmdCheck.ExecuteReader())
                         {
                             if (reader.Read())
                             {
                                 string nomeAtual = reader.GetString("nome");
                                 string contatoAtual = reader.GetString("contato");
+                                dataCadastroAtual = reader.GetDateTime("data_de_cadastro").Date; // só a data
 
-                                if (nome != nomeAtual || contato != contatoAtual)
+                                DateTime dataCadastroNovo = Convert.ToDateTime(row.Cells["Cadastro"].Value).Date; // só a data
+
+                                if (nome != nomeAtual || contato != contatoAtual || dataCadastroNovo != dataCadastroAtual)
                                     houveAlteracao = true;
                             }
+
                         }
 
                         if (houveAlteracao)
                         {
-                            string sql = "UPDATE clientes SET nome = @nome, contato = @contato WHERE id = @id";
+                            DateTime dataCadastroNovo = Convert.ToDateTime(row.Cells["Cadastro"].Value);
+
+                            string sql = "UPDATE clientes SET nome = @nome, contato = @contato, data_de_cadastro = @dataCadastro WHERE id = @id";
                             MySqlCommand cmd = new MySqlCommand(sql, conn);
                             cmd.Parameters.AddWithValue("@nome", nome);
                             cmd.Parameters.AddWithValue("@contato", contato);
+                            cmd.Parameters.AddWithValue("@dataCadastro", dataCadastroNovo);
                             cmd.Parameters.AddWithValue("@id", id);
                             cmd.ExecuteNonQuery();
                             contadorAtualizados++;
@@ -291,7 +322,7 @@ namespace Projeto_Valquiria
                         MessageBox.Show("Nenhuma alteração realizada.",
                                         "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else if (contadorAtualizados == 1)
-                        ErroHelper.MostrarSucesso("Produtos atualizados com sucesso!");
+                        ErroHelper.MostrarSucesso("Clientes atualizados com sucesso!");
                     else
                         ErroHelper.MostrarSucesso($"Clientes atualizados com sucesso! ({contadorAtualizados} registros)");
                 }

@@ -338,7 +338,7 @@ namespace Projeto_Valquiria
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.ExecuteNonQuery();
 
-                    ErroHelper.MostrarSucesso($"Produtos '{nome}' excluído com sucesso!");
+                    ErroHelper.MostrarSucesso($"Produto '{nome}' excluído com sucesso!");
                 }
                 catch (Exception ex)
                 {
@@ -358,16 +358,16 @@ namespace Projeto_Valquiria
             this.Hide();
         }
 
-        private void btnHome_Click(object sender, EventArgs e)
+        private void btnClientes_Click(object sender, EventArgs e)
         {
-            FrmHome tela = new FrmHome();
+            FrmClientes tela = new FrmClientes();
             tela.Show();
             this.Hide();
         }
 
-        private void btnClientes_Click(object sender, EventArgs e)
+        private void btnHome_Click(object sender, EventArgs e)
         {
-            FrmClientes tela = new FrmClientes();
+            FrmHome tela = new FrmHome();
             tela.Show();
             this.Hide();
         }
