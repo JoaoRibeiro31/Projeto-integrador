@@ -85,16 +85,37 @@ namespace Projeto_Valquiria
                 try
                 {
                     conn.Open();
-                    string sql = @"SELECT id AS Id,
-                                          nome AS Nome,
-                                          valor AS Valor
-                                   FROM produtos
-                                   WHERE (nome LIKE @filtro
-                                          OR valor LIKE @filtro)
-                                   ORDER BY nome ASC;";
+                    decimal valorFiltro;
+                    bool isNumero = decimal.TryParse(filtro, out valorFiltro);
 
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
-                    adapter.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+                    string sql;
+                    MySqlDataAdapter adapter;
+
+                    if (isNumero)
+                    {
+                        sql = @"SELECT id AS Id,
+                               nome AS Nome,
+                               valor AS Valor
+                        FROM produtos
+                        WHERE (nome LIKE @filtro OR valor = @valorFiltro)
+                        ORDER BY nome ASC;";
+
+                        adapter = new MySqlDataAdapter(sql, conn);
+                        adapter.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+                        adapter.SelectCommand.Parameters.AddWithValue("@valorFiltro", valorFiltro);
+                    }
+                    else
+                    {
+                        sql = @"SELECT id AS Id,
+                               nome AS Nome,
+                               valor AS Valor
+                        FROM produtos
+                        WHERE nome LIKE @filtro
+                        ORDER BY nome ASC;";
+
+                        adapter = new MySqlDataAdapter(sql, conn);
+                        adapter.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+                    }
 
                     DataTable tabela = new DataTable();
                     adapter.Fill(tabela);
@@ -104,11 +125,12 @@ namespace Projeto_Valquiria
                 }
                 catch (Exception ex)
                 {
-                    ErroHelper.MostrarErro("Erro ao carregar clientes", "Não foi possível carregar os dados.");
+                    ErroHelper.MostrarErro("Erro ao carregar produtos", "Não foi possível carregar os dados.");
                     ErroHelper.LogErro(ex);
                 }
             }
         }
+
 
         // ---------- PESQUISA COM DELAY ----------
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
