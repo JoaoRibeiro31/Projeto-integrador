@@ -115,9 +115,9 @@
             tlpPrincipal.Location = new Point(0, 0);
             tlpPrincipal.Name = "tlpPrincipal";
             tlpPrincipal.RowCount = 9;
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 5.88058758F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 5.880588F));
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 5.50055F));
-            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 1.42014194F));
+            tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 1.420142F));
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 3.770377F));
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 2.60025978F));
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 50.0550041F));
