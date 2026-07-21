@@ -53,7 +53,7 @@
             pnlCadastro = new Panel();
             lblProduto = new Label();
             lblTitulo = new Label();
-            dgvPedidos = new DataGridView();
+            dgvDadosPedidos = new DataGridView();
             txtPesquisar = new TextBox();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -62,7 +62,7 @@
             tlpNavegacao.SuspendLayout();
             tlpHome.SuspendLayout();
             pnlCadastro.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDadosPedidos).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -404,18 +404,27 @@
             lblTitulo.Text = "Área de Cadastro de Pedidos";
             lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // dgvPedidos
+            // dgvDadosPedidos
             // 
-            dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPedidos.Dock = DockStyle.Fill;
-            dgvPedidos.Location = new Point(649, 208);
-            dgvPedidos.Margin = new Padding(3, 4, 3, 4);
-            dgvPedidos.Name = "dgvPedidos";
-            dgvPedidos.RowHeadersWidth = 51;
-            dgvPedidos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvPedidos.Size = new Size(1056, 519);
-            dgvPedidos.TabIndex = 14;
+            dgvDadosPedidos.AllowUserToAddRows = false;
+            dgvDadosPedidos.AllowUserToDeleteRows = false;
+            dgvDadosPedidos.AllowUserToResizeColumns = false;
+            dgvDadosPedidos.AllowUserToResizeRows = false;
+            dgvDadosPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDadosPedidos.BackgroundColor = Color.FromArgb(217, 217, 217);
+            dgvDadosPedidos.BorderStyle = BorderStyle.None;
+            dgvDadosPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDadosPedidos.Dock = DockStyle.Fill;
+            dgvDadosPedidos.EnableHeadersVisualStyles = false;
+            dgvDadosPedidos.GridColor = SystemColors.InactiveCaptionText;
+            dgvDadosPedidos.Location = new Point(649, 208);
+            dgvDadosPedidos.Margin = new Padding(3, 4, 3, 4);
+            dgvDadosPedidos.Name = "dgvDadosPedidos";
+            dgvDadosPedidos.ReadOnly = true;
+            dgvDadosPedidos.RowHeadersVisible = false;
+            dgvDadosPedidos.RowHeadersWidth = 51;
+            dgvDadosPedidos.Size = new Size(1056, 519);
+            dgvDadosPedidos.TabIndex = 14;
             // 
             // txtPesquisar
             // 
@@ -437,7 +446,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10.9992695F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55.3363075F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10.9992657F));
-            tableLayoutPanel1.Controls.Add(dgvPedidos, 2, 5);
+            tableLayoutPanel1.Controls.Add(dgvDadosPedidos, 2, 5);
             tableLayoutPanel1.Controls.Add(txtPesquisar, 2, 3);
             tableLayoutPanel1.Controls.Add(pnlCadastro, 2, 7);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 2, 1);
@@ -510,7 +519,7 @@
             tlpHome.ResumeLayout(false);
             pnlCadastro.ResumeLayout(false);
             pnlCadastro.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvPedidos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDadosPedidos).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
@@ -537,7 +546,7 @@
         private Label lblTotal;
         private Panel pnlCadastro;
         private Label lblTitulo;
-        private DataGridView dgvPedidos;
+        private DataGridView dgvDadosPedidos;
         private TextBox txtPesquisar;
         private Label lblProduto;
         private TableLayoutPanel tableLayoutPanel1;

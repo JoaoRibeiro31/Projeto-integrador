@@ -28,8 +28,8 @@ namespace Projeto_Valquiria
             cmbStatus.Items.Add("Pago");
             cmbStatus.Items.Add("Pendente");
 
-            dgvPedidos.ReadOnly = true;
-            dgvPedidos.CellValueChanged += dgvPedidos_CellValueChanged;
+            dgvDadosPedidos.ReadOnly = true;
+            dgvDadosPedidos.CellValueChanged += dgvPedidos_CellValueChanged;
 
             // limpa os campos de cadastro ao abrir
             cmbClientes.SelectedIndex = -1;
@@ -43,36 +43,31 @@ namespace Projeto_Valquiria
             btnDeletar.Visible = false;
 
             // Cor de fundo geral da tabela
-            dgvPedidos.BackgroundColor = Color.FromArgb(240, 192, 229); // rosa pastel do layout
+            dgvDadosPedidos.BackgroundColor = Color.FromArgb(255, 220, 235);
 
-            // Linhas alternadas
-            dgvPedidos.DefaultCellStyle.BackColor = Color.White;
-            dgvPedidos.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(235, 220, 250); // lilás pastel suave
+            // Linhas alternadas (efeito suave)
+            dgvDadosPedidos.DefaultCellStyle.BackColor = Color.White;
+            dgvDadosPedidos.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(255, 240, 245);
 
             // Texto das células
-            dgvPedidos.DefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100); // roxo escuro
-            dgvPedidos.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
+            dgvDadosPedidos.DefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
+            dgvDadosPedidos.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
 
-            // Seleção
-            dgvPedidos.DefaultCellStyle.SelectionBackColor = Color.FromArgb(164, 92, 218); // roxo vibrante (igual ao botão Pedidos)
-            dgvPedidos.DefaultCellStyle.SelectionForeColor = Color.White;
+            // Cor da seleção
+            dgvDadosPedidos.DefaultCellStyle.SelectionBackColor = Color.FromArgb(200, 100, 150);
+            dgvDadosPedidos.DefaultCellStyle.SelectionForeColor = Color.White;
 
             // Cabeçalho
-            dgvPedidos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 192, 229); // rosa pastel
-            dgvPedidos.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);   // roxo escuro
-            dgvPedidos.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
-            dgvPedidos.EnableHeadersVisualStyles = false;
+            dgvDadosPedidos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 200, 220);
+            dgvDadosPedidos.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(80, 40, 100);
+            dgvDadosPedidos.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            dgvDadosPedidos.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 200, 220);
+            dgvDadosPedidos.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.FromArgb(80, 40, 100);
 
             // Bordas e estilo geral
-            dgvPedidos.GridColor = Color.FromArgb(200, 160, 210);
-            dgvPedidos.BorderStyle = BorderStyle.None;
-            dgvPedidos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-
-            // Centraliza o texto do cabeçalho (títulos das colunas)
-            dgvPedidos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            // Centraliza o conteúdo da coluna "Quantidade"
-            dgvPedidos.Columns["Quantidade"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvDadosPedidos.GridColor = Color.FromArgb(220, 180, 200);
+            dgvDadosPedidos.BorderStyle = BorderStyle.None;
+            dgvDadosPedidos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
 
         }
 
@@ -108,12 +103,12 @@ namespace Projeto_Valquiria
                     dt = new DataTable();
                     da.Fill(dt);
 
-                    dgvPedidos.DataSource = dt;
-                    dgvPedidos.Columns["id"].Visible = false;
+                    dgvDadosPedidos.DataSource = dt;
+                    dgvDadosPedidos.Columns["id"].Visible = false;
 
-                    if (dgvPedidos.Columns.Contains("Status"))
+                    if (dgvDadosPedidos.Columns.Contains("Status"))
                     {
-                        dgvPedidos.Columns.Remove("Status");
+                        dgvDadosPedidos.Columns.Remove("Status");
 
                         DataGridViewComboBoxColumn comboStatus = new DataGridViewComboBoxColumn();
                         comboStatus.HeaderText = "Status";
@@ -123,10 +118,10 @@ namespace Projeto_Valquiria
                         comboStatus.Items.Add("Pendente");
                         comboStatus.ReadOnly = false;
 
-                        dgvPedidos.Columns.Add(comboStatus);
+                        dgvDadosPedidos.Columns.Add(comboStatus);
                     }
 
-                    dgvPedidos.ReadOnly = false;
+                    dgvDadosPedidos.ReadOnly = false;
                 }
                 catch (Exception erro)
                 {
@@ -327,10 +322,10 @@ namespace Projeto_Valquiria
         // ---------- ATUALIZA STATUS ----------
         private void dgvPedidos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvPedidos.Columns[e.ColumnIndex].Name == "Status" && e.RowIndex >= 0)
+            if (dgvDadosPedidos.Columns[e.ColumnIndex].Name == "Status" && e.RowIndex >= 0)
             {
-                int idPedido = Convert.ToInt32(dgvPedidos.Rows[e.RowIndex].Cells["id"].Value);
-                string novoStatus = dgvPedidos.Rows[e.RowIndex].Cells["Status"].Value?.ToString();
+                int idPedido = Convert.ToInt32(dgvDadosPedidos.Rows[e.RowIndex].Cells["id"].Value);
+                string novoStatus = dgvDadosPedidos.Rows[e.RowIndex].Cells["Status"].Value?.ToString();
 
                 // 🚫 Validação do status
                 if (novoStatus != "Pago" && novoStatus != "Pendente")
@@ -365,13 +360,13 @@ namespace Projeto_Valquiria
         {
             if (!editando)
             {
-                dgvPedidos.ReadOnly = false;
+                dgvDadosPedidos.ReadOnly = false;
                 btnDeletar.Visible = true;
                 editando = true;
             }
             else
             {
-                dgvPedidos.ReadOnly = true;
+                dgvDadosPedidos.ReadOnly = true;
                 btnDeletar.Visible = false;
                 editando = false;
             }
@@ -379,16 +374,16 @@ namespace Projeto_Valquiria
 
         private void btnDeletar_Click(object sender, EventArgs e)
         {
-            if (dgvPedidos.CurrentRow == null || dgvPedidos.CurrentRow.IsNewRow)
+            if (dgvDadosPedidos.CurrentRow == null || dgvDadosPedidos.CurrentRow.IsNewRow)
             {
                 MessageBox.Show("Selecione um pedido para excluir!",
                                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int idPedido = Convert.ToInt32(dgvPedidos.CurrentRow.Cells["id"].Value);
-            string cliente = dgvPedidos.CurrentRow.Cells["Cliente"].Value.ToString();
-            string produto = dgvPedidos.CurrentRow.Cells["Produto"].Value.ToString();
+            int idPedido = Convert.ToInt32(dgvDadosPedidos.CurrentRow.Cells["id"].Value);
+            string cliente = dgvDadosPedidos.CurrentRow.Cells["Cliente"].Value.ToString();
+            string produto = dgvDadosPedidos.CurrentRow.Cells["Produto"].Value.ToString();
 
             DialogResult confirmacao = MessageBox.Show(
                 $"Confirma excluir o pedido do cliente '{cliente}' para o produto '{produto}'?",
