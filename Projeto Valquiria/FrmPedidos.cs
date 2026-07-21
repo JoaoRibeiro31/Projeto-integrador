@@ -69,6 +69,12 @@ namespace Projeto_Valquiria
             dgvDadosPedidos.BorderStyle = BorderStyle.None;
             dgvDadosPedidos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
 
+            // Borda arredondada
+            UIHelper.ArredondarBorda(btnPedidos, 20);
+            UIHelper.ArredondarBorda(btnProdutos, 20);
+            UIHelper.ArredondarBorda(btnClientes, 20);
+            UIHelper.ArredondarBorda(btnHome, 20);
+            UIHelper.ArredondarBorda(dgvDadosPedidos, 20);
         }
 
         // ---------- DATAGRIDVIEW ----------
