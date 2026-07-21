@@ -350,7 +350,7 @@
             // pnlNavegacao
             // 
             pnlNavegacao.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            pnlNavegacao.BackColor = Color.FromArgb(240, 192, 229);
+            pnlNavegacao.BackColor = Color.FromArgb(251, 225, 248);
             pnlNavegacao.BackgroundImage = (Image)resources.GetObject("pnlNavegacao.BackgroundImage");
             pnlNavegacao.BackgroundImageLayout = ImageLayout.Zoom;
             pnlNavegacao.Controls.Add(tlpNavegacao);

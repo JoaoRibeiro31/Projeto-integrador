@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHome));
             txtPesquisar = new TextBox();
             dgvPedidos = new DataGridView();
-            pnlMenu = new Panel();
+            pnlNavegacao = new Panel();
             tlpNavegacao = new TableLayoutPanel();
             btnPedidos = new Button();
             btnProdutos = new Button();
@@ -71,7 +71,7 @@
             lblTlpPendencias = new Label();
             timerDataHora = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
-            pnlMenu.SuspendLayout();
+            pnlNavegacao.SuspendLayout();
             tlpNavegacao.SuspendLayout();
             tlpBtnFecharApp.SuspendLayout();
             tlpPrincipal.SuspendLayout();
@@ -129,19 +129,19 @@
             dgvPedidos.Size = new Size(1042, 639);
             dgvPedidos.TabIndex = 5;
             // 
-            // pnlMenu
+            // pnlNavegacao
             // 
-            pnlMenu.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            pnlMenu.AutoScroll = true;
-            pnlMenu.BackColor = Color.FromArgb(253, 217, 246);
-            pnlMenu.BackgroundImage = (Image)resources.GetObject("pnlMenu.BackgroundImage");
-            pnlMenu.BackgroundImageLayout = ImageLayout.Zoom;
-            pnlMenu.Controls.Add(tlpNavegacao);
-            pnlMenu.Location = new Point(0, 0);
-            pnlMenu.Margin = new Padding(3, 5, 3, 5);
-            pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(400, 1080);
-            pnlMenu.TabIndex = 16;
+            pnlNavegacao.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            pnlNavegacao.AutoScroll = true;
+            pnlNavegacao.BackColor = Color.FromArgb(251, 225, 248);
+            pnlNavegacao.BackgroundImage = (Image)resources.GetObject("pnlNavegacao.BackgroundImage");
+            pnlNavegacao.BackgroundImageLayout = ImageLayout.Zoom;
+            pnlNavegacao.Controls.Add(tlpNavegacao);
+            pnlNavegacao.Location = new Point(0, 0);
+            pnlNavegacao.Margin = new Padding(3, 5, 3, 5);
+            pnlNavegacao.Name = "pnlNavegacao";
+            pnlNavegacao.Size = new Size(400, 1080);
+            pnlNavegacao.TabIndex = 16;
             // 
             // tlpNavegacao
             // 
@@ -706,7 +706,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(239, 246, 254);
             ClientSize = new Size(1920, 1055);
-            Controls.Add(pnlMenu);
+            Controls.Add(pnlNavegacao);
             Controls.Add(tlpPrincipal);
             Margin = new Padding(3, 5, 3, 5);
             Name = "FrmHome";
@@ -714,7 +714,7 @@
             WindowState = FormWindowState.Maximized;
             Load += Home_Load;
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).EndInit();
-            pnlMenu.ResumeLayout(false);
+            pnlNavegacao.ResumeLayout(false);
             tlpNavegacao.ResumeLayout(false);
             tlpBtnFecharApp.ResumeLayout(false);
             tlpPrincipal.ResumeLayout(false);
@@ -748,7 +748,7 @@
         #endregion
         private TextBox txtPesquisar;
         private DataGridView dgvPedidos;
-        private Panel pnlMenu;
+        private Panel pnlNavegacao;
         private Label lblTitulo;
         private TableLayoutPanel tlpPrincipal;
         private TableLayoutPanel tlpNavegacao;

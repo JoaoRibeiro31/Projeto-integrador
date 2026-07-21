@@ -424,23 +424,23 @@ namespace Projeto_Valquiria
         }
 
         // ---------- NAVEGAÇÃO ----------
-        private void btnHome_Click(object sender, EventArgs e)
-        {
-            FrmHome tela = new FrmHome();
-            tela.Show();
-            this.Hide();
-        }
-
-        private void btnProduto_Click(object sender, EventArgs e)
+        private void btnProdutos_Click(object sender, EventArgs e)
         {
             FrmProdutos tela = new FrmProdutos();
             tela.Show();
             this.Hide();
         }
 
-        private void btnCliente_Click(object sender, EventArgs e)
+        private void btnClientes_Click(object sender, EventArgs e)
         {
             FrmClientes tela = new FrmClientes();
+            tela.Show();
+            this.Hide();
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            FrmHome tela = new FrmHome();
             tela.Show();
             this.Hide();
         }
