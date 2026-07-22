@@ -177,7 +177,7 @@
             btnCadastrar.Name = "btnCadastrar";
             btnCadastrar.Size = new Size(133, 34);
             btnCadastrar.TabIndex = 6;
-            btnCadastrar.Text = "Cadastrar Produto";
+            btnCadastrar.Text = "Cadastrar";
             btnCadastrar.UseVisualStyleBackColor = false;
             btnCadastrar.Click += btnCadastrar_Click;
             // 

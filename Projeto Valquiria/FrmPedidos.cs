@@ -75,6 +75,11 @@ namespace Projeto_Valquiria
             UIHelper.ArredondarBorda(btnClientes, 20);
             UIHelper.ArredondarBorda(btnHome, 20);
             UIHelper.ArredondarBorda(dgvDadosPedidos, 20);
+            UIHelper.ArredondarBorda(btnCadastrar, 20);
+            UIHelper.ArredondarBorda(tlpCadastro, 20);
+            UIHelper.ArredondarBorda(lblContato, 20);
+            UIHelper.ArredondarBorda(lblTotal, 20);
+            UIHelper.ArredondarBorda(lblValorProduto, 20);
         }
 
         // ---------- DATAGRIDVIEW ----------
@@ -181,6 +186,8 @@ namespace Projeto_Valquiria
 
         private void cmbClientes_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            RestaurarCampo(cmbProdutos);
+
             DataRowView row = cmbClientes.SelectedItem as DataRowView;
             if (row != null)
             {
@@ -213,13 +220,17 @@ namespace Projeto_Valquiria
             }
         }
 
+        private decimal valorProdutoAtual = 0;
+
         private void cmbProdutos_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            RestaurarCampo(cmbProdutos);
+
             DataRowView row = cmbProdutos.SelectedItem as DataRowView;
             if (row != null)
             {
-                decimal valor = Convert.ToDecimal(row["valor"]);
-                lblValorProduto.Text = valor.ToString("N2", new CultureInfo("pt-BR"));
+                valorProdutoAtual = Convert.ToDecimal(row["valor"]);
+                lblValorProduto.Text = valorProdutoAtual.ToString("C2", new CultureInfo("pt-BR"));
                 CalcularTotal();
             }
         }
@@ -227,55 +238,95 @@ namespace Projeto_Valquiria
         // ---------- QUANTIDADE / TOTAL ----------
         private void txtQuantidade_TextChanged_1(object sender, EventArgs e)
         {
+            RestaurarCampo(cmbProdutos);
+
             CalcularTotal();
         }
 
         private void CalcularTotal()
         {
-            if (decimal.TryParse(lblValorProduto.Text, out decimal valorProduto) &&
-                int.TryParse(txtQuantidade.Text, out int qtd))
+            if (int.TryParse(txtQuantidade.Text, out int qtd))
             {
-                decimal total = valorProduto * qtd;
-                lblTotal.Text = total.ToString("N2", new CultureInfo("pt-BR"));
-                lblTotal.ForeColor = Color.Green;
+                decimal total = valorProdutoAtual * qtd;
+                lblTotal.Text = total.ToString("C2", new CultureInfo("pt-BR"));
             }
         }
 
         // ---------- CADASTRAR PEDIDO ----------
         private void btnCadastrar_Click_1(object sender, EventArgs e)
         {
+            // Resetar cores antes de validar
+            RestaurarCampo(cmbClientes);
+            RestaurarCampo(cmbProdutos);
+            RestaurarCampo(cmbStatus);
+            RestaurarCampo(txtQuantidade);
+
             // 🚫 Verificação de campos obrigatórios
-            if (cmbClientes.SelectedIndex == -1 || cmbProdutos.SelectedIndex == -1 ||
-                cmbStatus.SelectedIndex == -1 || string.IsNullOrWhiteSpace(txtQuantidade.Text))
+            if (cmbClientes.SelectedIndex == -1)
             {
-                MessageBox.Show("Preencha todos os campos antes de cadastrar o pedido!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErroHelper.MostrarAviso("Selecione um cliente!");
+                DestacarCampoInvalido(cmbClientes);
+                return;
+            }
+
+            if (cmbProdutos.SelectedIndex == -1)
+            {
+                ErroHelper.MostrarAviso("Selecione um produto!");
+                DestacarCampoInvalido(cmbProdutos);
+                return;
+            }
+
+            if (cmbStatus.SelectedIndex == -1)
+            {
+                ErroHelper.MostrarAviso("Selecione um status!");
+                DestacarCampoInvalido(cmbStatus);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtQuantidade.Text))
+            {
+                ErroHelper.MostrarAviso("Digite uma quantidade!");
+                DestacarCampoInvalido(txtQuantidade);
                 return;
             }
 
             // 🔒 Validação da quantidade
             if (!int.TryParse(txtQuantidade.Text, out int qtd) || qtd <= 0)
             {
-                MessageBox.Show("Digite uma quantidade válida (maior que 0)!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErroHelper.MostrarAviso("Digite uma quantidade válida (maior que 0)!");
+                DestacarCampoInvalido(txtQuantidade);
                 return;
             }
 
             if (qtd > 999)
             {
-                MessageBox.Show("A quantidade máxima permitida é 999 unidades!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErroHelper.MostrarAviso("A quantidade máxima permitida é 999 unidades!");
+                DestacarCampoInvalido(txtQuantidade);
+                return;
+            }
+
+            // Conversão
+            if (!decimal.TryParse(lblTotal.Text, NumberStyles.Currency, new CultureInfo("pt-BR"), out decimal total))
+            {
+                ErroHelper.MostrarErro("Erro", "Não foi possível converter o valor total!");
                 return;
             }
 
             // 🔒 Validação do valor total
-            if (!decimal.TryParse(lblTotal.Text, NumberStyles.Number, new CultureInfo("pt-BR"), out decimal total) || total <= 0)
+            if (total <= 0)
             {
-                MessageBox.Show("O valor total do pedido deve ser maior que 0!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErroHelper.MostrarAviso("O valor total do pedido deve ser maior que 0!");
                 return;
             }
 
+            // Limite de valor
+            if (total > 1500)
+            {
+                ErroHelper.MostrarAviso("O valor total excede o limite permitido!");
+                return;
+            }
+
+            // Confirmação
             DialogResult confirmacao = MessageBox.Show(
                 "Confirma cadastrar este pedido?",
                 "Confirmação",
@@ -292,8 +343,8 @@ namespace Projeto_Valquiria
                 {
                     conn.Open();
                     string sql = @"INSERT INTO pedidos 
-                                   (cliente_id, produto_id, quantidade, valor_total, status_pagamento) 
-                                   VALUES (@cliente, @produto, @qtd, @total, @status)";
+                           (cliente_id, produto_id, quantidade, valor_total, status_pagamento) 
+                           VALUES (@cliente, @produto, @qtd, @total, @status)";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@cliente", cmbClientes.SelectedValue);
@@ -303,17 +354,16 @@ namespace Projeto_Valquiria
                     cmd.Parameters.AddWithValue("@status", cmbStatus.SelectedItem.ToString());
 
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Pedido cadastrado com sucesso!",
-                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ErroHelper.MostrarSucesso("Pedido cadastrado com sucesso!");
                 }
                 catch (Exception erro)
                 {
-                    MessageBox.Show("Erro ao cadastrar pedido: " + erro.Message,
-                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErroHelper.MostrarErro("Erro ao cadastrar pedido", erro.Message);
+                    ErroHelper.LogErro(erro);
                 }
             }
 
-            CarregarPedidos(); // atualiza tabela
+            CarregarPedidos();
 
             // 🔄 Limpa todos os campos após cadastro
             cmbClientes.SelectedIndex = -1;
@@ -323,6 +373,23 @@ namespace Projeto_Valquiria
             lblValorProduto.Text = "";
             lblTotal.Text = "";
             lblContato.Text = "";
+        }
+
+        // Métodos auxiliares
+        private void DestacarCampoInvalido(Control campo)
+        {
+            campo.BackColor = Color.Yellow;
+        }
+
+        private void RestaurarCampo(Control campo)
+        {
+            campo.BackColor = SystemColors.Window;
+        }
+
+        // Eventos para restaurar cor ao interagir
+        private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RestaurarCampo(cmbProdutos);
         }
 
         // ---------- ATUALIZA STATUS ----------

@@ -242,17 +242,20 @@
             // btnCadastrar
             // 
             btnCadastrar.BackColor = Color.FromArgb(103, 172, 241);
+            btnCadastrar.BackgroundImageLayout = ImageLayout.Zoom;
             btnCadastrar.Dock = DockStyle.Fill;
             btnCadastrar.FlatAppearance.BorderSize = 0;
+            btnCadastrar.FlatAppearance.MouseDownBackColor = Color.FromArgb(77, 136, 199);
+            btnCadastrar.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 89, 130);
             btnCadastrar.FlatStyle = FlatStyle.Flat;
-            btnCadastrar.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnCadastrar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnCadastrar.ForeColor = Color.White;
             btnCadastrar.Location = new Point(1004, 4);
             btnCadastrar.Margin = new Padding(3, 4, 3, 4);
             btnCadastrar.Name = "btnCadastrar";
             btnCadastrar.Size = new Size(175, 35);
             btnCadastrar.TabIndex = 9;
-            btnCadastrar.Text = "Cadastrar Pedido";
+            btnCadastrar.Text = "Cadastrar";
             btnCadastrar.UseVisualStyleBackColor = false;
             btnCadastrar.Click += btnCadastrar_Click_1;
             // 
@@ -333,6 +336,7 @@
             cmbStatus.Size = new Size(199, 36);
             cmbStatus.TabIndex = 11;
             cmbStatus.Text = "Status";
+            cmbStatus.SelectedIndexChanged += cmbStatus_SelectedIndexChanged;
             // 
             // lblValorP
             // 
@@ -372,7 +376,7 @@
             lblValorProduto.Name = "lblValorProduto";
             lblValorProduto.Size = new Size(163, 43);
             lblValorProduto.TabIndex = 12;
-            lblValorProduto.TextAlign = ContentAlignment.MiddleLeft;
+            lblValorProduto.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblContato
             // 
