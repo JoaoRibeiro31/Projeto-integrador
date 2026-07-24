@@ -90,23 +90,31 @@ namespace Projeto_Valquiria
                 try
                 {
                     conn.Open();
-                    string sql = @"SELECT p.id, 
-                                          c.nome                AS Cliente, 
-                                          pr.nome               AS Produto,
-                                          p.quantidade          AS Quantidade, 
-                                          p.valor_total         AS 'Valor Total',
-                                          p.data_pedido         AS Data, 
-                                          p.status_pagamento    AS Status
-                           FROM pedidos p
-                           JOIN clientes c ON p.cliente_id = c.id
-                           JOIN produtos pr ON p.produto_id = pr.id
-                           WHERE (c.nome LIKE @filtro
-                                  OR pr.nome LIKE @filtro
-                                  OR p.quantidade LIKE @filtro
-                                  OR p.valor_total LIKE @filtro
-                                  OR p.data_pedido LIKE @filtro
-                                  OR p.status_pagamento LIKE @filtro)
-                           ORDER BY data_pedido DESC;";
+
+                    MySqlCommand cmdLocale = new MySqlCommand("SET lc_time_names = 'pt_BR';", conn);
+                    cmdLocale.ExecuteNonQuery();
+
+                    string sql = @"SET lc_time_names = 'pt_BR';
+
+                                   SELECT p.id, 
+                                   c.nome                                       AS Cliente, 
+                                   pr.nome                                      AS Produto,
+                                   p.quantidade                                 AS Quantidade, 
+                                   REPLACE(FORMAT(p.valor_total, 2), '.', ',')  AS 'Valor Total',
+                                   DATE_FORMAT(p.data_pedido, '%d/%m/%Y %H:%i') AS Data,
+                                   DATE_FORMAT(p.data_pedido, '%W')             AS 'Dia da Semana',
+                                   p.status_pagamento                           AS Status
+                                   FROM pedidos p
+                                   JOIN clientes c    ON p.cliente_id = c.id
+                                   JOIN produtos pr   ON p.produto_id = pr.id
+                                   WHERE (c.nome                                    LIKE @filtro
+                                   OR pr.nome                                       LIKE @filtro
+                                   OR p.quantidade                                  LIKE @filtro
+                                   OR REPLACE(FORMAT(p.valor_total, 2), '.', ',')   LIKE @filtro
+                                   OR DATE_FORMAT(p.data_pedido, '%d/%m/%Y %H:%i')  LIKE @filtro
+                                   OR p.status_pagamento                            LIKE @filtro
+                                   OR DATE_FORMAT(p.data_pedido, '%W')              LIKE @filtro)
+                                   ORDER BY p.data_pedido DESC;";
 
                     MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
                     da.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
