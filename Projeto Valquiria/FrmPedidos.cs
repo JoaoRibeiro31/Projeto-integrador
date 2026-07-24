@@ -129,7 +129,7 @@ namespace Projeto_Valquiria
                     dgvDadosPedidos.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                     dgvDadosPedidos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                     dgvDadosPedidos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
+                    dgvDadosPedidos.Columns["Quantidade"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                     if (dgvDadosPedidos.Columns.Contains("Status"))
                     {
@@ -154,6 +154,19 @@ namespace Projeto_Valquiria
                 }
             }
         }
+
+        private void dgvDadosPedidos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvDadosPedidos.Columns[e.ColumnIndex].Name == "Valor Total" && e.Value != null)
+            {
+                if (decimal.TryParse(e.Value.ToString(), out decimal valor))
+                {
+                    e.Value = valor.ToString("C2", new CultureInfo("pt-BR"));
+                    e.FormattingApplied = true;
+                }
+            }
+        }
+
 
         // ---------- PESQUISA COM DELAY ----------
         private void txtPesquisar_TextChanged(object sender, EventArgs e)

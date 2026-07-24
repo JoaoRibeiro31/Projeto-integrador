@@ -453,6 +453,7 @@
             dgvDadosPedidos.RowHeadersWidth = 51;
             dgvDadosPedidos.Size = new Size(1216, 520);
             dgvDadosPedidos.TabIndex = 14;
+            dgvDadosPedidos.CellFormatting += dgvDadosPedidos_CellFormatting;
             // 
             // txtPesquisar
             // 
