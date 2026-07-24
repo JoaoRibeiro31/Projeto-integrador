@@ -17,19 +17,33 @@ namespace Projeto_Valquiria
         public FrmPedidos()
         {
             InitializeComponent();
+            btnDeletar.Visible = false;
+            btnAtualizar.Visible = false;
+            cmbStatus.Items.Add("Pago");
+            cmbStatus.Items.Add("Pendente");
+            dgvDadosPedidos.ReadOnly = true;
+            dgvDadosPedidos.CellValueChanged += dgvPedidos_CellValueChanged;
         }
 
         private void FrmPedidos_Load_1(object sender, EventArgs e)
         {
+            //Teste de conexão
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(conexao))
+                {
+                    conn.Open();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                ErroHelper.MostrarErro("Erro de Conexão", "Não foi possível conectar ao banco de dados.");
+                ErroHelper.LogErro(ex);
+            }
+
             CarregarClientes();
             CarregarProdutos();
             CarregarPedidos();
-
-            cmbStatus.Items.Add("Pago");
-            cmbStatus.Items.Add("Pendente");
-
-            dgvDadosPedidos.ReadOnly = true;
-            dgvDadosPedidos.CellValueChanged += dgvPedidos_CellValueChanged;
 
             // limpa os campos de cadastro ao abrir
             cmbClientes.SelectedIndex = -1;
@@ -39,9 +53,6 @@ namespace Projeto_Valquiria
             lblValorProduto.Text = "";
             lblTotal.Text = "";
             lblContato.Text = "";
-
-            btnDeletar.Visible = false;
-            btnAtualizar.Visible = false;
 
             // Cor de fundo geral da tabela
             dgvDadosPedidos.BackgroundColor = Color.FromArgb(255, 220, 235);
@@ -151,7 +162,8 @@ namespace Projeto_Valquiria
                 }
                 catch (Exception erro)
                 {
-                    MessageBox.Show("Erro ao carregar pedidos: " + erro.Message);
+                    ErroHelper.MostrarErro("Erro ao carregar pedidos: ", erro.Message);
+                    ErroHelper.LogErro(erro);
                 }
             }
         }
@@ -207,7 +219,8 @@ namespace Projeto_Valquiria
                 }
                 catch (Exception erro)
                 {
-                    MessageBox.Show("Erro ao carregar clientes: " + erro.Message);
+                    ErroHelper.MostrarErro("Erro ao carregar clientes: ", erro.Message);
+                    ErroHelper.LogErro(erro);
                 }
             }
         }
@@ -243,7 +256,8 @@ namespace Projeto_Valquiria
                 }
                 catch (Exception erro)
                 {
-                    MessageBox.Show("Erro ao carregar produtos: " + erro.Message);
+                    ErroHelper.MostrarErro("Erro ao carregar produtos: ", erro.Message);
+                    ErroHelper.LogErro(erro);
                 }
             }
         }
@@ -452,8 +466,7 @@ namespace Projeto_Valquiria
                 // 🚫 Validação do status
                 if (novoStatus != "Pago" && novoStatus != "Pendente")
                 {
-                    MessageBox.Show("Status inválido! Use apenas 'Pago' ou 'Pendente'.",
-                                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ErroHelper.MostrarAviso("Status inválido! Use apenas 'Pago' ou 'Pendente'.");
                     return;
                 }
 
@@ -470,7 +483,8 @@ namespace Projeto_Valquiria
                     }
                     catch (Exception erro)
                     {
-                        MessageBox.Show("Erro ao atualizar status: " + erro.Message);
+                        ErroHelper.MostrarErro("Erro ao atualizar status: ", erro.Message);
+                        ErroHelper.LogErro(erro);
                     }
                 }
             }
@@ -649,10 +663,10 @@ namespace Projeto_Valquiria
                     else
                         ErroHelper.MostrarSucesso($"Pedidos atualizados com sucesso! ({contadorAtualizados} registros)");
                 }
-                catch (Exception ex)
+                catch (Exception erro)
                 {
-                    ErroHelper.MostrarErro("Erro ao atualizar pedidos: ", ex.Message);
-                    ErroHelper.LogErro(ex);
+                    ErroHelper.MostrarErro("Erro ao atualizar pedidos: ", erro.Message);
+                    ErroHelper.LogErro(erro);
                 }
             }
 
@@ -665,8 +679,7 @@ namespace Projeto_Valquiria
         {
             if (dgvDadosPedidos.CurrentRow == null || dgvDadosPedidos.CurrentRow.IsNewRow)
             {
-                MessageBox.Show("Selecione um pedido para excluir!",
-                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErroHelper.MostrarAviso("Selecione um pedido para excluir!");
                 return;
             }
 
@@ -694,13 +707,12 @@ namespace Projeto_Valquiria
                     cmd.Parameters.AddWithValue("@id", idPedido);
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Pedido excluído com sucesso!",
-                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ErroHelper.MostrarSucesso("Pedido excluído com sucesso!");
                 }
                 catch (Exception erro)
                 {
-                    MessageBox.Show("Erro ao excluir pedido: " + erro.Message,
-                                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErroHelper.MostrarErro("Erro ao excluir pedido: ", erro.Message);
+                    ErroHelper.LogErro(erro);
                 }
             }
 
