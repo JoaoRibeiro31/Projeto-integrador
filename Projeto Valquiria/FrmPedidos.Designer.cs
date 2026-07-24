@@ -437,7 +437,8 @@
             dgvDadosPedidos.AllowUserToDeleteRows = false;
             dgvDadosPedidos.AllowUserToResizeColumns = false;
             dgvDadosPedidos.AllowUserToResizeRows = false;
-            dgvDadosPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDadosPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvDadosPedidos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvDadosPedidos.BackgroundColor = Color.FromArgb(217, 217, 217);
             dgvDadosPedidos.BorderStyle = BorderStyle.None;
             dgvDadosPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;

@@ -122,8 +122,14 @@ namespace Projeto_Valquiria
                     dt = new DataTable();
                     da.Fill(dt);
 
+                    // Ajustes visuais no dvg
                     dgvDadosPedidos.DataSource = dt;
                     dgvDadosPedidos.Columns["id"].Visible = false;
+                    dgvDadosPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dgvDadosPedidos.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                    dgvDadosPedidos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                    dgvDadosPedidos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
 
                     if (dgvDadosPedidos.Columns.Contains("Status"))
                     {
