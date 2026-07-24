@@ -494,27 +494,62 @@ namespace Projeto_Valquiria
                     {
                         if (row.IsNewRow) continue;
 
-                        string cliente = row.Cells["Cliente"].Value.ToString().Trim();
+                        string cliente = row.Cells["Cliente"].Value?.ToString().Trim() ?? "";
+                        string produto = row.Cells["Produto"].Value?.ToString().Trim() ?? "";
+
+                        // 🚫 Validação de cliente e produto
+                        if (string.IsNullOrEmpty(cliente))
+                        {
+                            ErroHelper.MostrarAviso("Cliente não informado. O pedido não pode ser atualizado.");
+                            continue;
+                        }
+
+                        if (string.IsNullOrEmpty(produto))
+                        {
+                            ErroHelper.MostrarAviso($"Pedido do(a) cliente {cliente}: Produto não informado!");
+                            continue;
+                        }
+
+                        // Verifica se cliente existe
+                        string sqlCliente = "SELECT COUNT(*) FROM clientes WHERE nome = @nome";
+                        MySqlCommand cmdCliente = new MySqlCommand(sqlCliente, conn);
+                        cmdCliente.Parameters.AddWithValue("@nome", cliente);
+                        int clienteExiste = Convert.ToInt32(cmdCliente.ExecuteScalar());
+
+                        if (clienteExiste == 0)
+                        {
+                            ErroHelper.MostrarAviso($"Pedido do(a) cliente {cliente}: Cliente não encontrado na base!");
+                            continue;
+                        }
+
+                        // Verifica se produto existe
+                        string sqlProduto = "SELECT COUNT(*) FROM produtos WHERE nome = @nome";
+                        MySqlCommand cmdProduto = new MySqlCommand(sqlProduto, conn);
+                        cmdProduto.Parameters.AddWithValue("@nome", produto);
+                        int produtoExiste = Convert.ToInt32(cmdProduto.ExecuteScalar());
+
+                        if (produtoExiste == 0)
+                        {
+                            ErroHelper.MostrarAviso($"Pedido do(a) cliente {cliente}: Produto '{produto}' não encontrado na base!");
+                            continue;
+                        }
 
                         // 🚫 Validação de campos obrigatórios
-                        if (row.Cells["Quantidade"].Value == null ||
-                            row.Cells["Valor Total"].Value == null)
+                        if (row.Cells["Quantidade"].Value == null || row.Cells["Valor Total"].Value == null)
                         {
                             ErroHelper.MostrarAviso($"Pedido do(a) cliente {cliente}: Quantidade e Valor Total não podem ser nulos!");
-                            continue; // pula esse registro sem atualizar
+                            continue;
                         }
 
                         int quantidade = Convert.ToInt32(row.Cells["Quantidade"].Value);
                         decimal valorTotal = Convert.ToDecimal(row.Cells["Valor Total"].Value);
 
-                        // 🚫 Validação da quantidade
                         if (quantidade <= 0)
                         {
                             ErroHelper.MostrarAviso($"Pedido do(a) cliente {cliente}: A quantidade deve ser maior que 0!");
                             continue;
                         }
 
-                        // 🚫 Validação do valor total
                         if (valorTotal <= 0)
                         {
                             ErroHelper.MostrarAviso($"Pedido do(a) cliente {cliente}: O valor total deve ser maior que 0!");
@@ -523,8 +558,8 @@ namespace Projeto_Valquiria
 
                         DateTime dataPedido = Convert.ToDateTime(row.Cells["Data"].Value);
                         int id = Convert.ToInt32(row.Cells["id"].Value);
-                        string produto = row.Cells["Produto"].Value.ToString().Trim();
 
+                        // Verificação de alterações
                         string sqlCheck = @"SELECT c.nome AS Cliente, pr.nome AS Produto, 
                                            p.quantidade, p.valor_total, p.data_pedido
                                     FROM pedidos p
@@ -558,11 +593,41 @@ namespace Projeto_Valquiria
 
                         if (houveAlteracao)
                         {
+                            // Busca o ID do cliente pelo nome
+                            string sqlClienteId = "SELECT id FROM clientes WHERE nome = @nome";
+                            MySqlCommand cmdClienteId = new MySqlCommand(sqlClienteId, conn);
+                            cmdClienteId.Parameters.AddWithValue("@nome", cliente);
+                            object clienteIdObj = cmdClienteId.ExecuteScalar();
+
+                            if (clienteIdObj == null)
+                            {
+                                ErroHelper.MostrarAviso($"Pedido do(a) cliente {cliente}: Cliente não encontrado na base!");
+                                continue;
+                            }
+                            int clienteId = Convert.ToInt32(clienteIdObj);
+
+                            // Busca o ID do produto pelo nome
+                            string sqlProdutoId = "SELECT id FROM produtos WHERE nome = @nome";
+                            MySqlCommand cmdProdutoId = new MySqlCommand(sqlProdutoId, conn);
+                            cmdProdutoId.Parameters.AddWithValue("@nome", produto);
+                            object produtoIdObj = cmdProdutoId.ExecuteScalar();
+
+                            if (produtoIdObj == null)
+                            {
+                                ErroHelper.MostrarAviso($"Pedido do(a) cliente {cliente}: Produto '{produto}' não encontrado na base!");
+                                continue;
+                            }
+                            int produtoId = Convert.ToInt32(produtoIdObj);
+
+                            // Atualiza pedido incluindo cliente e produto
                             string sqlUpdate = @"UPDATE pedidos 
-                                         SET quantidade = @qtd, valor_total = @valor, data_pedido = @data
-                                         WHERE id = @id";
+                         SET cliente_id = @clienteId, produto_id = @produtoId,
+                             quantidade = @qtd, valor_total = @valor, data_pedido = @data
+                         WHERE id = @id";
 
                             MySqlCommand cmdUpdate = new MySqlCommand(sqlUpdate, conn);
+                            cmdUpdate.Parameters.AddWithValue("@clienteId", clienteId);
+                            cmdUpdate.Parameters.AddWithValue("@produtoId", produtoId);
                             cmdUpdate.Parameters.AddWithValue("@qtd", quantidade);
                             cmdUpdate.Parameters.AddWithValue("@valor", valorTotal);
                             cmdUpdate.Parameters.AddWithValue("@data", dataPedido);
@@ -571,9 +636,9 @@ namespace Projeto_Valquiria
 
                             contadorAtualizados++;
                         }
+
                     }
 
-                    // Tratamento de eventos
                     if (contadorAtualizados == 0)
                         ErroHelper.MostrarAviso("Nenhuma alteração realizada.");
                     else if (contadorAtualizados == 1)
@@ -590,6 +655,7 @@ namespace Projeto_Valquiria
 
             CarregarPedidos();
         }
+
 
         // ---------- DELETAR ----------
         private void btnDeletar_Click(object sender, EventArgs e)
