@@ -41,6 +41,7 @@ namespace Projeto_Valquiria
             lblContato.Text = "";
 
             btnDeletar.Visible = false;
+            btnAtualizar.Visible = false;
 
             // Cor de fundo geral da tabela
             dgvDadosPedidos.BackgroundColor = Color.FromArgb(255, 220, 235);
@@ -426,12 +427,14 @@ namespace Projeto_Valquiria
             {
                 dgvDadosPedidos.ReadOnly = false;
                 btnDeletar.Visible = true;
+                btnAtualizar.Visible = true;
                 editando = true;
             }
             else
             {
                 dgvDadosPedidos.ReadOnly = true;
                 btnDeletar.Visible = false;
+                btnAtualizar.Visible = false;
                 editando = false;
             }
 
