@@ -71,10 +71,10 @@ namespace Projeto_Valquiria
             UIHelper.ArredondarBorda(btnPedidos, 20);
             UIHelper.ArredondarBorda(btnProdutos, 20);
             UIHelper.ArredondarBorda(btnClientes, 20);
-            UIHelper.ArredondarBorda(btnHome,20);
+            UIHelper.ArredondarBorda(btnHome, 20);
             UIHelper.ArredondarBorda(tlpCadastro, 20);
-            UIHelper.ArredondarBorda(btnCadastrar,20);
-            UIHelper.ArredondarBorda(dgvDadosProdutos,20);
+            UIHelper.ArredondarBorda(btnCadastrar, 20);
+            UIHelper.ArredondarBorda(dgvDadosProdutos, 20);
         }
 
         // ---------- CARREGAR PRODUTOS ----------
@@ -131,6 +131,17 @@ namespace Projeto_Valquiria
             }
         }
 
+        private void dgvDadosProdutos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvDadosProdutos.Columns[e.ColumnIndex].Name == "Valor" && e.Value != null)
+            {
+                if (decimal.TryParse(e.Value.ToString(), out decimal valor))
+                {
+                    e.Value = valor.ToString("C2", new CultureInfo("pt-BR"));
+                    e.FormattingApplied = true;
+                }
+            }
+        }
 
         // ---------- PESQUISA COM DELAY ----------
         private void txtPesquisar_TextChanged(object sender, EventArgs e)

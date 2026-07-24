@@ -109,6 +109,7 @@
             dgvDadosProdutos.RowHeadersWidth = 51;
             dgvDadosProdutos.Size = new Size(1042, 520);
             dgvDadosProdutos.TabIndex = 5;
+            dgvDadosProdutos.CellFormatting += dgvDadosProdutos_CellFormatting;
             // 
             // lblNome
             // 
