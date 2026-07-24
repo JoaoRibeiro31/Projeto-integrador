@@ -457,6 +457,8 @@ namespace Projeto_Valquiria
                 btnDeletar.Visible = false;
                 editando = false;
             }
+
+            dgvDadosPedidos.Columns["Dia da Semana"].ReadOnly = true;
         }
 
         private void btnDeletar_Click(object sender, EventArgs e)
