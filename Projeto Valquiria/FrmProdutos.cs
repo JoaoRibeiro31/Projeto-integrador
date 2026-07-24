@@ -85,43 +85,29 @@ namespace Projeto_Valquiria
                 try
                 {
                     conn.Open();
-                    decimal valorFiltro;
-                    bool isNumero = decimal.TryParse(filtro, out valorFiltro);
 
-                    string sql;
-                    MySqlDataAdapter adapter;
+                    string sql = @"SET lc_time_names = 'pt_BR';
 
-                    if (isNumero)
-                    {
-                        sql = @"SELECT id AS Id,
-                               nome AS Nome,
-                               valor AS Valor
-                        FROM produtos
-                        WHERE (nome LIKE @filtro OR valor = @valorFiltro)
-                        ORDER BY nome ASC;";
+                           SELECT pr.id AS Id,
+                                  pr.nome AS Nome,
+                                  REPLACE(FORMAT(pr.valor, 2), '.', ',') AS Valor
+                           FROM produtos pr
+                           WHERE (pr.nome LIKE @filtro
+                                  OR REPLACE(FORMAT(pr.valor, 2), '.', ',') LIKE @filtro)
+                           ORDER BY pr.nome ASC;";
 
-                        adapter = new MySqlDataAdapter(sql, conn);
-                        adapter.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
-                        adapter.SelectCommand.Parameters.AddWithValue("@valorFiltro", valorFiltro);
-                    }
-                    else
-                    {
-                        sql = @"SELECT id AS Id,
-                               nome AS Nome,
-                               valor AS Valor
-                        FROM produtos
-                        WHERE nome LIKE @filtro
-                        ORDER BY nome ASC;";
-
-                        adapter = new MySqlDataAdapter(sql, conn);
-                        adapter.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
-                    }
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
+                    adapter.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
 
                     DataTable tabela = new DataTable();
                     adapter.Fill(tabela);
 
                     dgvDadosProdutos.DataSource = tabela;
                     dgvDadosProdutos.Columns["Id"].Visible = false;
+                    dgvDadosProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dgvDadosProdutos.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                    dgvDadosProdutos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                    dgvDadosProdutos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 }
                 catch (Exception ex)
                 {
