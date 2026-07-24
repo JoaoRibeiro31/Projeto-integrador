@@ -419,6 +419,25 @@ namespace Projeto_Valquiria
             RestaurarCampo(cmbProdutos);
         }
 
+        // ---------- EDITAR ----------
+        private void btnEdicao_Click(object sender, EventArgs e)
+        {
+            if (!editando)
+            {
+                dgvDadosPedidos.ReadOnly = false;
+                btnDeletar.Visible = true;
+                editando = true;
+            }
+            else
+            {
+                dgvDadosPedidos.ReadOnly = true;
+                btnDeletar.Visible = false;
+                editando = false;
+            }
+
+            dgvDadosPedidos.Columns["Dia da Semana"].ReadOnly = true;
+        }
+
         // ---------- ATUALIZA STATUS ----------
         private void dgvPedidos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -432,7 +451,6 @@ namespace Projeto_Valquiria
                 {
                     MessageBox.Show("Status inválido! Use apenas 'Pago' ou 'Pendente'.",
                                     "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    CarregarPedidos();
                     return;
                 }
 
@@ -455,25 +473,125 @@ namespace Projeto_Valquiria
             }
         }
 
-        // ---------- EDITAR / DELETAR ----------
-        private void btnEdicao_Click(object sender, EventArgs e)
+        // ---------- ATUALIZAR ----------
+        private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            if (!editando)
+            int contadorAtualizados = 0;
+
+            DialogResult confirmacao = MessageBox.Show(
+                "Confirma atualizar os pedidos?",
+                "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirmacao == DialogResult.No) return;
+
+            using (MySqlConnection conn = new MySqlConnection(conexao))
             {
-                dgvDadosPedidos.ReadOnly = false;
-                btnDeletar.Visible = true;
-                editando = true;
-            }
-            else
-            {
-                dgvDadosPedidos.ReadOnly = true;
-                btnDeletar.Visible = false;
-                editando = false;
+                try
+                {
+                    conn.Open();
+
+                    foreach (DataGridViewRow row in dgvDadosPedidos.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+
+                        string cliente = row.Cells["Cliente"].Value.ToString().Trim();
+
+                        // 🚫 Validação de campos obrigatórios
+                        if (row.Cells["Quantidade"].Value == null ||
+                            row.Cells["Valor Total"].Value == null)
+                        {
+                            ErroHelper.MostrarAviso($"Pedido do(a) cliente {cliente}: Quantidade e Valor Total não podem ser nulos!");
+                            continue; // pula esse registro sem atualizar
+                        }
+
+                        int quantidade = Convert.ToInt32(row.Cells["Quantidade"].Value);
+                        decimal valorTotal = Convert.ToDecimal(row.Cells["Valor Total"].Value);
+
+                        // 🚫 Validação da quantidade
+                        if (quantidade <= 0)
+                        {
+                            ErroHelper.MostrarAviso($"Pedido do(a) cliente {cliente}: A quantidade deve ser maior que 0!");
+                            continue;
+                        }
+
+                        // 🚫 Validação do valor total
+                        if (valorTotal <= 0)
+                        {
+                            ErroHelper.MostrarAviso($"Pedido do(a) cliente {cliente}: O valor total deve ser maior que 0!");
+                            continue;
+                        }
+
+                        DateTime dataPedido = Convert.ToDateTime(row.Cells["Data"].Value);
+                        int id = Convert.ToInt32(row.Cells["id"].Value);
+                        string produto = row.Cells["Produto"].Value.ToString().Trim();
+
+                        string sqlCheck = @"SELECT c.nome AS Cliente, pr.nome AS Produto, 
+                                           p.quantidade, p.valor_total, p.data_pedido
+                                    FROM pedidos p
+                                    JOIN clientes c ON p.cliente_id = c.id
+                                    JOIN produtos pr ON p.produto_id = pr.id
+                                    WHERE p.id = @id";
+
+                        MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
+                        cmdCheck.Parameters.AddWithValue("@id", id);
+
+                        bool houveAlteracao = false;
+
+                        using (var reader = cmdCheck.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string clienteAtual = reader.GetString("Cliente");
+                                string produtoAtual = reader.GetString("Produto");
+                                int qtdAtual = reader.GetInt32("quantidade");
+                                decimal valorAtual = reader.GetDecimal("valor_total");
+                                DateTime dataAtual = reader.GetDateTime("data_pedido");
+
+                                if (cliente != clienteAtual || produto != produtoAtual ||
+                                    quantidade != qtdAtual || valorTotal != valorAtual ||
+                                    dataPedido != dataAtual)
+                                {
+                                    houveAlteracao = true;
+                                }
+                            }
+                        }
+
+                        if (houveAlteracao)
+                        {
+                            string sqlUpdate = @"UPDATE pedidos 
+                                         SET quantidade = @qtd, valor_total = @valor, data_pedido = @data
+                                         WHERE id = @id";
+
+                            MySqlCommand cmdUpdate = new MySqlCommand(sqlUpdate, conn);
+                            cmdUpdate.Parameters.AddWithValue("@qtd", quantidade);
+                            cmdUpdate.Parameters.AddWithValue("@valor", valorTotal);
+                            cmdUpdate.Parameters.AddWithValue("@data", dataPedido);
+                            cmdUpdate.Parameters.AddWithValue("@id", id);
+                            cmdUpdate.ExecuteNonQuery();
+
+                            contadorAtualizados++;
+                        }
+                    }
+
+                    // Tratamento de eventos
+                    if (contadorAtualizados == 0)
+                        ErroHelper.MostrarAviso("Nenhuma alteração realizada.");
+                    else if (contadorAtualizados == 1)
+                        ErroHelper.MostrarSucesso("Pedido atualizado com sucesso!");
+                    else
+                        ErroHelper.MostrarSucesso($"Pedidos atualizados com sucesso! ({contadorAtualizados} registros)");
+                }
+                catch (Exception ex)
+                {
+                    ErroHelper.MostrarErro("Erro ao atualizar pedidos: ", ex.Message);
+                    ErroHelper.LogErro(ex);
+                }
             }
 
-            dgvDadosPedidos.Columns["Dia da Semana"].ReadOnly = true;
+            CarregarPedidos();
         }
 
+        // ---------- DELETAR ----------
         private void btnDeletar_Click(object sender, EventArgs e)
         {
             if (dgvDadosPedidos.CurrentRow == null || dgvDadosPedidos.CurrentRow.IsNewRow)

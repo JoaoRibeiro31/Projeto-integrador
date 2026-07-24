@@ -36,8 +36,6 @@
             btnProdutos = new Button();
             tlpHome = new TableLayoutPanel();
             btnHome = new Button();
-            btnEdicao = new Button();
-            btnDeletar = new Button();
             btnCadastrar = new Button();
             cmbProdutos = new ComboBox();
             txtQuantidade = new TextBox();
@@ -55,21 +53,24 @@
             dgvDadosPedidos = new DataGridView();
             txtPesquisar = new TextBox();
             tlpPrincipal = new TableLayoutPanel();
-            tableLayoutPanel3 = new TableLayoutPanel();
             tlpCadastro = new TableLayoutPanel();
             tlpLinha1 = new TableLayoutPanel();
             tlpLinha2 = new TableLayoutPanel();
             tlpLinha3 = new TableLayoutPanel();
+            tlpEdicao = new TableLayoutPanel();
+            btnEdicao = new Button();
+            btnAtualizar = new Button();
+            btnDeletar = new Button();
             pnlNavegacao.SuspendLayout();
             tlpNavegacao.SuspendLayout();
             tlpHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDadosPedidos).BeginInit();
             tlpPrincipal.SuspendLayout();
-            tableLayoutPanel3.SuspendLayout();
             tlpCadastro.SuspendLayout();
             tlpLinha1.SuspendLayout();
             tlpLinha2.SuspendLayout();
             tlpLinha3.SuspendLayout();
+            tlpEdicao.SuspendLayout();
             SuspendLayout();
             // 
             // pnlNavegacao
@@ -211,33 +212,6 @@
             btnHome.Text = "Voltar";
             btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnHome_Click;
-            // 
-            // btnEdicao
-            // 
-            btnEdicao.BackgroundImageLayout = ImageLayout.Center;
-            btnEdicao.Cursor = Cursors.Hand;
-            btnEdicao.FlatStyle = FlatStyle.Popup;
-            btnEdicao.ForeColor = Color.Transparent;
-            btnEdicao.Image = (Image)resources.GetObject("btnEdicao.Image");
-            btnEdicao.Location = new Point(50, 4);
-            btnEdicao.Margin = new Padding(3, 4, 3, 4);
-            btnEdicao.Name = "btnEdicao";
-            btnEdicao.Size = new Size(95, 91);
-            btnEdicao.TabIndex = 16;
-            btnEdicao.UseVisualStyleBackColor = true;
-            btnEdicao.Click += btnEdicao_Click;
-            // 
-            // btnDeletar
-            // 
-            btnDeletar.AutoSize = true;
-            btnDeletar.Font = new Font("Segoe UI", 12F);
-            btnDeletar.Location = new Point(50, 158);
-            btnDeletar.Name = "btnDeletar";
-            btnDeletar.Size = new Size(95, 37);
-            btnDeletar.TabIndex = 18;
-            btnDeletar.Text = "Deletar";
-            btnDeletar.UseVisualStyleBackColor = true;
-            btnDeletar.Click += btnDeletar_Click;
             // 
             // btnCadastrar
             // 
@@ -478,9 +452,9 @@
             tlpPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.0588236F));
             tlpPrincipal.Controls.Add(dgvDadosPedidos, 2, 5);
             tlpPrincipal.Controls.Add(txtPesquisar, 2, 3);
-            tlpPrincipal.Controls.Add(tableLayoutPanel3, 3, 5);
             tlpPrincipal.Controls.Add(lblTitulo, 2, 1);
             tlpPrincipal.Controls.Add(tlpCadastro, 2, 7);
+            tlpPrincipal.Controls.Add(tlpEdicao, 3, 5);
             tlpPrincipal.Dock = DockStyle.Fill;
             tlpPrincipal.Location = new Point(0, 0);
             tlpPrincipal.Name = "tlpPrincipal";
@@ -496,25 +470,6 @@
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 11.51115F));
             tlpPrincipal.Size = new Size(1920, 1055);
             tlpPrincipal.TabIndex = 24;
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.ColumnCount = 3;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28.67133F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 71.3286743F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 61F));
-            tableLayoutPanel3.Controls.Add(btnDeletar, 1, 2);
-            tableLayoutPanel3.Controls.Add(btnEdicao, 1, 0);
-            tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(1691, 203);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 4;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 70.83334F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 29.166666F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 323F));
-            tableLayoutPanel3.Size = new Size(226, 522);
-            tableLayoutPanel3.TabIndex = 19;
             // 
             // tlpCadastro
             // 
@@ -613,6 +568,79 @@
             tlpLinha3.Size = new Size(1210, 43);
             tlpLinha3.TabIndex = 2;
             // 
+            // tlpEdicao
+            // 
+            tlpEdicao.ColumnCount = 3;
+            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33333F));
+            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            tlpEdicao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            tlpEdicao.Controls.Add(btnEdicao, 1, 0);
+            tlpEdicao.Controls.Add(btnAtualizar, 1, 2);
+            tlpEdicao.Controls.Add(btnDeletar, 1, 4);
+            tlpEdicao.Dock = DockStyle.Fill;
+            tlpEdicao.Location = new Point(1691, 203);
+            tlpEdicao.Name = "tlpEdicao";
+            tlpEdicao.RowCount = 6;
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 15.1341F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 1.532567F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 14.7509575F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 1.532567F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 14.7509575F));
+            tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 52.29885F));
+            tlpEdicao.Size = new Size(226, 522);
+            tlpEdicao.TabIndex = 26;
+            // 
+            // btnEdicao
+            // 
+            btnEdicao.BackgroundImage = (Image)resources.GetObject("btnEdicao.BackgroundImage");
+            btnEdicao.BackgroundImageLayout = ImageLayout.Zoom;
+            btnEdicao.Cursor = Cursors.Hand;
+            btnEdicao.Dock = DockStyle.Fill;
+            btnEdicao.FlatAppearance.BorderSize = 0;
+            btnEdicao.FlatStyle = FlatStyle.Flat;
+            btnEdicao.ForeColor = SystemColors.ControlText;
+            btnEdicao.Location = new Point(78, 4);
+            btnEdicao.Margin = new Padding(3, 4, 3, 4);
+            btnEdicao.Name = "btnEdicao";
+            btnEdicao.Size = new Size(69, 71);
+            btnEdicao.TabIndex = 7;
+            btnEdicao.UseVisualStyleBackColor = true;
+            btnEdicao.Click += btnEdicao_Click;
+            // 
+            // btnAtualizar
+            // 
+            btnAtualizar.AutoSize = true;
+            btnAtualizar.BackColor = Color.Transparent;
+            btnAtualizar.BackgroundImage = (Image)resources.GetObject("btnAtualizar.BackgroundImage");
+            btnAtualizar.BackgroundImageLayout = ImageLayout.Zoom;
+            btnAtualizar.Dock = DockStyle.Fill;
+            btnAtualizar.FlatAppearance.BorderSize = 0;
+            btnAtualizar.FlatStyle = FlatStyle.Flat;
+            btnAtualizar.Font = new Font("Segoe UI", 12F);
+            btnAtualizar.Location = new Point(78, 90);
+            btnAtualizar.Name = "btnAtualizar";
+            btnAtualizar.Size = new Size(69, 71);
+            btnAtualizar.TabIndex = 8;
+            btnAtualizar.UseVisualStyleBackColor = false;
+            btnAtualizar.Click += btnAtualizar_Click;
+            // 
+            // btnDeletar
+            // 
+            btnDeletar.AutoSize = true;
+            btnDeletar.BackColor = Color.Transparent;
+            btnDeletar.BackgroundImage = (Image)resources.GetObject("btnDeletar.BackgroundImage");
+            btnDeletar.BackgroundImageLayout = ImageLayout.Zoom;
+            btnDeletar.Dock = DockStyle.Fill;
+            btnDeletar.FlatAppearance.BorderSize = 0;
+            btnDeletar.FlatStyle = FlatStyle.Flat;
+            btnDeletar.Font = new Font("Segoe UI", 12F);
+            btnDeletar.Location = new Point(78, 175);
+            btnDeletar.Name = "btnDeletar";
+            btnDeletar.Size = new Size(69, 71);
+            btnDeletar.TabIndex = 9;
+            btnDeletar.UseVisualStyleBackColor = false;
+            btnDeletar.Click += btnDeletar_Click;
+            // 
             // FrmPedidos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -632,20 +660,18 @@
             ((System.ComponentModel.ISupportInitialize)dgvDadosPedidos).EndInit();
             tlpPrincipal.ResumeLayout(false);
             tlpPrincipal.PerformLayout();
-            tableLayoutPanel3.ResumeLayout(false);
-            tableLayoutPanel3.PerformLayout();
             tlpCadastro.ResumeLayout(false);
             tlpLinha1.ResumeLayout(false);
             tlpLinha2.ResumeLayout(false);
             tlpLinha2.PerformLayout();
             tlpLinha3.ResumeLayout(false);
+            tlpEdicao.ResumeLayout(false);
+            tlpEdicao.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
         private Panel pnlNavegacao;
-        private Button btnEdicao;
-        private Button btnDeletar;
         private Button btnCadastrar;
         private ComboBox cmbProdutos;
         private TextBox txtQuantidade;
@@ -663,7 +689,6 @@
         private TextBox txtPesquisar;
         private Label lblProduto;
         private TableLayoutPanel tlpPrincipal;
-        private TableLayoutPanel tableLayoutPanel3;
         private TableLayoutPanel tlpNavegacao;
         private Button btnPedidos;
         private Button btnClientes;
@@ -674,5 +699,9 @@
         private TableLayoutPanel tlpLinha1;
         private TableLayoutPanel tlpLinha2;
         private TableLayoutPanel tlpLinha3;
+        private TableLayoutPanel tlpEdicao;
+        private Button btnEdicao;
+        private Button btnAtualizar;
+        private Button btnDeletar;
     }
 }
