@@ -84,15 +84,20 @@ namespace Projeto_Valquiria
                 try
                 {
                     conn.Open();
-                    string sql = @"SELECT id AS Id,
-                                          nome AS Nome,
-                                          contato AS Contato,
-                                          data_de_cadastro AS Cadastro
-                                   FROM clientes
-                                   WHERE (nome LIKE @filtro
-                                          OR contato LIKE @filtro
-                                          OR data_de_cadastro LIKE @filtro)
-                                   ORDER BY nome ASC;";
+
+                    string sql = @"SET lc_time_names = 'pt_BR';
+
+                           SELECT c.id AS Id,
+                                  c.nome AS Nome,
+                                  c.contato AS Contato,
+                                  DATE_FORMAT(c.data_de_cadastro, '%d/%m/%Y') AS Cadastro,
+                                  DATE_FORMAT(c.data_de_cadastro, '%W')       AS 'Dia da Semana'
+                           FROM clientes c
+                           WHERE (c.nome LIKE @filtro
+                                  OR c.contato LIKE @filtro
+                                  OR DATE_FORMAT(c.data_de_cadastro, '%d/%m/%Y') LIKE @filtro
+                                  OR DATE_FORMAT(c.data_de_cadastro, '%W') LIKE @filtro)
+                           ORDER BY c.nome ASC;";
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(sql, conn);
                     adapter.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
@@ -100,24 +105,12 @@ namespace Projeto_Valquiria
                     DataTable tabela = new DataTable();
                     adapter.Fill(tabela);
 
-                    if (!tabela.Columns.Contains("Dia Semana"))
-                        tabela.Columns.Add("Dia Semana", typeof(string));
-
-                    foreach (DataRow row in tabela.Rows)
-                    {
-                        if (row["Cadastro"] != DBNull.Value)
-                        {
-                            DateTime dataCadastro = Convert.ToDateTime(row["Cadastro"]);
-
-                            row["Cadastro"] = dataCadastro.ToString("dd/MM/yyyy");
-
-                            string diaSemana = dataCadastro.ToString("dddd", new CultureInfo("pt-BR"));
-                            row["Dia Semana"] = diaSemana; 
-                        }
-                    }
-
                     dgvDadosClientes.DataSource = tabela;
                     dgvDadosClientes.Columns["Id"].Visible = false;
+                    dgvDadosClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dgvDadosClientes.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                    dgvDadosClientes.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                    dgvDadosClientes.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 }
                 catch (Exception ex)
                 {
@@ -126,6 +119,7 @@ namespace Projeto_Valquiria
                 }
             }
         }
+
 
         // ---------- PESQUISA COM DELAY ----------
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
