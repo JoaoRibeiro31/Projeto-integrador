@@ -247,6 +247,7 @@ namespace Projeto_Valquiria
             {
                 dgvDadosClientes.Columns["Dia Semana"].ReadOnly = true;
             }
+            dgvDadosClientes.Columns["Dia da Semana"].ReadOnly = true;
         }
 
         // ---------- ATUALIZAR ----------
