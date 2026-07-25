@@ -273,18 +273,22 @@ namespace Projeto_Valquiria
                         string nome = row.Cells["Nome"].Value.ToString().Trim();
                         string valorTexto = row.Cells["Valor"].Value.ToString().Trim();
 
+                        // Limita nome a 80 caracteres e ajusta capitalização
                         if (nome.Length > 80)
                             nome = nome.Substring(0, 80);
 
                         TextInfo textInfo = new CultureInfo("pt-BR", false).TextInfo;
                         nome = textInfo.ToTitleCase(nome.ToLower());
 
-                        if (!decimal.TryParse(valorTexto, NumberStyles.Number, new CultureInfo("pt-BR"), out decimal valor) || valor <= 0)
+                        // Parse seguro para valores com vírgula
+                        if (!decimal.TryParse(valorTexto, NumberStyles.Any, new CultureInfo("pt-BR"), out decimal valor) || valor <= 0)
                             continue;
 
                         string sqlCheck = "SELECT nome, valor FROM produtos WHERE id = @id";
                         MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
                         cmdCheck.Parameters.AddWithValue("@id", id);
+
+                        bool houveAlteracao = false;
 
                         using (var reader = cmdCheck.ExecuteReader())
                         {
@@ -293,29 +297,28 @@ namespace Projeto_Valquiria
                                 string nomeAtual = reader.GetString("nome");
                                 decimal valorAtual = reader.GetDecimal("valor");
 
-                                bool precisaAtualizar = nome != nomeAtual || valor != valorAtual;
-                                reader.Close();
-
-                                if (precisaAtualizar)
-                                {
-                                    string sql = "UPDATE produtos SET nome = @nome, valor = @valor WHERE id = @id";
-                                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                                    cmd.Parameters.AddWithValue("@nome", nome);
-                                    cmd.Parameters.AddWithValue("@valor", valor);
-                                    cmd.Parameters.AddWithValue("@id", id);
-                                    cmd.ExecuteNonQuery();
-                                    contadorAtualizados++;
-                                }
+                                if (nome != nomeAtual || Math.Round(valor, 2) != Math.Round(valorAtual, 2))
+                                    houveAlteracao = true;
                             }
                         }
 
+                        if (houveAlteracao)
+                        {
+                            string sql = "UPDATE produtos SET nome = @nome, valor = @valor WHERE id = @id";
+                            MySqlCommand cmd = new MySqlCommand(sql, conn);
+                            cmd.Parameters.AddWithValue("@nome", nome);
+                            cmd.Parameters.AddWithValue("@valor", valor);
+                            cmd.Parameters.AddWithValue("@id", id);
+                            cmd.ExecuteNonQuery();
+                            contadorAtualizados++;
+                        }
                     }
 
                     if (contadorAtualizados == 0)
                         MessageBox.Show("Nenhuma alteração realizada.",
                                         "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else if (contadorAtualizados == 1)
-                        ErroHelper.MostrarSucesso("Produtos atualizados com sucesso!");
+                        ErroHelper.MostrarSucesso("Produto atualizado com sucesso!");
                     else
                         ErroHelper.MostrarSucesso($"Produtos atualizados com sucesso! ({contadorAtualizados} registros)");
                 }
@@ -328,6 +331,7 @@ namespace Projeto_Valquiria
 
             CarregarDadosProdutos();
         }
+
 
         // ---------- DELETAR ----------
         private void btnDeletar_Click(object sender, EventArgs e)

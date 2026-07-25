@@ -287,9 +287,9 @@ namespace Projeto_Valquiria
                             {
                                 string nomeAtual = reader.GetString("nome");
                                 string contatoAtual = reader.GetString("contato");
-                                dataCadastroAtual = reader.GetDateTime("data_de_cadastro").Date; // só a data
+                                dataCadastroAtual = reader.GetDateTime("data_de_cadastro").Date;
 
-                                DateTime dataCadastroNovo = Convert.ToDateTime(row.Cells["Cadastro"].Value).Date; // só a data
+                                DateTime dataCadastroNovo = Convert.ToDateTime(row.Cells["Cadastro"].Value).Date;
 
                                 if (nome != nomeAtual || contato != contatoAtual || dataCadastroNovo != dataCadastroAtual)
                                     houveAlteracao = true;
