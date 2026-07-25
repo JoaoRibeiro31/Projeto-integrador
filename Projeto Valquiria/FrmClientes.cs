@@ -243,10 +243,6 @@ namespace Projeto_Valquiria
                 editando = false;
             }
 
-            if (dgvDadosClientes.Columns.Contains("Dia Semana"))
-            {
-                dgvDadosClientes.Columns["Dia Semana"].ReadOnly = true;
-            }
             dgvDadosClientes.Columns["Dia da Semana"].ReadOnly = true;
         }
 

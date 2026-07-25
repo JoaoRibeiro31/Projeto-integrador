@@ -559,7 +559,16 @@ namespace Projeto_Valquiria
                         }
 
                         int quantidade = Convert.ToInt32(row.Cells["Quantidade"].Value);
-                        decimal valorTotal = Convert.ToDecimal(row.Cells["Valor Total"].Value);
+                        string valorTexto = row.Cells["Valor Total"].Value?.ToString().Trim() ?? "";
+
+                        valorTexto = valorTexto.Replace("R$", "").Trim();
+
+                        if (!decimal.TryParse(valorTexto, NumberStyles.Any, new CultureInfo("pt-BR"), out decimal valorTotal) || valorTotal <= 0)
+                        {
+                            ErroHelper.MostrarAviso($"Pedido do(a) cliente {cliente}: O valor total informado não é válido!");
+                            continue;
+                        }
+
 
                         if (quantidade <= 0)
                         {
