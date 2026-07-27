@@ -31,12 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProdutos));
             btnHome = new Button();
             dgvDadosProdutos = new DataGridView();
-            lblNome = new Label();
             lblPreco = new Label();
             txtNome = new TextBox();
             txtValor = new TextBox();
             btnCadastrar = new Button();
-            pnlCadastro = new Panel();
             tlpCadastro = new TableLayoutPanel();
             lblProduto = new Label();
             tlpBtnTxtValor = new TableLayoutPanel();
@@ -55,7 +53,6 @@
             btnAtualizar = new Button();
             btnDeletar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDadosProdutos).BeginInit();
-            pnlCadastro.SuspendLayout();
             tlpCadastro.SuspendLayout();
             tlpBtnTxtValor.SuspendLayout();
             tlpTxtProduto.SuspendLayout();
@@ -83,7 +80,7 @@
             btnHome.Margin = new Padding(3, 4, 3, 4);
             btnHome.Name = "btnHome";
             btnHome.Size = new Size(115, 42);
-            btnHome.TabIndex = 0;
+            btnHome.TabIndex = 1;
             btnHome.Text = "Voltar";
             btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnHome_Click;
@@ -108,17 +105,8 @@
             dgvDadosProdutos.RowHeadersVisible = false;
             dgvDadosProdutos.RowHeadersWidth = 51;
             dgvDadosProdutos.Size = new Size(1042, 520);
-            dgvDadosProdutos.TabIndex = 5;
+            dgvDadosProdutos.TabIndex = 4;
             dgvDadosProdutos.CellFormatting += dgvDadosProdutos_CellFormatting;
-            // 
-            // lblNome
-            // 
-            lblNome.BackColor = Color.White;
-            lblNome.Font = new Font("Segoe UI", 10F);
-            lblNome.Location = new Point(17, 13);
-            lblNome.Name = "lblNome";
-            lblNome.Size = new Size(79, 33);
-            lblNome.TabIndex = 1;
             // 
             // lblPreco
             // 
@@ -127,10 +115,10 @@
             lblPreco.FlatStyle = FlatStyle.Flat;
             lblPreco.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPreco.ForeColor = Color.FromArgb(229, 55, 119);
-            lblPreco.Location = new Point(39, 96);
+            lblPreco.Location = new Point(39, 98);
             lblPreco.Name = "lblPreco";
-            lblPreco.Size = new Size(220, 48);
-            lblPreco.TabIndex = 1;
+            lblPreco.Size = new Size(220, 49);
+            lblPreco.TabIndex = 0;
             lblPreco.Text = "Valor do Produto:";
             lblPreco.TextAlign = ContentAlignment.MiddleRight;
             // 
@@ -146,7 +134,7 @@
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "Ex: Bolo";
             txtNome.Size = new Size(696, 27);
-            txtNome.TabIndex = 4;
+            txtNome.TabIndex = 1;
             // 
             // txtValor
             // 
@@ -160,7 +148,7 @@
             txtValor.Name = "txtValor";
             txtValor.PlaceholderText = "Ex: 9,99";
             txtValor.Size = new Size(547, 27);
-            txtValor.TabIndex = 5;
+            txtValor.TabIndex = 1;
             // 
             // btnCadastrar
             // 
@@ -176,23 +164,11 @@
             btnCadastrar.Location = new Point(566, 4);
             btnCadastrar.Margin = new Padding(3, 4, 3, 4);
             btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(133, 34);
-            btnCadastrar.TabIndex = 6;
+            btnCadastrar.Size = new Size(133, 35);
+            btnCadastrar.TabIndex = 2;
             btnCadastrar.Text = "Cadastrar";
             btnCadastrar.UseVisualStyleBackColor = false;
             btnCadastrar.Click += btnCadastrar_Click;
-            // 
-            // pnlCadastro
-            // 
-            pnlCadastro.BackColor = Color.FromArgb(253, 253, 255);
-            pnlCadastro.Controls.Add(tlpCadastro);
-            pnlCadastro.Controls.Add(lblNome);
-            pnlCadastro.Dock = DockStyle.Fill;
-            pnlCadastro.Location = new Point(638, 763);
-            pnlCadastro.Margin = new Padding(3, 4, 3, 4);
-            pnlCadastro.Name = "pnlCadastro";
-            pnlCadastro.Size = new Size(1042, 163);
-            pnlCadastro.TabIndex = 4;
             // 
             // tlpCadastro
             // 
@@ -208,7 +184,7 @@
             tlpCadastro.Controls.Add(lblPreco, 1, 3);
             tlpCadastro.Controls.Add(tlpTxtProduto, 3, 1);
             tlpCadastro.Dock = DockStyle.Fill;
-            tlpCadastro.Location = new Point(0, 0);
+            tlpCadastro.Location = new Point(638, 762);
             tlpCadastro.Name = "tlpCadastro";
             tlpCadastro.RowCount = 5;
             tlpCadastro.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
@@ -216,8 +192,8 @@
             tlpCadastro.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tlpCadastro.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             tlpCadastro.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tlpCadastro.Size = new Size(1042, 163);
-            tlpCadastro.TabIndex = 8;
+            tlpCadastro.Size = new Size(1042, 165);
+            tlpCadastro.TabIndex = 2;
             // 
             // lblProduto
             // 
@@ -229,8 +205,8 @@
             lblProduto.ForeColor = Color.FromArgb(229, 55, 119);
             lblProduto.Location = new Point(39, 16);
             lblProduto.Name = "lblProduto";
-            lblProduto.Size = new Size(220, 48);
-            lblProduto.TabIndex = 7;
+            lblProduto.Size = new Size(220, 49);
+            lblProduto.TabIndex = 0;
             lblProduto.Text = "Produto:";
             lblProduto.TextAlign = ContentAlignment.MiddleRight;
             // 
@@ -243,12 +219,12 @@
             tlpBtnTxtValor.Controls.Add(btnCadastrar, 2, 0);
             tlpBtnTxtValor.Controls.Add(txtValor, 0, 0);
             tlpBtnTxtValor.Dock = DockStyle.Fill;
-            tlpBtnTxtValor.Location = new Point(297, 99);
+            tlpBtnTxtValor.Location = new Point(297, 101);
             tlpBtnTxtValor.Name = "tlpBtnTxtValor";
             tlpBtnTxtValor.RowCount = 1;
             tlpBtnTxtValor.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpBtnTxtValor.Size = new Size(702, 42);
-            tlpBtnTxtValor.TabIndex = 8;
+            tlpBtnTxtValor.Size = new Size(702, 43);
+            tlpBtnTxtValor.TabIndex = 2;
             // 
             // tlpTxtProduto
             // 
@@ -262,8 +238,8 @@
             tlpTxtProduto.RowCount = 1;
             tlpTxtProduto.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpTxtProduto.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpTxtProduto.Size = new Size(702, 42);
-            tlpTxtProduto.TabIndex = 9;
+            tlpTxtProduto.Size = new Size(702, 43);
+            tlpTxtProduto.TabIndex = 1;
             // 
             // btnClientes
             // 
@@ -281,7 +257,7 @@
             btnClientes.Margin = new Padding(3, 4, 3, 4);
             btnClientes.Name = "btnClientes";
             btnClientes.Size = new Size(174, 58);
-            btnClientes.TabIndex = 2;
+            btnClientes.TabIndex = 3;
             btnClientes.Text = "Clientes";
             btnClientes.UseVisualStyleBackColor = false;
             btnClientes.Click += btnClientes_Click;
@@ -303,7 +279,7 @@
             btnProdutos.Margin = new Padding(3, 4, 3, 4);
             btnProdutos.Name = "btnProdutos";
             btnProdutos.Size = new Size(174, 58);
-            btnProdutos.TabIndex = 17;
+            btnProdutos.TabIndex = 1;
             btnProdutos.Text = "Produtos";
             btnProdutos.UseVisualStyleBackColor = false;
             // 
@@ -323,7 +299,7 @@
             btnPedidos.Margin = new Padding(3, 4, 3, 4);
             btnPedidos.Name = "btnPedidos";
             btnPedidos.Size = new Size(174, 58);
-            btnPedidos.TabIndex = 1;
+            btnPedidos.TabIndex = 2;
             btnPedidos.Text = "Pedidos";
             btnPedidos.UseVisualStyleBackColor = false;
             btnPedidos.Click += btnPedidos_Click;
@@ -338,7 +314,7 @@
             lblTitulo.Location = new Point(638, 62);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(1042, 58);
-            lblTitulo.TabIndex = 7;
+            lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Área de Cadastro de Produtos";
             lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -351,8 +327,7 @@
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar...";
             txtPesquisar.Size = new Size(1042, 34);
-            txtPesquisar.TabIndex = 3;
-            txtPesquisar.TabStop = false;
+            txtPesquisar.TabIndex = 1;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
             // btnEdicao
@@ -368,7 +343,7 @@
             btnEdicao.Margin = new Padding(3, 4, 3, 4);
             btnEdicao.Name = "btnEdicao";
             btnEdicao.Size = new Size(71, 71);
-            btnEdicao.TabIndex = 7;
+            btnEdicao.TabIndex = 1;
             btnEdicao.UseVisualStyleBackColor = true;
             btnEdicao.Click += btnEdicao_Click;
             // 
@@ -410,7 +385,7 @@
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 5.16264439F));
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 24.9204F));
             tlpNavegacao.Size = new Size(400, 1102);
-            tlpNavegacao.TabIndex = 23;
+            tlpNavegacao.TabIndex = 1;
             // 
             // tlpHome
             // 
@@ -425,7 +400,7 @@
             tlpHome.RowCount = 1;
             tlpHome.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpHome.Size = new Size(174, 50);
-            tlpHome.TabIndex = 19;
+            tlpHome.TabIndex = 4;
             // 
             // tlpPrincipal
             // 
@@ -438,8 +413,8 @@
             tlpPrincipal.Controls.Add(tlpEdicao, 3, 5);
             tlpPrincipal.Controls.Add(txtPesquisar, 2, 3);
             tlpPrincipal.Controls.Add(dgvDadosProdutos, 2, 5);
-            tlpPrincipal.Controls.Add(pnlCadastro, 2, 7);
             tlpPrincipal.Controls.Add(lblTitulo, 2, 1);
+            tlpPrincipal.Controls.Add(tlpCadastro, 2, 7);
             tlpPrincipal.Dock = DockStyle.Fill;
             tlpPrincipal.Location = new Point(0, 0);
             tlpPrincipal.Name = "tlpPrincipal";
@@ -454,7 +429,7 @@
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 16.25554F));
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 11.511F));
             tlpPrincipal.Size = new Size(1920, 1055);
-            tlpPrincipal.TabIndex = 23;
+            tlpPrincipal.TabIndex = 2;
             // 
             // tlpEdicao
             // 
@@ -476,7 +451,7 @@
             tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 14.7509575F));
             tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 52.29885F));
             tlpEdicao.Size = new Size(231, 522);
-            tlpEdicao.TabIndex = 24;
+            tlpEdicao.TabIndex = 3;
             // 
             // btnAtualizar
             // 
@@ -491,7 +466,7 @@
             btnAtualizar.Location = new Point(79, 90);
             btnAtualizar.Name = "btnAtualizar";
             btnAtualizar.Size = new Size(71, 71);
-            btnAtualizar.TabIndex = 8;
+            btnAtualizar.TabIndex = 2;
             btnAtualizar.UseVisualStyleBackColor = false;
             btnAtualizar.Click += btnAtualizar_Click;
             // 
@@ -508,7 +483,7 @@
             btnDeletar.Location = new Point(79, 175);
             btnDeletar.Name = "btnDeletar";
             btnDeletar.Size = new Size(71, 71);
-            btnDeletar.TabIndex = 9;
+            btnDeletar.TabIndex = 3;
             btnDeletar.UseVisualStyleBackColor = false;
             btnDeletar.Click += btnDeletar_Click;
             // 
@@ -527,7 +502,6 @@
             WindowState = FormWindowState.Maximized;
             Load += FrmProdutos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvDadosProdutos).EndInit();
-            pnlCadastro.ResumeLayout(false);
             tlpCadastro.ResumeLayout(false);
             tlpCadastro.PerformLayout();
             tlpBtnTxtValor.ResumeLayout(false);
@@ -548,12 +522,10 @@
 
         private Button btnHome;
         private DataGridView dgvDadosProdutos;
-        private Label lblNome;
         private Label lblPreco;
         private TextBox txtNome;
         private TextBox txtValor;
         private Button btnCadastrar;
-        private Panel pnlCadastro;
         private Button btnClientes;
         private Button btnProdutos;
         private Button btnPedidos;
