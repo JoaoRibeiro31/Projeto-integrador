@@ -50,12 +50,12 @@
             picLogin = new PictureBox();
             picSenha = new PictureBox();
             btnMostrarSenha = new Button();
-            pictureBox1 = new PictureBox();
+            picCoracao = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)picEmail).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCodigo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picLogin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picSenha).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picCoracao).BeginInit();
             SuspendLayout();
             // 
             // txtEmail
@@ -196,7 +196,7 @@
             // 
             lblTempoRestante.AutoSize = true;
             lblTempoRestante.BackColor = Color.Transparent;
-            lblTempoRestante.ForeColor = Color.Yellow;
+            lblTempoRestante.ForeColor = Color.Goldenrod;
             lblTempoRestante.Location = new Point(545, 175);
             lblTempoRestante.Name = "lblTempoRestante";
             lblTempoRestante.Size = new Size(0, 20);
@@ -292,16 +292,16 @@
             btnMostrarSenha.UseVisualStyleBackColor = true;
             btnMostrarSenha.Click += btnMostrarSenha_Click;
             // 
-            // pictureBox1
+            // picCoracao
             // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(220, 81);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(341, 29);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 17;
-            pictureBox1.TabStop = false;
+            picCoracao.BackColor = Color.Transparent;
+            picCoracao.Image = (Image)resources.GetObject("picCoracao.Image");
+            picCoracao.Location = new Point(220, 81);
+            picCoracao.Name = "picCoracao";
+            picCoracao.Size = new Size(341, 29);
+            picCoracao.SizeMode = PictureBoxSizeMode.Zoom;
+            picCoracao.TabIndex = 17;
+            picCoracao.TabStop = false;
             // 
             // FrmEsqueciSenha
             // 
@@ -312,7 +312,7 @@
             BackgroundImageLayout = ImageLayout.Center;
             CancelButton = btnVoltar;
             ClientSize = new Size(782, 553);
-            Controls.Add(pictureBox1);
+            Controls.Add(picCoracao);
             Controls.Add(btnMostrarSenha);
             Controls.Add(picSenha);
             Controls.Add(picLogin);
@@ -343,7 +343,7 @@
             ((System.ComponentModel.ISupportInitialize)picCodigo).EndInit();
             ((System.ComponentModel.ISupportInitialize)picLogin).EndInit();
             ((System.ComponentModel.ISupportInitialize)picSenha).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picCoracao).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -370,6 +370,6 @@
         private PictureBox picLogin;
         private PictureBox picSenha;
         private Button btnMostrarSenha;
-        private PictureBox pictureBox1;
+        private PictureBox picCoracao;
     }
 }

@@ -6,13 +6,13 @@ using System.Text.RegularExpressions;
 
 namespace Projeto_Valquiria
 {
-    public partial class FrmClientes : Form
+    public partial class frmClientes : Form
     {
         private string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
         private System.Windows.Forms.Timer timerPesquisa = new System.Windows.Forms.Timer();
         private bool editando = false;
 
-        public FrmClientes()
+        public frmClientes()
         {
             InitializeComponent();
             btnAtualizar.Visible = false;

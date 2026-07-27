@@ -738,7 +738,7 @@ namespace Projeto_Valquiria
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            FrmClientes tela = new FrmClientes();
+            frmClientes tela = new frmClientes();
             tela.Show();
             this.Hide();
         }

@@ -1,6 +1,6 @@
 ﻿namespace Projeto_Valquiria
 {
-    partial class FrmClientes
+    partial class frmClientes
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClientes));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClientes));
             dgvDadosClientes = new DataGridView();
             txtPesquisar = new TextBox();
             tlpPrincipal = new TableLayoutPanel();
@@ -83,7 +83,7 @@
             dgvDadosClientes.RowHeadersVisible = false;
             dgvDadosClientes.RowHeadersWidth = 51;
             dgvDadosClientes.Size = new Size(1042, 520);
-            dgvDadosClientes.TabIndex = 7;
+            dgvDadosClientes.TabIndex = 4;
             // 
             // txtPesquisar
             // 
@@ -94,8 +94,7 @@
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar...";
             txtPesquisar.Size = new Size(1042, 34);
-            txtPesquisar.TabIndex = 18;
-            txtPesquisar.TabStop = false;
+            txtPesquisar.TabIndex = 1;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
             // tlpPrincipal
@@ -125,7 +124,7 @@
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 16.2616253F));
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 11.51115F));
             tlpPrincipal.Size = new Size(1920, 1055);
-            tlpPrincipal.TabIndex = 22;
+            tlpPrincipal.TabIndex = 2;
             // 
             // lblTitulo
             // 
@@ -137,7 +136,7 @@
             lblTitulo.Location = new Point(638, 62);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(1042, 58);
-            lblTitulo.TabIndex = 21;
+            lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Área de Cadastro de Clientes";
             lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -164,7 +163,7 @@
             tlpCadastro.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             tlpCadastro.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             tlpCadastro.Size = new Size(1042, 165);
-            tlpCadastro.TabIndex = 22;
+            tlpCadastro.TabIndex = 2;
             // 
             // lblNome
             // 
@@ -177,7 +176,7 @@
             lblNome.Location = new Point(39, 16);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(100, 49);
-            lblNome.TabIndex = 7;
+            lblNome.TabIndex = 0;
             lblNome.Text = "Nome:";
             lblNome.TextAlign = ContentAlignment.MiddleRight;
             // 
@@ -195,7 +194,7 @@
             tlpBtnTxtValor.RowCount = 1;
             tlpBtnTxtValor.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpBtnTxtValor.Size = new Size(834, 43);
-            tlpBtnTxtValor.TabIndex = 8;
+            tlpBtnTxtValor.TabIndex = 2;
             // 
             // btnCadastrar
             // 
@@ -212,7 +211,7 @@
             btnCadastrar.Margin = new Padding(3, 4, 3, 4);
             btnCadastrar.Name = "btnCadastrar";
             btnCadastrar.Size = new Size(159, 35);
-            btnCadastrar.TabIndex = 6;
+            btnCadastrar.TabIndex = 2;
             btnCadastrar.Text = "Cadastrar";
             btnCadastrar.UseVisualStyleBackColor = false;
             btnCadastrar.Click += btnCadastrar_Click;
@@ -229,7 +228,7 @@
             txtContato.Name = "txtContato";
             txtContato.PlaceholderText = "Ex: (11) 91234-5678 ou contato@padariacentral.com";
             txtContato.Size = new Size(653, 27);
-            txtContato.TabIndex = 5;
+            txtContato.TabIndex = 1;
             // 
             // lblContato
             // 
@@ -241,7 +240,7 @@
             lblContato.Location = new Point(39, 98);
             lblContato.Name = "lblContato";
             lblContato.Size = new Size(100, 49);
-            lblContato.TabIndex = 1;
+            lblContato.TabIndex = 0;
             lblContato.Text = "Contato:";
             lblContato.TextAlign = ContentAlignment.MiddleRight;
             // 
@@ -258,7 +257,7 @@
             tlpTxtProduto.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpTxtProduto.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tlpTxtProduto.Size = new Size(834, 43);
-            tlpTxtProduto.TabIndex = 9;
+            tlpTxtProduto.TabIndex = 1;
             // 
             // txtNome
             // 
@@ -272,7 +271,7 @@
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "Ex: João Pereira";
             txtNome.Size = new Size(828, 27);
-            txtNome.TabIndex = 4;
+            txtNome.TabIndex = 1;
             // 
             // tlpEdicao
             // 
@@ -294,7 +293,7 @@
             tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 14.7509575F));
             tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 52.29885F));
             tlpEdicao.Size = new Size(231, 522);
-            tlpEdicao.TabIndex = 25;
+            tlpEdicao.TabIndex = 3;
             // 
             // btnEdicao
             // 
@@ -309,7 +308,7 @@
             btnEdicao.Margin = new Padding(3, 4, 3, 4);
             btnEdicao.Name = "btnEdicao";
             btnEdicao.Size = new Size(71, 71);
-            btnEdicao.TabIndex = 7;
+            btnEdicao.TabIndex = 1;
             btnEdicao.UseVisualStyleBackColor = true;
             btnEdicao.Click += btnEdicao_Click;
             // 
@@ -326,7 +325,7 @@
             btnAtualizar.Location = new Point(79, 90);
             btnAtualizar.Name = "btnAtualizar";
             btnAtualizar.Size = new Size(71, 71);
-            btnAtualizar.TabIndex = 8;
+            btnAtualizar.TabIndex = 2;
             btnAtualizar.UseVisualStyleBackColor = false;
             btnAtualizar.Click += btnAtualizar_Click;
             // 
@@ -343,7 +342,7 @@
             btnDeletar.Location = new Point(79, 175);
             btnDeletar.Name = "btnDeletar";
             btnDeletar.Size = new Size(71, 71);
-            btnDeletar.TabIndex = 9;
+            btnDeletar.TabIndex = 3;
             btnDeletar.UseVisualStyleBackColor = false;
             btnDeletar.Click += btnDeletar_Click;
             // 
@@ -385,7 +384,7 @@
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 5.16264439F));
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 24.9204F));
             tlpNavegacao.Size = new Size(400, 1102);
-            tlpNavegacao.TabIndex = 24;
+            tlpNavegacao.TabIndex = 1;
             // 
             // btnPedidos
             // 
@@ -403,7 +402,7 @@
             btnPedidos.Margin = new Padding(3, 4, 3, 4);
             btnPedidos.Name = "btnPedidos";
             btnPedidos.Size = new Size(174, 58);
-            btnPedidos.TabIndex = 1;
+            btnPedidos.TabIndex = 2;
             btnPedidos.Text = "Pedidos";
             btnPedidos.UseVisualStyleBackColor = false;
             btnPedidos.Click += btnPedidos_Click;
@@ -425,7 +424,7 @@
             btnClientes.Margin = new Padding(3, 4, 3, 4);
             btnClientes.Name = "btnClientes";
             btnClientes.Size = new Size(174, 58);
-            btnClientes.TabIndex = 2;
+            btnClientes.TabIndex = 1;
             btnClientes.Text = "Clientes";
             btnClientes.UseVisualStyleBackColor = false;
             // 
@@ -445,7 +444,7 @@
             btnProdutos.Margin = new Padding(3, 4, 3, 4);
             btnProdutos.Name = "btnProdutos";
             btnProdutos.Size = new Size(174, 58);
-            btnProdutos.TabIndex = 17;
+            btnProdutos.TabIndex = 3;
             btnProdutos.Text = "Produtos";
             btnProdutos.UseVisualStyleBackColor = false;
             btnProdutos.Click += btnProdutos_Click;
@@ -463,7 +462,7 @@
             tlpHome.RowCount = 1;
             tlpHome.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpHome.Size = new Size(174, 50);
-            tlpHome.TabIndex = 19;
+            tlpHome.TabIndex = 5;
             // 
             // btnHome
             // 
@@ -482,12 +481,12 @@
             btnHome.Margin = new Padding(3, 4, 3, 4);
             btnHome.Name = "btnHome";
             btnHome.Size = new Size(115, 42);
-            btnHome.TabIndex = 0;
+            btnHome.TabIndex = 1;
             btnHome.Text = "Voltar";
             btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnHome_Click;
             // 
-            // FrmClientes
+            // frmClientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -496,7 +495,7 @@
             Controls.Add(pnlNavegacao);
             Controls.Add(tlpPrincipal);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "FrmClientes";
+            Name = "frmClientes";
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Maximized;
             Load += FrmClientes_Load;
