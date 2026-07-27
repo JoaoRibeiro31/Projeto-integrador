@@ -177,7 +177,7 @@
             lblCodigo.AutoSize = true;
             lblCodigo.BackColor = Color.Transparent;
             lblCodigo.ForeColor = Color.FromArgb(27, 77, 136);
-            lblCodigo.Location = new Point(140, 220);
+            lblCodigo.Location = new Point(101, 207);
             lblCodigo.Name = "lblCodigo";
             lblCodigo.Size = new Size(61, 20);
             lblCodigo.TabIndex = 0;
@@ -288,7 +288,6 @@
             btnMostrarSenha.Name = "btnMostrarSenha";
             btnMostrarSenha.Size = new Size(32, 32);
             btnMostrarSenha.TabIndex = 6;
-            btnMostrarSenha.TabStop = false;
             btnMostrarSenha.UseVisualStyleBackColor = true;
             btnMostrarSenha.Click += btnMostrarSenha_Click;
             // 
