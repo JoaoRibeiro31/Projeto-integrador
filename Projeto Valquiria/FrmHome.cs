@@ -249,7 +249,7 @@ namespace Projeto_Valquiria
 
         private void btnPedidos_Click(object sender, EventArgs e)
         {
-            FrmPedidos tela = new FrmPedidos();
+            frmPedidos tela = new frmPedidos();
             tela.Show();
             this.Hide();
         }

@@ -1,6 +1,6 @@
 ﻿namespace Projeto_Valquiria
 {
-    partial class FrmPedidos
+    partial class frmPedidos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPedidos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPedidos));
             pnlNavegacao = new Panel();
             tlpNavegacao = new TableLayoutPanel();
             btnPedidos = new Button();
@@ -84,7 +84,7 @@
             pnlNavegacao.Margin = new Padding(3, 4, 3, 4);
             pnlNavegacao.Name = "pnlNavegacao";
             pnlNavegacao.Size = new Size(400, 1102);
-            pnlNavegacao.TabIndex = 15;
+            pnlNavegacao.TabIndex = 0;
             // 
             // tlpNavegacao
             // 
@@ -111,7 +111,7 @@
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 5.16264439F));
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 24.9204F));
             tlpNavegacao.Size = new Size(400, 1102);
-            tlpNavegacao.TabIndex = 25;
+            tlpNavegacao.TabIndex = 1;
             // 
             // btnPedidos
             // 
@@ -150,7 +150,7 @@
             btnClientes.Margin = new Padding(3, 4, 3, 4);
             btnClientes.Name = "btnClientes";
             btnClientes.Size = new Size(174, 58);
-            btnClientes.TabIndex = 2;
+            btnClientes.TabIndex = 3;
             btnClientes.Text = "Clientes";
             btnClientes.UseVisualStyleBackColor = false;
             btnClientes.Click += btnClientes_Click;
@@ -171,7 +171,7 @@
             btnProdutos.Margin = new Padding(3, 4, 3, 4);
             btnProdutos.Name = "btnProdutos";
             btnProdutos.Size = new Size(174, 58);
-            btnProdutos.TabIndex = 17;
+            btnProdutos.TabIndex = 2;
             btnProdutos.Text = "Produtos";
             btnProdutos.UseVisualStyleBackColor = false;
             btnProdutos.Click += btnProdutos_Click;
@@ -189,7 +189,7 @@
             tlpHome.RowCount = 1;
             tlpHome.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpHome.Size = new Size(174, 50);
-            tlpHome.TabIndex = 19;
+            tlpHome.TabIndex = 4;
             // 
             // btnHome
             // 
@@ -208,7 +208,7 @@
             btnHome.Margin = new Padding(3, 4, 3, 4);
             btnHome.Name = "btnHome";
             btnHome.Size = new Size(115, 42);
-            btnHome.TabIndex = 0;
+            btnHome.TabIndex = 1;
             btnHome.Text = "Voltar";
             btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnHome_Click;
@@ -228,7 +228,7 @@
             btnCadastrar.Margin = new Padding(3, 4, 3, 4);
             btnCadastrar.Name = "btnCadastrar";
             btnCadastrar.Size = new Size(175, 35);
-            btnCadastrar.TabIndex = 9;
+            btnCadastrar.TabIndex = 2;
             btnCadastrar.Text = "Cadastrar";
             btnCadastrar.UseVisualStyleBackColor = false;
             btnCadastrar.Click += btnCadastrar_Click_1;
@@ -243,7 +243,7 @@
             cmbProdutos.Margin = new Padding(3, 4, 3, 4);
             cmbProdutos.Name = "cmbProdutos";
             cmbProdutos.Size = new Size(296, 36);
-            cmbProdutos.TabIndex = 2;
+            cmbProdutos.TabIndex = 1;
             cmbProdutos.SelectedIndexChanged += cmbProdutos_SelectedIndexChanged_1;
             // 
             // txtQuantidade
@@ -254,7 +254,7 @@
             txtQuantidade.Margin = new Padding(3, 4, 3, 4);
             txtQuantidade.Name = "txtQuantidade";
             txtQuantidade.Size = new Size(102, 34);
-            txtQuantidade.TabIndex = 0;
+            txtQuantidade.TabIndex = 2;
             txtQuantidade.TextAlign = HorizontalAlignment.Center;
             txtQuantidade.TextChanged += txtQuantidade_TextChanged_1;
             // 
@@ -268,7 +268,7 @@
             lblValorTotal.Location = new Point(27, 0);
             lblValorTotal.Name = "lblValorTotal";
             lblValorTotal.Size = new Size(163, 43);
-            lblValorTotal.TabIndex = 6;
+            lblValorTotal.TabIndex = 0;
             lblValorTotal.Text = "Valor total:";
             lblValorTotal.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -281,7 +281,7 @@
             lblNome.Location = new Point(27, 0);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(139, 43);
-            lblNome.TabIndex = 10;
+            lblNome.TabIndex = 0;
             lblNome.Text = "Cliente:";
             lblNome.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -295,7 +295,7 @@
             cmbClientes.Margin = new Padding(3, 4, 3, 4);
             cmbClientes.Name = "cmbClientes";
             cmbClientes.Size = new Size(478, 36);
-            cmbClientes.TabIndex = 0;
+            cmbClientes.TabIndex = 1;
             cmbClientes.SelectedIndexChanged += cmbClientes_SelectedIndexChanged_1;
             // 
             // cmbStatus
@@ -308,7 +308,7 @@
             cmbStatus.Margin = new Padding(3, 4, 3, 4);
             cmbStatus.Name = "cmbStatus";
             cmbStatus.Size = new Size(199, 36);
-            cmbStatus.TabIndex = 11;
+            cmbStatus.TabIndex = 1;
             cmbStatus.Text = "Status";
             cmbStatus.SelectedIndexChanged += cmbStatus_SelectedIndexChanged;
             // 
@@ -321,7 +321,7 @@
             lblValorP.Location = new Point(497, 0);
             lblValorP.Name = "lblValorP";
             lblValorP.Size = new Size(187, 43);
-            lblValorP.TabIndex = 12;
+            lblValorP.TabIndex = 0;
             lblValorP.Text = "Valor do produto:";
             lblValorP.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -335,7 +335,7 @@
             lblQuantidade.Location = new Point(907, 0);
             lblQuantidade.Name = "lblQuantidade";
             lblQuantidade.Size = new Size(139, 43);
-            lblQuantidade.TabIndex = 12;
+            lblQuantidade.TabIndex = 0;
             lblQuantidade.Text = "Quantidade:";
             lblQuantidade.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -349,7 +349,7 @@
             lblValorProduto.Location = new Point(714, 0);
             lblValorProduto.Name = "lblValorProduto";
             lblValorProduto.Size = new Size(163, 43);
-            lblValorProduto.TabIndex = 12;
+            lblValorProduto.TabIndex = 0;
             lblValorProduto.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblContato
@@ -362,7 +362,7 @@
             lblContato.Location = new Point(752, 0);
             lblContato.Name = "lblContato";
             lblContato.Size = new Size(429, 43);
-            lblContato.TabIndex = 12;
+            lblContato.TabIndex = 0;
             lblContato.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblTotal
@@ -375,7 +375,7 @@
             lblTotal.Location = new Point(244, 0);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(344, 43);
-            lblTotal.TabIndex = 13;
+            lblTotal.TabIndex = 0;
             lblTotal.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblProduto
@@ -387,7 +387,7 @@
             lblProduto.Location = new Point(27, 0);
             lblProduto.Name = "lblProduto";
             lblProduto.Size = new Size(114, 43);
-            lblProduto.TabIndex = 14;
+            lblProduto.TabIndex = 0;
             lblProduto.Text = "Produto:";
             lblProduto.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -401,7 +401,7 @@
             lblTitulo.Location = new Point(469, 62);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(1216, 58);
-            lblTitulo.TabIndex = 11;
+            lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Área de Cadastro de Pedidos";
             lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -426,7 +426,7 @@
             dgvDadosPedidos.RowHeadersVisible = false;
             dgvDadosPedidos.RowHeadersWidth = 51;
             dgvDadosPedidos.Size = new Size(1216, 520);
-            dgvDadosPedidos.TabIndex = 14;
+            dgvDadosPedidos.TabIndex = 4;
             dgvDadosPedidos.CellFormatting += dgvDadosPedidos_CellFormatting;
             // 
             // txtPesquisar
@@ -438,8 +438,7 @@
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar...";
             txtPesquisar.Size = new Size(1216, 34);
-            txtPesquisar.TabIndex = 17;
-            txtPesquisar.TabStop = false;
+            txtPesquisar.TabIndex = 1;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
             // tlpPrincipal
@@ -469,7 +468,7 @@
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 16.2616253F));
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 11.51115F));
             tlpPrincipal.Size = new Size(1920, 1055);
-            tlpPrincipal.TabIndex = 24;
+            tlpPrincipal.TabIndex = 2;
             // 
             // tlpCadastro
             // 
@@ -491,7 +490,7 @@
             tlpCadastro.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             tlpCadastro.RowStyles.Add(new RowStyle(SizeType.Percent, 2.5F));
             tlpCadastro.Size = new Size(1216, 165);
-            tlpCadastro.TabIndex = 20;
+            tlpCadastro.TabIndex = 2;
             // 
             // tlpLinha1
             // 
@@ -512,7 +511,7 @@
             tlpLinha1.RowCount = 1;
             tlpLinha1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpLinha1.Size = new Size(1210, 43);
-            tlpLinha1.TabIndex = 0;
+            tlpLinha1.TabIndex = 1;
             // 
             // tlpLinha2
             // 
@@ -542,7 +541,7 @@
             tlpLinha2.RowCount = 1;
             tlpLinha2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpLinha2.Size = new Size(1210, 43);
-            tlpLinha2.TabIndex = 1;
+            tlpLinha2.TabIndex = 2;
             // 
             // tlpLinha3
             // 
@@ -566,7 +565,7 @@
             tlpLinha3.RowCount = 1;
             tlpLinha3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpLinha3.Size = new Size(1210, 43);
-            tlpLinha3.TabIndex = 2;
+            tlpLinha3.TabIndex = 3;
             // 
             // tlpEdicao
             // 
@@ -588,7 +587,8 @@
             tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 14.7509575F));
             tlpEdicao.RowStyles.Add(new RowStyle(SizeType.Percent, 52.29885F));
             tlpEdicao.Size = new Size(226, 522);
-            tlpEdicao.TabIndex = 26;
+            tlpEdicao.TabIndex = 3;
+            tlpEdicao.TabStop = true;
             // 
             // btnEdicao
             // 
@@ -603,7 +603,7 @@
             btnEdicao.Margin = new Padding(3, 4, 3, 4);
             btnEdicao.Name = "btnEdicao";
             btnEdicao.Size = new Size(69, 71);
-            btnEdicao.TabIndex = 7;
+            btnEdicao.TabIndex = 1;
             btnEdicao.UseVisualStyleBackColor = true;
             btnEdicao.Click += btnEdicao_Click;
             // 
@@ -620,7 +620,7 @@
             btnAtualizar.Location = new Point(78, 90);
             btnAtualizar.Name = "btnAtualizar";
             btnAtualizar.Size = new Size(69, 71);
-            btnAtualizar.TabIndex = 8;
+            btnAtualizar.TabIndex = 2;
             btnAtualizar.UseVisualStyleBackColor = false;
             btnAtualizar.Click += btnAtualizar_Click;
             // 
@@ -637,11 +637,11 @@
             btnDeletar.Location = new Point(78, 175);
             btnDeletar.Name = "btnDeletar";
             btnDeletar.Size = new Size(69, 71);
-            btnDeletar.TabIndex = 9;
+            btnDeletar.TabIndex = 3;
             btnDeletar.UseVisualStyleBackColor = false;
             btnDeletar.Click += btnDeletar_Click;
             // 
-            // FrmPedidos
+            // frmPedidos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -650,7 +650,7 @@
             Controls.Add(pnlNavegacao);
             Controls.Add(tlpPrincipal);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "FrmPedidos";
+            Name = "frmPedidos";
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Maximized;
             Load += FrmPedidos_Load_1;
