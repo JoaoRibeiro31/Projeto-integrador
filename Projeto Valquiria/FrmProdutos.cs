@@ -5,13 +5,13 @@ using MySql.Data.MySqlClient;
 
 namespace Projeto_Valquiria
 {
-    public partial class FrmProdutos : Form
+    public partial class frmProdutos : Form
     {
         private string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
         private System.Windows.Forms.Timer timerPesquisa = new System.Windows.Forms.Timer();
         private bool editando = false;
 
-        public FrmProdutos()
+        public frmProdutos()
         {
             InitializeComponent();
 
@@ -390,7 +390,7 @@ namespace Projeto_Valquiria
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            FrmHome tela = new FrmHome();
+            frmHome tela = new frmHome();
             tela.Show();
             this.Hide();
         }

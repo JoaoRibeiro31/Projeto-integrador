@@ -8,14 +8,14 @@ using Org.BouncyCastle.Asn1.Pkcs;
 
 namespace Projeto_Valquiria
 {
-    public partial class FrmHome : Form
+    public partial class frmHome : Form
     {
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
         DataTable tabela = new DataTable();
 
         private System.Windows.Forms.Timer timerPesquisa = new System.Windows.Forms.Timer();
 
-        public FrmHome()
+        public frmHome()
         {
             InitializeComponent();
 
@@ -242,7 +242,7 @@ namespace Projeto_Valquiria
         // ---------- NAVEGAÇÃO ----------
         private void btnProdutos_Click(object sender, EventArgs e)
         {
-            FrmProdutos tela = new FrmProdutos();
+            frmProdutos tela = new frmProdutos();
             tela.Show();
             this.Hide();
         }

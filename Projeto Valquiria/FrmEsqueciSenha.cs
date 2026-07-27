@@ -11,13 +11,13 @@ using System.Drawing.Drawing2D;
 
 namespace Projeto_Valquiria
 {
-    public partial class FrmEsqueciSenha : Form
+    public partial class frmEsqueciSenha : Form
     {
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
         DateTime ultimoEnvio;
         private const int TEMPO_MINIMO_ENVIO = 2; // minutos
 
-        public FrmEsqueciSenha()
+        public frmEsqueciSenha()
         {
             InitializeComponent();
         }

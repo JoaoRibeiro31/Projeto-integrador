@@ -105,7 +105,7 @@ namespace Projeto_Valquiria
                                             "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             // Abre a tela principal
-                            FrmHome home = new FrmHome();
+                            frmHome home = new frmHome();
                             home.Show();
                             this.Hide(); // Esconde a tela de login
                         }
@@ -128,7 +128,7 @@ namespace Projeto_Valquiria
         // ---------- ESQUECI A SENHA ----------
         private void btnEsqueci_Click(object sender, EventArgs e)
         {
-            FrmEsqueciSenha tela = new FrmEsqueciSenha();
+            frmEsqueciSenha tela = new frmEsqueciSenha();
             tela.ShowDialog();
         }
 

@@ -378,14 +378,14 @@ namespace Projeto_Valquiria
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
-            FrmProdutos tela = new FrmProdutos();
+            frmProdutos tela = new frmProdutos();
             tela.Show();
             this.Hide();
         }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            FrmHome tela = new FrmHome();
+            frmHome tela = new frmHome();
             tela.Show();
             this.Hide();
         }

@@ -1,6 +1,6 @@
 ﻿namespace Projeto_Valquiria
 {
-    partial class FrmHome
+    partial class frmHome
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHome));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHome));
             txtPesquisar = new TextBox();
             dgvPedidos = new DataGridView();
             pnlNavegacao = new Panel();
@@ -700,7 +700,7 @@
             timerDataHora.Interval = 1000;
             timerDataHora.Tick += timerDataHora_Tick;
             // 
-            // FrmHome
+            // frmHome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -709,7 +709,7 @@
             Controls.Add(pnlNavegacao);
             Controls.Add(tlpPrincipal);
             Margin = new Padding(3, 5, 3, 5);
-            Name = "FrmHome";
+            Name = "frmHome";
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Maximized;
             Load += Home_Load;

@@ -1,6 +1,6 @@
 ﻿namespace Projeto_Valquiria
 {
-    partial class FrmProdutos
+    partial class frmProdutos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProdutos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProdutos));
             btnHome = new Button();
             dgvDadosProdutos = new DataGridView();
             lblNome = new Label();
@@ -512,7 +512,7 @@
             btnDeletar.UseVisualStyleBackColor = false;
             btnDeletar.Click += btnDeletar_Click;
             // 
-            // FrmProdutos
+            // frmProdutos
             // 
             AcceptButton = btnCadastrar;
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -522,7 +522,7 @@
             Controls.Add(pnlNavegacao);
             Controls.Add(tlpPrincipal);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "FrmProdutos";
+            Name = "frmProdutos";
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Maximized;
             Load += FrmProdutos_Load;

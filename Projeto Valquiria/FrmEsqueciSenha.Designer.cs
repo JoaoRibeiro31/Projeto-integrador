@@ -1,6 +1,6 @@
 ﻿namespace Projeto_Valquiria
 {
-    partial class FrmEsqueciSenha
+    partial class frmEsqueciSenha
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEsqueciSenha));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEsqueciSenha));
             txtEmail = new TextBox();
             txtNovaSenha = new TextBox();
             lblEmail = new Label();
@@ -303,7 +303,7 @@
             picCoracao.TabIndex = 17;
             picCoracao.TabStop = false;
             // 
-            // FrmEsqueciSenha
+            // frmEsqueciSenha
             // 
             AcceptButton = btnAtualizar;
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -336,7 +336,7 @@
             Margin = new Padding(3, 4, 3, 4);
             MaximumSize = new Size(960, 720);
             MinimumSize = new Size(640, 480);
-            Name = "FrmEsqueciSenha";
+            Name = "frmEsqueciSenha";
             StartPosition = FormStartPosition.CenterScreen;
             Load += FrmEsqueciSenha_Load;
             ((System.ComponentModel.ISupportInitialize)picEmail).EndInit();
