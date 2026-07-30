@@ -39,6 +39,32 @@ namespace Projeto_Valquiria
             // Borda arredondada
             UIHelper.ArredondarBorda(btnEntrar, 40);
             UIHelper.ArredondarBorda(tlpLogin, 40);
+
+            using (MySqlConnection conn = new MySqlConnection(conexao))
+            {
+                try
+                {
+                    conn.Open();
+
+                    string sqlCheck = "SELECT COUNT(*) FROM login";
+                    MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
+                    int qtdUsuarios = Convert.ToInt32(cmdCheck.ExecuteScalar());
+
+                    if (qtdUsuarios == 0)
+                    {
+                        frmCadastrarLogin frm = new frmCadastrarLogin();
+                        frm.ShowDialog();
+                    }
+                    else
+                    {
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErroHelper.MostrarErro("Erro", "Não foi possível verificar usuários.");
+                    ErroHelper.LogErro(ex);
+                }
+            }
         }
 
         // ---------- GERAR HASH ----------
