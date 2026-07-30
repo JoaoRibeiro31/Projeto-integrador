@@ -4,22 +4,22 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Configuration;
 
-
 namespace Projeto_Valquiria
 {
-    public partial class frmEsqueciSenha : Form
+    public partial class frmCadastrarLogin : Form
     {
-        string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
-        DateTime ultimoEnvio;
-        private const int TEMPO_MINIMO_ENVIO = 2; // minutos
-
-        public frmEsqueciSenha()
+        public frmCadastrarLogin()
         {
             InitializeComponent();
         }
 
+        string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
+        DateTime ultimoEnvio;
+        private const int TEMPO_MINIMO_ENVIO = 2; // minutos
+
+
         // ---------- LOAD ----------
-        private void FrmEsqueciSenha_Load(object sender, EventArgs e)
+        private void frmCadastrarLogin_Load(object sender, EventArgs e)
         {
             try
             {
@@ -39,8 +39,8 @@ namespace Projeto_Valquiria
             txtNovaSenha.UseSystemPasswordChar = true;
 
             // Borda arredondada
-            UIHelper.ArredondarBorda(this,40);
-            UIHelper.ArredondarBorda(btnAtualizar, 40);
+            UIHelper.ArredondarBorda(this, 40);
+            UIHelper.ArredondarBorda(btnCadastrar, 40);
         }
 
         // ---------- GERAR HASH ----------
@@ -190,7 +190,7 @@ Equipe Projeto Valquíria";
             }
         }
         // ---------- ATUALIZAR LOGIN ----------
-        private void btnAtualizar_Click(object sender, EventArgs e)
+        private void btnCadastrar_Click(object sender, EventArgs e)
         {
             List<TextBox> camposFaltando = new List<TextBox>();
             if (string.IsNullOrWhiteSpace(txtEmail.Text)) camposFaltando.Add(txtEmail);
