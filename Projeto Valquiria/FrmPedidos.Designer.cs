@@ -653,6 +653,7 @@
             Name = "frmPedidos";
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Maximized;
+            FormClosed += frmPedidos_FormClosed;
             Load += FrmPedidos_Load_1;
             pnlNavegacao.ResumeLayout(false);
             tlpNavegacao.ResumeLayout(false);

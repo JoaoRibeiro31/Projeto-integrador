@@ -749,5 +749,10 @@ namespace Projeto_Valquiria
             tela.Show();
             this.Hide();
         }
+
+        private void frmPedidos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

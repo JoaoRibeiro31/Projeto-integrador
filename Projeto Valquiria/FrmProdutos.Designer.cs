@@ -500,6 +500,7 @@
             Name = "frmProdutos";
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Maximized;
+            FormClosed += frmProdutos_FormClosed;
             Load += FrmProdutos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvDadosProdutos).EndInit();
             tlpCadastro.ResumeLayout(false);

@@ -196,7 +196,7 @@ namespace Projeto_Valquiria
                     decimal valor = resultado != DBNull.Value ? Convert.ToDecimal(resultado) : 0;
                     lblDadosPendencias.Text = valor.ToString("C", new CultureInfo("pt-BR"));
                 }
-                catch (Exception erro) 
+                catch (Exception erro)
                 {
                     MessageBox.Show("Erro ao carregar os dados: " + erro.Message,
                                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -291,6 +291,11 @@ namespace Projeto_Valquiria
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
             ) == DialogResult.Yes;
+        }
+
+        private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

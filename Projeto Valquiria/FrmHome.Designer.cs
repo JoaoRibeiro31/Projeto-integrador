@@ -712,6 +712,7 @@
             Name = "frmHome";
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Maximized;
+            FormClosed += frmHome_FormClosed;
             Load += Home_Load;
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).EndInit();
             pnlNavegacao.ResumeLayout(false);

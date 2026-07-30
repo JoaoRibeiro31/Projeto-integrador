@@ -389,5 +389,10 @@ namespace Projeto_Valquiria
             tela.Show();
             this.Hide();
         }
+
+        private void frmClientes_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
