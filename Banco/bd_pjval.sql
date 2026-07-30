@@ -2,15 +2,20 @@ DROP DATABASE IF EXISTS bd_pjval;
 CREATE DATABASE bd_pjval;
 USE bd_pjval;
 
+	CREATE TABLE cadastro_temp (
+		id INT AUTO_INCREMENT PRIMARY KEY,
+		email VARCHAR(250) NOT NULL,
+		reset_code VARCHAR(10) NOT NULL,
+		reset_expiration DATETIME NOT NULL,
+		reset_last_sent DATETIME NOT NULL
+	);
+
 -- Tabela de login preparada para SHA256
 CREATE TABLE login (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario VARCHAR(20) NOT NULL UNIQUE,
     senha CHAR(64) NOT NULL,
-    email VARCHAR(250) NOT NULL UNIQUE,
-    reset_code VARCHAR(10),
-    reset_expiration DATETIME,
-    reset_last_sent DATETIME NULL
+    email VARCHAR(250) NOT NULL UNIQUE
 );
 
 CREATE TABLE produtos (
@@ -37,10 +42,6 @@ CREATE TABLE pedidos (
     FOREIGN KEY (cliente_id) REFERENCES clientes(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
--- Usuário administrador inicial
-INSERT INTO login (usuario, senha, email)
-VALUES ('adm', LOWER(CONVERT(SHA2('12345678', 256) USING utf8)), 'jjoaovvitor999@gmail.com');
 
 -- 70 clientes
 INSERT INTO clientes (nome, contato) VALUES
