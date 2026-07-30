@@ -81,57 +81,19 @@ namespace Projeto_Valquiria
                 {
                     conn.Open();
 
-                    // Verifica se o e-mail existe
-                    string sqlCheck = "SELECT COUNT(*) FROM login WHERE email=@email";
-                    MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
-                    cmdCheck.Parameters.AddWithValue("@email", email);
-                    int existe = Convert.ToInt32(cmdCheck.ExecuteScalar());
-
-                    if (existe == 0)
-                    {
-                        txtEmail.BackColor = Color.Khaki;
-                        txtEmail.Enter += (s, ev) => txtEmail.BackColor = Color.White;
-                        ErroHelper.MostrarAviso("E-mail não encontrado no sistema.");
-                        return;
-                    }
-
-                    // Verifica tempo mínimo
-                    string sqlTempo = "SELECT reset_last_sent FROM login WHERE email=@email";
-                    MySqlCommand cmdTempo = new MySqlCommand(sqlTempo, conn);
-                    cmdTempo.Parameters.AddWithValue("@email", email);
-                    object lastSentObj = cmdTempo.ExecuteScalar();
-
-                    if (lastSentObj != DBNull.Value)
-                    {
-                        DateTime lastSent = Convert.ToDateTime(lastSentObj);
-                        TimeSpan diff = DateTime.Now - lastSent;
-
-                        if (diff.TotalMinutes < TEMPO_MINIMO_ENVIO)
-                        {
-                            int restante = (int)(TEMPO_MINIMO_ENVIO * 60 - diff.TotalSeconds);
-                            lblTempoRestante.Text = $"Aguarde {restante / 60:D2}:{restante % 60:D2} para novo envio";
-                            ErroHelper.MostrarAviso("Você precisa esperar antes de enviar outro código.");
-                            ultimoEnvio = lastSent;
-                            btnEnviarCodigo.Enabled = false;
-                            timerEnvio.Start();
-                            return;
-                        }
-                    }
-
                     // Gera código
                     string codigo = new Random().Next(100000, 999999).ToString();
                     DateTime validade = DateTime.Now.AddMinutes(10);
 
-                    // Atualiza no banco
-                    string sqlUpdate = @"UPDATE login 
-                                         SET reset_code=@codigo, reset_expiration=@validade, reset_last_sent=@agora 
-                                         WHERE email=@email";
-                    MySqlCommand cmdUpdate = new MySqlCommand(sqlUpdate, conn);
-                    cmdUpdate.Parameters.AddWithValue("@codigo", codigo);
-                    cmdUpdate.Parameters.AddWithValue("@validade", validade);
-                    cmdUpdate.Parameters.AddWithValue("@agora", DateTime.Now);
-                    cmdUpdate.Parameters.AddWithValue("@email", email);
-                    cmdUpdate.ExecuteNonQuery();
+                    // Salva apenas código e validade (sem cadastrar email definitivo)
+                    string sqlInsert = @"INSERT INTO cadastro_temp (email, reset_code, reset_expiration, reset_last_sent)
+                                 VALUES (@email, @codigo, @validade, @agora)";
+                    MySqlCommand cmdInsert = new MySqlCommand(sqlInsert, conn);
+                    cmdInsert.Parameters.AddWithValue("@email", email);
+                    cmdInsert.Parameters.AddWithValue("@codigo", codigo);
+                    cmdInsert.Parameters.AddWithValue("@validade", validade);
+                    cmdInsert.Parameters.AddWithValue("@agora", DateTime.Now);
+                    cmdInsert.ExecuteNonQuery();
 
                     // Configura e-mail
                     string emailUser = ConfigurationManager.AppSettings["EmailUser"];
@@ -140,20 +102,17 @@ namespace Projeto_Valquiria
                     MailMessage mail = new MailMessage();
                     mail.From = new MailAddress(emailUser);
                     mail.To.Add(email);
-                    mail.Subject = "Redefinição de senha - Projeto Valquíria";
+                    mail.Subject = "Confirmação de cadastro - Projeto Valquíria";
                     mail.Body = $@"Olá,
 
-Recebemos uma solicitação para redefinir sua senha no sistema do aplicativo Valquíria Gomes.
+Recebemos uma solicitação de cadastro no sistema Valquíria Gomes.
 Aqui está o seu código de verificação:
 
 Código: {codigo}
-Esse código irá expirar em 10 minutos.
-
-Se você não deseja redefinir sua senha, apenas ignore esta mensagem.
+Esse código expira em 10 minutos.
 
 Atenciosamente,
 Equipe Projeto Valquíria";
-
 
                     SmtpClient smtp = new SmtpClient("smtp.gmail.com")
                     {
@@ -168,11 +127,13 @@ Equipe Projeto Valquíria";
                     timerEnvio.Start();
 
                     smtp.Send(mail);
-                    ErroHelper.MostrarSucesso("Código enviado para o e-mail cadastrado!");
+                    ErroHelper.MostrarSucesso("Código enviado para o e-mail informado!");
                 }
-                catch (MySqlException ex) { ErroHelper.MostrarErro("Erro MySQL", "Problema ao acessar o banco."); ErroHelper.LogErro(ex); }
-                catch (SmtpException ex) { ErroHelper.MostrarErro("Erro SMTP", "Problema ao enviar e-mail."); ErroHelper.LogErro(ex); }
-                catch (Exception ex) { ErroHelper.MostrarErro("Erro inesperado", "Ocorreu um problema."); ErroHelper.LogErro(ex); }
+                catch (Exception ex)
+                {
+                    ErroHelper.MostrarErro("Erro", "Ocorreu um problema ao enviar o código.");
+                    ErroHelper.LogErro(ex);
+                }
             }
         }
 
@@ -189,7 +150,8 @@ Equipe Projeto Valquíria";
                 timerEnvio.Stop();
             }
         }
-        // ---------- ATUALIZAR LOGIN ----------
+
+        // ---------- CADASTRAR LOGIN ----------
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             List<TextBox> camposFaltando = new List<TextBox>();
@@ -230,9 +192,10 @@ Equipe Projeto Valquíria";
                 {
                     conn.Open();
 
-                    string sqlCheck = @"SELECT COUNT(*) FROM login 
-                                        WHERE email=@email AND reset_code=@codigo 
-                                        AND reset_expiration > NOW()";
+                    // Verifica se o código é válido na tabela temporária
+                    string sqlCheck = @"SELECT COUNT(*) FROM cadastro_temp 
+                                WHERE email=@email AND reset_code=@codigo 
+                                AND reset_expiration > NOW()";
                     MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
                     cmdCheck.Parameters.AddWithValue("@email", email);
                     cmdCheck.Parameters.AddWithValue("@codigo", codigo);
@@ -244,27 +207,32 @@ Equipe Projeto Valquíria";
                         return;
                     }
 
-                    string sqlUpdate = @"UPDATE login 
-                                         SET usuario=@usuario, senha=@senha, 
-                                             reset_code=NULL, reset_expiration=NULL 
-                                         WHERE email=@email AND reset_code=@codigo";
-                    MySqlCommand cmdUpdate = new MySqlCommand(sqlUpdate, conn);
-                    cmdUpdate.Parameters.AddWithValue("@usuario", usuario);
-                    cmdUpdate.Parameters.AddWithValue("@senha", senhaHash);
-                    cmdUpdate.Parameters.AddWithValue("@email", email);
-                    cmdUpdate.Parameters.AddWithValue("@codigo", codigo);
-                    cmdUpdate.ExecuteNonQuery();
+                    // Insere usuário definitivo na tabela login
+                    string sqlInsertLogin = @"INSERT INTO login (usuario, senha, email) 
+                                      VALUES (@usuario, @senha, @email)";
+                    MySqlCommand cmdInsertLogin = new MySqlCommand(sqlInsertLogin, conn);
+                    cmdInsertLogin.Parameters.AddWithValue("@usuario", usuario);
+                    cmdInsertLogin.Parameters.AddWithValue("@senha", senhaHash);
+                    cmdInsertLogin.Parameters.AddWithValue("@email", email);
+                    cmdInsertLogin.ExecuteNonQuery();
 
-                    ErroHelper.MostrarSucesso("Login e senha atualizados com sucesso!");
+                    // Remove registro temporário
+                    string sqlDeleteTemp = @"DELETE FROM cadastro_temp WHERE email=@email";
+                    MySqlCommand cmdDeleteTemp = new MySqlCommand(sqlDeleteTemp, conn);
+                    cmdDeleteTemp.Parameters.AddWithValue("@email", email);
+                    cmdDeleteTemp.ExecuteNonQuery();
+
+                    ErroHelper.MostrarSucesso("Cadastro realizado com sucesso!");
                     this.Close();
                 }
                 catch (Exception ex)
                 {
-                    ErroHelper.MostrarErro("Erro", "Ocorreu um problema ao atualizar os dados.");
+                    ErroHelper.MostrarErro("Erro", "Ocorreu um problema ao cadastrar.");
                     ErroHelper.LogErro(ex);
                 }
             }
         }
+
 
         // ---------- VOLTAR ----------
         private void btnVoltar_Click(object sender, EventArgs e)
