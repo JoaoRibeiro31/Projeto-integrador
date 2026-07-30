@@ -90,7 +90,7 @@ namespace Projeto_Valquiria
                                  VALUES (@email, @codigo, @validade, @agora)";
                     MySqlCommand cmdInsert = new MySqlCommand(sqlInsert, conn);
                     cmdInsert.Parameters.AddWithValue("@email", email);
-                    cmdInsert.Parameters.AddWithValue("@codigo", codigo);
+                    cmdInsert.Parameters.AddWithValue("@codigo", codigo);   
                     cmdInsert.Parameters.AddWithValue("@validade", validade);
                     cmdInsert.Parameters.AddWithValue("@agora", DateTime.Now);
                     cmdInsert.ExecuteNonQuery();

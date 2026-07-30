@@ -45,7 +45,7 @@
             btnVoltar = new Button();
             txtLogin = new TextBox();
             btnCadastrar = new Button();
-            lblNovaSenha = new Label();
+            lblSenha = new Label();
             lblLogin = new Label();
             lblEmail = new Label();
             txtEmail = new TextBox();
@@ -243,16 +243,16 @@
             btnCadastrar.UseVisualStyleBackColor = false;
             btnCadastrar.Click += btnCadastrar_Click;
             // 
-            // lblNovaSenha
+            // lblSenha
             // 
-            lblNovaSenha.AutoSize = true;
-            lblNovaSenha.BackColor = Color.Transparent;
-            lblNovaSenha.ForeColor = Color.FromArgb(27, 77, 136);
-            lblNovaSenha.Location = new Point(98, 347);
-            lblNovaSenha.Name = "lblNovaSenha";
-            lblNovaSenha.Size = new Size(91, 20);
-            lblNovaSenha.TabIndex = 20;
-            lblNovaSenha.Text = "Nova Senha:";
+            lblSenha.AutoSize = true;
+            lblSenha.BackColor = Color.Transparent;
+            lblSenha.ForeColor = Color.FromArgb(27, 77, 136);
+            lblSenha.Location = new Point(98, 347);
+            lblSenha.Name = "lblSenha";
+            lblSenha.Size = new Size(52, 20);
+            lblSenha.TabIndex = 20;
+            lblSenha.Text = "Senha:";
             // 
             // lblLogin
             // 
@@ -326,7 +326,7 @@
             Controls.Add(btnVoltar);
             Controls.Add(txtLogin);
             Controls.Add(btnCadastrar);
-            Controls.Add(lblNovaSenha);
+            Controls.Add(lblSenha);
             Controls.Add(lblLogin);
             Controls.Add(lblEmail);
             Controls.Add(txtEmail);
@@ -363,7 +363,7 @@
         private Button btnVoltar;
         private TextBox txtLogin;
         private Button btnCadastrar;
-        private Label lblNovaSenha;
+        private Label lblSenha;
         private Label lblLogin;
         private Label lblEmail;
         private TextBox txtEmail;
