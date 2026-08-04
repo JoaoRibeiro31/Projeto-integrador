@@ -9,6 +9,14 @@ USE bd_pjval;
 		reset_expiration DATETIME NOT NULL,
 		reset_last_sent DATETIME NOT NULL
 	);
+    
+    CREATE TABLE cadastro_tempN (
+		id INT AUTO_INCREMENT PRIMARY KEY,
+		email VARCHAR(250) NOT NULL,
+		reset_code VARCHAR(10) NOT NULL,
+		reset_expiration DATETIME NOT NULL,
+		reset_last_sent DATETIME NOT NULL
+	);
 
 -- Tabela de login preparada para SHA256
 CREATE TABLE login (
