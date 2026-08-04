@@ -30,9 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAtualizarEmail));
             picCoracao = new PictureBox();
-            btnMostrarSenha = new Button();
-            picSenha = new PictureBox();
-            picLogin = new PictureBox();
+            picCodigoN = new PictureBox();
+            picEmailN = new PictureBox();
             picCodigo = new PictureBox();
             picEmail = new PictureBox();
             lblRodape = new Label();
@@ -42,22 +41,25 @@
             lblCodigo = new Label();
             btnEnviarCodigo = new Button();
             btnVoltar = new Button();
-            txtLogin = new TextBox();
-            btnCadastrar = new Button();
-            lblSenha = new Label();
-            lblLogin = new Label();
+            txtEmailN = new TextBox();
+            btnAtualizar = new Button();
+            lblCodigoN = new Label();
+            lblEmailN = new Label();
             lblEmail = new Label();
             txtEmail = new TextBox();
-            txtNovaSenha = new TextBox();
+            txtCodigoN = new TextBox();
+            btnEnviarCodigoN = new Button();
+            lblTempoRestanteN = new Label();
             ((System.ComponentModel.ISupportInitialize)picCoracao).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picSenha).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picLogin).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picCodigoN).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picEmailN).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCodigo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picEmail).BeginInit();
             SuspendLayout();
             // 
             // picCoracao
             // 
+            picCoracao.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             picCoracao.BackColor = Color.Transparent;
             picCoracao.Image = (Image)resources.GetObject("picCoracao.Image");
             picCoracao.Location = new Point(215, 85);
@@ -67,48 +69,34 @@
             picCoracao.TabIndex = 57;
             picCoracao.TabStop = false;
             // 
-            // btnMostrarSenha
+            // picCodigoN
             // 
-            btnMostrarSenha.Cursor = Cursors.Hand;
-            btnMostrarSenha.FlatAppearance.BorderSize = 0;
-            btnMostrarSenha.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 0, 0, 0);
-            btnMostrarSenha.FlatStyle = FlatStyle.Flat;
-            btnMostrarSenha.ForeColor = Color.Transparent;
-            btnMostrarSenha.Image = Properties.Resources.olhofechado;
-            btnMostrarSenha.Location = new Point(665, 345);
-            btnMostrarSenha.Name = "btnMostrarSenha";
-            btnMostrarSenha.Size = new Size(32, 32);
-            btnMostrarSenha.TabIndex = 49;
-            btnMostrarSenha.UseVisualStyleBackColor = true;
+            picCodigoN.Anchor = AnchorStyles.None;
+            picCodigoN.BackColor = Color.Transparent;
+            picCodigoN.Image = (Image)resources.GetObject("picCodigoN.Image");
+            picCodigoN.Location = new Point(56, 340);
+            picCodigoN.Name = "picCodigoN";
+            picCodigoN.Size = new Size(45, 45);
+            picCodigoN.TabIndex = 56;
+            picCodigoN.TabStop = false;
             // 
-            // picSenha
+            // picEmailN
             // 
-            picSenha.Anchor = AnchorStyles.None;
-            picSenha.BackColor = Color.Transparent;
-            picSenha.Image = (Image)resources.GetObject("picSenha.Image");
-            picSenha.Location = new Point(45, 337);
-            picSenha.Name = "picSenha";
-            picSenha.Size = new Size(45, 45);
-            picSenha.TabIndex = 56;
-            picSenha.TabStop = false;
-            // 
-            // picLogin
-            // 
-            picLogin.Anchor = AnchorStyles.None;
-            picLogin.BackColor = Color.Transparent;
-            picLogin.Image = (Image)resources.GetObject("picLogin.Image");
-            picLogin.Location = new Point(45, 267);
-            picLogin.Name = "picLogin";
-            picLogin.Size = new Size(45, 45);
-            picLogin.TabIndex = 55;
-            picLogin.TabStop = false;
+            picEmailN.Anchor = AnchorStyles.None;
+            picEmailN.BackColor = Color.Transparent;
+            picEmailN.Image = (Image)resources.GetObject("picEmailN.Image");
+            picEmailN.Location = new Point(56, 270);
+            picEmailN.Name = "picEmailN";
+            picEmailN.Size = new Size(45, 45);
+            picEmailN.TabIndex = 55;
+            picEmailN.TabStop = false;
             // 
             // picCodigo
             // 
             picCodigo.Anchor = AnchorStyles.None;
             picCodigo.BackColor = Color.Transparent;
             picCodigo.Image = (Image)resources.GetObject("picCodigo.Image");
-            picCodigo.Location = new Point(45, 197);
+            picCodigo.Location = new Point(56, 195);
             picCodigo.Name = "picCodigo";
             picCodigo.Size = new Size(45, 45);
             picCodigo.TabIndex = 54;
@@ -119,7 +107,7 @@
             picEmail.Anchor = AnchorStyles.None;
             picEmail.BackColor = Color.Transparent;
             picEmail.Image = (Image)resources.GetObject("picEmail.Image");
-            picEmail.Location = new Point(45, 127);
+            picEmail.Location = new Point(56, 125);
             picEmail.Name = "picEmail";
             picEmail.Size = new Size(45, 45);
             picEmail.TabIndex = 53;
@@ -127,6 +115,7 @@
             // 
             // lblRodape
             // 
+            lblRodape.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblRodape.BackColor = Color.Transparent;
             lblRodape.ForeColor = Color.FromArgb(27, 77, 136);
             lblRodape.Image = (Image)resources.GetObject("lblRodape.Image");
@@ -140,6 +129,7 @@
             // 
             // lblTitulo
             // 
+            lblTitulo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblTitulo.AutoSize = true;
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 30F);
@@ -162,7 +152,7 @@
             // 
             // txtCodigo
             // 
-            txtCodigo.Location = new Point(202, 208);
+            txtCodigo.Location = new Point(202, 204);
             txtCodigo.MaxLength = 10;
             txtCodigo.Name = "txtCodigo";
             txtCodigo.PlaceholderText = "Digite o código recebido";
@@ -174,7 +164,7 @@
             lblCodigo.AutoSize = true;
             lblCodigo.BackColor = Color.Transparent;
             lblCodigo.ForeColor = Color.FromArgb(27, 77, 136);
-            lblCodigo.Location = new Point(96, 209);
+            lblCodigo.Location = new Point(110, 207);
             lblCodigo.Name = "lblCodigo";
             lblCodigo.Size = new Size(61, 20);
             lblCodigo.TabIndex = 43;
@@ -187,7 +177,7 @@
             btnEnviarCodigo.FlatStyle = FlatStyle.Popup;
             btnEnviarCodigo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnEnviarCodigo.ForeColor = Color.White;
-            btnEnviarCodigo.Location = new Point(540, 137);
+            btnEnviarCodigo.Location = new Point(540, 133);
             btnEnviarCodigo.Name = "btnEnviarCodigo";
             btnEnviarCodigo.Size = new Size(119, 29);
             btnEnviarCodigo.TabIndex = 45;
@@ -210,69 +200,70 @@
             btnVoltar.Text = " ";
             btnVoltar.UseVisualStyleBackColor = false;
             // 
-            // txtLogin
+            // txtEmailN
             // 
-            txtLogin.Location = new Point(202, 278);
-            txtLogin.Margin = new Padding(3, 4, 3, 4);
-            txtLogin.MaxLength = 20;
-            txtLogin.Name = "txtLogin";
-            txtLogin.PlaceholderText = "Digite um novo nome de Login";
-            txtLogin.Size = new Size(457, 27);
-            txtLogin.TabIndex = 47;
+            txtEmailN.Location = new Point(202, 279);
+            txtEmailN.Margin = new Padding(3, 4, 3, 4);
+            txtEmailN.MaxLength = 20;
+            txtEmailN.Name = "txtEmailN";
+            txtEmailN.PlaceholderText = "Digite um novo email de login";
+            txtEmailN.Size = new Size(332, 27);
+            txtEmailN.TabIndex = 47;
             // 
-            // btnCadastrar
+            // btnAtualizar
             // 
-            btnCadastrar.BackColor = Color.FromArgb(124, 175, 238);
-            btnCadastrar.FlatAppearance.BorderSize = 0;
-            btnCadastrar.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
-            btnCadastrar.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
-            btnCadastrar.FlatStyle = FlatStyle.Flat;
-            btnCadastrar.Font = new Font("Segoe UI", 14F);
-            btnCadastrar.ForeColor = Color.White;
-            btnCadastrar.Location = new Point(290, 409);
-            btnCadastrar.Margin = new Padding(3, 4, 3, 4);
-            btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(193, 56);
-            btnCadastrar.TabIndex = 50;
-            btnCadastrar.Text = "Cadastrar";
-            btnCadastrar.UseVisualStyleBackColor = false;
+            btnAtualizar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnAtualizar.BackColor = Color.FromArgb(124, 175, 238);
+            btnAtualizar.FlatAppearance.BorderSize = 0;
+            btnAtualizar.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
+            btnAtualizar.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
+            btnAtualizar.FlatStyle = FlatStyle.Flat;
+            btnAtualizar.Font = new Font("Segoe UI", 14F);
+            btnAtualizar.ForeColor = Color.White;
+            btnAtualizar.Location = new Point(290, 409);
+            btnAtualizar.Margin = new Padding(3, 4, 3, 4);
+            btnAtualizar.Name = "btnAtualizar";
+            btnAtualizar.Size = new Size(193, 56);
+            btnAtualizar.TabIndex = 50;
+            btnAtualizar.Text = "Atualizar";
+            btnAtualizar.UseVisualStyleBackColor = false;
             // 
-            // lblSenha
+            // lblCodigoN
             // 
-            lblSenha.AutoSize = true;
-            lblSenha.BackColor = Color.Transparent;
-            lblSenha.ForeColor = Color.FromArgb(27, 77, 136);
-            lblSenha.Location = new Point(96, 349);
-            lblSenha.Name = "lblSenha";
-            lblSenha.Size = new Size(52, 20);
-            lblSenha.TabIndex = 40;
-            lblSenha.Text = "Senha:";
+            lblCodigoN.AutoSize = true;
+            lblCodigoN.BackColor = Color.Transparent;
+            lblCodigoN.ForeColor = Color.FromArgb(27, 77, 136);
+            lblCodigoN.Location = new Point(110, 352);
+            lblCodigoN.Name = "lblCodigoN";
+            lblCodigoN.Size = new Size(61, 20);
+            lblCodigoN.TabIndex = 40;
+            lblCodigoN.Text = "Código:";
             // 
-            // lblLogin
+            // lblEmailN
             // 
-            lblLogin.AutoSize = true;
-            lblLogin.BackColor = Color.Transparent;
-            lblLogin.ForeColor = Color.FromArgb(27, 77, 136);
-            lblLogin.Location = new Point(96, 279);
-            lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(49, 20);
-            lblLogin.TabIndex = 39;
-            lblLogin.Text = "Login:";
+            lblEmailN.AutoSize = true;
+            lblEmailN.BackColor = Color.Transparent;
+            lblEmailN.ForeColor = Color.FromArgb(27, 77, 136);
+            lblEmailN.Location = new Point(110, 282);
+            lblEmailN.Name = "lblEmailN";
+            lblEmailN.Size = new Size(89, 20);
+            lblEmailN.TabIndex = 39;
+            lblEmailN.Text = "Novo Email:";
             // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
             lblEmail.BackColor = Color.Transparent;
             lblEmail.ForeColor = Color.FromArgb(27, 77, 136);
-            lblEmail.Location = new Point(96, 139);
+            lblEmail.Location = new Point(110, 137);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(49, 20);
+            lblEmail.Size = new Size(86, 20);
             lblEmail.TabIndex = 38;
-            lblEmail.Text = "Email:";
+            lblEmail.Text = "Email atual:";
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(202, 138);
+            txtEmail.Location = new Point(202, 134);
             txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.MaxLength = 250;
             txtEmail.Name = "txtEmail";
@@ -281,29 +272,54 @@
             txtEmail.TabIndex = 44;
             txtEmail.WordWrap = false;
             // 
-            // txtNovaSenha
+            // txtCodigoN
             // 
-            txtNovaSenha.Location = new Point(202, 348);
-            txtNovaSenha.Margin = new Padding(3, 4, 3, 4);
-            txtNovaSenha.MaxLength = 10;
-            txtNovaSenha.Name = "txtNovaSenha";
-            txtNovaSenha.PlaceholderText = "Digite uma Senha de até 10 digitos";
-            txtNovaSenha.Size = new Size(457, 27);
-            txtNovaSenha.TabIndex = 48;
+            txtCodigoN.Location = new Point(202, 349);
+            txtCodigoN.MaxLength = 10;
+            txtCodigoN.Name = "txtCodigoN";
+            txtCodigoN.PlaceholderText = "Digite o código recebido";
+            txtCodigoN.Size = new Size(457, 27);
+            txtCodigoN.TabIndex = 58;
+            // 
+            // btnEnviarCodigoN
+            // 
+            btnEnviarCodigoN.BackColor = Color.FromArgb(230, 116, 165);
+            btnEnviarCodigoN.FlatAppearance.BorderSize = 0;
+            btnEnviarCodigoN.FlatStyle = FlatStyle.Popup;
+            btnEnviarCodigoN.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnEnviarCodigoN.ForeColor = Color.White;
+            btnEnviarCodigoN.Location = new Point(540, 278);
+            btnEnviarCodigoN.Name = "btnEnviarCodigoN";
+            btnEnviarCodigoN.Size = new Size(119, 29);
+            btnEnviarCodigoN.TabIndex = 59;
+            btnEnviarCodigoN.Text = "Enviar Código";
+            btnEnviarCodigoN.UseVisualStyleBackColor = false;
+            // 
+            // lblTempoRestanteN
+            // 
+            lblTempoRestanteN.AutoSize = true;
+            lblTempoRestanteN.BackColor = Color.Transparent;
+            lblTempoRestanteN.ForeColor = Color.Goldenrod;
+            lblTempoRestanteN.Location = new Point(540, 394);
+            lblTempoRestanteN.Name = "lblTempoRestanteN";
+            lblTempoRestanteN.Size = new Size(0, 20);
+            lblTempoRestanteN.TabIndex = 60;
             // 
             // frmAtualizarEmail
             // 
-            AcceptButton = btnCadastrar;
+            AcceptButton = btnAtualizar;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(230, 242, 254);
             BackgroundImageLayout = ImageLayout.Center;
             CancelButton = btnVoltar;
             ClientSize = new Size(782, 553);
+            Controls.Add(lblTempoRestanteN);
+            Controls.Add(btnEnviarCodigoN);
+            Controls.Add(txtCodigoN);
             Controls.Add(picCoracao);
-            Controls.Add(btnMostrarSenha);
-            Controls.Add(picSenha);
-            Controls.Add(picLogin);
+            Controls.Add(picCodigoN);
+            Controls.Add(picEmailN);
             Controls.Add(picCodigo);
             Controls.Add(picEmail);
             Controls.Add(lblRodape);
@@ -313,21 +329,20 @@
             Controls.Add(lblCodigo);
             Controls.Add(btnEnviarCodigo);
             Controls.Add(btnVoltar);
-            Controls.Add(txtLogin);
-            Controls.Add(btnCadastrar);
-            Controls.Add(lblSenha);
-            Controls.Add(lblLogin);
+            Controls.Add(txtEmailN);
+            Controls.Add(btnAtualizar);
+            Controls.Add(lblCodigoN);
+            Controls.Add(lblEmailN);
             Controls.Add(lblEmail);
             Controls.Add(txtEmail);
-            Controls.Add(txtNovaSenha);
             FormBorderStyle = FormBorderStyle.None;
             MaximumSize = new Size(960, 720);
             MinimumSize = new Size(640, 480);
             Name = "frmAtualizarEmail";
             StartPosition = FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)picCoracao).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picSenha).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picLogin).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picCodigoN).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picEmailN).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCodigo).EndInit();
             ((System.ComponentModel.ISupportInitialize)picEmail).EndInit();
             ResumeLayout(false);
@@ -337,9 +352,8 @@
         #endregion
 
         private PictureBox picCoracao;
-        private Button btnMostrarSenha;
-        private PictureBox picSenha;
-        private PictureBox picLogin;
+        private PictureBox picCodigoN;
+        private PictureBox picEmailN;
         private PictureBox picCodigo;
         private PictureBox picEmail;
         private Label lblRodape;
@@ -349,12 +363,14 @@
         private Label lblCodigo;
         private Button btnEnviarCodigo;
         private Button btnVoltar;
-        private TextBox txtLogin;
-        private Button btnCadastrar;
-        private Label lblSenha;
-        private Label lblLogin;
+        private TextBox txtEmailN;
+        private Button btnAtualizar;
+        private Label lblCodigoN;
+        private Label lblEmailN;
         private Label lblEmail;
         private TextBox txtEmail;
-        private TextBox txtNovaSenha;
+        private TextBox txtCodigoN;
+        private Button btnEnviarCodigoN;
+        private Label lblTempoRestanteN;
     }
 }

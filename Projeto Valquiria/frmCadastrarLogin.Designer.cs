@@ -42,7 +42,6 @@
             txtCodigo = new TextBox();
             lblCodigo = new Label();
             btnEnviarCodigo = new Button();
-            btnVoltar = new Button();
             txtLogin = new TextBox();
             btnCadastrar = new Button();
             lblSenha = new Label();
@@ -165,7 +164,7 @@
             // 
             // txtCodigo
             // 
-            txtCodigo.Location = new Point(204, 204);
+            txtCodigo.Location = new Point(202, 204);
             txtCodigo.MaxLength = 10;
             txtCodigo.Name = "txtCodigo";
             txtCodigo.PlaceholderText = "Digite o código recebido";
@@ -177,7 +176,7 @@
             lblCodigo.AutoSize = true;
             lblCodigo.BackColor = Color.Transparent;
             lblCodigo.ForeColor = Color.FromArgb(27, 77, 136);
-            lblCodigo.Location = new Point(98, 207);
+            lblCodigo.Location = new Point(110, 207);
             lblCodigo.Name = "lblCodigo";
             lblCodigo.Size = new Size(61, 20);
             lblCodigo.TabIndex = 23;
@@ -198,26 +197,9 @@
             btnEnviarCodigo.UseVisualStyleBackColor = false;
             btnEnviarCodigo.Click += btnEnviarCodigo_Click;
             // 
-            // btnVoltar
-            // 
-            btnVoltar.BackColor = Color.FromArgb(230, 242, 254);
-            btnVoltar.BackgroundImage = (Image)resources.GetObject("btnVoltar.BackgroundImage");
-            btnVoltar.BackgroundImageLayout = ImageLayout.Zoom;
-            btnVoltar.FlatAppearance.BorderSize = 0;
-            btnVoltar.FlatStyle = FlatStyle.Flat;
-            btnVoltar.ForeColor = Color.Transparent;
-            btnVoltar.Location = new Point(697, 25);
-            btnVoltar.Margin = new Padding(3, 4, 3, 4);
-            btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(52, 53);
-            btnVoltar.TabIndex = 31;
-            btnVoltar.Text = " ";
-            btnVoltar.UseVisualStyleBackColor = false;
-            btnVoltar.Click += btnVoltar_Click;
-            // 
             // txtLogin
             // 
-            txtLogin.Location = new Point(204, 274);
+            txtLogin.Location = new Point(202, 274);
             txtLogin.Margin = new Padding(3, 4, 3, 4);
             txtLogin.MaxLength = 20;
             txtLogin.Name = "txtLogin";
@@ -248,7 +230,7 @@
             lblSenha.AutoSize = true;
             lblSenha.BackColor = Color.Transparent;
             lblSenha.ForeColor = Color.FromArgb(27, 77, 136);
-            lblSenha.Location = new Point(98, 347);
+            lblSenha.Location = new Point(110, 347);
             lblSenha.Name = "lblSenha";
             lblSenha.Size = new Size(52, 20);
             lblSenha.TabIndex = 20;
@@ -259,7 +241,7 @@
             lblLogin.AutoSize = true;
             lblLogin.BackColor = Color.Transparent;
             lblLogin.ForeColor = Color.FromArgb(27, 77, 136);
-            lblLogin.Location = new Point(98, 277);
+            lblLogin.Location = new Point(110, 277);
             lblLogin.Name = "lblLogin";
             lblLogin.Size = new Size(49, 20);
             lblLogin.TabIndex = 19;
@@ -270,7 +252,7 @@
             lblEmail.AutoSize = true;
             lblEmail.BackColor = Color.Transparent;
             lblEmail.ForeColor = Color.FromArgb(27, 77, 136);
-            lblEmail.Location = new Point(98, 137);
+            lblEmail.Location = new Point(110, 137);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(49, 20);
             lblEmail.TabIndex = 18;
@@ -278,7 +260,7 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(204, 134);
+            txtEmail.Location = new Point(202, 134);
             txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.MaxLength = 250;
             txtEmail.Name = "txtEmail";
@@ -289,7 +271,7 @@
             // 
             // txtNovaSenha
             // 
-            txtNovaSenha.Location = new Point(204, 344);
+            txtNovaSenha.Location = new Point(202, 344);
             txtNovaSenha.Margin = new Padding(3, 4, 3, 4);
             txtNovaSenha.MaxLength = 10;
             txtNovaSenha.Name = "txtNovaSenha";
@@ -309,7 +291,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(230, 242, 254);
             BackgroundImageLayout = ImageLayout.Center;
-            CancelButton = btnVoltar;
             ClientSize = new Size(782, 553);
             Controls.Add(picCoracao);
             Controls.Add(btnMostrarSenha);
@@ -323,7 +304,6 @@
             Controls.Add(txtCodigo);
             Controls.Add(lblCodigo);
             Controls.Add(btnEnviarCodigo);
-            Controls.Add(btnVoltar);
             Controls.Add(txtLogin);
             Controls.Add(btnCadastrar);
             Controls.Add(lblSenha);
@@ -360,7 +340,6 @@
         private TextBox txtCodigo;
         private Label lblCodigo;
         private Button btnEnviarCodigo;
-        private Button btnVoltar;
         private TextBox txtLogin;
         private Button btnCadastrar;
         private Label lblSenha;

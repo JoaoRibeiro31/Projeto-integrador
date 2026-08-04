@@ -313,6 +313,7 @@
             btnConfiguracao.Size = new Size(81, 64);
             btnConfiguracao.TabIndex = 0;
             btnConfiguracao.UseVisualStyleBackColor = true;
+            btnConfiguracao.Click += btnConfiguracao_Click;
             // 
             // lblTitulo
             // 

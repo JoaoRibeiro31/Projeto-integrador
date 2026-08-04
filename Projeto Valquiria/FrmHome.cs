@@ -261,6 +261,11 @@ namespace Projeto_Valquiria
             this.Hide();
         }
 
+        private void btnConfiguracao_Click(object sender, EventArgs e)
+        {
+            frmAtualizarEmail tela = new frmAtualizarEmail();
+            tela.ShowDialog();
+        }
         // ---------- PESQUISA COM DELAY ----------
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
