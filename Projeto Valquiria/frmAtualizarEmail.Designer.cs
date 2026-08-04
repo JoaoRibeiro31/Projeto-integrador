@@ -183,6 +183,7 @@
             btnEnviarCodigo.TabIndex = 45;
             btnEnviarCodigo.Text = "Enviar Código";
             btnEnviarCodigo.UseVisualStyleBackColor = false;
+            btnEnviarCodigo.Click += btnEnviarCodigo_Click;
             // 
             // btnVoltar
             // 
@@ -199,6 +200,7 @@
             btnVoltar.TabIndex = 51;
             btnVoltar.Text = " ";
             btnVoltar.UseVisualStyleBackColor = false;
+            btnVoltar.Click += btnVoltar_Click;
             // 
             // txtEmailN
             // 
@@ -227,6 +229,7 @@
             btnAtualizar.TabIndex = 50;
             btnAtualizar.Text = "Atualizar";
             btnAtualizar.UseVisualStyleBackColor = false;
+            btnAtualizar.Click += btnAtualizar_Click;
             // 
             // lblCodigoN
             // 
@@ -294,6 +297,7 @@
             btnEnviarCodigoN.TabIndex = 59;
             btnEnviarCodigoN.Text = "Enviar Código";
             btnEnviarCodigoN.UseVisualStyleBackColor = false;
+            btnEnviarCodigoN.Click += btnEnviarCodigoN_Click;
             // 
             // lblTempoRestanteN
             // 
@@ -340,6 +344,7 @@
             MinimumSize = new Size(640, 480);
             Name = "frmAtualizarEmail";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += frmAtualizarEmail_Load;
             ((System.ComponentModel.ISupportInitialize)picCoracao).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCodigoN).EndInit();
             ((System.ComponentModel.ISupportInitialize)picEmailN).EndInit();

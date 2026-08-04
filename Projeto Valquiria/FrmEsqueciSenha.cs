@@ -11,7 +11,7 @@ namespace Projeto_Valquiria
     {
         string conexao = "Server=localhost;Database=bd_pjval;Uid=root;Pwd=;";
         DateTime ultimoEnvio;
-        private const int TEMPO_MINIMO_ENVIO = 2; // minutos
+        private const int TEMPO_MINIMO_ENVIO = 2;
 
         public frmEsqueciSenha()
         {
@@ -25,7 +25,7 @@ namespace Projeto_Valquiria
             {
                 using (MySqlConnection conn = new MySqlConnection(conexao))
                 {
-                    conn.Open(); // tenta abrir a conexão
+                    conn.Open();
                 }
             }
             catch (MySqlException ex)
