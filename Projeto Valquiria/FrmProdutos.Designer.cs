@@ -68,6 +68,7 @@
             btnHome.AccessibleRole = AccessibleRole.None;
             btnHome.BackColor = Color.FromArgb(255, 254, 254);
             btnHome.BackgroundImageLayout = ImageLayout.Zoom;
+            btnHome.Cursor = Cursors.Hand;
             btnHome.Dock = DockStyle.Fill;
             btnHome.FlatAppearance.BorderSize = 0;
             btnHome.FlatAppearance.MouseDownBackColor = Color.FromArgb(182, 184, 183);
@@ -245,6 +246,7 @@
             // 
             btnClientes.BackColor = Color.FromArgb(251, 141, 188);
             btnClientes.BackgroundImageLayout = ImageLayout.Zoom;
+            btnClientes.Cursor = Cursors.Hand;
             btnClientes.Dock = DockStyle.Fill;
             btnClientes.FlatAppearance.BorderSize = 0;
             btnClientes.FlatAppearance.MouseDownBackColor = Color.FromArgb(166, 84, 118);
@@ -287,6 +289,7 @@
             // 
             btnPedidos.BackColor = Color.FromArgb(251, 141, 188);
             btnPedidos.BackgroundImageLayout = ImageLayout.Zoom;
+            btnPedidos.Cursor = Cursors.Hand;
             btnPedidos.Dock = DockStyle.Fill;
             btnPedidos.FlatAppearance.BorderSize = 0;
             btnPedidos.FlatAppearance.MouseDownBackColor = Color.FromArgb(166, 84, 118);
@@ -459,6 +462,7 @@
             btnAtualizar.BackColor = Color.Transparent;
             btnAtualizar.BackgroundImage = (Image)resources.GetObject("btnAtualizar.BackgroundImage");
             btnAtualizar.BackgroundImageLayout = ImageLayout.Zoom;
+            btnAtualizar.Cursor = Cursors.Hand;
             btnAtualizar.Dock = DockStyle.Fill;
             btnAtualizar.FlatAppearance.BorderSize = 0;
             btnAtualizar.FlatStyle = FlatStyle.Flat;
@@ -476,6 +480,7 @@
             btnDeletar.BackColor = Color.Transparent;
             btnDeletar.BackgroundImage = (Image)resources.GetObject("btnDeletar.BackgroundImage");
             btnDeletar.BackgroundImageLayout = ImageLayout.Zoom;
+            btnDeletar.Cursor = Cursors.Hand;
             btnDeletar.Dock = DockStyle.Fill;
             btnDeletar.FlatAppearance.BorderSize = 0;
             btnDeletar.FlatStyle = FlatStyle.Flat;

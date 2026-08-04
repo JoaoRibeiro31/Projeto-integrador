@@ -39,6 +39,8 @@
             btnClientes = new Button();
             tlpBtnFecharApp = new TableLayoutPanel();
             btnFecharApp = new Button();
+            tlpConfiguracao = new TableLayoutPanel();
+            btnConfiguracao = new Button();
             lblTitulo = new Label();
             tlpPrincipal = new TableLayoutPanel();
             tlpTituloSubtitulo = new TableLayoutPanel();
@@ -74,6 +76,7 @@
             pnlNavegacao.SuspendLayout();
             tlpNavegacao.SuspendLayout();
             tlpBtnFecharApp.SuspendLayout();
+            tlpConfiguracao.SuspendLayout();
             tlpPrincipal.SuspendLayout();
             tlpTituloSubtitulo.SuspendLayout();
             tlpDataHora.SuspendLayout();
@@ -103,7 +106,7 @@
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar...";
             txtPesquisar.Size = new Size(1042, 30);
-            txtPesquisar.TabIndex = 4;
+            txtPesquisar.TabIndex = 1;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
             // dgvPedidos
@@ -141,7 +144,7 @@
             pnlNavegacao.Margin = new Padding(3, 5, 3, 5);
             pnlNavegacao.Name = "pnlNavegacao";
             pnlNavegacao.Size = new Size(400, 1080);
-            pnlNavegacao.TabIndex = 16;
+            pnlNavegacao.TabIndex = 1;
             // 
             // tlpNavegacao
             // 
@@ -154,6 +157,7 @@
             tlpNavegacao.Controls.Add(btnProdutos, 1, 3);
             tlpNavegacao.Controls.Add(btnClientes, 1, 5);
             tlpNavegacao.Controls.Add(tlpBtnFecharApp, 1, 7);
+            tlpNavegacao.Controls.Add(tlpConfiguracao, 1, 6);
             tlpNavegacao.Dock = DockStyle.Fill;
             tlpNavegacao.Location = new Point(0, 0);
             tlpNavegacao.Name = "tlpNavegacao";
@@ -168,12 +172,13 @@
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 5.172414F));
             tlpNavegacao.RowStyles.Add(new RowStyle(SizeType.Percent, 24.954628F));
             tlpNavegacao.Size = new Size(400, 1080);
-            tlpNavegacao.TabIndex = 18;
+            tlpNavegacao.TabIndex = 1;
             // 
             // btnPedidos
             // 
             btnPedidos.BackColor = Color.FromArgb(251, 141, 188);
             btnPedidos.BackgroundImageLayout = ImageLayout.Zoom;
+            btnPedidos.Cursor = Cursors.Hand;
             btnPedidos.Dock = DockStyle.Fill;
             btnPedidos.FlatAppearance.BorderSize = 0;
             btnPedidos.FlatAppearance.MouseDownBackColor = Color.FromArgb(166, 84, 118);
@@ -186,7 +191,7 @@
             btnPedidos.Margin = new Padding(3, 5, 3, 5);
             btnPedidos.Name = "btnPedidos";
             btnPedidos.Size = new Size(174, 54);
-            btnPedidos.TabIndex = 0;
+            btnPedidos.TabIndex = 2;
             btnPedidos.Text = "Pedidos";
             btnPedidos.UseVisualStyleBackColor = false;
             btnPedidos.Click += btnPedidos_Click;
@@ -195,6 +200,7 @@
             // 
             btnProdutos.BackColor = Color.FromArgb(103, 172, 241);
             btnProdutos.BackgroundImageLayout = ImageLayout.Zoom;
+            btnProdutos.Cursor = Cursors.Hand;
             btnProdutos.Dock = DockStyle.Fill;
             btnProdutos.FlatAppearance.BorderSize = 0;
             btnProdutos.FlatAppearance.MouseDownBackColor = Color.FromArgb(62, 118, 173);
@@ -207,7 +213,7 @@
             btnProdutos.Margin = new Padding(3, 5, 3, 5);
             btnProdutos.Name = "btnProdutos";
             btnProdutos.Size = new Size(174, 54);
-            btnProdutos.TabIndex = 1;
+            btnProdutos.TabIndex = 3;
             btnProdutos.Text = "Produtos";
             btnProdutos.UseVisualStyleBackColor = false;
             btnProdutos.Click += btnProdutos_Click;
@@ -216,6 +222,7 @@
             // 
             btnClientes.BackColor = Color.FromArgb(251, 141, 188);
             btnClientes.BackgroundImageLayout = ImageLayout.Zoom;
+            btnClientes.Cursor = Cursors.Hand;
             btnClientes.Dock = DockStyle.Fill;
             btnClientes.FlatAppearance.BorderSize = 0;
             btnClientes.FlatAppearance.MouseDownBackColor = Color.FromArgb(166, 84, 118);
@@ -228,7 +235,7 @@
             btnClientes.Margin = new Padding(3, 5, 3, 5);
             btnClientes.Name = "btnClientes";
             btnClientes.Size = new Size(174, 54);
-            btnClientes.TabIndex = 6;
+            btnClientes.TabIndex = 4;
             btnClientes.Text = "Clientes";
             btnClientes.UseVisualStyleBackColor = false;
             btnClientes.Click += btnClientes_Click;
@@ -247,12 +254,13 @@
             tlpBtnFecharApp.RowCount = 1;
             tlpBtnFecharApp.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpBtnFecharApp.Size = new Size(174, 49);
-            tlpBtnFecharApp.TabIndex = 7;
+            tlpBtnFecharApp.TabIndex = 6;
             // 
             // btnFecharApp
             // 
             btnFecharApp.BackColor = Color.FromArgb(255, 254, 254);
             btnFecharApp.BackgroundImageLayout = ImageLayout.Zoom;
+            btnFecharApp.Cursor = Cursors.Hand;
             btnFecharApp.Dock = DockStyle.Fill;
             btnFecharApp.FlatAppearance.BorderSize = 0;
             btnFecharApp.FlatAppearance.MouseDownBackColor = Color.FromArgb(182, 184, 183);
@@ -265,10 +273,46 @@
             btnFecharApp.Margin = new Padding(3, 5, 3, 5);
             btnFecharApp.Name = "btnFecharApp";
             btnFecharApp.Size = new Size(105, 39);
-            btnFecharApp.TabIndex = 3;
+            btnFecharApp.TabIndex = 0;
             btnFecharApp.Text = "Sair";
             btnFecharApp.UseVisualStyleBackColor = false;
             btnFecharApp.Click += btnFecharApp_Click;
+            // 
+            // tlpConfiguracao
+            // 
+            tlpConfiguracao.ColumnCount = 3;
+            tlpConfiguracao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpConfiguracao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpConfiguracao.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpConfiguracao.Controls.Add(btnConfiguracao, 1, 1);
+            tlpConfiguracao.Dock = DockStyle.Fill;
+            tlpConfiguracao.Location = new Point(113, 604);
+            tlpConfiguracao.Name = "tlpConfiguracao";
+            tlpConfiguracao.RowCount = 3;
+            tlpConfiguracao.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tlpConfiguracao.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpConfiguracao.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tlpConfiguracao.Size = new Size(174, 145);
+            tlpConfiguracao.TabIndex = 5;
+            tlpConfiguracao.TabStop = true;
+            // 
+            // btnConfiguracao
+            // 
+            btnConfiguracao.BackgroundImage = (Image)resources.GetObject("btnConfiguracao.BackgroundImage");
+            btnConfiguracao.BackgroundImageLayout = ImageLayout.Zoom;
+            btnConfiguracao.Cursor = Cursors.Hand;
+            btnConfiguracao.Dock = DockStyle.Fill;
+            btnConfiguracao.FlatAppearance.BorderSize = 0;
+            btnConfiguracao.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnConfiguracao.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnConfiguracao.FlatStyle = FlatStyle.Flat;
+            btnConfiguracao.ForeColor = SystemColors.ControlText;
+            btnConfiguracao.Location = new Point(46, 40);
+            btnConfiguracao.Margin = new Padding(3, 4, 3, 4);
+            btnConfiguracao.Name = "btnConfiguracao";
+            btnConfiguracao.Size = new Size(81, 64);
+            btnConfiguracao.TabIndex = 0;
+            btnConfiguracao.UseVisualStyleBackColor = true;
             // 
             // lblTitulo
             // 
@@ -280,7 +324,7 @@
             lblTitulo.Location = new Point(3, 0);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(421, 51);
-            lblTitulo.TabIndex = 17;
+            lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Bem-vinda!";
             lblTitulo.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -308,7 +352,7 @@
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 61.50495F));
             tlpPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 19.18812F));
             tlpPrincipal.Size = new Size(1920, 1055);
-            tlpPrincipal.TabIndex = 18;
+            tlpPrincipal.TabIndex = 2;
             // 
             // tlpTituloSubtitulo
             // 
@@ -326,7 +370,7 @@
             tlpTituloSubtitulo.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpTituloSubtitulo.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpTituloSubtitulo.Size = new Size(1042, 102);
-            tlpTituloSubtitulo.TabIndex = 18;
+            tlpTituloSubtitulo.TabIndex = 0;
             // 
             // lblSubtitulo
             // 
@@ -336,7 +380,7 @@
             lblSubtitulo.Location = new Point(3, 51);
             lblSubtitulo.Name = "lblSubtitulo";
             lblSubtitulo.Size = new Size(421, 51);
-            lblSubtitulo.TabIndex = 18;
+            lblSubtitulo.TabIndex = 0;
             lblSubtitulo.Text = "Escolha uma opção no menu ao lado para começar.";
             lblSubtitulo.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -360,7 +404,7 @@
             tlpDataHora.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpDataHora.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tlpDataHora.Size = new Size(422, 45);
-            tlpDataHora.TabIndex = 20;
+            tlpDataHora.TabIndex = 0;
             // 
             // picData
             // 
@@ -429,7 +473,7 @@
             tlpDados.RowStyles.Add(new RowStyle(SizeType.Percent, 62.5F));
             tlpDados.RowStyles.Add(new RowStyle(SizeType.Percent, 18.75F));
             tlpDados.Size = new Size(1042, 198);
-            tlpDados.TabIndex = 19;
+            tlpDados.TabIndex = 0;
             // 
             // tlpDadosPedidos
             // 
@@ -473,7 +517,7 @@
             tlpLblPedidos.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpLblPedidos.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpLblPedidos.Size = new Size(131, 111);
-            tlpLblPedidos.TabIndex = 1;
+            tlpLblPedidos.TabIndex = 0;
             // 
             // lblDadosPedidos
             // 
@@ -494,7 +538,7 @@
             lblTlpPedidos.Location = new Point(3, 55);
             lblTlpPedidos.Name = "lblTlpPedidos";
             lblTlpPedidos.Size = new Size(125, 46);
-            lblTlpPedidos.TabIndex = 1;
+            lblTlpPedidos.TabIndex = 0;
             lblTlpPedidos.Text = "Pedidos \r\npendentes";
             // 
             // tlpDadosProdutos
@@ -512,7 +556,7 @@
             tlpDadosProdutos.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpDadosProdutos.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tlpDadosProdutos.Size = new Size(228, 117);
-            tlpDadosProdutos.TabIndex = 1;
+            tlpDadosProdutos.TabIndex = 0;
             // 
             // picDadosProdutos
             // 
@@ -539,7 +583,7 @@
             tlpLblProdutos.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpLblProdutos.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpLblProdutos.Size = new Size(131, 111);
-            tlpLblProdutos.TabIndex = 1;
+            tlpLblProdutos.TabIndex = 0;
             // 
             // lblDadosProdutos
             // 
@@ -560,7 +604,7 @@
             lblTlpProdutos.Location = new Point(3, 55);
             lblTlpProdutos.Name = "lblTlpProdutos";
             lblTlpProdutos.Size = new Size(125, 46);
-            lblTlpProdutos.TabIndex = 1;
+            lblTlpProdutos.TabIndex = 0;
             lblTlpProdutos.Text = "Produto\r\ncadastrados";
             // 
             // tlpDadosClientes
@@ -578,7 +622,7 @@
             tlpDadosClientes.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpDadosClientes.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tlpDadosClientes.Size = new Size(228, 117);
-            tlpDadosClientes.TabIndex = 2;
+            tlpDadosClientes.TabIndex = 0;
             // 
             // picDadosClientes
             // 
@@ -605,7 +649,7 @@
             tlpLblClientes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpLblClientes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpLblClientes.Size = new Size(131, 111);
-            tlpLblClientes.TabIndex = 1;
+            tlpLblClientes.TabIndex = 0;
             // 
             // lblDadosClientes
             // 
@@ -626,7 +670,7 @@
             lblTlpClientes.Location = new Point(3, 55);
             lblTlpClientes.Name = "lblTlpClientes";
             lblTlpClientes.Size = new Size(125, 46);
-            lblTlpClientes.TabIndex = 1;
+            lblTlpClientes.TabIndex = 0;
             lblTlpClientes.Text = "Clientes \r\ncadastrados";
             // 
             // tlpDadosPendencias
@@ -644,7 +688,7 @@
             tlpDadosPendencias.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpDadosPendencias.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tlpDadosPendencias.Size = new Size(228, 117);
-            tlpDadosPendencias.TabIndex = 3;
+            tlpDadosPendencias.TabIndex = 0;
             // 
             // picDadosPendencias
             // 
@@ -671,7 +715,7 @@
             tlpLblPendencias.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpLblPendencias.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpLblPendencias.Size = new Size(131, 111);
-            tlpLblPendencias.TabIndex = 1;
+            tlpLblPendencias.TabIndex = 0;
             // 
             // lblDadosPendencias
             // 
@@ -692,7 +736,7 @@
             lblTlpPendencias.Location = new Point(3, 55);
             lblTlpPendencias.Name = "lblTlpPendencias";
             lblTlpPendencias.Size = new Size(125, 46);
-            lblTlpPendencias.TabIndex = 1;
+            lblTlpPendencias.TabIndex = 0;
             lblTlpPendencias.Text = "Total de\r\npendências";
             // 
             // timerDataHora
@@ -718,6 +762,7 @@
             pnlNavegacao.ResumeLayout(false);
             tlpNavegacao.ResumeLayout(false);
             tlpBtnFecharApp.ResumeLayout(false);
+            tlpConfiguracao.ResumeLayout(false);
             tlpPrincipal.ResumeLayout(false);
             tlpPrincipal.PerformLayout();
             tlpTituloSubtitulo.ResumeLayout(false);
@@ -787,5 +832,7 @@
         private Label lblTlpProdutos;
         private Label lblTlpClientes;
         private Label lblTlpPendencias;
+        private TableLayoutPanel tlpConfiguracao;
+        private Button btnConfiguracao;
     }
 }
