@@ -40,8 +40,8 @@ namespace Projeto_Valquiria
                 this.Close();
             }
 
-            UIHelper.ArredondarBorda(this,40);
-            UIHelper.ArredondarBorda(btnAtualizar,40);
+            UIHelper.ArredondarBorda(this, 40);
+            UIHelper.ArredondarBorda(btnAtualizar, 40);
         }
 
         // ---------- ENVIAR CÓDIGO ----------
@@ -167,11 +167,27 @@ Equipe Projeto Valquíria";
             }
         }
 
+        // ---------- TIMER ----------
+        private void timerEnvio_Tick(object sender, EventArgs e)
+        {
+            TimeSpan restante = (ultimoEnvio.AddMinutes(TEMPO_MINIMO_ENVIO) - DateTime.Now);
+            if (restante.TotalSeconds > 0)
+                lblTempoRestante.Text = $"Aguarde {restante.Minutes:D2}:{restante.Seconds:D2} para novo envio";
+            else
+            {
+                lblTempoRestante.Text = "Pronto para enviar";
+                btnEnviarCodigo.Enabled = true;
+                timerEnvio.Stop();
+            }
+        }
+
+        // ---------- ENVIAR CÓDIGO PARA O NOVO EMAIL----------
         private void btnEnviarCodigoN_Click(object sender, EventArgs e)
         {
 
         }
 
+        // ---------- ATUALIZAR LOGIN ----------
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
 

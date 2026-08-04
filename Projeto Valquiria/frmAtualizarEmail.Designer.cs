@@ -315,6 +315,7 @@
             // timerEnvio
             // 
             timerEnvio.Interval = 1000;
+            timerEnvio.Tick += timerEnvio_Tick;
             // 
             // frmAtualizarEmail
             // 
