@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,9 +44,127 @@ namespace Projeto_Valquiria
             UIHelper.ArredondarBorda(btnAtualizar,40);
         }
 
+        // ---------- ENVIAR CÓDIGO ----------
         private void btnEnviarCodigo_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                txtEmail.BackColor = Color.Khaki;
+                txtEmail.Enter += (s, ev) => txtEmail.BackColor = Color.White;
+                ErroHelper.MostrarAviso("O campo 'E-mail' precisa ser preenchido.");
+                return;
+            }
 
+            string email = txtEmail.Text.Trim();
+
+            try { var endereco = new MailAddress(email); }
+            catch
+            {
+                txtEmail.BackColor = Color.Khaki;
+                txtEmail.Enter += (s, ev) => txtEmail.BackColor = Color.White;
+                ErroHelper.MostrarErro("Erro de E-mail", "Formato inválido. Digite um endereço válido.");
+                return;
+            }
+
+            using (MySqlConnection conn = new MySqlConnection(conexao))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Verifica se o e-mail existe
+                    string sqlCheck = "SELECT COUNT(*) FROM login WHERE email=@email";
+                    MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
+                    cmdCheck.Parameters.AddWithValue("@email", email);
+                    int existe = Convert.ToInt32(cmdCheck.ExecuteScalar());
+
+                    if (existe == 0)
+                    {
+                        txtEmail.BackColor = Color.Khaki;
+                        txtEmail.Enter += (s, ev) => txtEmail.BackColor = Color.White;
+                        ErroHelper.MostrarAviso("E-mail não encontrado no sistema.");
+                        return;
+                    }
+
+                    // Verifica tempo mínimo
+                    string sqlTempo = "SELECT reset_last_sent FROM login WHERE email=@email";
+                    MySqlCommand cmdTempo = new MySqlCommand(sqlTempo, conn);
+                    cmdTempo.Parameters.AddWithValue("@email", email);
+                    object lastSentObj = cmdTempo.ExecuteScalar();
+
+                    if (lastSentObj != DBNull.Value)
+                    {
+                        DateTime lastSent = Convert.ToDateTime(lastSentObj);
+                        TimeSpan diff = DateTime.Now - lastSent;
+
+                        if (diff.TotalMinutes < TEMPO_MINIMO_ENVIO)
+                        {
+                            int restante = (int)(TEMPO_MINIMO_ENVIO * 60 - diff.TotalSeconds);
+                            lblTempoRestante.Text = $"Aguarde {restante / 60:D2}:{restante % 60:D2} para novo envio";
+                            ErroHelper.MostrarAviso("Você precisa esperar antes de enviar outro código.");
+                            ultimoEnvio = lastSent;
+                            btnEnviarCodigo.Enabled = false;
+                            timerEnvio.Start();
+                            return;
+                        }
+                    }
+
+                    // Gera código
+                    string codigo = new Random().Next(100000, 999999).ToString();
+                    DateTime validade = DateTime.Now.AddMinutes(10);
+
+                    // Atualiza no banco
+                    string sqlUpdate = @"UPDATE login 
+                                         SET reset_code=@codigo, reset_expiration=@validade, reset_last_sent=@agora 
+                                         WHERE email=@email";
+                    MySqlCommand cmdUpdate = new MySqlCommand(sqlUpdate, conn);
+                    cmdUpdate.Parameters.AddWithValue("@codigo", codigo);
+                    cmdUpdate.Parameters.AddWithValue("@validade", validade);
+                    cmdUpdate.Parameters.AddWithValue("@agora", DateTime.Now);
+                    cmdUpdate.Parameters.AddWithValue("@email", email);
+                    cmdUpdate.ExecuteNonQuery();
+
+                    // Configura e-mail
+                    string emailUser = ConfigurationManager.AppSettings["EmailUser"];
+                    string emailPass = ConfigurationManager.AppSettings["EmailPassword"];
+
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress(emailUser);
+                    mail.To.Add(email);
+                    mail.Subject = "Redefinição de senha - Projeto Valquíria";
+                    mail.Body = $@"Olá,
+
+Recebemos uma solicitação para redefinir sua senha no sistema do aplicativo Valquíria Gomes.
+Aqui está o seu código de verificação:
+
+Código: {codigo}
+Esse código irá expirar em 10 minutos.
+
+Se você não deseja redefinir sua senha, apenas ignore esta mensagem.
+
+Atenciosamente,
+Equipe Projeto Valquíria";
+
+
+                    SmtpClient smtp = new SmtpClient("smtp.gmail.com")
+                    {
+                        Port = 587,
+                        Credentials = new System.Net.NetworkCredential(emailUser, emailPass),
+                        EnableSsl = true,
+                        Timeout = 20000
+                    };
+
+                    ultimoEnvio = DateTime.Now;
+                    btnEnviarCodigo.Enabled = false;
+                    timerEnvio.Start();
+
+                    smtp.Send(mail);
+                    ErroHelper.MostrarSucesso("Código enviado para o e-mail cadastrado!");
+                }
+                catch (MySqlException ex) { ErroHelper.MostrarErro("Erro MySQL", "Problema ao acessar o banco."); ErroHelper.LogErro(ex); }
+                catch (SmtpException ex) { ErroHelper.MostrarErro("Erro SMTP", "Problema ao enviar e-mail."); ErroHelper.LogErro(ex); }
+                catch (Exception ex) { ErroHelper.MostrarErro("Erro inesperado", "Ocorreu um problema."); ErroHelper.LogErro(ex); }
+            }
         }
 
         private void btnEnviarCodigoN_Click(object sender, EventArgs e)

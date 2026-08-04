@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAtualizarEmail));
             picCoracao = new PictureBox();
             picCodigoN = new PictureBox();
@@ -50,6 +51,8 @@
             txtCodigoN = new TextBox();
             btnEnviarCodigoN = new Button();
             lblTempoRestanteN = new Label();
+            timerEnvio = new System.Windows.Forms.Timer(components);
+            timerEnvioN = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)picCoracao).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCodigoN).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picEmailN).BeginInit();
@@ -309,6 +312,10 @@
             lblTempoRestanteN.Size = new Size(0, 20);
             lblTempoRestanteN.TabIndex = 60;
             // 
+            // timerEnvio
+            // 
+            timerEnvio.Interval = 1000;
+            // 
             // frmAtualizarEmail
             // 
             AcceptButton = btnAtualizar;
@@ -377,5 +384,7 @@
         private TextBox txtCodigoN;
         private Button btnEnviarCodigoN;
         private Label lblTempoRestanteN;
+        private System.Windows.Forms.Timer timerEnvio;
+        private System.Windows.Forms.Timer timerEnvioN;
     }
 }
