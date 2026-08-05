@@ -285,7 +285,7 @@ Equipe Projeto Valquíria";
                             DateTime validade = DateTime.Now.AddMinutes(10);
 
                             // Atualiza no banco
-                            string sqlUpdate = @"UPDATE cadastro_temp 
+                            string sqlUpdate = @"UPDATE cadastro_tempN 
                                          SET reset_code=@codigo, reset_expiration=@validade, reset_last_sent=@agora 
                                          WHERE email=@email";
                             MySqlCommand cmdUpdate = new MySqlCommand(sqlUpdate, conn);
@@ -361,15 +361,102 @@ Equipe Projeto Valquíria";
         // ---------- ATUALIZAR LOGIN ----------
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
+            string emailAntigo = txtEmail.Text.Trim();
+            string codigoAntigo = txtCodigo.Text.Trim();
+            string emailNovo = txtEmailN.Text.Trim();
+            string codigoNovo = txtCodigoN.Text.Trim();
 
+            if (string.IsNullOrWhiteSpace(emailAntigo) || string.IsNullOrWhiteSpace(codigoAntigo) ||
+                string.IsNullOrWhiteSpace(emailNovo) || string.IsNullOrWhiteSpace(codigoNovo))
+            {
+                ErroHelper.MostrarAviso("Preencha todos os campos obrigatórios.");
+                return;
+            }
+
+            using (MySqlConnection conn = new MySqlConnection(conexao))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Valida código do email antigo
+                    string sqlCheckAntigo = @"SELECT COUNT(*) FROM cadastro_temp
+                                      WHERE email=@email AND reset_code=@codigo 
+                                      AND reset_expiration > NOW()";
+                    MySqlCommand cmdCheckAntigo = new MySqlCommand(sqlCheckAntigo, conn);
+                    cmdCheckAntigo.Parameters.AddWithValue("@email", emailAntigo);
+                    cmdCheckAntigo.Parameters.AddWithValue("@codigo", codigoAntigo);
+                    int validoAntigo = Convert.ToInt32(cmdCheckAntigo.ExecuteScalar());
+
+                    if (validoAntigo == 0)
+                    {
+                        ErroHelper.MostrarAviso("O código do email antigo é inválido ou já expirou.");
+                        return;
+                    }
+
+                    // Valida código do novo email
+                    string sqlCheckNovo = @"SELECT COUNT(*) FROM cadastro_tempN
+                                    WHERE email=@email AND reset_code=@codigo 
+                                    AND reset_expiration > NOW()";
+                    MySqlCommand cmdCheckNovo = new MySqlCommand(sqlCheckNovo, conn);
+                    cmdCheckNovo.Parameters.AddWithValue("@email", emailNovo);
+                    cmdCheckNovo.Parameters.AddWithValue("@codigo", codigoNovo);
+                    int validoNovo = Convert.ToInt32(cmdCheckNovo.ExecuteScalar());
+
+                    if (validoNovo == 0)
+                    {
+                        ErroHelper.MostrarAviso("O código do novo email é inválido ou já expirou.");
+                        return;
+                    }
+
+                    // Atualiza email na tabela login
+                    string sqlUpdate = @"UPDATE login 
+                                 SET email=@novoEmail
+                                 WHERE email=@antigoEmail";
+                    MySqlCommand cmdUpdate = new MySqlCommand(sqlUpdate, conn);
+                    cmdUpdate.Parameters.AddWithValue("@novoEmail", emailNovo);
+                    cmdUpdate.Parameters.AddWithValue("@antigoEmail", emailAntigo);
+
+                    int linhasAfetadas = cmdUpdate.ExecuteNonQuery();
+                    if (linhasAfetadas == 0)
+                    {
+                        ErroHelper.MostrarAviso("Nenhum registro foi atualizado. Verifique o e-mail informado.");
+                        return;
+                    }
+
+                    // Limpa registros temporários
+                    string sqlDeleteTemp = @"DELETE FROM cadastro_temp WHERE email=@email";
+                    MySqlCommand cmdDeleteTemp = new MySqlCommand(sqlDeleteTemp, conn);
+                    cmdDeleteTemp.Parameters.AddWithValue("@email", emailAntigo);
+                    cmdDeleteTemp.ExecuteNonQuery();
+
+                    string sqlDeleteTempN = @"DELETE FROM cadastro_tempN WHERE email=@email";
+                    MySqlCommand cmdDeleteTempN = new MySqlCommand(sqlDeleteTempN, conn);
+                    cmdDeleteTempN.Parameters.AddWithValue("@email", emailNovo);
+                    cmdDeleteTempN.ExecuteNonQuery();
+
+                    ErroHelper.MostrarSucesso("Email atualizado com sucesso!");
+                    this.Close();
+                }
+                catch (MySqlException ex)
+                {
+                    if (ex.Number == 1062) // erro de chave duplicada
+                    {
+                        ErroHelper.MostrarAviso("Esse novo email já está em uso. Escolha outro.");
+                    }
+                    else
+                    {
+                        ErroHelper.MostrarErro("Erro MySQL", "Problema ao atualizar os dados.");
+                        ErroHelper.LogErro(ex);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErroHelper.MostrarErro("Erro inesperado", "Ocorreu um problema ao atualizar.");
+                    ErroHelper.LogErro(ex);
+                }
+            }
         }
-
-
-
-
-
-
-
 
         // ---------- VOLTAR ----------
         private void btnVoltar_Click(object sender, EventArgs e)
