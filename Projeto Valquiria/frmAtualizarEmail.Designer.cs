@@ -317,6 +317,10 @@
             timerEnvio.Interval = 1000;
             timerEnvio.Tick += timerEnvio_Tick;
             // 
+            // timerEnvioN
+            // 
+            timerEnvioN.Tick += timerEnvioN_Tick;
+            // 
             // frmAtualizarEmail
             // 
             AcceptButton = btnAtualizar;

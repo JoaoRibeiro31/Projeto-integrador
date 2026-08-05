@@ -95,8 +95,26 @@ namespace Projeto_Valquiria
                         return;
                     }
 
+                    //Verifica se o email está na tabela cadastro_temp
+                    string sqlCheckC = "SELECT COUNT(*) FROM cadastro_temp WHERE email=@email";
+                    MySqlCommand cmdCheckC = new MySqlCommand(sqlCheckC, conn);
+                    cmdCheckC.Parameters.AddWithValue("@email", email);
+                    int existeC = Convert.ToInt32(cmdCheckC.ExecuteScalar());
+
+                    if (existeC == 0)
+                    {
+                        string sqlTempoC = @"INSERT INTO cadastro_temp 
+                                                   (email,   reset_code,  reset_expiration,       reset_last_sent)
+                                            VALUES (@email, '000000',    '2026-01-01 00:00:00',  '2026-01-01 00:00:00');";
+                        MySqlCommand cmdTempoC = new MySqlCommand(sqlTempoC, conn);
+                        cmdTempoC.Parameters.AddWithValue("@email", email);
+                        cmdTempoC.ExecuteNonQuery();
+                    }
+
+
+
                     // Verifica tempo mínimo
-                    string sqlTempo = "SELECT reset_last_sent FROM login WHERE email=@email";
+                    string sqlTempo = "SELECT reset_last_sent FROM cadastro_temp WHERE email=@email";
                     MySqlCommand cmdTempo = new MySqlCommand(sqlTempo, conn);
                     cmdTempo.Parameters.AddWithValue("@email", email);
                     object lastSentObj = cmdTempo.ExecuteScalar();
@@ -123,7 +141,7 @@ namespace Projeto_Valquiria
                     DateTime validade = DateTime.Now.AddMinutes(10);
 
                     // Atualiza no banco
-                    string sqlUpdate = @"UPDATE login 
+                    string sqlUpdate = @"UPDATE cadastro_temp 
                                          SET reset_code=@codigo, reset_expiration=@validade, reset_last_sent=@agora 
                                          WHERE email=@email";
                     MySqlCommand cmdUpdate = new MySqlCommand(sqlUpdate, conn);
