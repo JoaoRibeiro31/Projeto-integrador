@@ -18,15 +18,11 @@ USE bd_pjval;
 		reset_last_sent DATETIME NOT NULL
 	);
 
--- Tabela de login preparada para SHA256
 CREATE TABLE login (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario VARCHAR(20) NOT NULL UNIQUE,
     senha CHAR(64) NOT NULL,
-    email VARCHAR(250) NOT NULL UNIQUE,
-    reset_code VARCHAR(10) NOT NULL,
-	reset_expiration DATETIME NOT NULL,
-	reset_last_sent DATETIME NOT NULL
+    email VARCHAR(250) NOT NULL UNIQUE
 );
 
 CREATE TABLE produtos (
