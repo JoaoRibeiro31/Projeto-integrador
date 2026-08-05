@@ -249,7 +249,7 @@ Equipe Projeto Valquíria";
                 {
                     conn.Open();
 
-                    string sqlCheck = @"SELECT COUNT(*) FROM login 
+                    string sqlCheck = @"SELECT COUNT(*) FROM cadastro_temp
                                         WHERE email=@email AND reset_code=@codigo 
                                         AND reset_expiration > NOW()";
                     MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, conn);
@@ -264,15 +264,19 @@ Equipe Projeto Valquíria";
                     }
 
                     string sqlUpdate = @"UPDATE login 
-                                         SET usuario=@usuario, senha=@senha, 
-                                             reset_code=NULL, reset_expiration=NULL 
-                                         WHERE email=@email AND reset_code=@codigo";
+                                         SET usuario=@usuario, senha=@senha
+                                         WHERE email=@email";
                     MySqlCommand cmdUpdate = new MySqlCommand(sqlUpdate, conn);
                     cmdUpdate.Parameters.AddWithValue("@usuario", usuario);
                     cmdUpdate.Parameters.AddWithValue("@senha", senhaHash);
                     cmdUpdate.Parameters.AddWithValue("@email", email);
-                    cmdUpdate.Parameters.AddWithValue("@codigo", codigo);
                     cmdUpdate.ExecuteNonQuery();
+
+                    // Limpa registro temporário
+                    string sqlDeleteTemp = @"DELETE FROM cadastro_temp WHERE email=@email";
+                    MySqlCommand cmdDeleteTemp = new MySqlCommand(sqlDeleteTemp, conn);
+                    cmdDeleteTemp.Parameters.AddWithValue("@email", email);
+                    cmdDeleteTemp.ExecuteNonQuery();
 
                     ErroHelper.MostrarSucesso("Login e senha atualizados com sucesso!");
                     this.Close();
