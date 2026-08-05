@@ -156,7 +156,7 @@
             // txtCodigo
             // 
             txtCodigo.Location = new Point(202, 204);
-            txtCodigo.MaxLength = 10;
+            txtCodigo.MaxLength = 6;
             txtCodigo.Name = "txtCodigo";
             txtCodigo.PlaceholderText = "Digite o código recebido";
             txtCodigo.Size = new Size(457, 27);
@@ -209,7 +209,7 @@
             // 
             txtEmailN.Location = new Point(202, 279);
             txtEmailN.Margin = new Padding(3, 4, 3, 4);
-            txtEmailN.MaxLength = 20;
+            txtEmailN.MaxLength = 250;
             txtEmailN.Name = "txtEmailN";
             txtEmailN.PlaceholderText = "Digite um novo email de login";
             txtEmailN.Size = new Size(332, 27);
@@ -281,7 +281,7 @@
             // txtCodigoN
             // 
             txtCodigoN.Location = new Point(202, 349);
-            txtCodigoN.MaxLength = 10;
+            txtCodigoN.MaxLength = 6;
             txtCodigoN.Name = "txtCodigoN";
             txtCodigoN.PlaceholderText = "Digite o código recebido";
             txtCodigoN.Size = new Size(457, 27);
